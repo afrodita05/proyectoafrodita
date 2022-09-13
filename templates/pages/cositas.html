@@ -1,0 +1,1353 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block title %}Clientes{% endblock title %}
+{% block extra_css %}
+    <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+   <!-- color picker css -->
+<link rel="stylesheet" href="{% static 'libs/@simonwep/pickr/dist/themes/classic.min.css'%}" /> <!-- 'classic' theme -->
+<link rel="stylesheet" href="{% static 'libs/@simonwep/pickr/dist/themes/monolith.min.css'%"} /> <!-- 'monolith' theme -->
+<link rel="stylesheet" href="{% static 'libs/@simonwep/pickr/dist/themes/nano.min.css'%}" /> <!-- 'nano' theme -->
+
+<!-- datepicker css -->
+<link rel="stylesheet" href="{% static 'libs/flatpickr/dist/flatpickr.min.css'%}">  
+{% endblock extra_css %}
+{% block content %}
+        
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                <h4 class="mb-sm-0 font-size-18">Clientes</h4>
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Paginas</a></li>
+                                        <li class="breadcrumb-item active">Clientes</li>
+                                    </ol>
+                                </div>
+                    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4" style="width: 100%; height: 100%; align-items: center;">
+                        <div class="card border border-primary" >
+                            <div class="card-header bg-transparent border-primary">
+                                <h5 class="my-0 text-primary"><i class="mdi mdi-bullseye-arrow me-3"></i>Para crear un cliente</h5>
+                            </div>
+                            <div class="card-body" style="width: 100%; margin-top: 20px;">
+                                <p class="card-text" style="font-size: 22px;">Para crear un nuevo cliente presiona el botón  "Crear un cliente", recuerda que es necesario tener toda la información registrada para
+                                crear un nuevo cliente.</p>  
+                                
+                            </div>
+                            <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
+                                <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".bs-clientes" style="width: 50%;" >Crear un cliente</button>
+                                <div class="d-flex flex-wrap gap-3">
+                                    <div>
+                                        <!--  Modal Crear Cliente -->
+                                        <div class="modal fade bs-clientes" tabindex="-1" role="dialog" data-bs-backdrop="static" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-xl" >
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="myExtraLargeModalLabel">Crear Cliente</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                
+                                                    <div style="margin: 60px;">
+                                                        <!--  FORMULARIO CON VALIDACIONES -->
+                                                        <form id="pristine-valid-example" novalidate method="post">
+                                                            {% csrf_token %}
+                                                            <input type="hidden" />
+                                                            <div class="row">
+                                                                <div class="col-xl-4 col-lg-6">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label">Nombre</label>
+                                                                        <input type="text" required
+                                                                            data-pristine-required-message="Por favor ingrese el nombre completo " placeholder="Ingrese el nombre completo"
+                                                                            class="form-control" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-4 col-md-6">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label">Documento</label>
+                                                                        <input type="text" data-pristine-required-message="Por favor ingrese el número de documento " placeholder="Ingrese el número de documento" required class="form-control" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-4 col-md-6">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Sexo</label>
+                                                                        <select class="form-select">
+                                                                            <option value="Masculino">Masculino</option>
+                                                                            <option value="Femenino">Femenino</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>   
+                                                                <div class="col-xl-4 col-md-6">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Estado civil</label>
+                                                                        <select class="form-select">
+                                                                            <option value="Soltero">Soltero</option>
+                                                                            <option value="Casado">Casado</option>
+                                                                            <option value="Union libre">Union libre</option>
+                                                                            <option value="Divorciado">Divorciado</option>
+                                                                            <option value="Viudo">Viudo</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>  
+                                                                <div class="col-xl-4 col-md-6">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label">Número de hijos</label>
+                                                                        <input type="text" data-pristine-required-message="Por favor ingrese un número de teléfono " placeholder="Ingrese el número de teléfono" required class="form-control" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-4 col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Fecha de nacimiento</label>
+                                                                        <input type="date" class="form-control" id="datepicker-basic">
+                                                                    </div>
+                                                                </div>
+                                                               
+                                                                <div class="col-xl-4 col-md-6">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label">Teléfono</label>
+                                                                        <input type="text" data-pristine-required-message="Por favor ingrese un número de teléfono " placeholder="Ingrese el número de teléfono" required class="form-control" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-4 col-md-6">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label">Dirección</label>
+                                                                        <input type="text" data-pristine-required-message="Por favor ingrese una dirección "placeholder="Ingrese la dirección" required class="form-control" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-4 col-md-6">
+                                                                    <div class="form-group mb-3">
+                                                                        <label>Correo</label>
+                                                                        <input type="email" required
+                                                                            data-pristine-required-message="Por favor ingresar el correo electrónico" placeholder="Ingrese el correo electrónico"
+                                                                            class="form-control" />
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                            <!-- end row -->
+                                                            <div class="btn-group dropend" style="margin-bottom: 60px; width: 15%;">
+                                                                <button type="button" class="btn btn-light waves-effect waves-light">
+                                                                    Adicionar
+                                                                </button>
+                                                                <button type="button" class="btn btn-light waves-effect waves-light dropdown-toggle-split dropdown-toggle bg-light" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    <i class="mdi mdi-chevron-right"></i>
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                    <div class="d-flex flex-wrap gap-2">
+
+                                                                        <button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                                                        data-bs-target=".bs-facial"><i class="mdi mdi-face-woman-outline"></i> Facial
+                                                                        </button>
+
+                                                                        <button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                                                        data-bs-target=".bs-corporal" ><i class="mdi mdi-human-handsdown"></i>  Corporal
+                                                                        </button>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;" >
+                                                                <button type="submit" class="btn btn-primary" style="width: 50%;">Crear Cliente</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div><!-- /.modal-content -->
+                                            </div><!-- /.modal-dialog -->
+                                        </div><!-- /.modal -->
+                                        
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- end col -->
+                    <div>   <!--   MODAL CREAR CORPORAL -->
+                        <div class="modal fade bs-corporal"  data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalcorporal"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-xl">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalcorporal">Crear Corporal</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>  
+                                    <div class="modal-body">
+                                        <div class="card-body" style="text-align: sen;">
+                                            <div style="text-align: center;">
+                                                <h5 class="modal-title" id="modalcorporal"> Estado de salud y modo de vida</h5>
+                                            </div>
+                                            <div id="progrss-wizard" class="twitter-bs-wizard">
+                                                <ul class="twitter-bs-wizard-nav nav nav-pills nav-justified">
+                                                    <li class="nav-item">
+                                                        <a href="#progress-seller-details" class="nav-link" data-toggle="tab">
+                                                            <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Seller Details">
+                                                                <i class="mdi mdi-clipboard-pulse-outline"></i>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a href="#progress-company-document" class="nav-link" data-toggle="tab">
+                                                            <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Company Document">
+                                                                <i class="mdi mdi-scale-balance"></i>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    
+                                                    <li class="nav-item">
+                                                        <a href="#progress-bank-detail" class="nav-link" data-toggle="tab">
+                                                            <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Bank Details">
+                                                                <i class="mdi mdi-weight-lifter"></i>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <!-- wizard-nav -->
+                                                <div class="tab-content twitter-bs-wizard-tab-content">
+                                                    <div class="tab-pane" id="progress-seller-details">
+                                                        <div class="text-center mb-4" style="text-align: center;">
+                                                            <h5>Sufre problemas</h5>
+                                                        </div>
+                                                        <form>
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label">Tensión arterial</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label">Digestivo</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>     
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label">Endocrino</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>   
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label">Cardiaco</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>      
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label">Circulatorio</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>      
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group mb-3">
+                                                                        <div class="mb-3">
+                                                                            <label for="progresspill-address-input">Otros</label>
+                                                                            <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                                        </div>     
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                        <ul class="pager wizard twitter-bs-wizard-pager-link">
+                                                            <li class="next"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">Siguiente <i
+                                                                class="bx bx-chevron-right ms-1"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="tab-pane" id="progress-company-document">
+                                                        <div>
+                                                        <div class="text-center mb-4">
+                                                            <h5>Peso actual</h5>
+                                                        </div>
+                                                        <form>
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label">Kilos</label>
+                                                                        <input type="text" required
+                                                                            data-pristine-required-message="Por favor ingrese el nombre completo " placeholder="Ingrese el nombre completo"
+                                                                            class="form-control" />
+                                                                    </div>
+                                                                </div>
+        
+                                                                <div class="col-lg-6">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label">Altura</label>
+                                                                        <input type="text" required
+                                                                            data-pristine-required-message="Por favor ingrese el nombre completo " placeholder="Ingrese el nombre completo"
+                                                                            class="form-control" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label">Masa corporal</label>
+                                                                        <input type="text" required
+                                                                            data-pristine-required-message="Por favor ingrese el nombre completo " placeholder="Ingrese el nombre completo"
+                                                                            class="form-control" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <label class="form-label">Silueta</label>
+                                                                    <select class="form-select">
+                                                                        <option value="Manzana">Manzana</option>
+                                                                        <option value="Rectanguno">Rectangulo</option>
+                                                                        <option value="Pera">Pera</option>
+                                                                        <option value="Reloj de arena">Reloj de arena</option>
+                                                                        <option value="Triangulo invertido">Triangulo invertido</option>
+                                                                    </select>
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-12">
+                                                                    <div class="mb-3">
+                                                                        <label for="progresspill-address-input">Cirugias</label>
+                                                                        <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="mb-3">
+                                                                        <label for="progresspill-address-input">Fibrosis</label>
+                                                                        <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="mb-3">
+                                                                        <label for="progresspill-address-input">Costumbres alimentarias</label>
+                                                                        <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-12">
+                                                                    <div class="mb-3">
+                                                                        <label for="progresspill-address-input">Deportes practicados</label>
+                                                                        <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                                    </div> 
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                        <ul class="pager wizard twitter-bs-wizard-pager-link">
+                                                            <li class="previous"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()"><i
+                                                                        class="bx bx-chevron-left me-1"></i> Anterior</a></li>
+                                                            <li class="next"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">Siguiente <i
+                                                                        class="bx bx-chevron-right ms-1"></i></a></li>
+                                                        </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="progress-bank-detail">
+                                                        <div>
+                                                            <div class="text-center mb-4">
+                                                                <h5>Modo de vida</h5>
+                                                            </div>
+                                                                <form>
+                                                                    <div class="row">
+                                                                        <div class="col-lg-6">
+                                                                            <div class="form-group mb-3">
+                                                                                <label class="form-label">Modo de vida</label>
+                                                                                <select class="form-select">
+                                                                                    <option value="Activa">Activa</option>
+                                                                                    <option value="Sedentaria">Sedentaria</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-6">
+                                                                            <div class="form-group mb-3">
+                                                                                <label class="form-label">Fuma</label>
+                                                                                <select class="form-select">
+                                                                                    <option value="No">No</option>
+                                                                                    <option value="si">Si</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-6">
+                                                                            <div class="form-group mb-3">
+                                                                                <label class="form-label">Alcohol</label>
+                                                                                <select class="form-select">
+                                                                                    <option value="No">No</option>
+                                                                                    <option value="si">Si</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-6">
+                                                                            <div class="form-group mb-3">
+                                                                                <label class="form-label">Calidad del sueño</label>
+                                                                                <select class="form-select">
+                                                                                    <option value="Buena">Buena</option>
+                                                                                    <option value="Mala">Mala</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12">
+                                                                            <div class="mb-3">
+                                                                                <label for="progresspill-address-input">Notas</label>
+                                                                                <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Notas"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                                <ul class="pager wizard twitter-bs-wizard-pager-link">
+                                                                    <li class="previous"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()"><i
+                                                                    class="bx bx-chevron-left me-1"></i> Anterior</a></li>
+                                                                    <li class="float-end"><a href="javascript: void(0);" class="btn btn-primary" data-bs-toggle="modal"
+                                                                    data-bs-target=".confirmModal">Guardar</a></li>
+                                                                </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
+                    <div>   <!--   MODAL CREAR FACIAL  -->
+                        <div class="modal fade bs-facial"  data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalfacial"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-xl">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalcorporal">Crear Facial</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div> 
+                                    <div class="modal-body">
+                                        <div class="card-body">
+                                            <div id="basic-pills-wizard" class="twitter-bs-wizard">
+                                                <ul class="twitter-bs-wizard-nav">
+                                                    <li class="nav-item">
+                                                        <a href="#seller-details" class="nav-link" data-toggle="tab">
+                                                            <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Seller Details">
+                                                                <i data-feather="activity"></i>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a href="#company-document" class="nav-link" data-toggle="tab">
+                                                            <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Company Document">
+                                                                <i class="mdi mdi-face-recognition"></i>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    
+                                                    <li class="nav-item">
+                                                        <a href="#bank-detail" class="nav-link" data-toggle="tab">
+                                                            <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Bank Details">
+                                                                <i class="fas fa-hand-holding-water "></i>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <!-- wizard-nav -->
+                                                <div class="tab-content twitter-bs-wizard-tab-content">
+                                                    <div class="tab-pane" id="seller-details">
+                                                        <div class="text-center mb-4">
+                                                            <h4>Factores Agravantes</h4>
+                                                        </div>
+                                                        <form>
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Actualmente está en tratamiento médico</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        <label for="progresspill-address-input">Cuál</label>
+                                                                        <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Sustitución hormonal</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Toma anticonceptivo</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Drogas</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        <label for="progresspill-address-input">Alimentos preferidos</label>
+                                                                        <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        <label for="progresspill-address-input">Alimentos rechazados</label>
+                                                                        <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Fuma</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Toma licor</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Se protege del sol</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Duerme bien</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Menopausia</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Toma medicamentos orales o tópicos</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        <label for="progresspill-address-input">Cuales</label>
+                                                                        <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Padece de estrés</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Ha tenido cáncer de piel</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Asma</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Lupus</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Herpes</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Hepatitis</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Epilepsia</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Dolor de cabeza</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Ampollas febriles</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Tiroides</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Problemas cardiacos</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Psicológicos</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Urinarios</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Nasales</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Digestivos</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="text-center mb-4">
+                                                                    <h5>Está utilizando o uso</h5>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Alfahidroxiacidos</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Retín A</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Differin</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label"> Accutane </label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="mb-3">
+                                                                        <label for="progresspill-address-input">Motivo de la consulta </label>
+                                                                        <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="mb-3">
+                                                                        <label for="progresspill-address-input">Es alérgico a algún producto cosmético o medicamento</label>
+                                                                        <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                        <ul class="pager wizard twitter-bs-wizard-pager-link">
+                                                            <li class="next"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">Siguiente <i
+                                                            class="bx bx-chevron-right ms-1"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <!-- tab pane -->
+                                                    <div class="tab-pane" id="company-document">
+                                                        <div>
+                                                        <div class="text-center mb-4">
+                                                            <h4>Análisis de piel</h4>
+                                                        </div>
+                                                        <form>
+                                                            <div class="row">
+                                                                <div class="text-center mb-4">
+                                                                    <h5>Textura</h5>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Normal</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Gruesa</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Áspera</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Suave</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="text-center mb-4">
+                                                                    <h5>Aspecto del poro</h5>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Normal</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Cerrado</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Dilatado</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="text-center mb-4">
+                                                                    <h5>Billo</h5>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Zonas mates</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Zonas billantes</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="text-center mb-4">
+                                                                    <h5>Grado de hidratación </h5>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Normal</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Deshidratada</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Hiperdeshidratada</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <br>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="text-center mb-4">
+                                                                    <h5>Fototipo de piel </h5>
+                                                                </div>
+                                                                <div class="col-lg-10">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Fototipo</label>
+                                                                        <select class="form-select">
+                                                                            <option value="Fototipo 1">Fototipo 1</option>
+                                                                            <option value="Fototipo 2">Fototipo 2</option>
+                                                                            <option value="Fototipo 3">Fototipo 3</option>
+                                                                            <option value="Fototipo 4">Fototipo 4</option>
+                                                                            <option value="Fototipo 5">Fototipo 5</option>
+                                                                            <option value="Fototipo 6">Fototipo 6</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="text-center mb-4">
+                                                                    <h5>Alteraciones del envejecimiento</h5>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Lineas Finas</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Profundas</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>  
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Flacidez</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>  
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Párpados</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>  
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Cuello</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>  
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Nosogenianos</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>  
+                                                                <div class="col-lg-3">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Labios</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="text-center mb-4">
+                                                                    <h5>Acné (Desde cuándo)</h5>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Comedones</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Millas</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>  
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Quistes</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div> 
+                                                            </div>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="text-center mb-4">
+                                                                    <h5>Pigmentación</h5>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Melasma</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Hipercromía</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <div cla
+                                                                <div class="text-center mb-4">
+                                                                    <h5>Bolsas palpebrales</h5>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Edema</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Grasa</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div> 
+                                                            </div>
+                                                        </form>
+                                                        <ul class="pager wizard twitter-bs-wizard-pager-link">
+                                                            <li class="previous"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()"><i
+                                                                        class="bx bx-chevron-left me-1"></i> Anterior</a></li>
+                                                            <li class="next"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">Siguiente <i
+                                                                        class="bx bx-chevron-right ms-1"></i></a></li>
+                                                        </ul>
+                                                        </div>
+                                                    </div>
+                                                    <!-- tab pane -->
+                                                    <div class="tab-pane" id="bank-detail">
+                                                        <div>
+                                                            <div class="text-center mb-4">
+                                                                <h4>Cuidados que realiza diariamente</h4>
+                                                            </div>
+                                                            
+                                                            <form>
+                                                                <br>
+                                                            <div class="row">
+                                                                <div class="text-center mb-4">
+                                                                    <h5>Rutina diaria de higiene</h5>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="mb-3">
+                                                                        <label for="progresspill-address-input">Cuales</label>
+                                                                        <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="text-center mb-4">
+                                                                    <h5>Cuidados habituales</h5>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="mb-3">
+                                                                        <label for="progresspill-address-input">Cuales</label>
+                                                                        <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Mensuales</label>
+                                                                        <select class="form-select">
+                                                                            <option value="No">No</option>
+                                                                            <option value="Si">Si</option>
+                                                                        </select>    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="text-center mb-4">
+                                                                    <h5>Productos que utiliza habitualmente</h5>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="mb-3">
+                                                                        <label for="progresspill-address-input">Cuales</label>
+                                                                        <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                            </form>
+                                                            <ul class="pager wizard twitter-bs-wizard-pager-link">
+                                                                <li class="previous"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()"><i
+                                                                    class="bx bx-chevron-left me-1"></i> Anterior</a></li>
+                                                                <li class="float-end"><a href="javascript: void(0);" class="btn btn-primary" data-bs-toggle="modal"
+                                                                    data-bs-target=".confirmModal">Guardar</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <!-- tab pane -->
+                                                </div>
+                                                <!-- end tab content -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- end card body -->  
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table id="datatable" class="table table-nowrap align-middle">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Fecha de creación</th>
+                                                    <th>Documento</th>
+                                                    <th>Nombre</th>
+                                                    <th>Telefono</th>
+                                                    <th>Dirección</th>
+                                                    <th>Correo</th>
+                                                    <th>Fecha de actualización</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr data-id="1">
+                                                    <td data-field="id" style="width: 80px">1</td>
+                                                    <td data-field="name">23/02/2020</td>
+                                                    <td data-field="documento">1045046042</td>
+                                                    <td data-field="nombre">Julian Valenzuela</td>
+                                                    <td data-field="telefono" >3194687398</td>
+                                                    <td data-field="direccion">Medellin</td>
+                                                    <td data-field="correo">julianandres21@gmail.com</td>
+                                                    <td data-field="fe">24/05/2021</td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-outline-primary btn-sm">
+                                                            <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
+                                                        </a>
+                                                        <a href="#" class="btn btn-outline-primary btn-sm">
+                                                            <i class="mdi mdi-eye-outline  mdi-24px "></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr data-id="2">
+                                                    <td data-field="id" style="width: 80px">2</td>
+                                                    <td data-field="name">12/05/2015</td>
+                                                    <td data-field="documento">6867846042</td>
+                                                    <td data-field="nombre">Juan Plabo Duque</td>
+                                                    <td data-field="telefono" style="width: 80px">3214687321</td>
+                                                    <td data-field="direccion">Medellin</td>
+                                                    <td data-field="correo">Plablo6913@gmail.com</td>
+                                                    <td data-field="update">24/07/2025</td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-outline-primary btn-sm">
+                                                            <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
+                                                        </a>
+                                                        <a href="#" class="btn btn-outline-primary btn-sm">
+                                                            <i class="mdi mdi-eye-outline  mdi-24px "></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr data-id="3">
+                                                    <td data-field="id" style="width: 80px">3</td>
+                                                    <td data-field="name">02/02/2022</td>
+                                                    <td data-field="documento">987546042</td>
+                                                    <td data-field="nombre">Alex González</td>
+                                                    <td data-field="telefono" style="width: 80px">345687398</td>
+                                                    <td data-field="direccion">Medellin</td>
+                                                    <td data-field="correo">Alexgonza13@gmail.com</td>
+                                                    <td data-field="update">05/05/2022</td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-outline-primary btn-sm">
+                                                            <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
+                                                        </a>
+                                                        <a href="#" class="btn btn-outline-primary btn-sm">
+                                                            <i class="mdi mdi-eye-outline  mdi-24px "></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr data-id="4">
+                                                    <td data-field="id" style="width: 80px">4</td>
+                                                    <td data-field="name">22/22/2019</td>
+                                                    <td data-field="documento">000046042</td>
+                                                    <td data-field="nombre">Karen Gaviria</td>
+                                                    <td data-field="telefono" style="width: 80px">3027890300</td>
+                                                    <td data-field="direccion">Medellin</td>
+                                                    <td data-field="correo">dayispanguana21.com</td>
+                                                    <td data-field="update">24/24/2020</td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-outline-primary btn-sm">
+                                                            <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
+                                                        </a>
+                                                        <a href="#" class="btn btn-outline-primary btn-sm">
+                                                            <i class="mdi mdi-eye-outline  mdi-24px "></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr data-id="5">
+                                                    <td data-field="id" style="width: 80px">5</td>
+                                                    <td data-field="name">09/09/2018</td>
+                                                    <td data-field="documento">7676676042</td>
+                                                    <td data-field="nombre">kevin Estiven</td>
+                                                    <td data-field="telefono" style="width: 80px">457566873</td>
+                                                    <td data-field="direccion">Medellin</td>
+                                                    <td data-field="correo">leoncito330@gmail.com</td>
+                                                    <td data-field="update">01/02/2021</td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-outline-primary btn-sm">
+                                                            <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
+                                                        </a>
+                                                        <a href="#" class="btn btn-outline-primary btn-sm">
+                                                            <i class="mdi mdi-eye-outline  mdi-24px "></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- end col -->
+                    </div> <!-- end row -->
+                </div> <!-- container-fluid -->
+                
+            </div> <!-- End Page-content -->
+           
+            {% block footer %}
+                {% include 'partials/footer.html' %}
+            {% endblock footer %}
+        </div>
+        <!-- end main content-->
+{% endblock content %}
+
+{% block extra_js %}
+<!-- Table Editable plugin -->
+<script src="{% static 'libs/table-edits/build/table-edits.min.js'%}"></script>
+
+<script src="{% static 'js/pages/table-editable.int.js'%}"></script> 
+<!-- Required datatable js -->
+<script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js'%}"></script>
+<!-- Buttons examples -->
+<script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js'%}"></script>
+<script src="{% static 'libs/jszip/jszip.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/pdfmake.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/vfs_fonts.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js'%}"></script>
+
+<!-- Responsive examples -->
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js'%}"></script>
+
+<!-- Datatable init js -->
+<script src="{% static 'js/pages/datatables.init.js'%}"></script>   
+<!-- pristine js -->
+<script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
+<!-- form validation -->
+<script src="{% static 'js/pages/form-validation.init.js'%}"></script>
+<!-- color picker js -->
+<script src="{% static 'libs/@simonwep/pickr/dist/pickr.min.js'%}"></script>
+<script src="{% static 'libs/@simonwep/pickr/dist/pickr.es5.min.js'%}"></script>
+
+<!-- datepicker js -->
+<script src="{% static 'libs/flatpickr/dist/flatpickr.min.js'%}"></script>
+<!-- twitter-bootstrap-wizard js -->
+<script src="{% static 'libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js'%}"></script>
+<script src="{% static 'libs/twitter-bootstrap-wizard/prettify.js'%}"></script>
+
+<!-- form wizard init -->
+<script src="{% static 'js/pages/form-wizard.init.js'%}"></script>
+<!-- Modal js -->
+<script src="{% static 'js/pages/modal.init.js'%}"></script>
+
+    <script>
+        var myModal = document.getElementById('myModal')
+        var myInput = document.getElementById('myInput')
+
+        myModal.addEventListener('shown.bs.modal', function () {
+        myInput.focus()
+        })
+    </script>
+
+{% endblock extra_js %}

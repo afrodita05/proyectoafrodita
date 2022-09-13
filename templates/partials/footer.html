@@ -1,0 +1,20 @@
+{% load static %}
+
+{% block footer %}
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script> © Wilmer Gallo Esthetique Beauté.
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-end d-none d-sm-block">
+                                Diseñado y desarrollado en <i class="bx bx-bx bxl-css3 "></i> <i class="bx bx-bx bxl-bootstrap"></i> <i class="bx bx-bx bxl-sass"></i> <i class="bx bx-bx bxl-nodejs"></i> <i class="bx bx-bx bxl-javascript"></i> <i class="bx bx-bx bxl-html5 "></i> <i class="fab fa-python "></i> <img src="{% static 'images/django.png'%}" style="width: 16px; height: 16px;"   alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+{% endblock footer %}

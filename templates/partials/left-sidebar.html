@@ -1,0 +1,86 @@
+{% load static %}
+{% block left_sidebar %}
+        <!-- ========== Left Sidebar Start ========== -->
+        <div class="vertical-menu">
+
+            <div data-simplebar class="h-100">
+
+                <!--- Sidemenu -->
+                <div id="sidebar-menu">
+                    <!-- Left Menu Start -->
+                    <ul class="metismenu list-unstyled" id="side-menu">
+                        <li class="menu-title" data-key="t-menu">Menu</li>
+
+                        <li>
+                            <a href="{% url 'dashboard' %}">
+                               
+                                <i class="mdi  mdi-chart-tree"></i>
+                                <span class="badge rounded-pill bg-soft-success text-success float-end">9+</span>
+                                <span data-key="t-dashboard">Dashboard</span>
+                            </a>
+                        </li>
+
+                        <li class="menu-title" data-key="t-apps">Apps</li>
+
+                        <li>
+                            <a href="{% url 'Configuracion' %}">
+                                <i class="mdi mdi-cog-outline
+                                "></i>
+                                <span data-key="t-ecommerce">Configuración </span>
+                            </a>
+                            
+                        </li>
+                        <li>
+                            <a href="{% url 'Usuarios' %}">
+                                <i class="mdi mdi-account-group-outline
+                                "></i>
+                                <span >Usuarios</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Proveedores'%}" >
+                                <i class="mdi mdi-truck-fast-outline
+                                "></i>
+                                <span data-key="proveedores">Proveedores</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a  href="{% url 'Compras' %}">
+                                <i class="mdi mdi-cart-check"></i>
+                                <span data-key="compras">Compras</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a  href="#">
+                                <i class="bx bx-test-tube"></i>
+                                <span data-key="compras">Insumos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Servicios' %}">
+                                <i class="mdi mdi-needle
+                                "></i>
+                                <span data-key="servicios">Servicios</span>
+                            </a>
+
+                        </li>
+
+                        <li>
+                            <a href="{% url 'Clientes' %}">
+                                <i class="mdi mdi-folder-account-outline"></i>
+                                <span data-key="clientes">Clientes</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Citas' %}" >
+                                <i class="mdi mdi-calendar-check-outline"></i> 
+                                <span data-key="citas">Citas</span>
+                            </a>
+                        </li>
+
+                </div>
+                <!-- Sidebar -->
+            </div>
+        </div>
+        <!-- Left Sidebar End -->
+{% endblock left_sidebar %}

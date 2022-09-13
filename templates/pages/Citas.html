@@ -1,0 +1,281 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}Citas{% endblock title %}
+{% block extra_css %}
+    <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+{% endblock extra_css %}
+{% block content %}
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h3 class="mb-sm-0 font-size-40">Citas</h3>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Paginas</a></li>
+                                <li class="breadcrumb-item active">Citas</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4" style="width: 100%; height: 100%; align-items: center;">
+                <div class="card border border-primary" >
+                    <div class="card-header bg-transparent border-primary">
+                        <h5 class="my-0 text-primary"><i class="mdi mdi-bullseye-arrow me-3"></i>Para crear una cita</h5>
+                    </div>
+                    <div class="card-body" style="width: 100%; margin-top: 20px;">
+                        <p class="card-text" style="font-size: 22px;">Para crear un nuevo Servico presiona el botón  "Crear una cita", recuerda que es necesario tener toda la información registrada para
+                        crear una nueva cita.</p>
+                    </div>
+                    <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
+                        <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".bs-citas" style="width: 50%;" >Crear una cita</button>
+                        <div class="d-flex flex-wrap gap-3">
+                            <div>
+                                <!--  Modal Crear Usuario -->
+                                <div class="modal fade bs-citas" tabindex="-1" role="dialog" data-bs-backdrop="static" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" >
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="myLargeModalLabel">Crear cita</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                        
+                                            <div style="margin: 60px;">
+                                                <!--  FORMULARIO CON VALIDACIONES -->
+                                                <form id="pristine-valid-example" novalidate method="post">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" />
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group mb-3">
+                                                                <label class="form-label">Nombre</label>
+                                                                <input type="text" required
+                                                                    data-pristine-required-message="Por favor ingrese el nombre completo " placeholder="Ingrese el nombre completo"
+                                                                    class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="form-group mb-3">
+                                                                <label class="form-label">Teléfono</label>
+                                                                <input type="text" data-pristine-required-message="Por favor ingrese un número de teléfono " placeholder="Ingrese el número de teléfono" required class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="form-group mb-3">
+                                                                <label class="form-label">Servicio</label>
+                                                                <select class="form-select">
+                                                                    <option value="Chocolaterapia">Chocolaterapia</option>
+                                                                    <option value="Masaje">Masaje reductor</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>  
+                                                        <div class="col-md-12">
+                                                            <label for="example-datetime-local-input" class="form-label">Fecha y hora</label>
+                                                            <input class="form-control" type="datetime-local"
+                                                                value="2019-08-19T13:45:00" id="example-datetime-local-input">
+                                                        </div>
+                                                        <div class=" col-md-12">
+                                                            <div class="form-group mb-3">
+                                                                <label class="form-label">Valor</label>
+                                                                <input type="text" data-pristine-required-message="Por favor ingrese el precio" placeholder="Ingrese el precio" required class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="form-group mb-3">
+                                                                <label class="form-label">Estado</label>
+                                                                <select class="form-select">
+                                                                    <option value="espera">Espera</option>
+                                                                    <option value="cancelado">Cancelado</option>
+                                                                    <option value="proceso">Proceso</option>
+                                                                    <option value="finalizado">Finalizado</option>
+                                                                </select>
+                                                            </div>
+                                                        </div> 
+                                                    </div>
+                                                    <!-- end row -->
+                                                    <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-top: 40px;" >
+                                                        <button type="submit" class="btn btn-primary" style="width: 50%">Crear cita</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end col -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="datatable" class="table table-nowrap align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nombre</th>
+                                            <th>Documento</th>
+                                            <th>Teléfono</th>
+                                            <th>Servicio</th>
+                                            <th>Fecha</th>
+                                            <th>Valor</th>
+                                            <th>Estado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-id="1">
+                                            <td data-field="id" style="width: 80px">1</td>
+                                            <td data-field="name">Julian Valenzuela</td>
+                                            <td data-field="documento">1045046042</td>
+                                            <td data-field="telefono">3194687398</td>
+                                            <td data-field="servicio">Masaje reductor</td>
+                                            <td data-field="fecha">23/03/2023</td>
+                                            <td data-field="valor">60.000 COP</td>
+                                            <td data-field="estado">
+                                                <span class="badge badge-soft-danger" style="font-size: 14px;">Cancelado</span>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                                    <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
+                                                </a>
+                                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                                    <i class="mdi mdi-cancel mdi-24px"></i>
+                                                </a>
+                                                
+                                            </td>
+                                        </tr>
+                                        <tr data-id="2">
+                                            <td data-field="id" style="width: 80px">2</td>
+                                            <td data-field="name">Julian Valenzuela</td>
+                                            <td data-field="documento">1045046042</td>
+                                            <td data-field="telefono">3194687398</td>
+                                            <td data-field="servicio">Masaje reductor</td>
+                                            <td data-field="fecha">23/03/2023</td>
+                                            <td data-field="valor">60.000 COP</td>
+                                            <td data-field="estado">
+                                                <span class="badge badge-soft-warning" style="font-size: 14px;">Espera</span>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                                    <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
+                                                </a>
+                                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                                    <i class="mdi mdi-cancel mdi-24px"></i>
+                                                </a>
+                                                
+                                            </td>
+                                        </tr>
+                                        <tr data-id="3">
+                                            <td data-field="id" style="width: 80px">3</td>
+                                            <td data-field="name">Julian Valenzuela</td>
+                                            <td data-field="documento">1045046042</td>
+                                            <td data-field="telefono">3194687398</td>
+                                            <td data-field="servicio">Masaje reductor</td>
+                                            <td data-field="fecha">23/03/2023</td>
+                                            <td data-field="valor">60.000 COP</td>
+                                            <td data-field="estado">
+                                                <span class="badge badge-soft-success" style="font-size: 14px;">Proceso</span>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                                    <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
+                                                </a>
+                                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                                    <i class="mdi mdi-cancel mdi-24px"></i>
+                                                </a>
+                                                
+                                            </td>
+                                        </tr>
+                                        <tr data-id="4">
+                                            <td data-field="id" style="width: 80px">4</td>
+                                            <td data-field="name">Julian Valenzuela</td>
+                                            <td data-field="documento">1045046042</td>
+                                            <td data-field="telefono">3194687398</td>
+                                            <td data-field="servicio">Masaje reductor</td>
+                                            <td data-field="fecha">23/03/2023</td>
+                                            <td data-field="valor">60.000 COP</td>
+                                            <td data-field="estado">
+                                                <span class="badge badge-soft-info" style="font-size: 14px;">Finalizado</span>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                                    <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
+                                                </a>
+                                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                                    <i class="mdi mdi-cancel mdi-24px"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col -->
+            </div> <!-- end row -->
+        </div> <!-- container-fluid -->
+        
+    </div> <!-- End Page-content -->
+   
+    {% block footer %}
+        {% include 'partials/footer.html' %}
+    {% endblock footer %}
+</div>       
+        
+<!-- end main content-->
+{% endblock content %}
+
+{% block extra_js %}
+<!-- Table Editable plugin -->
+<script src="{% static 'libs/table-edits/build/table-edits.min.js'%}"></script>
+
+<script src="{% static 'js/pages/table-editable.int.js'%}"></script> 
+<!-- Required datatable js -->
+<script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js'%}"></script>
+<!-- Buttons examples -->
+<script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js'%}"></script>
+<script src="{% static 'libs/jszip/jszip.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/pdfmake.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/vfs_fonts.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js'%}"></script>
+
+<!-- Responsive examples -->
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js'%}"></script>
+
+<!-- Datatable init js -->
+<script src="{% static 'js/pages/datatables.init.js'%}"></script>   
+<!-- pristine js -->
+<script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
+<!-- form validation -->
+<script src="{% static 'js/pages/form-validation.init.js'%}"></script>
+<!-- Modal js -->
+<script src="{% static 'js/pages/modal.init.js'%}"></script>
+
+    <script>
+        var myModal = document.getElementById('myModal')
+        var myInput = document.getElementById('myInput')
+
+        myModal.addEventListener('shown.bs.modal', function () {
+        myInput.focus()
+        })
+    </script>
+
+{% endblock extra_js %}
