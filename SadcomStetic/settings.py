@@ -39,7 +39,15 @@ DEFAULT_APPS = [
     'django.contrib.staticfiles',
 ]
 LOCAL_APPS = [
-    "login",
+    "Apps.login",
+    "Apps.Insumos",
+    "Apps.Citas",
+    "Apps.Clientes",
+    "Apps.Compras",
+    "Apps.Servicios",
+    "Apps.Configuracion",
+    "Apps.Proveedores",
+    "Apps.Usuarios",
 ]
 THIRD_PARTY_APPS = [
     "crispy_forms",

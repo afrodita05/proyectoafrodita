@@ -17,16 +17,16 @@ from cmath import log
 from http import client
 from django.contrib import admin
 from django.urls import path
-from Citas.views import Citas
+from Apps.Citas.views import Citas
 from SadcomStetic import views
-from login.views import Login, recuperar_contrasena
-from Usuarios.views import Usuarios
-from Clientes.views import Clientes, Detalle_Cliente, Historial_Corporal, Historial_Facial
-from Servicios.views import Servicios
-from Proveedores.views import Proveedores
-from Configuracion.views import Configuracion
-from Compras.views import Compras, Crear_Compra
-from Insumos.views import Insumos, Crear_Insumo
+from Apps.login.views import Login, recuperar_contrasena
+from Apps.Usuarios.views import Usuarios
+from Apps.Clientes.views import Clientes, Detalle_Cliente, Historial_Corporal, Historial_Facial
+from Apps.Servicios.views import Servicios
+from Apps.Proveedores.views import Proveedores
+from Apps.Configuracion.views import Configuracion
+from Apps.Compras.views import Compras, Crear_Compra
+from Apps.Insumos.views import Insumos, Crear_Insumo
 
 app_name = "SadcomStetic"
 urlpatterns = [
