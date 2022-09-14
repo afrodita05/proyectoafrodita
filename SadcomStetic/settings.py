@@ -113,10 +113,15 @@ WSGI_APPLICATION = 'SadcomStetic.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'afrodita',
+        'USER': 'root',
+        'PASSWORD': 'trogoncollaris1126',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
+
 
 
 # Password validation

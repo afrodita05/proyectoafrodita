@@ -21,7 +21,7 @@ from Apps.Citas.views import Citas
 from SadcomStetic import views
 from Apps.login.views import Login, recuperar_contrasena
 from Apps.Usuarios.views import Usuarios
-from Apps.Clientes.views import Clientes, Detalle_Cliente, Historial_Corporal, Historial_Facial
+from Apps.Clientes.views import cliente,formularioCliente,crearCliente
 from Apps.Servicios.views import Servicios
 from Apps.Proveedores.views import Proveedores
 from Apps.Configuracion.views import Configuracion
@@ -42,11 +42,7 @@ urlpatterns = [
         view= recuperar_contrasena,
         name= "pages.authentication.recuperarContraseña",
     ),
-    path(
-        "Clientes",
-        view= Clientes,
-        name= "Clientes",
-    ),
+ 
     path(
         "Usuarios",
         view=  Usuarios,
@@ -83,20 +79,40 @@ urlpatterns = [
         name= "Compras.Crear-Compras",
     ),
     path(
-        "VerDetalle",
-        view= Detalle_Cliente,
-        name= "Clientes.Ver-detalle",
+        "clientes/",
+        view=cliente,
+        name= "clientes",
     ),
     path(
-        "HistorialCoporal",
-        view= Historial_Corporal,
-        name= "Clientes.Ver-detalle.Historial-Corporal",
+        "formularioCliente/",
+        view=formularioCliente,
+        name= "formularioCliente",
     ),
     path(
-        "HistorialFacial",
-        view= Historial_Facial,
-        name= "Clientes.Ver-detalle.Historial-Facial",
+        "crearCliente/",
+        view=crearCliente,
+        name= "crearCliente",
     ),
+    
+
+
+    #path('listaClientes/',formularioClientes.as_view(),name='formularioFacial'),
+   
+    # path(
+    #     "VerDetalle",
+    #     view= Detalle_Cliente,
+    #     name= "Clientes.Ver-detalle",
+    # ),
+    # path(
+    #     "HistorialCoporal",
+    #     view= Historial_Corporal,
+    #     name= "Clientes.Ver-detalle.Historial-Corporal",
+    # ),
+    # path(
+    #     "HistorialFacial",
+    #     view= Historial_Facial,
+    #     name= "Clientes.Ver-detalle.Historial-Facial",
+    # ),
     path(
         "Insumos",
         view= Insumos,
@@ -107,4 +123,6 @@ urlpatterns = [
         view= Crear_Insumo,
         name= "Insumos.Crear-Insumo",
     ),
+
+
 ]
