@@ -9,7 +9,7 @@
                 </div>
                 <div style="margin: 60px;">
                     <!--  FORMULARIO CON VALIDACIONES -->
-                    <form id="pristine-valid-example" novalidate method="post">
+                    <form action="{% url 'crearCliente' %}" id="formulario" method="POST">
                         {% csrf_token %}
                         <input type="hidden" />
                         <div class="row">
@@ -17,6 +17,7 @@
                                 <div class="form-group mb-3">
                                     <label class="form-label">Nombre</label>
                                     <input type="text" required
+                                        name="nombre"
                                         data-pristine-required-message="Por favor ingrese el nombre completo " placeholder="Ingrese el nombre completo"
                                         class="form-control" />
                                 </div>
@@ -24,13 +25,13 @@
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Documento</label>
-                                    <input type="text" data-pristine-required-message="Por favor ingrese el número de documento " placeholder="Ingrese el número de documento" required class="form-control" />
+                                    <input type="text" name="documento" data-pristine-required-message="Por favor ingrese el número de documento " placeholder="Ingrese el número de documento" required class="form-control" />
                                 </div>
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Sexo</label>
-                                    <select class="form-select">
+                                    <select class="form-select" name="sexo">   <!-- name en select -->
                                         <option value="Masculino">Masculino</option>
                                         <option value="Femenino">Femenino</option>
                                     </select>
@@ -39,7 +40,7 @@
                             <div class="col-xl-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Estado civil</label>
-                                    <select class="form-select">
+                                    <select class="form-select" name="estadoCivil">
                                         <option value="Soltero">Soltero</option>
                                         <option value="Casado">Casado</option>
                                         <option value="Union libre">Union libre</option>
@@ -51,40 +52,42 @@
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Número de hijos</label>
-                                    <input type="text" data-pristine-required-message="Por favor ingrese un número de hijos " placeholder="Ingrese el número de hijos" required class="form-control" />
+                                    <input type="text" name="numeroHijos" data-pristine-required-message="Por favor ingrese un número de hijos " placeholder="Ingrese el número de hijos" required class="form-control" />
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-6">
                                 <div class="mb-3">
                                     <label class="form-label">Fecha de nacimiento</label>
-                                    <input type="date" class="form-control" id="datepicker-basic">
+                                    <input type="date" name="fechaNacimiento" class="form-control" id="datepicker-basic">
                                 </div>
                             </div> 
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Teléfono</label>
-                                    <input type="text" data-pristine-required-message="Por favor ingrese un número de teléfono " placeholder="Ingrese el número de teléfono" required class="form-control" />
+                                    <input type="text" name="telefono" data-pristine-required-message="Por favor ingrese un número de teléfono " placeholder="Ingrese el número de teléfono" required class="form-control" />
                                 </div>
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Dirección</label>
-                                    <input type="text" data-pristine-required-message="Por favor ingrese una dirección "placeholder="Ingrese la dirección" required class="form-control" />
+                                    <input type="text" name="direccion" data-pristine-required-message="Por favor ingrese una dirección "placeholder="Ingrese la dirección" required class="form-control" />
                                 </div>
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Correo</label>
-                                    <input type="email" required
+                                    <input type="email" name="correo" required
                                         data-pristine-required-message="Por favor ingresar el correo electrónico" placeholder="Ingrese el correo electrónico"
                                         class="form-control" />
                                 </div>
                             </div>
                         </div>
                         <!-- end row -->
+                        
                         <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px; margin-top: 20px;" >
-                            <button type="submit" class="btn btn-primary" style="width: 50%;">Crear Cliente</button>
+                            <input type="submit" for="formulario" class="btn btn-primary" style="width: 50%;" value="Crear Cliente"> </input> 
                         </div>
+                        <!-- Cambio boton -->
                     </form>
                 </div>
             </div><!-- /.modal-content -->
