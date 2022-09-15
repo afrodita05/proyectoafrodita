@@ -16,6 +16,7 @@ def formularioCliente(request):
     return render(request,"pages/Crear-Cliente.html")
 
 def crearCliente(request):
+    print("hola, request ",request.POST['sexo'])
     nombreCliente=request.POST['nombre']
     documentoCliente=request.POST['documento']
     sexoCliente=request.POST['sexo']
@@ -27,7 +28,8 @@ def crearCliente(request):
     numeroHijosCliente=request.POST['numeroHijos']
     clientes=Clientes(nombre=nombreCliente,documento=documentoCliente,sexo=sexoCliente,telefono=telefonoCliente,direccion=direccionCliente,correo=correoCliente,fechaNacimiento=fechaNacimientoCliente,estadoCivil=estadoCivilCliente,numeroHijos=numeroHijosCliente)
     clientes.save()
-    return redirect("{% url 'clientes' %}")
+    return redirect("/Clientes/") #url 
+    
 
 # class Clienteview(TemplateView):
     

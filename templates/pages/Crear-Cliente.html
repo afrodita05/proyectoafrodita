@@ -9,7 +9,7 @@
                 </div>
                 <div style="margin: 60px;">
                     <!--  FORMULARIO CON VALIDACIONES -->
-                    <form action="{% url 'crearCliente' %}" id="pristine-valid-example" novalidate method="post">
+                    <form action="{% url 'crearCliente' %}" id="formulario" method="POST">
                         {% csrf_token %}
                         <input type="hidden" />
                         <div class="row">
@@ -30,8 +30,8 @@
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" name="sexo">Sexo</label>
-                                    <select class="form-select">
+                                    <label class="form-label">Sexo</label>
+                                    <select class="form-select" name="sexo">   <!-- name en select -->
                                         <option value="Masculino">Masculino</option>
                                         <option value="Femenino">Femenino</option>
                                     </select>
@@ -83,9 +83,11 @@
                             </div>
                         </div>
                         <!-- end row -->
+                        
                         <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px; margin-top: 20px;" >
-                            <button type="submit" class="btn btn-primary" style="width: 50%;"><a href="{% url 'clientes' %}">Crear Cliente </a></button>
+                            <input type="submit" for="formulario" class="btn btn-primary" style="width: 50%;" value="Crear Cliente"> </input> 
                         </div>
+                        <!-- Cambio boton -->
                     </form>
                 </div>
             </div><!-- /.modal-content -->

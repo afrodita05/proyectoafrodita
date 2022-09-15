@@ -79,9 +79,9 @@ urlpatterns = [
         name= "Compras.Crear-Compras",
     ),
     path(
-        "clientes/",
+        "Clientes/",
         view=cliente,
-        name= "clientes",
+        name= "Clientes",
     ),
     path(
         "formularioCliente/",
