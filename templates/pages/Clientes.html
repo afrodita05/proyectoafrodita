@@ -62,13 +62,14 @@
                                             </thead>
                                             <tbody>
                                                 <tr data-id="1">
-                                                    <td data-field="id">1</td>
-                                                    <td data-field="fechaCreacion">23/02/2020</td>
-                                                    <td data-field="nombre">Julian Valenzuela</td>
-                                                    <td data-field="documento">1045046042</td>
-                                                    <td data-field="sexo">Hombre</td>
+                                                    {% for listar in cliente %}
+                                                    <td>{{listar.fechaCreacion}}</td>
+                                                    <td>{{listar.nombre}}</td>
+                                                    <td>{{listar.sexo}}</td>
+                                                    <td>{{listar.documento}}</td>
+                                                    <td>{{listar.fechaActualizacion}}</td>
                                                     <td>
-                                                        <a href="#" class="btn btn-outline-primary btn-sm " data-bs-toggle="modal" data-bs-target=".bs-Eclientes">
+                                                        <a href="{% url 'editarCliente' listar.idCliente %}" class="btn btn-outline-primary btn-sm " data-bs-toggle="modal" data-bs-target=".bs-Eclientes">
                                                             <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
                                                         </a>
                                                         
@@ -77,67 +78,10 @@
                                                         </a>
                                                     </td>
                                                     {%include 'pages/Editar-Cliente.html'%}
+                                                    
                                                 </tr>
-                                                <tr data-id="2">
-                                                    <td data-field="id">2</td>
-                                                    <td data-field="fechaCreacion">12/05/2015</td>
-                                                    <td data-field="nombre">Juan Plabo Duque</td>
-                                                    <td data-field="documento">6867846042</td>
-                                                    <td data-field="sexo">Hombre</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-outline-primary btn-sm">
-                                                            <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
-                                                        </a>
-                                                        <a href="#" class="btn btn-outline-primary btn-sm">
-                                                            <i class="mdi mdi-eye-outline  mdi-24px "></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr data-id="3">
-                                                    <td data-field="id">3</td>
-                                                    <td data-field="fechaCreacion">02/02/2022</td>
-                                                    <td data-field="nombre">Alex González</td>
-                                                    <td data-field="documento">987546042</td>
-                                                    <td data-field="sexo">Hombre</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-outline-primary btn-sm">
-                                                            <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
-                                                        </a>
-                                                        <a href="#" class="btn btn-outline-primary btn-sm">
-                                                            <i class="mdi mdi-eye-outline  mdi-24px "></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr data-id="4">
-                                                    <td data-field="id">4</td>
-                                                    <td data-field="fechaCreacion">22/22/2019</td>
-                                                    <td data-field="nombre">Karen Gaviria</td>
-                                                    <td data-field="documento">000046042</td>
-                                                    <td data-field="sexo">Mujer</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-outline-primary btn-sm">
-                                                            <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
-                                                        </a>
-                                                        <a href="#" class="btn btn-outline-primary btn-sm">
-                                                            <i class="mdi mdi-eye-outline  mdi-24px "></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr data-id="5">
-                                                    <td data-field="id">5</td>
-                                                    <td data-field="fechaCreacion">09/09/2018</td>
-                                                    <td data-field="nombre">kevin Estiven</td>
-                                                    <td data-field="documento">7676676042</td>
-                                                    <td data-field="sexo">Hombre</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-outline-primary btn-sm">
-                                                            <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
-                                                        </a>
-                                                        <a href="#" class="btn btn-outline-primary btn-sm">
-                                                            <i class="mdi mdi-eye-outline  mdi-24px "></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
+                                                {% endfor %}
+                                             
                                             </tbody>
                                         </table>
                                     </div>
