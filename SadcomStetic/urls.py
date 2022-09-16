@@ -21,11 +21,7 @@ from Apps.Citas.views import Citas
 from SadcomStetic import views
 from Apps.login.views import Login, recuperar_contrasena
 from Apps.Usuarios.views import Usuarios
-<<<<<<< HEAD
-from Apps.Clientes.views import cliente,formularioCliente,crearCliente
-=======
 from Apps.Clientes.views import cliente,formularioCliente,crearCliente,editarCliente,actualizarCliente
->>>>>>> clientes
 from Apps.Servicios.views import Servicios
 from Apps.Proveedores.views import Proveedores
 from Apps.Configuracion.views import Configuracion
@@ -52,6 +48,10 @@ urlpatterns = [
         view=  Usuarios,
         name= "Usuarios",
     ),
+
+#urls acorta las rutas para buscar path
+#Siempre que vaya a crear una vista debo asignarle una URL
+
     path(
         "Servicios",
         view= Servicios,

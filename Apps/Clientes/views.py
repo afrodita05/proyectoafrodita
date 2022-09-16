@@ -7,17 +7,11 @@ from Apps.Clientes.models import Clientes
 from django.views.generic import ListView
 # Create your views here.
 
-<<<<<<< HEAD
-def cliente(request):
-    cliente=Clientes.objects.filter()
-    clientes={"cliente":cliente}
-=======
 
 #Listar Clientes
 def cliente(request):
     listarCliente=Clientes.objects.filter()
     clientes={"cliente":listarCliente}
->>>>>>> clientes
     return render(request,"pages/Clientes.html",clientes)
 
 def formularioCliente(request):
@@ -37,8 +31,6 @@ def crearCliente(request):
     clientes=Clientes(nombre=nombreCliente,documento=documentoCliente,sexo=sexoCliente,telefono=telefonoCliente,direccion=direccionCliente,correo=correoCliente,fechaNacimiento=fechaNacimientoCliente,estadoCivil=estadoCivilCliente,numeroHijos=numeroHijosCliente)
     clientes.save()
     return redirect("/Clientes/") #url 
-<<<<<<< HEAD
-=======
 
 def editarCliente(request, id):
     mostrar=Clientes.objects.filter(idCliente=id).first()
@@ -67,7 +59,6 @@ def actualizarCliente(request, id):
     actualizar.numeroHijos=numeroHijosCliente
     actualizar.save()
     return redirect("/Clientes/")
->>>>>>> clientes
     
 
 # class Clienteview(TemplateView):
