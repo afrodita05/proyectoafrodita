@@ -21,7 +21,11 @@ from Apps.Citas.views import Citas
 from SadcomStetic import views
 from Apps.login.views import Login, recuperar_contrasena
 from Apps.Usuarios.views import Usuarios
+<<<<<<< HEAD
 from Apps.Clientes.views import cliente,formularioCliente,crearCliente
+=======
+from Apps.Clientes.views import cliente,formularioCliente,crearCliente,editarCliente,actualizarCliente
+>>>>>>> clientes
 from Apps.Servicios.views import Servicios
 from Apps.Proveedores.views import Proveedores
 from Apps.Configuracion.views import Configuracion
@@ -92,6 +96,36 @@ urlpatterns = [
         "crearCliente/",
         view=crearCliente,
         name= "crearCliente",
+    ),
+    
+
+
+    #path('listaClientes/',formularioClientes.as_view(),name='formularioFacial'),
+   
+    # path(
+    #     "VerDetalle",
+    #     view= Detalle_Cliente,
+    #     name= "Clientes.Ver-detalle",
+    # ),
+    # path(
+    #     "HistorialCoporal",
+    #     view= Historial_Corporal,
+    #     name= "Clientes.Ver-detalle.Historial-Corporal",
+    # ),
+    # path(
+    #     "HistorialFacial",
+    #     view= Historial_Facial,
+    #     name= "Clientes.Ver-detalle.Historial-Facial",
+    # ),
+    path(
+        "editarCliente/<int:id>",
+        view=editarCliente,
+        name= "editarCliente",
+    ),
+    path(
+        "actualizarCliente/<int:id>",
+        view=actualizarCliente,
+        name= "actualizarCliente",
     ),
     
 

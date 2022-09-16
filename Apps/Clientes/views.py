@@ -7,9 +7,17 @@ from Apps.Clientes.models import Clientes
 from django.views.generic import ListView
 # Create your views here.
 
+<<<<<<< HEAD
 def cliente(request):
     cliente=Clientes.objects.filter()
     clientes={"cliente":cliente}
+=======
+
+#Listar Clientes
+def cliente(request):
+    listarCliente=Clientes.objects.filter()
+    clientes={"cliente":listarCliente}
+>>>>>>> clientes
     return render(request,"pages/Clientes.html",clientes)
 
 def formularioCliente(request):
@@ -29,6 +37,37 @@ def crearCliente(request):
     clientes=Clientes(nombre=nombreCliente,documento=documentoCliente,sexo=sexoCliente,telefono=telefonoCliente,direccion=direccionCliente,correo=correoCliente,fechaNacimiento=fechaNacimientoCliente,estadoCivil=estadoCivilCliente,numeroHijos=numeroHijosCliente)
     clientes.save()
     return redirect("/Clientes/") #url 
+<<<<<<< HEAD
+=======
+
+def editarCliente(request, id):
+    mostrar=Clientes.objects.filter(idCliente=id).first()
+    clientes={"mostrar":mostrar}
+    return render(request,"pages/Editar-Cliente.html",clientes)
+    
+def actualizarCliente(request, id):
+    nombreCliente=request.GET['nombre']
+    documentoCliente=request.GET['documento']
+    sexoCliente=request.GET['sexo']
+    telefonoCliente=request.GET['telefono']
+    direccionCliente=request.GET['direccion']
+    correoCliente=request.GET['correo']
+    fechaNacimientoCliente=request.GET['fechaNacimiento']
+    estadoCivilCliente=request.GET['estadoCivil']
+    numeroHijosCliente=request.GET['numeroHijos']
+    actualizar=Clientes.objects.get(idCliente=id)
+    actualizar.nombre=nombreCliente
+    actualizar.documento=documentoCliente
+    actualizar.sexo=sexoCliente
+    actualizar.telefono=telefonoCliente
+    actualizar.direccion=direccionCliente
+    actualizar.correo=correoCliente
+    actualizar.fechaNacimiento=fechaNacimientoCliente
+    actualizar.estadoCivil=estadoCivilCliente
+    actualizar.numeroHijos=numeroHijosCliente
+    actualizar.save()
+    return redirect("/Clientes/")
+>>>>>>> clientes
     
 
 # class Clienteview(TemplateView):
