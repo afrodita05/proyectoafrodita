@@ -13,3 +13,6 @@ class Usuarioview(TemplateView):
 Usuarios = Usuarioview.as_view(
     template_name="pages/Usuarios.html"
 )
+
+def formularioUsuarios(request):
+    return render(request,"Usuarios.html",Usuarios)
