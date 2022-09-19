@@ -12,10 +12,10 @@ from django.views.generic import ListView
 def cliente(request):
     listarCliente=Clientes.objects.filter()
     clientes={"cliente":listarCliente}
-    return render(request,"pages/Clientes.html",clientes)
+    return render(request,"Clientes/Clientes.html",clientes)
 
 def formularioCliente(request):
-    return render(request,"pages/Crear-Cliente.html")
+    return render(request,"Clientes/Crear-Cliente.html")
 
 def crearCliente(request):
     print("hola, request ",request.POST['sexo'])
@@ -35,7 +35,7 @@ def crearCliente(request):
 def editarCliente(request, id):
     mostrar=Clientes.objects.filter(idCliente=id).first()
     clientes={"mostrar":mostrar}
-    return render(request,"pages/Editar-Cliente.html",clientes)
+    return render(request,"Clientes/Editar-Cliente.html",clientes)
     
 def actualizarCliente(request, id):
     nombreCliente=request.GET['nombre']
@@ -59,6 +59,36 @@ def actualizarCliente(request, id):
     actualizar.numeroHijos=numeroHijosCliente
     actualizar.save()
     return redirect("/Clientes/")
+
+def crearCorporal(request, id):
+    mostrar=Clientes.objects.filter(idCliente=id).first()
+    clientes={"mostrar":mostrar}
+    return render(request,"Clientes/Crear-Corporal.html",clientes)
+
+def crearFacial(request, id):
+    mostrar=Clientes.objects.filter(idCliente=id).first()
+    clientes={"mostrar":mostrar}
+    return render(request,"Clientes/Crear-Facial.html",clientes)
+
+def crearMedidas(request, id):
+    mostrar=Clientes.objects.filter(idCliente=id).first()
+    clientes={"mostrar":mostrar}
+    return render(request,"Clientes/Crear-Medidas.html",clientes)
+    
+def detalleCliente(request, id):
+    mostrar=Clientes.objects.filter(idCliente=id).first()
+    clientes={"mostrar":mostrar}
+    return render(request,"Clientes/Detalles-Clientes.html",clientes)
+
+def historialCorporal(request, id):
+    mostrar=Clientes.objects.filter(idCliente=id).first()
+    clientes={"mostrar":mostrar}
+    return render(request,"Clientes/Historial-Corporal.html",clientes)
+
+def historialFacial(request, id):
+    mostrar=Clientes.objects.filter(idCliente=id).first()
+    clientes={"mostrar":mostrar}
+    return render(request,"Clientes/Historial-Facial.html",clientes)
     
 
 # class Clienteview(TemplateView):

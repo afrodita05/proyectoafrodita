@@ -1,0 +1,809 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}Crear Facial{% endblock title %}
+{% block extra_css %}
+    <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+{% endblock extra_css %}
+{% block content %}
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h3 class="mb-sm-0 font-size-40">Crear facial</h3>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Clientes > Ver detalle </a></li>
+                                <li class="breadcrumb-item active"> crear facial</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div style="margin: 60px;">
+                    <div id="progrss-wizard" class="twitter-bs-wizard">
+                        <ul class="twitter-bs-wizard-nav nav nav-pills nav-justified">
+                            <li class="nav-item">
+                                <a href="#factores-agravantes" class="nav-link" data-toggle="tab">
+                                    <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Factores Agravantes">
+                                        <i data-feather="activity"></i>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#análisis-de-piel" class="nav-link" data-toggle="tab">
+                                    <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Analisis de piel">
+                                        <i class="mdi mdi-face-recognition"></i>
+                                    </div>
+                                </a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a href="#cuidados-diarios" class="nav-link" data-toggle="tab">
+                                    <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Cuidados diarios">
+                                        <i class="fas fa-hand-holding-water "></i>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- wizard-nav -->
+                        <div class="tab-content twitter-bs-wizard-tab-content">
+                            <div class="tab-pane" id="factores-agravantes">
+                                <div class="text-center mb-4">
+                                    <h4>Factores Agravantes</h4>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">Nombre del estetisista</label>
+                                        <input type="text" required
+                                            data-pristine-required-message="Por favor ingrese el nombre completo " placeholder="Ingrese el nombre completo"
+                                            class="form-control" />
+                                    </div>
+                                </div>
+                                <form>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Actualmente está en tratamiento médico</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="progresspill-address-input">Cuál</label>
+                                                <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">Sustitución hormonal</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">Toma anticonceptivo</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">Drogas</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="progresspill-address-input">Alimentos preferidos</label>
+                                                <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="progresspill-address-input">Alimentos rechazados</label>
+                                                <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">Fuma</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">Toma licor</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">Se protege del sol</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">Duerme bien</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">Menopausia</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Toma medicamentos orales o tópicos</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="progresspill-address-input">Cuales</label>
+                                                <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Padece de estrés</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Ha tenido cáncer de piel</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Asma</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Lupus</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Herpes</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Hepatitis</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Epilepsia</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Dolor de cabeza</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Ampollas febriles</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Tiroides</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Problemas cardiacos</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Psicológicos</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Urinarios</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Nasales</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Digestivos</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="text-center mb-4">
+                                            <h5>Está utilizando o uso</h5>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Alfahidroxiacidos</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Retín A</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Differin</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="mb-3">
+                                                <label class="form-label"> Accutane </label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="mb-3">
+                                                <label for="progresspill-address-input">Motivo de la consulta </label>
+                                                <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="mb-3">
+                                                <label for="progresspill-address-input">Es alérgico a algún producto cosmético o medicamento</label>
+                                                <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <ul class="pager wizard twitter-bs-wizard-pager-link">
+                                    <li class="next"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">Siguiente <i
+                                        class="bx bx-chevron-right ms-1"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane" id="análisis-de-piel">
+                                <div>
+                                    <div class="text-center mb-4">
+                                        <h4>Análisis de piel</h4>
+                                    </div>
+                                    <form>
+                                        <div class="row">
+                                            <div class="text-center mb-4">
+                                                <h5>Textura</h5>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Normal</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Gruesa</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Áspera</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Suave</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="text-center mb-4">
+                                                <h5>Aspecto del poro</h5>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Normal</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Cerrado</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Dilatado</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="text-center mb-4">
+                                                <h5>Billo</h5>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Zonas mates</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Zonas billantes</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="text-center mb-4">
+                                                <h5>Grado de hidratación </h5>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Normal</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Deshidratada</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Hiperdeshidratada</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>
+                                            <br>
+                                        </div>
+                                        <div class="row">
+                                            <div class="text-center mb-4">
+                                                <h5>Fototipo de piel </h5>
+                                            </div>
+                                            <div class="col-lg-10">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Fototipo</label>
+                                                    <select class="form-select">
+                                                        <option value="Fototipo 1">Fototipo 1</option>
+                                                        <option value="Fototipo 2">Fototipo 2</option>
+                                                        <option value="Fototipo 3">Fototipo 3</option>
+                                                        <option value="Fototipo 4">Fototipo 4</option>
+                                                        <option value="Fototipo 5">Fototipo 5</option>
+                                                        <option value="Fototipo 6">Fototipo 6</option>
+                                                    </select>    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="text-center mb-4">
+                                                <h5>Alteraciones del envejecimiento</h5>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Lineas Finas</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Profundas</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>  
+                                            <div class="col-lg-3">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Flacidez</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>  
+                                            <div class="col-lg-3">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Párpados</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>  
+                                            <div class="col-lg-3">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Cuello</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>  
+                                            <div class="col-lg-3">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Nosogenianos</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>  
+                                            <div class="col-lg-3">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Labios</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="text-center mb-4">
+                                                <h5>Acné (Desde cuándo)</h5>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Comedones</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Millas</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>  
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Quistes</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="text-center mb-4">
+                                                <h5>Pigmentación</h5>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Melasma</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Hipercromía</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">                 
+                                            <div class="text-center mb-4">
+                                                <h5>Bolsas palpebrales</h5>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Edema</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Grasa</label>
+                                                    <select class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>    
+                                                </div>
+                                            </div> 
+                                        </div>
+                                    </form>
+                                <ul class="pager wizard twitter-bs-wizard-pager-link">
+                                    <li class="previous"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()"><i
+                                        class="bx bx-chevron-left me-1"></i> Anterior</a></li>
+                                    <li class="next"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">Siguiente <i
+                                        class="bx bx-chevron-right ms-1"></i></a>
+                                    </li>
+                                </ul>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="cuidados-diarios">
+                                <div>
+                                    <div class="text-center mb-4">
+                                        <h4>Cuidados que realiza diariamente</h4>
+                                    </div>
+                                    <form>
+                                        <br>
+                                    <div class="row">
+                                        <div class="text-center mb-4">
+                                            <h5>Rutina diaria de higiene</h5>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="mb-3">
+                                                <label for="progresspill-address-input">Cuales</label>
+                                                <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="text-center mb-4">
+                                            <h5>Cuidados habituales</h5>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="mb-3">
+                                                <label for="progresspill-address-input">Cuales</label>
+                                                <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Mensuales</label>
+                                                <select class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="text-center mb-4">
+                                            <h5>Productos que utiliza habitualmente</h5>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="mb-3">
+                                                <label for="progresspill-address-input">Cuales</label>
+                                                <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    </form>
+                                    <ul class="pager wizard twitter-bs-wizard-pager-link">
+                                    <li class="previous"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()"><i
+                                        class="bx bx-chevron-left me-1"></i> Anterior</a></li>
+                                    <li class="float-end"><a href="javascript: void(0);" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target=".confirmModal">Guardar</a>
+                                    </li>
+                                </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end col -->
+            
+        </div> <!-- container-fluid -->
+        
+    </div> <!-- End Page-content -->
+   
+    {% block footer %}
+        {% include 'partials/footer.html' %}
+    {% endblock footer %}
+</div>       
+        
+<!-- end main content-->
+{% endblock content %}
+
+{% block extra_js %}
+<!-- Table Editable plugin -->
+<script src="{% static 'libs/table-edits/build/table-edits.min.js'%}"></script>
+
+<script src="{% static 'js/pages/table-editable.int.js'%}"></script> 
+<!-- Required datatable js -->
+<script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js'%}"></script>
+<!-- Buttons examples -->
+<script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js'%}"></script>
+<script src="{% static 'libs/jszip/jszip.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/pdfmake.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/vfs_fonts.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js'%}"></script>
+
+<!-- Responsive examples -->
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js'%}"></script>
+<!-- twitter-bootstrap-wizard js -->
+<script src="{% static 'libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js'%}"></script>
+<script src="{% static 'libs/twitter-bootstrap-wizard/prettify.js'%}"></script>
+<!-- form wizard init -->
+<script src="{% static 'js/pages/form-wizard.init.js'%}"></script>
+<!-- Datatable init js -->
+<script src="{% static 'js/pages/datatables.init.js'%}"></script>   
+<!-- pristine js -->
+<script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
+<!-- form validation -->
+<script src="{% static 'js/pages/form-validation.init.js'%}"></script>
+<!-- Modal js -->
+<script src="{% static 'js/pages/modal.init.js'%}"></script>
+{% endblock extra_js %}

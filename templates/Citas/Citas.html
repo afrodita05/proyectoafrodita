@@ -36,83 +36,7 @@
                         crear una nueva cita.</p>
                     </div>
                     <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
-                        <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".bs-citas" style="width: 50%;" >Crear una cita</button>
-                        <div class="d-flex flex-wrap gap-3">
-                            <div>
-                                <!--  Modal Crear Usuario -->
-                                <div class="modal fade bs-citas" tabindex="-1" role="dialog" data-bs-backdrop="static" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg" >
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="myLargeModalLabel">Crear cita</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                        
-                                            <div style="margin: 60px;">
-                                                <!--  FORMULARIO CON VALIDACIONES -->
-                                                <form id="pristine-valid-example" novalidate method="post">
-                                                    {% csrf_token %}
-                                                    <input type="hidden" />
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="form-group mb-3">
-                                                                <label class="form-label">Nombre</label>
-                                                                <input type="text" required
-                                                                    data-pristine-required-message="Por favor ingrese el nombre completo " placeholder="Ingrese el nombre completo"
-                                                                    class="form-control" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <div class="form-group mb-3">
-                                                                <label class="form-label">Teléfono</label>
-                                                                <input type="text" data-pristine-required-message="Por favor ingrese un número de teléfono " placeholder="Ingrese el número de teléfono" required class="form-control" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <div class="form-group mb-3">
-                                                                <label class="form-label">Servicio</label>
-                                                                <select class="form-select">
-                                                                    <option value="Chocolaterapia">Chocolaterapia</option>
-                                                                    <option value="Masaje">Masaje reductor</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>  
-                                                        <div class="col-md-12">
-                                                            <label for="example-datetime-local-input" class="form-label">Fecha y hora</label>
-                                                            <input class="form-control" type="datetime-local"
-                                                                value="2019-08-19T13:45:00" id="example-datetime-local-input">
-                                                        </div>
-                                                        <div class=" col-md-12">
-                                                            <div class="form-group mb-3">
-                                                                <label class="form-label">Valor</label>
-                                                                <input type="text" data-pristine-required-message="Por favor ingrese el precio" placeholder="Ingrese el precio" required class="form-control" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <div class="form-group mb-3">
-                                                                <label class="form-label">Estado</label>
-                                                                <select class="form-select">
-                                                                    <option value="espera">Espera</option>
-                                                                    <option value="cancelado">Cancelado</option>
-                                                                    <option value="proceso">Proceso</option>
-                                                                    <option value="finalizado">Finalizado</option>
-                                                                </select>
-                                                            </div>
-                                                        </div> 
-                                                    </div>
-                                                    <!-- end row -->
-                                                    <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-top: 40px;" >
-                                                        <button type="submit" class="btn btn-primary" style="width: 50%">Crear cita</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div><!-- /.modal-content -->
-                                    </div><!-- /.modal-dialog -->
-                                </div><!-- /.modal -->
-                                
-                                
-                            </div>
-                        </div>
+                        <a href="{% url 'Citas.Crear-Cita'%}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear una cita</a>
                     </div>
                 </div>
             </div><!-- end col -->
@@ -148,7 +72,7 @@
                                                 <span class="badge badge-soft-danger" style="font-size: 14px;">Cancelado</span>
                                             </td>
                                             <td>
-                                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                                <a href="{%url 'Citas.Editar-Cita'%}" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
                                                 </a>
                                                 <a href="#" class="btn btn-outline-primary btn-sm">
@@ -169,7 +93,7 @@
                                                 <span class="badge badge-soft-warning" style="font-size: 14px;">Espera</span>
                                             </td>
                                             <td>
-                                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                                <a href="{%url 'Citas.Editar-Cita'%}" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
                                                 </a>
                                                 <a href="#" class="btn btn-outline-primary btn-sm">
@@ -190,7 +114,7 @@
                                                 <span class="badge badge-soft-success" style="font-size: 14px;">Proceso</span>
                                             </td>
                                             <td>
-                                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                                <a href="{%url 'Citas.Editar-Cita'%}" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
                                                 </a>
                                                 <a href="#" class="btn btn-outline-primary btn-sm">
@@ -211,7 +135,7 @@
                                                 <span class="badge badge-soft-info" style="font-size: 14px;">Finalizado</span>
                                             </td>
                                             <td>
-                                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                                <a href="{%url 'Citas.Editar-Cita'%}" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
                                                 </a>
                                                 <a href="#" class="btn btn-outline-primary btn-sm">

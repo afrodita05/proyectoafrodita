@@ -36,68 +36,7 @@
                         crear un nuevo Servico.</p>
                     </div>
                     <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
-                        <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".bs-servicios" style="width: 50%;" >Crear un servicio</button>
-                        <div class="d-flex flex-wrap gap-3">
-                            <div>
-                                <!--  Modal Crear Usuario -->
-                                <div class="modal fade bs-servicios" tabindex="-1" role="dialog" data-bs-backdrop="static" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-xl" >
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="myExtraLargeModalLabel">Crear servicio</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                        
-                                            <div style="margin: 60px;">
-                                                <!--  FORMULARIO CON VALIDACIONES -->
-                                                <form id="pristine-valid-example" novalidate method="post">
-                                                    {% csrf_token %}
-                                                    <input type="hidden" />
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="form-group mb-3">
-                                                                <label class="form-label">Nombre</label>
-                                                                <input type="text" required
-                                                                    data-pristine-required-message="Por favor ingrese el nombre " placeholder="Ingrese el nombre "
-                                                                    class="form-control" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-12">
-                                                            <div class="mb-3">
-                                                                <label for="progresspill-address-input">Insumos</label>
-                                                                <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Insumos"></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class=" col-md-6">
-                                                            <div class="form-group mb-3">
-                                                                <label class="form-label">Tiempo</label>
-                                                                <input type="text" data-pristine-required-message="Por favor ingrese el tiempo" placeholder="Ingrese el tiempo" required class="form-control" />
-                                                            </div>
-                                                        </div>
-                                                        <div class=" col-md-6">
-                                                            <div class="form-group mb-3">
-                                                                <label class="form-label">Precio</label>
-                                                                <input type="text" data-pristine-required-message="Por favor ingrese el precio" placeholder="Ingrese el precio" required class="form-control" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-check form-switch form-switch-md mb-3" dir="ltr" style="margin-left: 15px;">
-                                                            <input type="checkbox" class="form-check-input" id="customSwitchsizemd">
-                                                            <label class="form-check-label" for="customSwitchsizemd">Estado</label>
-                                                        </div>
-                                                    </div>
-                                                    <!-- end row -->
-                                                    <div class="form-group" style=" display: flex; justify-content: center; align-items: center;" >
-                                                        <button type="submit" class="btn btn-primary" style="width: 50%;">Crear Servicio</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div><!-- /.modal-content -->
-                                    </div><!-- /.modal-dialog -->
-                                </div><!-- /.modal -->
-                                
-                                
-                            </div>
-                        </div>
+                        <a href="{% url 'Servicios.Crear_Servicio'%}" type="button" class="btn btn-primary waves-effect waves-light"  style="width: 50%;" >Crear un servicio</a>
                     </div>
                 </div>
             </div><!-- end col -->
@@ -129,13 +68,13 @@
                                                 <span class="badge badge-soft-danger" style="font-size: 14px;">Inactivo</span>
                                             </td>
                                             <td>
-                                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                                <a href="{% url 'Servicios.Editar-Servicio'%}" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
                                                 </a>
                                                 <a href="#" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-delete-outline mdi-24px "></i>
                                                 </a>
-                                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                                <a href="{% url 'Servicios.Ver-Detalle'%}" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-eye-outline  mdi-24px "></i>
                                                 </a>
                                             </td>
@@ -150,14 +89,14 @@
                                                 <span class="badge badge-soft-success" style="font-size: 14px;">Activo</span>   
                                             </td>
                                             <td>
-                                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                                <a href="{% url 'Servicios.Editar-Servicio'%}" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
                                                 </a>
                                                 <a href="#" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-delete-outline mdi-24px "></i>
                                                 </a>
                                                 <a href="#" class="btn btn-outline-primary btn-sm">
-                                                    <i class="mdi mdi-eye-outline  mdi-24px "></i>
+                                                    <i class="mdi mdi-eye-outline mdi-24px "></i>
                                                 </a>
                                             </td>
                                         </tr>   
@@ -182,9 +121,10 @@
 {% endblock content %}
 
 {% block extra_js %}
+<!-- Datatable init js -->
+<script src="{% static 'js/pages/datatables.init.js'%}"></script> 
 <!-- Table Editable plugin -->
 <script src="{% static 'libs/table-edits/build/table-edits.min.js'%}"></script>
-
 <script src="{% static 'js/pages/table-editable.int.js'%}"></script> 
 <!-- Required datatable js -->
 <script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js'%}"></script>
@@ -198,13 +138,9 @@
 <script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js'%}"></script>
 <script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js'%}"></script>
 <script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js'%}"></script>
-
 <!-- Responsive examples -->
 <script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
 <script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js'%}"></script>
-
-<!-- Datatable init js -->
-<script src="{% static 'js/pages/datatables.init.js'%}"></script>   
 <!-- pristine js -->
 <script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
 <!-- form validation -->

@@ -144,9 +144,8 @@
                                     <h4 class="my-0 text-primary" style="margin-top: 50%;">Control de medidas</h4>
                                 </div>
                                 <div class="col-lg-6 ms-lg-auto" >
-                                    <button type="button" class="btn btn-primary waves-effect " data-bs-toggle="modal"
-                                    data-bs-target=".bs-medidas" style="margin-left: 40%;"><i class="mdi mdi-human-male-height "></i> Adicionar control de medidas
-                                    </button>
+                                    <a href="{% url 'Clientes.Ver-Detalles.Ver-Detalles-Corporal.Crear-Medida'%}" type="button" class="btn btn-primary waves-effect "  style="margin-left: 40%;"><i class="mdi mdi-human-male-height "></i> Adicionar control de medidas
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -308,14 +307,5 @@
 <script src="{% static 'js/pages/form-validation.init.js'%}"></script>
 <!-- Modal js -->
 <script src="{% static 'js/pages/modal.init.js'%}"></script>
-
-    <script>
-        var myModal = document.getElementById('myModal')
-        var myInput = document.getElementById('myInput')
-
-        myModal.addEventListener('shown.bs.modal', function () {
-        myInput.focus()
-        })
-    </script>
 
 {% endblock extra_js %}

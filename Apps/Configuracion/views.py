@@ -8,5 +8,11 @@ class Configuracionview(TemplateView):
     pass
 
 Configuracion = Configuracionview.as_view(
-    template_name="pages/Configuracion.html"
+    template_name="Configuracion/Configuracion.html"
+)
+Crear_rol = Configuracionview.as_view(
+    template_name="Configuracion/Crear-Rol.html"
+)
+Permisos = Configuracionview.as_view(
+    template_name="Configuracion/Permisos.html"
 )

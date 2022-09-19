@@ -64,9 +64,8 @@
                                     <h4 class="my-0 text-primary" style="margin-top: 50%;">Historial corporal</h4>
                                 </div>
                                 <div class="col-lg-6 ms-lg-auto" >
-                                    <button type="button" class="btn btn-primary waves-effect " data-bs-toggle="modal"
-                                        data-bs-target=".bs-corporal" style="margin-left: 43%;"><i class="mdi mdi-human-handsdown"></i> Adicionar Corporal
-                                    </button>
+                                    <a href="{% url 'Clientes.Ver-Detalles.Crear-Corporal'%}" type="button" class="btn btn-primary waves-effect " style="margin-left: 43%;"><i class="mdi mdi-human-handsdown"></i> Adicionar Corporal
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -137,9 +136,8 @@
                                     <h4 class="my-0 text-primary" style="margin-top: 50%;">Historial facial</h4>
                                 </div>
                                 <div class="col-lg-6 ms-lg-auto" >
-                                    <button type="button" class="btn btn-primary waves-effect " data-bs-toggle="modal"
-                                        data-bs-target=".bs-facial" style="margin-left: 43%;"><i class="mdi mdi-face-woman-outline"></i> Adicionar facial
-                                    </button>
+                                    <a href="{% url 'Clientes.Ver-Detalles.Crear-Facial'%}" type="button" class="btn btn-primary waves-effect "  style="margin-left: 43%;"><i class="mdi mdi-face-woman-outline"></i> Adicionar facial
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -203,8 +201,6 @@
                     </div>
                 </div>
                 <!-- end card -->
-                {% include 'pages/Crear-Corporal.html'%}
-                {% include 'pages/Crear-Facial.html'%}
             </div>
         </div> <!-- container-fluid -->
     </div> <!-- End Page-content -->
@@ -234,31 +230,14 @@
 <script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js'%}"></script>
 <script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js'%}"></script>
 <script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js'%}"></script>
-
 <!-- Responsive examples -->
 <script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
 <script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js'%}"></script>
-<!-- twitter-bootstrap-wizard js -->
-<script src="{% static 'libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js'%}"></script>
-<script src="{% static 'libs/twitter-bootstrap-wizard/prettify.js'%}"></script>
-<!-- form wizard init -->
-<script src="{% static 'js/pages/form-wizard.init.js'%}"></script>
 <!-- Datatable init js -->
 <script src="{% static 'js/pages/datatables.init.js'%}"></script>   
 <!-- pristine js -->
 <script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
 <!-- form validation -->
 <script src="{% static 'js/pages/form-validation.init.js'%}"></script>
-<!-- Modal js -->
-<script src="{% static 'js/pages/modal.init.js'%}"></script>
-
-    <script>
-        var myModal = document.getElementById('myModal')
-        var myInput = document.getElementById('myInput')
-
-        myModal.addEventListener('shown.bs.modal', function () {
-        myInput.focus()
-        })
-    </script>
 
 {% endblock extra_js %}

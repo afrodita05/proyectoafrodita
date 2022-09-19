@@ -36,42 +36,8 @@
                         crear un nuevo rol.</p>
                     </div>
                     <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
-                        <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".bs-roles" style="width: 50%;" >Crear un rol</button>
-                        <div class="d-flex flex-wrap gap-3">
-                            <div>
-                                <!--  Modal Crear roles -->
-                                <div class="modal fade bs-roles" tabindex="-1" role="dialog" data-bs-backdrop="static" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg" >
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="myLargeModalLabel">Crear rol</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                        
-                                            <div style="margin: 60px;">
-                                                <!--  FORMULARIO CON VALIDACIONES -->
-                                                <form id="pristine-valid-example" novalidate method="post">
-                                                    {% csrf_token %}
-                                                    <input type="hidden" />
-                                                    <div class="row">
-                                                        <div class=" col-md-12">
-                                                            <div class="form-group mb-3">
-                                                                <label class="form-label">Rol</label>
-                                                                <input type="text" data-pristine-required-message="Por favor ingrese el rol" placeholder="Ingrese el rol" required class="form-control" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- end row -->
-                                                    <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-top: 40px;" >
-                                                        <button type="submit" class="btn btn-primary" style="width: 50%;">Crear Rol</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div><!-- /.modal-content -->
-                                    </div><!-- /.modal-dialog -->
-                                </div><!-- /.modal -->
-                            </div>
-                        </div>
+                        <a href="{% url 'Configuracion.Crear-Rol'%}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear un rol</a>
+                        
                     </div>
                 </div>
             </div><!-- end col -->
@@ -103,10 +69,9 @@
                                                         data-off-label="Off"></label>
                                                 </div>
                                                 <div class="dropdown">
-                                                    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target=".bs-permisos">
+                                                    <a href="{% url 'Configuracion.Permisos'%}" type="button" class="btn btn-outline-primary btn-sm" >
                                                         <i class="mdi mdi-account-cog-outline mdi-24px "></i>
-                                                    </button>
-                                                    
+                                                    </a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -122,9 +87,9 @@
                                                     <label for="square-switch1" data-on-label="On"
                                                         data-off-label="Off"></label>
                                                 </div> 
-                                                <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target=".bs-permisos">
+                                                <a href="{% url 'Configuracion.Permisos'%}" type="button" class="btn btn-outline-primary btn-sm" >
                                                     <i class="mdi mdi-account-cog-outline mdi-24px "></i>
-                                                </button>
+                                                </a>
                                             </td>
                                         </tr> 
                                     </tbody>
@@ -133,73 +98,8 @@
                         </div>
                     </div>
                 </div> <!-- end col -->
-            </div> <!-- end row -->
-            <!-- MODAL PERMISOS -->
-            <div class="modal fade bs-permisos" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Permisos</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div style="margin: 10px;">
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" id="formCheck1">
-                                    <label class="form-check-label" for="formCheck1">
-                                        Configuraciones
-                                    </label>
-                                </div>
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" id="formCheck1">
-                                    <label class="form-check-label" for="formCheck1">
-                                        Usuario
-                                    </label>
-                                </div>
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" id="formCheck1">
-                                    <label class="form-check-label" for="formCheck1">
-                                        Proveedores
-                                    </label>
-                                </div>
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" id="formCheck1">
-                                    <label class="form-check-label" for="formCheck1">
-                                        Insumos
-                                    </label>
-                                </div>
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" id="formCheck1">
-                                    <label class="form-check-label" for="formCheck1">
-                                        Servcios
-                                    </label>
-                                </div>
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" id="formCheck1">
-                                    <label class="form-check-label" for="formCheck1">
-                                        Clientes
-                                    </label>
-                                </div>
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" id="formCheck1">
-                                    <label class="form-check-label" for="formCheck1">
-                                        Citas
-                                    </label>
-                                </div>
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" id="formCheck1">
-                                    <label class="form-check-label" for="formCheck1">
-                                        Todos
-                                    </label>
-                                </div>
-                                <div class="form-group" style=" display: flex; justify-content: center; align-items: center;" >
-                                    <button type="submit" class="btn btn-primary" style="width: 50%;">Guardar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
+            </div> <!-- end row --
+        
         </div> <!-- container-fluid -->
         
     </div> <!-- End Page-content -->

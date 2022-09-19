@@ -7,5 +7,11 @@ class Proveedorview(TemplateView):
     pass
 
 Proveedores = Proveedorview.as_view(
-    template_name="pages/Proveedores.html"
+    template_name="Proveedores/Proveedores.html"
+)
+Crear_Proveedor = Proveedorview.as_view(
+    template_name="Proveedores/Crear-Proveedor.html"
+)
+Editar_Proveedor = Proveedorview.as_view(
+    template_name="Proveedores/Editar-Proveedor.html"
 )

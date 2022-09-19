@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0 font-size-18">Clientes</h4>
+                                <h3 class="mb-sm-0 font-size-32">Clientes</h3>
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="javascript: void(0);">Paginas</a></li>
@@ -36,11 +36,11 @@
                                 crear un nuevo cliente.</p> 
                             </div>
                             <div class="gap-2" style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
-                                <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".bs-clientes" style="width: 50%;" >Crear un cliente</button>
+                                <a type="button" href="{% url 'Clientes.Crear-Cliente'%}" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear un cliente</a>
                                 <div class="d-flex flex-wrap gap-3">
                                 </div>
                             </div>
-                            {% include 'pages/Crear-Cliente.html' %}
+                            
                         </div>
                     </div><!-- end col -->
                     
@@ -62,26 +62,82 @@
                                             </thead>
                                             <tbody>
                                                 <tr data-id="1">
-                                                    {% for listar in cliente %}
-                                                    <td>{{listar.fechaCreacion}}</td>
-                                                    <td>{{listar.nombre}}</td>
-                                                    <td>{{listar.sexo}}</td>
-                                                    <td>{{listar.documento}}</td>
-                                                    <td>{{listar.fechaActualizacion}}</td>
+                                                    <td data-field="id">1</td>
+                                                    <td data-field="fechaCreacion">23/02/2020</td>
+                                                    <td data-field="nombre">Julian Valenzuela</td>
+                                                    <td data-field="documento">1045046042</td>
+                                                    <td data-field="sexo">Hombre</td>
                                                     <td>
-                                                        <a href="{% url 'editarCliente' listar.idCliente %}" class="btn btn-outline-primary btn-sm " data-bs-toggle="modal" data-bs-target=".bs-Eclientes">
+                                                        <a href="{% url 'Clientes.Editar-Cliente'%}" class="btn btn-outline-primary btn-sm ">
                                                             <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
                                                         </a>
                                                         
-                                                        <a href="" class="btn btn-outline-primary btn-sm">
+                                                        <a href="{% url 'Clientes.Ver-detalle' %}" class="btn btn-outline-primary btn-sm">
                                                             <i class="mdi mdi-eye-outline  mdi-24px "></i>
                                                         </a>
                                                     </td>
-                                                    {%include 'pages/Editar-Cliente.html'%}
                                                     
                                                 </tr>
-                                                {% endfor %}
-                                             
+                                                <tr data-id="2">
+                                                    <td data-field="id">2</td>
+                                                    <td data-field="fechaCreacion">12/05/2015</td>
+                                                    <td data-field="nombre">Juan Plabo Duque</td>
+                                                    <td data-field="documento">6867846042</td>
+                                                    <td data-field="sexo">Hombre</td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-outline-primary btn-sm">
+                                                            <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
+                                                        </a>
+                                                        <a href="#" class="btn btn-outline-primary btn-sm">
+                                                            <i class="mdi mdi-eye-outline  mdi-24px "></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr data-id="3">
+                                                    <td data-field="id">3</td>
+                                                    <td data-field="fechaCreacion">02/02/2022</td>
+                                                    <td data-field="nombre">Alex González</td>
+                                                    <td data-field="documento">987546042</td>
+                                                    <td data-field="sexo">Hombre</td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-outline-primary btn-sm">
+                                                            <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
+                                                        </a>
+                                                        <a href="#" class="btn btn-outline-primary btn-sm">
+                                                            <i class="mdi mdi-eye-outline  mdi-24px "></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr data-id="4">
+                                                    <td data-field="id">4</td>
+                                                    <td data-field="fechaCreacion">22/22/2019</td>
+                                                    <td data-field="nombre">Karen Gaviria</td>
+                                                    <td data-field="documento">000046042</td>
+                                                    <td data-field="sexo">Mujer</td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-outline-primary btn-sm">
+                                                            <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
+                                                        </a>
+                                                        <a href="#" class="btn btn-outline-primary btn-sm">
+                                                            <i class="mdi mdi-eye-outline  mdi-24px "></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr data-id="5">
+                                                    <td data-field="id">5</td>
+                                                    <td data-field="fechaCreacion">09/09/2018</td>
+                                                    <td data-field="nombre">kevin Estiven</td>
+                                                    <td data-field="documento">7676676042</td>
+                                                    <td data-field="sexo">Hombre</td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-outline-primary btn-sm">
+                                                            <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
+                                                        </a>
+                                                        <a href="#" class="btn btn-outline-primary btn-sm">
+                                                            <i class="mdi mdi-eye-outline  mdi-24px "></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -140,16 +196,4 @@
 
 <!-- form wizard init -->
 <script src="{% static 'js/pages/form-wizard.init.js'%}"></script>
-<!-- Modal js -->
-<script src="{% static 'js/pages/modal.init.js'%}"></script>
-
-    <script>
-        var myModal = document.getElementById('myModal')
-        var myInput = document.getElementById('myInput')
-
-        myModal.addEventListener('shown.bs.modal', function () {
-        myInput.focus()
-        })
-    </script>
-
 {% endblock extra_js %}

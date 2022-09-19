@@ -1,0 +1,131 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}Proveedores{% endblock title %}
+{% block extra_css %}
+    <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+{% endblock extra_css %}
+{% block content %}
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h3 class="mb-sm-0 font-size-40">Proveedores</h3>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Paginas</a></li>
+                                <li class="breadcrumb-item active">Proveedores</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4" style="width: 100%; height: 100%; align-items: center;">
+                <div class="card border border-primary" >
+                    <div class="card-header bg-transparent border-primary">
+                        <h5 class="my-0 text-primary"><i class="mdi mdi-bullseye-arrow me-3"></i>Para crear un Proveedor</h5>
+                    </div>
+                    <div class="card-body" style="width: 100%; margin-top: 20px;">
+                        <p class="card-text" style="font-size: 22px;">Para crear un nuevo proveedore presiona el botón  "Crear un proveedor", recuerda que es necesario tener toda la información registrada para
+                        crear un nuevo proveedor.</p>  
+                        
+                    </div>
+                    <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
+                        <a href="{% url 'Proveedores.Crear-Proveedor'%}" type="button" class="btn btn-primary waves-effect waves-light"  style="width: 50%;" >Crear un proveedor</a>
+                    </div>
+                </div>
+            </div><!-- end col -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="datatable" class="table table-nowrap align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Código</th>
+                                            <th>Proveedor</th>
+                                            <th>Productos</th>
+                                            <th>Teléfono</th>
+                                            <th>Nombre</th>
+                                            <th>Correo</th>
+                                            <th>Estado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        <tr data-id="1">
+                                            <td data-field="id" style="width: 80px">2</td>
+                                            <td data-field="codigo">0002</td>
+                                            <td data-field="proveedor">Belleza Ram</td>
+                                            <td data-field="productos">Productos</td>
+                                            <td data-field="telefono">8487877</td>
+                                            <td data-field="naombre">Julian Valenzuela</td>
+                                            <td data-field="correo">julianandres21@gmail.com</td>
+                                            <td data-field="estado">
+                                                <span class="badge badge-soft-success" style="font-size: 14px;">Activo</span>   
+                                            </td>
+                                            <td>
+                                                <div class="square-switch">
+                                                    <input type="checkbox" id="square-switch1" switch="none" checked />
+                                                    <label for="square-switch1" data-on-label="On"
+                                                        data-off-label="Off"></label>
+                                                </div>
+                                                <a href="{% url 'Proveedores.Editar-Proveedor'%}" class="btn btn-outline-primary btn-sm">
+                                                    <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
+                                                </a>
+                                            </td>
+                                        </tr>   
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col -->
+            </div> <!-- end row -->
+        </div> <!-- container-fluid -->
+        
+    </div> <!-- End Page-content -->
+   
+    {% block footer %}
+        {% include 'partials/footer.html' %}
+    {% endblock footer %}
+</div>       
+        
+<!-- end main content-->
+{% endblock content %}
+
+{% block extra_js %}
+<!-- Datatable init js -->
+<script src="{% static 'js/pages/datatables.init.js'%}"></script> 
+<!-- Table Editable plugin -->
+<script src="{% static 'libs/table-edits/build/table-edits.min.js'%}"></script>
+<script src="{% static 'js/pages/table-editable.int.js'%}"></script> 
+<!-- Required datatable js -->
+<script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js'%}"></script>
+<!-- Buttons examples -->
+<script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js'%}"></script>
+<script src="{% static 'libs/jszip/jszip.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/pdfmake.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/vfs_fonts.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js'%}"></script>
+<!-- Responsive examples -->
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js'%}"></script>
+<!-- pristine js -->
+<script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
+<!-- form validation -->
+<script src="{% static 'js/pages/form-validation.init.js'%}"></script>
+{% endblock extra_js %}
