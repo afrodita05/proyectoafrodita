@@ -22,8 +22,8 @@ from SadcomStetic import views
 from Apps.Citas.views import Citas, Editar_Cita, Crear_Cita
 from Apps.login.views import Login, recuperar_contrasena
 from Apps.login.views import Login, recuperar_contrasena
-from Apps.Usuarios.views import Usuarios, Crear_Usuario, Editar_Usuario
-from Apps.Clientes.views import cliente,formularioCliente,crearCliente,editarCliente,actualizarCliente, historialCorporal, historialFacial, detalleCliente, crearCorporal, crearFacial, crearMedidas
+# from Apps.Usuarios.views import Usuarios, Crear_Usuario, Editar_Usuario
+from Apps.Clientes.views import cliente,formularioCliente,crearCliente,editarCliente,actualizarCliente,detalleCliente,formularioCorporal,crearCorporal,VerDetalleCorporal,formularioFacial,crearFacial,VerDetalleFacial,formularioControlMedidas
 from Apps.Servicios.views import Servicios, Crear_Servicio, Editar_Servicio, Detalle_Servicio
 from Apps.Proveedores.views import Proveedores, Crear_Proveedor, Editar_Proveedor
 from Apps.Configuracion.views import Configuracion, Crear_rol, Permisos
@@ -150,96 +150,105 @@ urlpatterns = [
     ),
     #CLIENTES
     path(
-        "Clientes",
+        "Clientes/", 
         view= cliente,
         name= "Clientes",
     ),
+
     path(
-        "CrearCliente",
+        "FormularioCliente/",
+        view= formularioCliente,
+        name= "Clientes.Formulario-Cliente",
+    ),
+
+    path(
+        "CrearCliente/",
         view= crearCliente,
         name= "Clientes.Crear-Cliente",
     ),
+
     path(
-        "EditarCliente",
+        "EditarCliente/<int:id>",
         view= editarCliente,
         name= "Clientes.Editar-Cliente",
     ),
+
+     path(
+        "ActualizarCliente/<int:id>",
+        view= actualizarCliente,
+        name= "Clientes.Actualizar-Cliente",
+    ),
+
     path(
-        "VerDetalle",
+        "VerDetalle/<int:id>",
         view= detalleCliente,
         name= "Clientes.Ver-detalle",
     ),
+
     path(
-        "CrearFacial",
-        view= crearFacial,
-        name= "Clientes.Ver-Detalles.Crear-Facial",
+        "FormularioCorporal/<int:id>",
+        view= formularioCorporal,
+        name= "Clientes.Formulario-Corporal",
     ),
+
     path(
-        "CrearCorporal",
+        "CrearCorporal/<int:id>",
         view= crearCorporal,
         name= "Clientes.Ver-Detalles.Crear-Corporal",
     ),
+    
     path(
-        "CrearMedias",
-        view= crearMedidas,
-        name= "Clientes.Ver-Detalles.Ver-Detalles-Corporal.Crear-Medida",
+        "VerDetalleCorporal/<int:id>",
+        view= VerDetalleCorporal,
+        name= "Clientes.Ver-Detalles.Corporal",
     ),
+
     path(
-        "HistorialCoporal",
-        view= historialCorporal,
-        name= "Clientes.Ver-detalle.Historial-Corporal",
+        "FormularioFacial/<int:id>",
+        view= formularioFacial,
+        name= "Clientes.Formulario-Facial",
     ),
+
     path(
-        "HistorialFacial",
-        view= historialFacial,
-        name= "Clientes.Ver-detalle.Historial-Facial",
+        "CrearFacial/<int:id>",
+        view= crearFacial,
+        name= "Clientes.Ver-Detalles.Crear-Facial",
     ),
-    #path('listaClientes/',formularioClientes.as_view(),name='formularioFacial'),
-   
-    # path(
-    #     "VerDetalle",
-    #     view= Detalle_Cliente,
-    #     name= "Clientes.Ver-detalle",
-    # ),
-    # path(
-    #     "HistorialCoporal",
-    #     view= Historial_Corporal,
-    #     name= "Clientes.Ver-detalle.Historial-Corporal",
-    # ),
-    # path(
-    #     "HistorialFacial",
-    #     view= Historial_Facial,
-    #     name= "Clientes.Ver-detalle.Historial-Facial",
-    # ),
-    '''
+
     path(
-        "editarCliente/<int:id>",
-        view=editarCliente,
-        name= "editarCliente",
+        "VerDetalleFacial/<int:id>",
+        view= VerDetalleFacial,
+        name= "Clientes.Ver-Detalles.Facial",
     ),
+
     path(
-        "actualizarCliente/<int:id>",
-        view=actualizarCliente,
-        name= "actualizarCliente",
+        "FormularioControlMedidas/<int:id>",
+        view= formularioControlMedidas,
+        name= "Clientes.Ver-Detalles.Crear-Control-Medidas",
     ),
-     
-    path('listaClientes/',formularioClientes.as_view(),name='formularioFacial'),
-    '''
-   #CLIENTES
+
+
+
+
+
+
     
     # path(
-    #     "VerDetalle",
-    #     view= Detalle_Cliente,
-    #     name= "Clientes.Ver-detalle",
+    #     "CrearMedias",
+    #     view= crearMedidas,
+    #     name= "Clientes.Ver-Detalles.Ver-Detalles-Corporal.Crear-Medida",
     # ),
     # path(
     #     "HistorialCoporal",
-    #     view= Historial_Corporal,
+    #     view= historialCorporal,
     #     name= "Clientes.Ver-detalle.Historial-Corporal",
     # ),
     # path(
     #     "HistorialFacial",
-    #     view= Historial_Facial,
+    #     view= historialFacial,
     #     name= "Clientes.Ver-detalle.Historial-Facial",
     # ),
+    
+    #slash al final del ruta  
+ 
 ]

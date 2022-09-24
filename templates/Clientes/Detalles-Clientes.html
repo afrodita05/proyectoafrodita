@@ -2,9 +2,10 @@
 {% load static %}
 {% block title %}Crear corporal{% endblock title %}
 {% block extra_css %}
-    <!-- DataTables -->
-    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+<!-- DataTables -->
+<link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+<link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet"
+    type="text/css" />
 {% endblock extra_css %}
 {% block content %}
 <div class="main-content">
@@ -27,7 +28,8 @@
             <div class="card">
                 <div class="col-lg-12">
                     <div class="card-header bg-transparent border-primary">
-                        <h5 class="my-0 text-primary"><i class="mdi mdi-card-account-details-outline me-3"></i>Datos personales del cliente </h5>
+                        <h5 class="my-0 text-primary"><i class="mdi mdi-card-account-details-outline me-3"></i>Datos
+                            personales del cliente </h5>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
@@ -36,16 +38,18 @@
                                     <div class="col-lg-5">
                                         <div>
                                             <div class="mt-4 mt-lg-0">
-                                                <h5 class="card-title">Nombre del cliente</h5>
-                                                <input type="text"class="form-control" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 ms-lg-auto">
-                                        <div class="mt-4 mt-lg-0">
-                                            <div class="mt-4 mt-lg-0">
-                                                <h5 class="card-title">Número de documento</h5>
-                                                <input type="text"class="form-control" />
+                                                <h5 class="card-title">Nombre del cliente: {{mostrar.nombre}}</h5>
+                                                <h5 class="card-title">Documento: {{mostrar.documento}}</h5>
+                                                <h5 class="card-title">Sexo: {{mostrar.sexo}}</h5>
+                                                <h5 class="card-title">Estado Civil: {{mostrar.estadoCivil}}</h5>
+                                                <h5 class="card-title">NumeroHijos: {{mostrar.numeroHijos}}</h5>
+                                                <h5 class="card-title">Fecha Nacimiento: {{mostrar.fechaNacimiento}}
+                                                </h5>
+                                                <h5 class="card-title">Telefono: {{mostrar.telefono}}</h5>
+                                                <h5 class="card-title">Direccion: {{mostrar.direccion}}</h5>
+                                                <h5 class="card-title">Correo: {{mostrar.correo}}</h5>
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -55,161 +59,116 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xl-6">
-                    <div class="card">
-                        <div class="card-header bg-transparent border-primary">
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <h4 class="my-0 text-primary" style="margin-top: 50%;">Historial corporal</h4>
-                                </div>
-                                <div class="col-lg-6 ms-lg-auto" >
-                                    <a href="{% url 'Clientes.Ver-Detalles.Crear-Corporal'%}" type="button" class="btn btn-primary waves-effect " style="margin-left: 43%;"><i class="mdi mdi-human-handsdown"></i> Adicionar Corporal
-                                    </a>
-                                </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="card">
+                    <div class="card-header bg-transparent border-primary">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <h4 class="my-0 text-primary" style="margin-top: 50%;">Historial corporal</h4>
+                            </div>
+                            <div class="col-lg-6 ms-lg-auto">
+                                <a href="{% url 'Clientes.Formulario-Corporal' mostrar.idCliente %}" type="button"
+                                    class="btn btn-primary waves-effect " style="margin-left: 43%;"><i
+                                        class="mdi mdi-human-handsdown"></i> Adicionar Corporal
+                                </a>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-nowrap align-middle">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Fecha de creación</th>
-                                            <th>Estetisista</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>23/02/2023</td>
-                                            <td>Wilmer Gallo</td>
-                                            <td>
-                                                <a href="{% url 'Clientes.Ver-detalle.Historial-Corporal'%}" class="btn btn-outline-primary btn-sm">
-                                                    <i class="mdi mdi-eye-outline  mdi-24px "></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>22/05/2023</td>
-                                            <td>Wilmer Gallo</td>
-                                            <td>
-                                                <a href="#" class="btn btn-outline-primary btn-sm">
-                                                    <i class="mdi mdi-eye-outline  mdi-24px "></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>14/05/2021</td>
-                                            <td>Ronaldo</td>
-                                            <td>
-                                                <a href="#" class="btn btn-outline-primary btn-sm">
-                                                    <i class="mdi mdi-eye-outline  mdi-24px "></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td>31/12/2013</td>
-                                            <td>Thornton</td>
-                                            <td>
-                                                <a href="#" class="btn btn-outline-primary btn-sm">
-                                                    <i class="mdi mdi-eye-outline  mdi-24px "></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <!-- end card body -->
                     </div>
-                </div>
-                <div class="col-xl-6">
-                    <div class="card">
-                        <div class="card-header bg-transparent border-primary">
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <h4 class="my-0 text-primary" style="margin-top: 50%;">Historial facial</h4>
-                                </div>
-                                <div class="col-lg-6 ms-lg-auto" >
-                                    <a href="{% url 'Clientes.Ver-Detalles.Crear-Facial'%}" type="button" class="btn btn-primary waves-effect "  style="margin-left: 43%;"><i class="mdi mdi-face-woman-outline"></i> Adicionar facial
-                                    </a>
-                                </div>
-                            </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-nowrap align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Fecha de creación</th>
+                                        <th>Estetisista</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for listar in corporal %}
+                                    <tr>
+
+                                        <th scope="row">1</th>
+                                        <td>{{listar.fechaCreacion}}</td>
+                                        <td>{{listar.nombreE}}</td>
+                                        <td>
+
+                                            <a href="{% url 'Clientes.Ver-Detalles.Corporal' listar.idCorporal %}" class="btn btn-outline-primary btn-sm">
+                                                <i class="mdi mdi-eye-outline  mdi-24px "></i>
+                                            </a>
+                                        </td>
+
+
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-nowrap align-middle">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Fecha de creación</th>
-                                            <th>Estetisista</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>23/02/2023</td>
-                                            <td>Wilmer Gallo</td>
-                                            <td>
-                                                <a href="{% url 'Clientes.Ver-detalle.Historial-Facial'%}" class="btn btn-outline-primary btn-sm">
-                                                    <i class="mdi mdi-eye-outline  mdi-24px "></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>22/05/2023</td>
-                                            <td>Wilmer Gallo</td>
-                                            <td>
-                                                <a href="#" class="btn btn-outline-primary btn-sm">
-                                                    <i class="mdi mdi-eye-outline  mdi-24px "></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>14/05/2021</td>
-                                            <td>Ronaldo</td>
-                                            <td>
-                                                <a href="#" class="btn btn-outline-primary btn-sm">
-                                                    <i class="mdi mdi-eye-outline  mdi-24px "></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td>31/12/2013</td>
-                                            <td>Thornton</td>
-                                            <td>
-                                                <a href="#" class="btn btn-outline-primary btn-sm">
-                                                    <i class="mdi mdi-eye-outline  mdi-24px "></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <!-- end card body -->
                     </div>
+                    <!-- end card body -->
                 </div>
-                <!-- end card -->
             </div>
-        </div> <!-- container-fluid -->
-    </div> <!-- End Page-content -->
-   
-    {% block footer %}
-        {% include 'partials/footer.html' %}
-    {% endblock footer %}
-</div>       
-        
+            <div class="col-xl-6">
+                <div class="card">
+                    <div class="card-header bg-transparent border-primary">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <h4 class="my-0 text-primary" style="margin-top: 50%;">Historial facial</h4>
+                            </div>
+                            <div class="col-lg-6 ms-lg-auto">
+                                <a href="{% url 'Clientes.Formulario-Facial' mostrar.idCliente %}" type="button"
+                                    class="btn btn-primary waves-effect " style="margin-left: 43%;"><i
+                                        class="mdi mdi-face-woman-outline"></i> Adicionar
+                                    facial
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-nowrap align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Fecha de creación</th>
+                                        <th>Estetisista</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for listar in facial %}
+                                    <tr>
+
+                                        <th scope="row">1</th>
+                                        <td>{{listar.fechaCreacion}}</td>
+                                        <td>{{listar.nombreE}}</td>
+                                        <td>
+                                            <a href="{% url 'Clientes.Ver-Detalles.Facial' listar.idFacial %}" class="btn btn-outline-primary btn-sm">
+                                                <i class="mdi mdi-eye-outline  mdi-24px "></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- end card body -->
+                </div>
+            </div>
+            <!-- end card -->
+        </div>
+    </div> <!-- container-fluid -->
+</div> <!-- End Page-content -->
+
+{% block footer %}
+{% include 'partials/footer.html' %}
+{% endblock footer %}
+</div>
+
 <!-- end main content-->
 {% endblock content %}
 
@@ -217,7 +176,7 @@
 <!-- Table Editable plugin -->
 <script src="{% static 'libs/table-edits/build/table-edits.min.js'%}"></script>
 
-<script src="{% static 'js/pages/table-editable.int.js'%}"></script> 
+<script src="{% static 'js/pages/table-editable.int.js'%}"></script>
 <!-- Required datatable js -->
 <script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js'%}"></script>
 <script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js'%}"></script>
@@ -234,7 +193,7 @@
 <script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
 <script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js'%}"></script>
 <!-- Datatable init js -->
-<script src="{% static 'js/pages/datatables.init.js'%}"></script>   
+<script src="{% static 'js/pages/datatables.init.js'%}"></script>
 <!-- pristine js -->
 <script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
 <!-- form validation -->

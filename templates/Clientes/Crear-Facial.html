@@ -2,9 +2,10 @@
 {% load static %}
 {% block title %}Crear Facial{% endblock title %}
 {% block extra_css %}
-    <!-- DataTables -->
-    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+<!-- DataTables -->
+<link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+<link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet"
+    type="text/css" />
 {% endblock extra_css %}
 {% block content %}
 <div class="main-content">
@@ -17,7 +18,8 @@
                         <h3 class="mb-sm-0 font-size-40">Crear facial</h3>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Clientes > Ver detalle </a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Clientes > Ver detalle </a>
+                                </li>
                                 <li class="breadcrumb-item active"> crear facial</li>
                             </ol>
                         </div>
@@ -30,22 +32,25 @@
                         <ul class="twitter-bs-wizard-nav nav nav-pills nav-justified">
                             <li class="nav-item">
                                 <a href="#factores-agravantes" class="nav-link" data-toggle="tab">
-                                    <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Factores Agravantes">
+                                    <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="Factores Agravantes">
                                         <i data-feather="activity"></i>
                                     </div>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#análisis-de-piel" class="nav-link" data-toggle="tab">
-                                    <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Analisis de piel">
+                                    <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="Analisis de piel">
                                         <i class="mdi mdi-face-recognition"></i>
                                     </div>
                                 </a>
                             </li>
-                            
+
                             <li class="nav-item">
                                 <a href="#cuidados-diarios" class="nav-link" data-toggle="tab">
-                                    <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Cuidados diarios">
+                                    <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="Cuidados diarios">
                                         <i class="fas fa-hand-holding-water "></i>
                                     </div>
                                 </a>
@@ -57,263 +62,267 @@
                                 <div class="text-center mb-4">
                                     <h4>Factores Agravantes</h4>
                                 </div>
-                                <div class="col-lg-12">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">Nombre del estetisista</label>
-                                        <input type="text" required
-                                            data-pristine-required-message="Por favor ingrese el nombre completo " placeholder="Ingrese el nombre completo"
-                                            class="form-control" />
+                                <form action="{% url 'Clientes.Ver-Detalles.Crear-Facial' cliente.idCliente  %}" id="c" method="GET" >
+                                    <div class="col-lg-12">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">Nombre del estetisista</label>
+                                            <input name="nombreE" type="text" required
+                                                data-pristine-required-message="Por favor ingrese el nombre completo "
+                                                placeholder="Ingrese el nombre completo" class="form-control" />
+                                        </div>
                                     </div>
-                                </div>
-                                <form>
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Actualmente está en tratamiento médico</label>
-                                                <select class="form-select">
+                                                <select name="tratamientoM" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label for="progresspill-address-input">Cuál</label>
-                                                <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                <textarea name="cualTM" id="progresspill-address-input"
+                                                    class="form-control" rows="2" placeholder="Otros"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Sustitución hormonal</label>
-                                                <select class="form-select">
+                                                <select name="sustitucionH" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Toma anticonceptivo</label>
-                                                <select class="form-select">
+                                                <select name="tomaA" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Drogas</label>
-                                                <select class="form-select">
+                                                <select name="drogas" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label for="progresspill-address-input">Alimentos preferidos</label>
-                                                <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                <textarea name="alimentosP" id="progresspill-address-input"
+                                                    class="form-control" rows="2" placeholder="Otros"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label for="progresspill-address-input">Alimentos rechazados</label>
-                                                <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                <textarea name="alimentosR" id="progresspill-address-input"
+                                                    class="form-control" rows="2" placeholder="Otros"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Fuma</label>
-                                                <select class="form-select">
+                                                <select name="fuma" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Toma licor</label>
-                                                <select class="form-select">
+                                                <select name="tomaL" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Se protege del sol</label>
-                                                <select class="form-select">
+                                                <select name="protegeS" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Duerme bien</label>
-                                                <select class="form-select">
+                                                <select name="duermeB" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Menopausia</label>
-                                                <select class="form-select">
+                                                <select name="menopausia" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Toma medicamentos orales o tópicos</label>
-                                                <select class="form-select">
+                                                <select name="medicamentosOT" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label for="progresspill-address-input">Cuales</label>
-                                                <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                <textarea name="cualesOT" id="progresspill-address-input"
+                                                    class="form-control" rows="2" placeholder="Otros"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Padece de estrés</label>
-                                                <select class="form-select">
+                                                <select name="padeceE" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Ha tenido cáncer de piel</label>
-                                                <select class="form-select">
+                                                <select name="cancerP" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Asma</label>
-                                                <select class="form-select">
+                                                <select name="asma" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Lupus</label>
-                                                <select class="form-select">
+                                                <select name="lupus" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Herpes</label>
-                                                <select class="form-select">
+                                                <select name="herpes" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Hepatitis</label>
-                                                <select class="form-select">
+                                                <select name="hepatitis" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Epilepsia</label>
-                                                <select class="form-select">
+                                                <select name="epilepsia" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Dolor de cabeza</label>
-                                                <select class="form-select">
+                                                <select name="dolorC" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Ampollas febriles</label>
-                                                <select class="form-select">
+                                                <select name="ampollasF" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Tiroides</label>
-                                                <select class="form-select">
+                                                <select name="tiroides" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Problemas cardiacos</label>
-                                                <select class="form-select">
+                                                <select name="problemasC" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Psicológicos</label>
-                                                <select class="form-select">
+                                                <select name="psicológicos" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Urinarios</label>
-                                                <select class="form-select">
+                                                <select name="urinarios" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Nasales</label>
-                                                <select class="form-select">
+                                                <select name="nasales" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Digestivos</label>
-                                                <select class="form-select">
+                                                <select name="digestivos" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -325,64 +334,68 @@
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Alfahidroxiacidos</label>
-                                                <select class="form-select">
+                                                <select name="alfahidroxiacidos" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Retín A</label>
-                                                <select class="form-select">
+                                                <select name="retinA" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Differin</label>
-                                                <select class="form-select">
+                                                <select name="differin" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label"> Accutane </label>
-                                                <select class="form-select">
+                                                <select name="accutane" class="form-select">
                                                     <option value="No">No</option>
                                                     <option value="Si">Si</option>
-                                                </select>    
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="mb-3">
                                                 <label for="progresspill-address-input">Motivo de la consulta </label>
-                                                <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                <textarea name="motivoC" id="progresspill-address-input"
+                                                    class="form-control" rows="2" placeholder="Otros"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="mb-3">
-                                                <label for="progresspill-address-input">Es alérgico a algún producto cosmético o medicamento</label>
-                                                <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                <label for="progresspill-address-input">Es alérgico a algún producto
+                                                    cosmético o medicamento</label>
+                                                <textarea name="productoCM" id="progresspill-address-input"
+                                                    class="form-control" rows="2" placeholder="Otros"></textarea>
                                             </div>
                                         </div>
                                     </div>
-                                </form>
-                                <ul class="pager wizard twitter-bs-wizard-pager-link">
-                                    <li class="next"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">Siguiente <i
-                                        class="bx bx-chevron-right ms-1"></i></a></li>
-                                </ul>
+
+                                    <ul class="pager wizard twitter-bs-wizard-pager-link">
+                                        <li class="next"><a href="javascript: void(0);" class="btn btn-primary"
+                                                onclick="nextTab()">Siguiente <i
+                                                    class="bx bx-chevron-right ms-1"></i></a></li>
+                                    </ul>
                             </div>
                             <div class="tab-pane" id="análisis-de-piel">
                                 <div>
                                     <div class="text-center mb-4">
                                         <h4>Análisis de piel</h4>
                                     </div>
-                                    <form>
+                                    
                                         <div class="row">
                                             <div class="text-center mb-4">
                                                 <h5>Textura</h5>
@@ -390,37 +403,37 @@
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label class="form-label">Normal</label>
-                                                    <select class="form-select">
+                                                    <select name="normal" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label class="form-label">Gruesa</label>
-                                                    <select class="form-select">
+                                                    <select name="gruesa" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label class="form-label">Áspera</label>
-                                                    <select class="form-select">
+                                                    <select name="aspera" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label class="form-label">Suave</label>
-                                                    <select class="form-select">
+                                                    <select name="suave" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -432,28 +445,28 @@
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Normal</label>
-                                                    <select class="form-select">
+                                                    <select name="normal1" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Cerrado</label>
-                                                    <select class="form-select">
+                                                    <select name="cerrado" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Dilatado</label>
-                                                    <select class="form-select">
+                                                    <select name="dilatado" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -465,19 +478,19 @@
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Zonas mates</label>
-                                                    <select class="form-select">
+                                                    <select name="zonasM" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Zonas billantes</label>
-                                                    <select class="form-select">
+                                                    <select name="zonasB" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -489,28 +502,28 @@
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Normal</label>
-                                                    <select class="form-select">
+                                                    <select name="normal2" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Deshidratada</label>
-                                                    <select class="form-select">
+                                                    <select name="deshidratada" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Hiperdeshidratada</label>
-                                                    <select class="form-select">
+                                                    <select name="hiperdeshidratada" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
                                             </div>
                                             <br>
@@ -522,14 +535,14 @@
                                             <div class="col-lg-10">
                                                 <div class="mb-3">
                                                     <label class="form-label">Fototipo</label>
-                                                    <select class="form-select">
+                                                    <select name="fototipoP" class="form-select">
                                                         <option value="Fototipo 1">Fototipo 1</option>
                                                         <option value="Fototipo 2">Fototipo 2</option>
                                                         <option value="Fototipo 3">Fototipo 3</option>
                                                         <option value="Fototipo 4">Fototipo 4</option>
                                                         <option value="Fototipo 5">Fototipo 5</option>
                                                         <option value="Fototipo 6">Fototipo 6</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -541,64 +554,64 @@
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label class="form-label">Lineas Finas</label>
-                                                    <select class="form-select">
+                                                    <select name="lineasF" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label class="form-label">Profundas</label>
-                                                    <select class="form-select">
+                                                    <select name="profundas" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
-                                            </div>  
+                                            </div>
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label class="form-label">Flacidez</label>
-                                                    <select class="form-select">
+                                                    <select name="flacidez" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
-                                            </div>  
+                                            </div>
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label class="form-label">Párpados</label>
-                                                    <select class="form-select">
+                                                    <select name="parpados" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
-                                            </div>  
+                                            </div>
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label class="form-label">Cuello</label>
-                                                    <select class="form-select">
+                                                    <select name="cuello" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
-                                            </div>  
+                                            </div>
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label class="form-label">Nosogenianos</label>
-                                                    <select class="form-select">
+                                                    <select name="nasogenianos" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
-                                            </div>  
+                                            </div>
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label class="form-label">Labios</label>
-                                                    <select class="form-select">
+                                                    <select name="labios" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -610,30 +623,30 @@
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Comedones</label>
-                                                    <select class="form-select">
+                                                    <select name="comedones" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Millas</label>
-                                                    <select class="form-select">
+                                                    <select name="milias" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
-                                            </div>  
+                                            </div>
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Quistes</label>
-                                                    <select class="form-select">
+                                                    <select name="quistes" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
-                                            </div> 
+                                            </div>
                                         </div>
                                         <br>
                                         <div class="row">
@@ -643,54 +656,56 @@
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Melasma</label>
-                                                    <select class="form-select">
+                                                    <select name="melasma" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Hipercromía</label>
-                                                    <select class="form-select">
+                                                    <select name="hipercromia" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
                                         <br>
-                                        <div class="row">                 
+                                        <div class="row">
                                             <div class="text-center mb-4">
                                                 <h5>Bolsas palpebrales</h5>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Edema</label>
-                                                    <select class="form-select">
+                                                    <select name="edema" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Grasa</label>
-                                                    <select class="form-select">
+                                                    <select name="grasa" class="form-select">
                                                         <option value="No">No</option>
                                                         <option value="Si">Si</option>
-                                                    </select>    
+                                                    </select>
                                                 </div>
-                                            </div> 
+                                            </div>
                                         </div>
-                                    </form>
-                                <ul class="pager wizard twitter-bs-wizard-pager-link">
-                                    <li class="previous"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()"><i
-                                        class="bx bx-chevron-left me-1"></i> Anterior</a></li>
-                                    <li class="next"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">Siguiente <i
-                                        class="bx bx-chevron-right ms-1"></i></a>
-                                    </li>
-                                </ul>
+                    
+                                    <ul class="pager wizard twitter-bs-wizard-pager-link">
+                                        <li class="previous"><a href="javascript: void(0);" class="btn btn-primary"
+                                                onclick="nextTab()"><i class="bx bx-chevron-left me-1"></i> Anterior</a>
+                                        </li>
+                                        <li class="next"><a href="javascript: void(0);" class="btn btn-primary"
+                                                onclick="nextTab()">Siguiente <i
+                                                    class="bx bx-chevron-right ms-1"></i></a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                             <div class="tab-pane" id="cuidados-diarios">
@@ -698,77 +713,94 @@
                                     <div class="text-center mb-4">
                                         <h4>Cuidados que realiza diariamente</h4>
                                     </div>
-                                    <form>
+                                    
                                         <br>
-                                    <div class="row">
-                                        <div class="text-center mb-4">
-                                            <h5>Rutina diaria de higiene</h5>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="mb-3">
-                                                <label for="progresspill-address-input">Cuales</label>
-                                                <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                        <div class="row">
+                                            <div class="text-center mb-4">
+                                                <h5>Rutina diaria de higiene</h5>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label for="progresspill-address-input">Cuales</label>
+                                                    <textarea name="rutinaH" id="progresspill-address-input"
+                                                        class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <br>
-                                    <div class="row">
-                                        <div class="text-center mb-4">
-                                            <h5>Cuidados habituales</h5>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="mb-3">
-                                                <label for="progresspill-address-input">Cuales</label>
-                                                <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                        <br>
+                                        <div class="row">
+                                            <div class="text-center mb-4">
+                                                <h5>Cuidados habituales</h5>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label for="progresspill-address-input">Cuales</label>
+                                                    <textarea name="cuidadosH" id="progresspill-address-input"
+                                                        class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Mensuales</label>
+                                                    <select name="mensuales" class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="Si">Si</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-12">
-                                            <div class="mb-3">
-                                                <label class="form-label">Mensuales</label>
-                                                <select class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>    
+                                        <br>
+                                        <div class="row">
+                                            <div class="text-center mb-4">
+                                                <h5>Productos que utiliza habitualmente</h5>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="row">
-                                        <div class="text-center mb-4">
-                                            <h5>Productos que utiliza habitualmente</h5>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="mb-3">
-                                                <label for="progresspill-address-input">Cuales</label>
-                                                <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Otros"></textarea>
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label for="progresspill-address-input">Cuales</label>
+                                                    <textarea name="productoH" id="progresspill-address-input"
+                                                        class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                </div>
                                             </div>
+
                                         </div>
-                                        
+                                        <div class="form-group"
+                                        style=" display: flex; justify-content: center; align-items: center; margin-top: 40px; margin-bottom: 20px;">
+                                        <ul class="pager wizard twitter-bs-wizard-pager-link">
+                                            <li class="previous"><a href="javascript: void(0);" class="btn btn-primary"
+                                                    onclick="nextTab()"><i class="bx bx-chevron-left me-1"></i>
+                                                    Anterior</a>
+                                            </li>
+                                        </ul>
+                                        <button type="submit" class="btn btn-primary" for="c"
+                                            style="width: 20%; margin-right: 20px;">Guardar</button>
+
+                                        <!-- uso de for en el boton y id del formulario -->
                                     </div>
                                     </form>
-                                    <ul class="pager wizard twitter-bs-wizard-pager-link">
-                                    <li class="previous"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()"><i
-                                        class="bx bx-chevron-left me-1"></i> Anterior</a></li>
-                                    <li class="float-end"><a href="javascript: void(0);" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target=".confirmModal">Guardar</a>
-                                    </li>
-                                </ul>
+                                    <!-- <ul class="pager wizard twitter-bs-wizard-pager-link">
+                                        <li class="previous"><a href="javascript: void(0);" class="btn btn-primary"
+                                                onclick="nextTab()"><i class="bx bx-chevron-left me-1"></i> Anterior</a>
+                                        </li>
+                                        <li class="float-end"><a href="javascript: void(0);" class="btn btn-primary"
+                                                data-bs-toggle="modal" data-bs-target=".confirmModal">Guardar</a>
+                                        </li>
+                                    </ul> -->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div> <!-- end col -->
-            
+
         </div> <!-- container-fluid -->
-        
+
     </div> <!-- End Page-content -->
-   
+
     {% block footer %}
-        {% include 'partials/footer.html' %}
+    {% include 'partials/footer.html' %}
     {% endblock footer %}
-</div>       
-        
+</div>
+
 <!-- end main content-->
 {% endblock content %}
 
@@ -776,7 +808,7 @@
 <!-- Table Editable plugin -->
 <script src="{% static 'libs/table-edits/build/table-edits.min.js'%}"></script>
 
-<script src="{% static 'js/pages/table-editable.int.js'%}"></script> 
+<script src="{% static 'js/pages/table-editable.int.js'%}"></script>
 <!-- Required datatable js -->
 <script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js'%}"></script>
 <script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js'%}"></script>
@@ -799,7 +831,7 @@
 <!-- form wizard init -->
 <script src="{% static 'js/pages/form-wizard.init.js'%}"></script>
 <!-- Datatable init js -->
-<script src="{% static 'js/pages/datatables.init.js'%}"></script>   
+<script src="{% static 'js/pages/datatables.init.js'%}"></script>
 <!-- pristine js -->
 <script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
 <!-- form validation -->

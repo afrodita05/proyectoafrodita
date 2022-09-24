@@ -114,11 +114,11 @@ WSGI_APPLICATION = 'SadcomStetic.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'usuariosprueba',
+        'NAME': 'afrodita',
         'USER': 'root',
-        'PASSWORD': '1234',
+        'PASSWORD': 'trogoncollaris1126',
         'HOST': 'localhost',
-        'PORT': '3305',
+        'PORT': '',
     }
 }
 # Password validation
