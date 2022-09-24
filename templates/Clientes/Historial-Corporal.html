@@ -268,7 +268,7 @@
                                     <h4 class="my-0 text-primary" style="margin-top: 50%;">Control de medidas</h4>
                                 </div>
                                 <div class="col-lg-6 ms-lg-auto" >
-                                    <a href="{% url 'Clientes.Ver-Detalles.Crear-Control-Medidas' mostrar.idCorporal %}" type="button" class="btn btn-primary waves-effect "  style="margin-left: 40%;"><i class="mdi mdi-human-male-height "></i> Adicionar control de medidas
+                                    <a href="{% url 'Clientes.Ver-Detalles.Formulario-Control-Medidas' mostrar.idCorporal %}" type="button" class="btn btn-primary waves-effect "  style="margin-left: 40%;"><i class="mdi mdi-human-male-height "></i> Adicionar control de medidas
                                     </a>
                                 </div>
                             </div>
@@ -290,17 +290,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {% for listar in medidas %}
                                         <tr>
                                             <th scope="row">1</th>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{listar.fecha}}</td>
+                                            <td>{{listar.brazoD}}</td>
+                                            <td>{{listar.brazoI}}</td>
+                                            <td>{{listar.abdomenA}}</td>
+                                            <td>{{listar.abdomenB}}</td>
+                                            <td>{{listar.cintura}}</td>
+                                            <td>{{listar.piernaD}}</td>
+                                            <td>{{listar.piernaI}}</td>
                                         </tr>
+                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>

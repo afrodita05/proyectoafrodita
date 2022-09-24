@@ -23,7 +23,7 @@ from Apps.Citas.views import Citas, Editar_Cita, Crear_Cita
 from Apps.login.views import Login, recuperar_contrasena
 from Apps.login.views import Login, recuperar_contrasena
 # from Apps.Usuarios.views import Usuarios, Crear_Usuario, Editar_Usuario
-from Apps.Clientes.views import cliente,formularioCliente,crearCliente,editarCliente,actualizarCliente,detalleCliente,formularioCorporal,crearCorporal,VerDetalleCorporal,formularioFacial,crearFacial,VerDetalleFacial,formularioControlMedidas
+from Apps.Clientes.views import cliente,formularioCliente,crearCliente,editarCliente,actualizarCliente,detalleCliente,formularioCorporal,crearCorporal,VerDetalleCorporal,formularioFacial,crearFacial,VerDetalleFacial,formularioControlMedidas,crearControlMedidas
 from Apps.Servicios.views import Servicios, Crear_Servicio, Editar_Servicio, Detalle_Servicio
 from Apps.Proveedores.views import Proveedores, Crear_Proveedor, Editar_Proveedor
 from Apps.Configuracion.views import Configuracion, Crear_rol, Permisos
@@ -224,9 +224,14 @@ urlpatterns = [
     path(
         "FormularioControlMedidas/<int:id>",
         view= formularioControlMedidas,
-        name= "Clientes.Ver-Detalles.Crear-Control-Medidas",
+        name= "Clientes.Ver-Detalles.Formulario-Control-Medidas",
     ),
 
+    path(
+        "CrearControlMedidas/<int:id>",
+        view= crearControlMedidas,
+        name= "Clientes.Ver-Detalles.Crear-Control-Medidas",
+    ),
 
 
 

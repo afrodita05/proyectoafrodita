@@ -292,3 +292,19 @@ def formularioControlMedidas(request,id):
     corporal=EsteticoCorporal.objects.filter(idCorporal=id).first()
     contexto={"corporal":corporal}
     return render(request,"Clientes/Crear-Medidas.html",contexto)    
+
+def crearControlMedidas(request,id):
+    crearIdC=EsteticoCorporal.objects.get(idCorporal=id)
+    #Control medidas
+    fechaMedida=request.GET['fecha']
+    brazoDMedida=request.GET['brazoD']
+    brazoIMedida=request.GET['brazoI']
+    abdomenAMedida=request.GET['abdomenA']
+    cinturaMedida=request.GET['cintura']
+    abdomenBMedida=request.GET['abdomenB']
+    piernaDMedida=request.GET['piernaD']
+    piernaIMedida=request.GET['piernaI']
+    medidas=ControlMedidas(fecha=fechaMedida,brazoD=brazoDMedida,brazoI=brazoIMedida,abdomenA=abdomenAMedida,cintura=cinturaMedida,abdomenB=abdomenBMedida,piernaD=piernaDMedida,piernaI=piernaIMedida,idCorporal=crearIdC)
+    medidas.save()
+    return redirect("Clientes.Ver-Detalles.Corporal",id)
+
