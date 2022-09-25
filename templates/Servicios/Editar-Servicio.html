@@ -37,6 +37,9 @@
                                         <input type="text"  required
                                             data-pristine-required-message="Por favor ingrese el nombre " placeholder="Ingrese el nombre "
                                             class="form-control" name="nombre" value="{{mostrar.nServicio}}"  />
+                                            {% for x in errorS %}
+                                            <p style="color:red">Error. El nombre del servicio ingresado ya existe.</p>
+                                            {% endfor %}
                                     </div>
                                 </div>
                 

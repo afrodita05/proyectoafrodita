@@ -16,9 +16,17 @@ def formularioServicio(request):
 
 def crearServicio(request):
     nombreServicio= request.POST['nombre']
-    tiempoServicio= request.POST['tiempo']
-    servicios=Servicios(nServicio=nombreServicio,tiempo=tiempoServicio) 
-    servicios.save()
+    errorS= []
+    if Servicios.objects.filter(nServicio=nombreServicio).exists():
+      
+        errorS.append(1)
+        context={"errorS":errorS}
+        return render(request, 'Servicios/Crear-Servicio.html',context)
+    else:
+        tiempoServicio= request.POST['tiempo']
+        servicios=Servicios(nServicio=nombreServicio,tiempo=tiempoServicio) 
+        errorS.clear()
+        servicios.save()
     return redirect("Servicio")
 
 
@@ -29,16 +37,30 @@ def editarS(request, id):
     
 
 def actualizarS(request, id):
-
     nombreServicio= request.GET['nombre']
+    errorS= []
     tiempoServicio = request.GET['tiempo']
     actualizar=Servicios.objects.get(idServicio=id)
     actualizar.nServicio=nombreServicio #Será este?
-    actualizar.tiempo=tiempoServicio 
-
-
-    actualizar.save()
-    return redirect("Servicio")
+    nombrePropio = Servicios.objects.filter(idServicio=id).values('nServicio')[0]['nServicio']
+    if Servicios.objects.filter(nServicio=nombrePropio):
+        actualizar.tiempo=tiempoServicio 
+        errorS.clear()
+        actualizar.save()
+        return redirect("Servicio")
+    else:   
+        if Servicios.objects.filter(nServicio=actualizar.nServicio).exists():
+            errorS.append(1)
+            context={"errorS":errorS}
+            return render(request, 'Servicios/Editar-Servicio.html',context)
+        else:
+            actualizar.tiempo=tiempoServicio 
+            errorS.clear()
+            actualizar.save()
+            return redirect("Servicio")
+     
+        
+    
 
 
 def eliminarS(request, id):   
