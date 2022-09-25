@@ -24,6 +24,7 @@ from Apps.login.views import Login, recuperar_contrasena
 from Apps.login.views import Login, recuperar_contrasena
 # from Apps.Usuarios.views import Usuarios, Crear_Usuario, Editar_Usuario
 from Apps.Clientes.views import cliente,formularioCliente,crearCliente,editarCliente,actualizarCliente,detalleCliente,formularioCorporal,crearCorporal,VerDetalleCorporal,formularioFacial,crearFacial,VerDetalleFacial,formularioControlMedidas,crearControlMedidas
+from Apps.Usuarios.views import usuario, crearUsuario, formularioUsuario, editarU, actualizarU
 from Apps.Servicios.views import Servicios, Crear_Servicio, Editar_Servicio, Detalle_Servicio
 from Apps.Proveedores.views import Proveedores, Crear_Proveedor, Editar_Proveedor
 from Apps.Configuracion.views import Configuracion, Crear_rol, Permisos
@@ -46,6 +47,17 @@ urlpatterns = [
     ),
 #urls acorta las rutas para buscar path
 #Siempre que vaya a crear una vista debo asignarle una URL
+
+
+    #USUARIOS
+
+    path('usuario/',usuario),
+    path('crearUsuario/',crearUsuario),
+    path('formularioUsuario/',formularioUsuario),
+    path('editarU/<int:id>',editarU, name='editarUsuario'),
+    path('actualizarU/<int:id>',actualizarU, name='actualizarUsuario'),
+
+
 
     #SERVICIOS
     path(
@@ -234,10 +246,6 @@ urlpatterns = [
     ),
 
 
-
-
-
-    
     # path(
     #     "CrearMedias",
     #     view= crearMedidas,

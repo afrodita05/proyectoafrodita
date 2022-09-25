@@ -12,11 +12,8 @@ from django import forms
 class Usuarios(models.Model):
     idUsuario=models.AutoField(primary_key=True)
     documento=models.CharField(max_length=10)
+    nPersona= models.CharField(max_length=40)
     nUsuario= models.CharField(max_length=20)
     contrasena= models.CharField(max_length=20)
     correo= models.EmailField(blank=False,null=False)
     fechaCreacion= models.DateTimeField(auto_now=True) 
-    #estado= models. 
-    #idRol= models.
-
-    #Makemigrations, y luego migrate
