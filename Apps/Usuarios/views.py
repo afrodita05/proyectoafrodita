@@ -16,12 +16,20 @@ def formularioUsuario(request):
 
 def crearUsuario(request):
     documentoUsuario= request.POST['documento']
-    nombrePersona= request.POST['nombre']
-    nombreUsuario= request.POST['usuario']
-    password= request.POST['contrasena']
-    correo= request.POST['correo']
-    usuarios=Usuarios(documento=documentoUsuario,nPersona=nombrePersona,nUsuario=nombreUsuario,contrasena=password,correo=correo)
-    usuarios.save()
+    error= []
+    if Usuarios.objects.filter(documento=documentoUsuario).exists():
+        print("Error. El documento ingresado ya existe en otro usuario.")
+        error.append(1)
+        context={"error":error}
+        return render(request, 'Usuarios/Crear-Usuario.html',context)
+    else:
+        nombrePersona= request.POST['nombre']
+        nombreUsuario= request.POST['usuario']
+        password= request.POST['contrasena']
+        correo= request.POST['correo']
+        usuarios=Usuarios(documento=documentoUsuario,nPersona=nombrePersona,nUsuario=nombreUsuario,contrasena=password,correo=correo)
+        error.clear()
+        usuarios.save()
     return redirect("Usuario")
 
 
