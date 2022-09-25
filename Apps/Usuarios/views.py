@@ -4,25 +4,6 @@ from django.urls import reverse
 from django.views.generic import TemplateView
 from Apps.Usuarios.models import Usuarios
 
-# Create your views here.
-
-# class Usuarioview(TemplateView):
-#     pass
-
-# Usuarios = Usuarioview.as_view(
-#     template_name="Usuarios/Usuarios.html"
-# )
-# def formularioUsuarios(request):
-#     return render(request,"Usuarios/Usuarios.html",Usuarios)
-
-# Crear_Usuario = Usuarioview.as_view(
-#     template_name="Usuarios/Crear-Usuario.html"
-# )
-# Editar_Usuario = Usuarioview.as_view(
-#     template_name="Usuarios/Editar-Usuario.html"
-# )
-
-
 def usuario(request):
     usuario=Usuarios.objects.filter()
     context={"usuario":usuario}
@@ -64,3 +45,22 @@ def actualizarU(request, id):
     actualizar.contrasena=password
     actualizar.save()
     return redirect("Usuario")
+
+    
+# Create your views here.
+
+# class Usuarioview(TemplateView):
+#     pass
+
+# Usuarios = Usuarioview.as_view(
+#     template_name="Usuarios/Usuarios.html"
+# )
+# def formularioUsuarios(request):
+#     return render(request,"Usuarios/Usuarios.html",Usuarios)
+
+# Crear_Usuario = Usuarioview.as_view(
+#     template_name="Usuarios/Crear-Usuario.html"
+# )
+# Editar_Usuario = Usuarioview.as_view(
+#     template_name="Usuarios/Editar-Usuario.html"
+# )
