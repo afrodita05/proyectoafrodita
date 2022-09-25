@@ -1,0 +1,160 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}Servicios{% endblock title %}
+{% block extra_css %}
+    <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+{% endblock extra_css %}
+{% block content %}
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h3 class="mb-sm-0 font-size-40">Servicios</h3>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Paginas</a></li>
+                                <li class="breadcrumb-item active">Servicios</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4" style="width: 100%; height: 100%; align-items: center;">
+                <div class="card border border-primary" >
+                    <div class="card-header bg-transparent border-primary">
+                        <h5 class="my-0 text-primary"><i class="mdi mdi-bullseye-arrow me-3"></i>Para crear un Servicio</h5>
+                    </div>
+                    <div class="card-body" style="width: 100%; margin-top: 20px;">
+                        <p class="card-text" style="font-size: 22px;">Para crear un nuevo Servico presiona el botón  "Crear un servicio", recuerda que es necesario tener toda la información registrada para
+                        crear un nuevo Servico.</p>
+                    </div>
+                    <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
+                        <a href="{% url 'Servicios.Crear_Servicio'%}" type="button" class="btn btn-primary waves-effect waves-light"  style="width: 50%;" >Crear un servicio</a>
+                    </div>
+                </div>
+            </div><!-- end col -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="datatable" class="table table-nowrap align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nombre</th>
+                                            <th>Insumos</th>
+                                            <th>Tiempo</th>
+                                            <th>Precio</th>
+                                            <th>Estado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-id="1">
+                                            <td data-field="id" style="width: 80px">1</td>
+                                            <td data-field="name">Exfoliación facial</td>
+                                            <td data-field="insumos">Limpiadores con base acuosa,Aceites limpiadores, Tónico</td>
+                                            <td data-field="tiempo">60 Minutos</td>
+                                            <td data-field="precio">60.000 COP</td>
+                                            <td data-field="estado">
+                                                <span class="badge badge-soft-danger" style="font-size: 14px;">Inactivo</span>
+                                            </td>
+                                            <td>
+                                                <a href="{% url 'Servicios.Editar-Servicio'%}" class="btn btn-outline-primary btn-sm">
+                                                    <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
+                                                </a>
+                                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                                    <i class="mdi mdi-delete-outline mdi-24px "></i>
+                                                </a>
+                                                <a href="{% url 'Servicios.Ver-Detalle'%}" class="btn btn-outline-primary btn-sm">
+                                                    <i class="mdi mdi-eye-outline  mdi-24px "></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr data-id="2">
+                                            <td data-field="id" style="width: 80px">2</td>
+                                            <td data-field="name">Exfoliación facial</td>
+                                            <td data-field="insumos">Limpiadores con base acuosa,Aceites limpiadores, Tónico</td>
+                                            <td data-field="tiempo">60 Minutos</td>
+                                            <td data-field="precio">100.000 COP</td>
+                                            <td data-field="estado">
+                                                <span class="badge badge-soft-success" style="font-size: 14px;">Activo</span>   
+                                            </td>
+                                            <td>
+                                                <a href="{% url 'Servicios.Editar-Servicio'%}" class="btn btn-outline-primary btn-sm">
+                                                    <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
+                                                </a>
+                                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                                    <i class="mdi mdi-delete-outline mdi-24px "></i>
+                                                </a>
+                                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                                    <i class="mdi mdi-eye-outline mdi-24px "></i>
+                                                </a>
+                                            </td>
+                                        </tr>   
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col -->
+            </div> <!-- end row -->
+        </div> <!-- container-fluid -->
+        
+    </div> <!-- End Page-content -->
+   
+    {% block footer %}
+        {% include 'partials/footer.html' %}
+    {% endblock footer %}
+</div>       
+        
+<!-- end main content-->
+{% endblock content %}
+
+{% block extra_js %}
+<!-- Datatable init js -->
+<script src="{% static 'js/pages/datatables.init.js'%}"></script> 
+<!-- Table Editable plugin -->
+<script src="{% static 'libs/table-edits/build/table-edits.min.js'%}"></script>
+<script src="{% static 'js/pages/table-editable.int.js'%}"></script> 
+<!-- Required datatable js -->
+<script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js'%}"></script>
+<!-- Buttons examples -->
+<script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js'%}"></script>
+<script src="{% static 'libs/jszip/jszip.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/pdfmake.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/vfs_fonts.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js'%}"></script>
+<!-- Responsive examples -->
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js'%}"></script>
+<!-- pristine js -->
+<script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
+<!-- form validation -->
+<script src="{% static 'js/pages/form-validation.init.js'%}"></script>
+<!-- Modal js -->
+<script src="{% static 'js/pages/modal.init.js'%}"></script>
+
+    <script>
+        var myModal = document.getElementById('myModal')
+        var myInput = document.getElementById('myInput')
+
+        myModal.addEventListener('shown.bs.modal', function () {
+        myInput.focus()
+        })
+    </script>
+
+{% endblock extra_js %}

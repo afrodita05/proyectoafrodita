@@ -8,5 +8,11 @@ class Citaview(TemplateView):
     pass
 
 Citas = Citaview.as_view(
-    template_name="pages/Citas.html"
+    template_name="Citas/Citas.html"
+)
+Crear_Cita = Citaview.as_view(
+    template_name="Citas/Crear-Cita.html"
+)
+Editar_Cita = Citaview.as_view(
+    template_name="Citas/Editar-Cita.html"
 )

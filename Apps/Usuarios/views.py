@@ -7,8 +7,14 @@ class Usuarioview(TemplateView):
     pass
 
 Usuarios = Usuarioview.as_view(
-    template_name="pages/Usuarios.html"
+    template_name="Usuarios/Usuarios.html"
 )
-
 def formularioUsuarios(request):
-    return render(request,"Usuarios.html",Usuarios)
+    return render(request,"Usuarios/Usuarios.html",Usuarios)
+
+Crear_Usuario = Usuarioview.as_view(
+    template_name="Usuarios/Crear-Usuario.html"
+)
+Editar_Usuario = Usuarioview.as_view(
+    template_name="Usuarios/Editar-Usuario.html"
+)

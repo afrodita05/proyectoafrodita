@@ -7,5 +7,15 @@ class Servicioview(TemplateView):
     pass
 
 Servicios= Servicioview.as_view(
-    template_name="pages/Servicios.html",
+    template_name="Servicios/Servicios.html",
 )
+Crear_Servicio= Servicioview.as_view(
+    template_name="Servicios/Crear-Servicio.html",
+)
+Editar_Servicio= Servicioview.as_view(
+    template_name="Servicios/Editar-Servicio.html",
+)
+Detalle_Servicio= Servicioview.as_view(
+    template_name="Servicios/Ver-Detalle.html",
+)
+

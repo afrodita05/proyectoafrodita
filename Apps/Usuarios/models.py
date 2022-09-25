@@ -10,10 +10,10 @@ from django import forms
 # Esto representa las tablas con sus atributos, donde models.tipodeatributo
 
 class Usuarios(models.Model):
-    idUsuario=models.Autofield(primary_key=True)
+    idUsuario=models.AutoField(primary_key=True)
     documento=models.CharField(max_length=10)
     nUsuario= models.CharField(max_length=20)
-    contrasena= models.CharField(max_length=20, Widget=forms.PasswordInput)
+    contrasena= models.CharField(max_length=20)
     correo= models.EmailField(blank=False,null=False)
     fechaCreacion= models.DateTimeField(auto_now=True) 
     #estado= models. 

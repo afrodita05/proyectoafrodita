@@ -1,0 +1,270 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}Historial facial{% endblock title %}
+{% block extra_css %}
+    <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+{% endblock extra_css %}
+{% block content %}
+
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h3 class="mb-sm-0 font-size-40">Historial facial</h3>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Paginas </a></li>
+                                <li class="breadcrumb-item active">Clientes > Ver detalle > Historial facial</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="col-lg-12">
+                    <div class="card-header bg-transparent border-primary">
+                        <h5 class="my-0 text-primary"><i class="mdi mdi-pulse mdi-24px me-3"></i>Factores Agravantes</h5>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card-body p-4">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div>
+                                            <div class="mt-4 mt-lg-0">
+                                                <h5 class="card-title">Tratamiento medico   </h5>
+                                                <input type="text"class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 ms-lg-auto">
+                                        <div class="mt-4 mt-lg-0">
+                                            <div class="mt-4 mt-lg-0">
+                                                <h5 class="card-title">Sustitución hormonal</h5>
+                                                <input type="text"class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div>
+                                            <div class="mt-4 mt-lg-0">
+                                                <h5 class="card-title">Toma anticonceptivos</h5>
+                                                <input type="text"class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 ms-lg-auto">
+                                        <div class="mt-4 mt-lg-0">
+                                            <div class="mt-4 mt-lg-0">
+                                                <h5 class="card-title">Alimentos preferidos</h5>
+                                                <input type="text"class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div>
+                                            <div class="mt-4 mt-lg-0">
+                                                <h5 class="card-title">Alimentos rechazados</h5>
+                                                <input type="text"class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="col-lg-12">
+                    <div class="card-header bg-transparent border-primary">
+                        <h5 class="my-0 text-primary"><i class="mdi mdi-pulse mdi-24px me-3"></i>Análisis de piel</h5>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card-body p-4">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div>
+                                            <div class="mt-4 mt-lg-0">
+                                                <h5 class="card-title">Textura</h5>
+                                                <input type="text"class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 ms-lg-auto">
+                                        <div class="mt-4 mt-lg-0">
+                                            <div class="mt-4 mt-lg-0">
+                                                <h5 class="card-title">Aspecto del poro</h5>
+                                                <input type="text"class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <li>{{mostrar.nombreE}}</li>
+    <h2>Factores agravantes</h2>
+    <li>{{mostrar.tratamientoM}}</li>
+    <li>{{mostrar.cualTM}}</li>
+    <li>{{mostrar.sustitucionH}}</li>
+    <li>{{mostrar.tomaA}}</li>
+    <li>{{mostrar.drogas}}</li>
+    <li>{{mostrar.alimentosP}}</li>
+    <li>{{mostrar.alimentosR}}</li>
+    <li>{{mostrar.fuma}}</li>
+    <li>{{mostrar.tomaL}}</li>
+    <li>{{mostrar.protegeS}}</li>
+    <li>{{mostrar.duermeB}}</li>
+    <li>{{mostrar.menopausia}}</li>
+    <li>{{mostrar.medicamentosOT}}</li>
+    <li>{{mostrar.cualesOT}}</li>
+    <li>{{mostrar.padeceE}}</li>
+    <li>{{mostrar.cancerP}}</li>
+    <li>{{mostrar.asma}}</li>
+    <li>{{mostrar.lupus}}</li>
+    <li>{{mostrar.herpes}}</li>
+    <li>{{mostrar.hepatitis}}</li>
+    <li>{{mostrar.epilepsias}}</li>
+    <li>{{mostrar.dolorC}}</li>
+    <li>{{mostrar.ampollasF}}</li>
+    <li>{{mostrar.tiroides}}</li>
+    <li>{{mostrar.problemasC}}</li>
+    <li>{{mostrar.psicologicos}}</li>
+    <li>{{mostrar.urinarios}}</li>
+    <li>{{mostrar.nasales}}</li>
+    <li>{{mostrar.digestivos}}</li>
+
+    <h2>Está utilizando o uso</h2>
+    <li>{{mostrar.alfahidroxiacidos}}</li>
+    <li>{{mostrar.retinA}}</li>
+    <li>{{mostrar.differin}}</li>
+    <li>{{mostrar.accutane}}</li>
+    <li>{{mostrar.motivoC}}</li>
+    <li>{{mostrar.productoCM}}</li>
+
+    <h2>Analisis de piel</h2>
+    <li>{{mostrar.normal}}</li>
+    <li>{{mostrar.gruesa}}</li>
+    <li>{{mostrar.aspera}}</li>
+    <li>{{mostrar.suave}}</li>
+    <li>{{mostrar.normal1}}</li>
+    <li>{{mostrar.cerrado}}</li>
+    <li>{{mostrar.dilatado}}</li>
+
+    <h2>Brillo</h2>
+    <li>{{mostrar.zonasM}}</li>
+    <li>{{mostrar.zonasB}}</li>
+
+    <h2>Grado de hidratacióno</h2>
+    <li>{{mostrar.normal2}}</li>
+    <li>{{mostrar.deshidratada}}</li>
+    <li>{{mostrar.hiperdeshidratada}}</li>
+
+    <h2>Fototipo de piel</h2>
+    <li>{{mostrar.fototipoP}}</li>
+
+    <h2>Alteraciones del envejecimiento</h2>
+    <li>{{mostrar.lineasF}}</li>
+    <li>{{mostrar.profundas}}</li>
+    <li>{{mostrar.flacidez}}</li>
+    <li>{{mostrar.parpados}}</li>
+    <li>{{mostrar.cuello}}</li>
+    <li>{{mostrar.nasogenianos}}</li>
+    <li>{{mostrar.labios}}</li>
+
+    <h2>Acné(desde cuándo)</h2>
+    <li>{{mostrar.comedones}}</li>
+    <li>{{mostrar.milias}}</li>
+    <li>{{mostrar.quistes}}</li>
+
+    <h2>Pigmentación</h2>
+    <li>{{mostrar.melasma}}</li>
+    <li>{{mostrar.hipercromia}}</li>
+    <li>{{mostrar.edema}}</li>
+    <li>{{mostrar.grasa}}</li>
+
+    <h2>Cuidados que realiza diariamente</h2>
+    <li>{{mostrar.rutinasH}}</li>
+    <li>{{mostrar.cuidadosH}}</li>
+    <li>{{mostrar.mensuales}}</li>
+    <li>{{mostrar.productoH}}</li>
+
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div>
+                                            <div class="mt-4 mt-lg-0">
+                                                <h5 class="card-title">Brillo</h5>
+                                                <input type="text"class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 ms-lg-auto">
+                                        <div class="mt-4 mt-lg-0">
+                                            <div class="mt-4 mt-lg-0">
+                                                <h5 class="card-title">Grado de hidratación</h5>
+                                                <input type="text"class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- container-fluid -->
+    </div> <!-- End Page-content -->
+   
+    {% block footer %}
+        {% include 'partials/footer.html' %}
+    {% endblock footer %}
+</div>       
+        
+<!-- end main content-->
+{% endblock content %}
+
+{% block extra_js %}
+<!-- Table Editable plugin -->
+<script src="{% static 'libs/table-edits/build/table-edits.min.js'%}"></script>
+
+<script src="{% static 'js/pages/table-editable.int.js'%}"></script> 
+<!-- Required datatable js -->
+<script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js'%}"></script>
+<!-- Buttons examples -->
+<script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js'%}"></script>
+<script src="{% static 'libs/jszip/jszip.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/pdfmake.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/vfs_fonts.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js'%}"></script>
+<!-- Responsive examples -->
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js'%}"></script>
+<!-- twitter-bootstrap-wizard js -->
+<script src="{% static 'libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js'%}"></script>
+<script src="{% static 'libs/twitter-bootstrap-wizard/prettify.js'%}"></script>
+<!-- form wizard init -->
+<script src="{% static 'js/pages/form-wizard.init.js'%}"></script>
+<!-- Datatable init js -->
+<script src="{% static 'js/pages/datatables.init.js'%}"></script>   
+<!-- pristine js -->
+<script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
+<!-- form validation -->
+<script src="{% static 'js/pages/form-validation.init.js'%}"></script>
+
+{% endblock extra_js %}

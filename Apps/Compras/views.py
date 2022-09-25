@@ -8,8 +8,11 @@ class Compraview(TemplateView):
     pass
 
 Compras = Compraview.as_view(
-    template_name="pages/Compras.html"
+    template_name="Compras/Compras.html"
 )
 Crear_Compra = Compraview.as_view(
-    template_name="pages/Crear-Compra.html"
+    template_name="Compras/Crear-Compra.html"
+)
+Detalle_Compra = Compraview.as_view(
+    template_name="Compras/Ver-Detalle.html"
 )

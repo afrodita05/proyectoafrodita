@@ -1,0 +1,437 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}Historial corporal{% endblock title %}
+{% block extra_css %}
+    <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+{% endblock extra_css %}
+{% block content %}
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- start page title -->
+
+            <li>{{mostrar.nombreE}}</li>
+
+            <h2>Sufre problemas</h2>
+            <li>{{mostrar.tensionA}}</li>
+            <li>{{mostrar.digestivo}}</li>
+            <li>{{mostrar.circulacion}}</li>
+            <li>{{mostrar.endrocrino}}</li>
+            <li>{{mostrar.cardiacos}}</li>
+            <li>{{mostrar.otrosP}}</li>
+        
+            <h2>Peso actual</h2>
+            <li>{{mostrar.kilos}}</li>
+            <li>{{mostrar.talla}}</li>
+            <li>{{mostrar.altura}}</li>
+            <li>{{mostrar.masaC}}</li>
+            <li>{{mostrar.siluetas}}</li>
+            <li>{{mostrar.cirugias}}</li>
+            <li>{{mostrar.fibrosis}}</li>
+            <li>{{mostrar.deportesP}}</li>
+        
+            <h2>Modo Vida</h2>
+            <li>{{mostrar.modoV}}</li>
+            <li>{{mostrar.fuma}}</li>
+            <li>{{mostrar.alcohol}}</li>
+            <li>{{mostrar.calidadS}}</li>
+            <li>{{mostrar.notasV}}</li>
+
+            <h2>Observaciones</h2>
+    <li>{{mostrar.problemasT}}</li>
+
+    <h2>Grasa localizada</h2>
+    <li>{{mostrar.abdomen}}</li>
+    <li>{{mostrar.muslos}}</li>
+    <li>{{mostrar.nalgas}}</li>
+    <li>{{mostrar.espalda}}</li>
+    <li>{{mostrar.brazos}}</li>
+    <li>{{mostrar.notasO}}</li>
+    <li>{{mostrar.tratamientosR}}</li>
+    <li>{{mostrar.tratamientosE}}</li>
+
+    <h2>Antecedentes personales</h2>
+    <li>{{mostrar.dermatitis}}</li>
+    <li>{{mostrar.cirugias1}}</li>
+    <li>{{mostrar.cualesC}}</li>
+    <li>{{mostrar.hemofilia}}</li>
+    <li>{{mostrar.embarazo}}</li>
+    <li>{{mostrar.cancer}}</li>
+    <li>{{mostrar.hepatitis}}</li>
+    <li>{{mostrar.diabetes}}</li>
+    <li>{{mostrar.artritis}}</li>
+    <li>{{mostrar.artrosis}}</li>
+    <li>{{mostrar.escoliosis}}</li>
+    <li>{{mostrar.fracturas}}</li>
+    <li>{{mostrar.implantesM}}</li>
+    <li>{{mostrar.hipertencion}}</li>
+    <li>{{mostrar.herniasD}}</li>
+    <li>{{mostrar.dondeHD}}</li>
+    <li>{{mostrar.hiperlordosis}}</li>
+    <li>{{mostrar.hipercifosis}}</li>
+    <li>{{mostrar.problemasC}}</li>
+    <li>{{mostrar.hipotension}}</li>
+    <li>{{mostrar.osteoporosis}}</li>
+    <li>{{mostrar.osteomielitis}}</li>
+    <li>{{mostrar.comedones}}</li>
+    <li>{{mostrar.pustulas}}</li>
+    <li>{{mostrar.brotes}}</li>
+    <li>{{mostrar.quistes}}</li>
+    <li>{{mostrar.nudulos}}</li>
+    <li>{{mostrar.zonasA}}</li>
+
+    <h2>Adiposidadl</h2>
+    <li>{{mostrar.adiposidadL}}</li>
+    <li>{{mostrar.adiposidadZ}}</li>
+    <li>{{mostrar.adiposidadC}}</li>
+
+    <h2>Cicatrices o estrías</h2>
+    <li>{{mostrar.cicatricesEL}}</li>
+    <li>{{mostrar.cicatricesEZ}}</li>
+    <li>{{mostrar.cicatricesET}}</li>
+
+    <h2>Flacidez</h2>
+    <li>{{mostrar.flacidezL}}</li>
+    <li>{{mostrar.flacidezZ}}</li>
+    <li>{{mostrar.flacidezC}}</li>
+
+    <h2>Alt.vasculares</h2>
+    <li>{{mostrar.altVascularesL}}</li>
+    <li>{{mostrar.altVascularesZ}}</li>
+    <li>{{mostrar.altVascularesT}}</li>
+
+    <h2>Celulitis</h2>
+    <li>{{mostrar.celulitisL}}</li>
+    <li>{{mostrar.celulitisZ}}</li>
+    <li>{{mostrar.celulitisC}}</li>
+
+    <h2>Temperatura</h2>
+    <li>{{mostrar.temperatura}}</li>
+
+    <h2>Alt.pigmentarias</h2>
+    <li>{{mostrar.altpigmentariasAR}}</li>
+    <li>{{mostrar.altpigmentariasAL}}</li>
+    <li>{{mostrar.altpigmentariasAP}}</li>
+    <li>{{mostrar.altpigmentariasAMR}}</li>
+    <li>{{mostrar.altpigmentariasALV}}</li>
+    <li>{{mostrar.altpigmentariasAPV}}</li>
+
+    <h2>Sensación</h2>
+    <li>{{mostrar.sensacionLG}}</li>
+    <li>{{mostrar.sensacionMG}}</li>
+    <li>{{mostrar.sensacionMUG}}</li>
+    <li>{{mostrar.sensacionLF}}</li>
+    <li>{{mostrar.sensacionMF}}</li>
+    <li>{{mostrar.sensacionMUF}}</li>
+    <li>{{mostrar.sensacionPD}}</li>
+    <li>{{mostrar.sensacionPI}}</li>
+    <li>{{mostrar.retieneL}}</li>
+    <li>{{mostrar.varices}}</li>
+    <li>{{mostrar.arañitas}}</li>
+    <li>{{mostrar.observaciones}}</li>
+    
+    
+        
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h3 class="mb-sm-0 font-size-40">Historial corporal</h3>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Paginas </a></li>
+                                <li class="breadcrumb-item active">Clientes > Ver detalle > Historial corporal</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="col-lg-12">
+                    <div class="card-header bg-transparent border-primary">
+                        <h5 class="my-0 text-primary"><i class="mdi mdi-pulse mdi-24px me-3"></i>Estado de salud</h5>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card-body p-4">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div>
+                                            <div class="mt-4 mt-lg-0">
+                                                <h5 class="card-title">Sufre problemas</h5>
+                                                <input type="text"class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 ms-lg-auto">
+                                        <div class="mt-4 mt-lg-0">
+                                            <div class="mt-4 mt-lg-0">
+                                                <h5 class="card-title">Peso actual</h5>
+                                                <input type="text"class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div>
+                                            <div class="mt-4 mt-lg-0">
+                                                <h5 class="card-title">Silueta</h5>
+                                                <input type="text"class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 ms-lg-auto">
+                                        <div class="mt-4 mt-lg-0">
+                                            <div class="mt-4 mt-lg-0">
+                                                <h5 class="card-title">Constumbres alimenticias</h5>
+                                                <input type="text"class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div>
+                                            <div class="mt-4 mt-lg-0">
+                                                <h5 class="card-title">Deportes practicados</h5>
+                                                <input type="text"class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="col-lg-12">
+                    <div class="card-header bg-transparent border-primary">
+                        <h5 class="my-0 text-primary"><i class="mdi mdi-pulse mdi-24px me-3"></i>Modo de vida</h5>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card-body p-4">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div>
+                                            <div class="mt-4 mt-lg-0">
+                                                <h5 class="card-title">Fuma</h5>
+                                                <input type="text"class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 ms-lg-auto">
+                                        <div class="mt-4 mt-lg-0">
+                                            <div class="mt-4 mt-lg-0">
+                                                <h5 class="card-title">Alcohol</h5>
+                                                <input type="text"class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div>
+                                            <div class="mt-4 mt-lg-0">
+                                                <h5 class="card-title">Calidad del suelo</h5>
+                                                <input type="text"class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 ms-lg-auto">
+                                        <div class="mt-4 mt-lg-0">
+                                            <div class="mt-4 mt-lg-0">
+                                                <h5 class="card-title">Notas</h5>
+                                                <input type="text"class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xxl-12">
+                    <div class="card">
+                        <div class="card-header bg-transparent border-primary">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <h4 class="my-0 text-primary" style="margin-top: 50%;">Control de medidas</h4>
+                                </div>
+                                <div class="col-lg-6 ms-lg-auto" >
+                                    <a href="{% url 'Clientes.Ver-Detalles.Formulario-Control-Medidas' mostrar.idCorporal %}" type="button" class="btn btn-primary waves-effect "  style="margin-left: 40%;"><i class="mdi mdi-human-male-height "></i> Adicionar control de medidas
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-nowrap align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Fecha de creación</th>
+                                            <th>Brazo derecho</th>
+                                            <th>Brazo izquierdo</th>
+                                            <th>Abdomen alto</th>
+                                            <th>Abdomen bajo</th>
+                                            <th>Cintura</th>
+                                            <th>Pierna derecha</th>
+                                            <th>Pierna izquierda</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for listar in medidas %}
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>{{listar.fecha}}</td>
+                                            <td>{{listar.brazoD}}</td>
+                                            <td>{{listar.brazoI}}</td>
+                                            <td>{{listar.abdomenA}}</td>
+                                            <td>{{listar.abdomenB}}</td>
+                                            <td>{{listar.cintura}}</td>
+                                            <td>{{listar.piernaD}}</td>
+                                            <td>{{listar.piernaI}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- end card body -->
+                    </div>
+                </div>
+            </div>
+            <div  class="modal fade bs-medidas" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Control de medidas</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form  id="pristine-valid-example" novalidate method="post">
+                                {% csrf_token %}
+                                <input type="hidden" />
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">Brazo derecho</label>
+                                            <input type="text" required
+                                            data-pristine-required-message="Campo requerido" placeholder=""
+                                            class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">Brazo izquierdo</label>
+                                            <input type="text" required
+                                            data-pristine-required-message="Campo requerido" placeholder=""
+                                            class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">Abdomen alto</label>
+                                            <input type="text" required
+                                            data-pristine-required-message="Campo requerido" placeholder=""
+                                            class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">Abdomen bajo</label>
+                                            <input type="text" required
+                                            data-pristine-required-message="Campo requerido" placeholder=""
+                                            class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">Cintura</label>
+                                            <input type="text" required
+                                            data-pristine-required-message="Campo requerido" placeholder=""
+                                            class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">Pierna derecha</label>
+                                            <input type="text" required
+                                            data-pristine-required-message="Campo requerido" placeholder=""
+                                            class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">Pierna izquierda</label>
+                                            <input type="text" required
+                                            data-pristine-required-message="Campo requerido" placeholder=""
+                                            class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="text-align: center;">
+                                    <button type="submit" class="btn btn-primary" style="width: 50%;">Guardar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->                          
+            </div><!-- /.modal -->
+        </div> <!-- container-fluid -->
+    </div> <!-- End Page-content -->
+   
+    {% block footer %}
+        {% include 'partials/footer.html' %}
+    {% endblock footer %}
+</div>       
+        
+<!-- end main content-->
+{% endblock content %}
+
+{% block extra_js %}
+<!-- Table Editable plugin -->
+<script src="{% static 'libs/table-edits/build/table-edits.min.js'%}"></script>
+
+<script src="{% static 'js/pages/table-editable.int.js'%}"></script> 
+<!-- Required datatable js -->
+<script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js'%}"></script>
+<!-- Buttons examples -->
+<script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js'%}"></script>
+<script src="{% static 'libs/jszip/jszip.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/pdfmake.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/vfs_fonts.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js'%}"></script>
+
+<!-- Responsive examples -->
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js'%}"></script>
+<!-- twitter-bootstrap-wizard js -->
+<script src="{% static 'libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js'%}"></script>
+<script src="{% static 'libs/twitter-bootstrap-wizard/prettify.js'%}"></script>
+<!-- form wizard init -->
+<script src="{% static 'js/pages/form-wizard.init.js'%}"></script>
+<!-- Datatable init js -->
+<script src="{% static 'js/pages/datatables.init.js'%}"></script>   
+<!-- pristine js -->
+<script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
+<!-- form validation -->
+<script src="{% static 'js/pages/form-validation.init.js'%}"></script>
+<!-- Modal js -->
+<script src="{% static 'js/pages/modal.init.js'%}"></script>
+
+{% endblock extra_js %}

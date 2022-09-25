@@ -1,0 +1,151 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}Crear Cliente{% endblock title %}
+{% block extra_css %}
+    DataTables
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+{% endblock extra_css %}
+{% block content %}
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h3 class="mb-sm-0 font-size-40">Crear cliente</h3>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Clientes </a></li>
+                                <li class="breadcrumb-item active"> Crear cliente </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div style="margin: 60px; " >
+                    <!--  FORMULARIO CON VALIDACIONES -->
+                    <form action="{% url 'Clientes.Crear-Cliente' %}" id="crear" method="POST" id="">
+                        {% csrf_token %}
+                        <input type="hidden" />
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-6">
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Nombre</label>
+                                    <input name="nombre" type="text" required data-pristine-required-message="Por favor ingrese el nombre completo " placeholder="Ingrese el nombre completo" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Documento</label>
+                                    <input name="documento" type="text" data-pristine-required-message="Por favor ingrese el número de documento " placeholder="Ingrese el número de documento" required class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Sexo</label>
+                                    <select name="sexo" class="form-select" >
+                                        <option value="Masculino">Masculino</option>
+                                        <option value="Femenino">Femenino</option>
+                                    </select>
+                                </div>
+                            </div>  
+                            <div class="col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Estado civil</label>
+                                    <select name="estadoCivil" class="form-select">
+                                        <option value="Soltero">Soltero</option>
+                                        <option value="Casado">Casado</option>
+                                        <option value="Union libre">Union libre</option>
+                                        <option value="Divorciado">Divorciado</option>
+                                        <option value="Viudo">Viudo</option>
+                                    </select>
+                                </div>
+                            </div>  
+                            <div class="col-xl-4 col-md-6">
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Número de hijos</label>
+                                    <input name="numeroHijos" type="text" data-pristine-required-message="Por favor ingrese un número de hijos " placeholder="Ingrese el número de hijos" required class="form-control"  />
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Fecha de nacimiento</label>
+                                    <input name="fechaNacimiento" type="date" class="form-control" id="datepicker-basic">
+                                </div>
+                            </div> 
+                            <div class="col-xl-4 col-md-6">
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Teléfono</label>
+                                    <input name="telefono" type="text" data-pristine-required-message="Por favor ingrese un número de teléfono " placeholder="Ingrese el número de teléfono" required class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Dirección</label>
+                                    <input name="direccion" type="text" data-pristine-required-message="Por favor ingrese una dirección "placeholder="Ingrese la dirección" required class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="form-group mb-3">
+                                    <label>Correo</label>
+                                    <input name="correo" type="email" required
+                                        data-pristine-required-message="Por favor ingresar el correo electrónico" placeholder="Ingrese el correo electrónico"
+                                        class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-top: 40px; margin-bottom: 20px;" >
+                            <button type="submit" class="btn btn-primary" for="crear" style="width: 20%; margin-right: 20px;">Crear cliente</button>
+                            <a type="submit" class="btn btn-danger" style="width: 20%">Cancelar</a>
+                            <!-- uso de for en el boton y id del formulario -->
+                        </div>
+                    </form>
+                </div>
+            </div> <!-- end col -->
+            
+        </div> <!-- container-fluid -->
+        
+    </div> <!-- End Page-content -->
+   
+    {% block footer %}
+        {% include 'partials/footer.html' %}
+    {% endblock footer %}
+</div>       
+        
+<!-- end main content-->
+{% endblock content %}
+
+{% block extra_js %}
+<!-- Table Editable plugin -->
+<script src="{% static 'libs/table-edits/build/table-edits.min.js'%}"></script>
+
+<script src="{% static 'js/pages/table-editable.int.js'%}"></script> 
+<!-- Required datatable js -->
+<script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js'%}"></script>
+<!-- Buttons examples -->
+<script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js'%}"></script>
+<script src="{% static 'libs/jszip/jszip.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/pdfmake.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/vfs_fonts.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js'%}"></script>
+
+<!-- Responsive examples -->
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js'%}"></script>
+
+<!-- Datatable init js -->
+<script src="{% static 'js/pages/datatables.init.js'%}"></script>   
+<!-- pristine js -->
+<script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
+<!-- form validation -->
+<script src="{% static 'js/pages/form-validation.init.js'%}"></script>
+<!-- Modal js -->
+<script src="{% static 'js/pages/modal.init.js'%}"></script>
+{% endblock extra_js %}
