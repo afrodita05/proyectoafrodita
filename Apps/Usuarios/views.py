@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from django.views.generic import TemplateView
-from Usuarios.models import Usuarios
+from Apps.Usuarios.models import Usuarios
 
 # Create your views here.
 
@@ -26,11 +26,11 @@ from Usuarios.models import Usuarios
 def usuario(request):
     usuario=Usuarios.objects.filter()
     context={"usuario":usuario}
-    return render(request,"usuarios.html",context)
+    return render(request,"Usuarios/Usuarios.html",context)
 
 
 def formularioUsuario(request):
-    return render(request,'crearUsuario.html')
+    return render(request,'Usuarios/Crear-Usuario.html')
 
 
 def crearUsuario(request):
@@ -41,13 +41,13 @@ def crearUsuario(request):
     correo= request.POST['correo']
     usuarios=Usuarios(documento=documentoUsuario,nPersona=nombrePersona,nUsuario=nombreUsuario,contrasena=password,correo=correo)
     usuarios.save()
-    return redirect("/usuario/")
+    return redirect("Usuario")
 
 
 def editarU(request, id):
     mostrar=Usuarios.objects.filter(idUsuario=id).first()
     context={"mostrar":mostrar}
-    return render(request,"editarUsuario.html",context)
+    return render(request,"Usuarios/Editar-Usuario.html",context)
     
 
 def actualizarU(request, id):

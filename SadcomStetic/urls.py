@@ -51,7 +51,12 @@ urlpatterns = [
 
     #USUARIOS
 
-    path('usuario/',usuario),
+    path(
+    "usuario",
+        view= usuario,
+        name= "Usuario",
+    ),
+    
     path('crearUsuario/',crearUsuario),
     path('formularioUsuario/',formularioUsuario),
     path('editarU/<int:id>',editarU, name='editarUsuario'),
