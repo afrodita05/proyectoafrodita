@@ -63,4 +63,4 @@ def actualizarU(request, id):
     actualizar.correo=correo
     actualizar.contrasena=password
     actualizar.save()
-    return redirect("/usuario/")
+    return redirect("Usuario")
