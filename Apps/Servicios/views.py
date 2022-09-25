@@ -31,9 +31,7 @@ def editarS(request, id):
 def actualizarS(request, id):
 
     nombreServicio= request.GET['nombre']
-
     tiempoServicio = request.GET['tiempo']
-
     actualizar=Servicios.objects.get(idServicio=id)
     actualizar.nServicio=nombreServicio #Será este?
     actualizar.tiempo=tiempoServicio 
