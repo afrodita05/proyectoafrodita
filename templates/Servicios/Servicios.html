@@ -48,7 +48,6 @@
                                 <table id="datatable" class="table table-nowrap align-middle">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
                                             <th>Nombre</th>
                                             <th>Tiempo</th>
                                             <th>Estado</th>
@@ -59,7 +58,6 @@
 
                                         {% for listar in servicio %}
                                         <tr data-id="1">
-                                            <td data-field="id" style="width: 80px">1</td>
                                             <td data-field="name">{{listar.nServicio}}</td>
                                             <td data-field="tiempo">{{listar.tiempo}}</td>
                                             <td data-field="estado">
@@ -69,12 +67,10 @@
                                                 <a href="{% url 'editarServicio' listar.idServicio %}" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
                                                 </a>
-                                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                                <a href="{% url 'eliminarServicio' listar.idServicio %}" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-delete-outline mdi-24px "></i>
                                                 </a>
-                                                <a href="{% url 'eliminarServicio' listar.idServicio %}" class="btn btn-outline-primary btn-sm">
-                                                    <i class="mdi mdi-eye-outline  mdi-24px "></i>
-                                                </a>
+                                               
                                             </td>
                                         </tr>
                                         {% endfor %}
