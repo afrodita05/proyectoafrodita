@@ -25,7 +25,7 @@ def crearServicio(request):
 def editarS(request, id):
     mostrar=Servicios.objects.filter(idServicio=id).first()
     context={"mostrar":mostrar}
-    return render(request,"Servicio/Editar-Servicio.html",context)
+    return render(request,"Servicios/Editar-Servicio.html",context)
     
 
 def actualizarS(request, id):
