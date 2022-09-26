@@ -35,7 +35,7 @@
                         crear una nueva compra.</p>
                     </div>
                     <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
-                        <a href="{% url 'Compras.Crear-Compras'%}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear una compra</a>
+                        <a href="/FormularioAgregarCompra/{{Lcompra.idCompra}}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear una compra</a>
                     </div>
                 </div>
             </div><!-- end col -->
@@ -47,25 +47,26 @@
                                 <table id="datatable" class="table table-nowrap align-middle">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                        
                                             <th>Código</th>
                                             <th>Proveedor</th>
                                             <th>Número de factura</th>
-                                            <th>Fecha dee recibo</th>
+                                            <th>Fecha de recibo</th>
                                             <th>Valor</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {% for listar in Lcompra %}
                                         <tr data-id="1">
-                                            <td data-field="id" style="width: 80px">1</td>
-                                            <td data-field="codigo">0001</td>
-                                            <td data-field="proveedor">victoria secret</td>
-                                            <td data-field="factura">330022</td>
-                                            <td data-field="FechaRecibo">21/01/2022</td>
-                                            <td data-field="valor">600.000 COP</td>
+
+                                            <td data-field="codigo">{{listar.idCompra.codigoCompra}}</td>
+                                            <td data-field="proveedor">{{listar.idCompra.proveedor}}</td>
+                                            <td data-field="factura">{{listar.idCompra.numeroFactura}}</td>
+                                            <td data-field="FechaRecibo">{{listar.idCompra.fechaRecibo}}</td>
+                                            <td data-field="valor">{{listar.idCompra.ValorTotal}}</td>
                                             <td>
-                                                <a  href="{% url 'Compras.Detalles-De-Compra'%}" class="btn btn-outline-primary btn-sm">
+                                                <a  href="{% url 'DetalleCompras' listar.idDetalle_Compra %}" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-eye-outline mdi-24px "></i>
                                                 </a>
                                                 <a  href="#" class="btn btn-outline-primary btn-sm">
@@ -76,6 +77,7 @@
                                                 </a>
                                             </td>
                                         </tr>
+                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>

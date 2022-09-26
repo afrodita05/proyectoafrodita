@@ -28,7 +28,7 @@ from Apps.Usuarios.views import usuario, crearUsuario, formularioUsuario, editar
 from Apps.Servicios.views import servicio, crearServicio, formularioServicio, editarS, actualizarS, eliminarS
 from Apps.Proveedores.views import FormularioAgregarProveedor,CrearProveedor,ListarProveedor,EditarProveedor,ActualizarProveedor
 from Apps.Configuracion.views import crearRol,actualizarRol,formularioRol,editarRol,listarRol
-from Apps.Compras.views import Compras, Crear_Compra, Detalle_Compra
+from Apps.Compras.views import FormularioAgregarCompra,CrearCompra,ListarCompra,EliminarCompra,DetalleCompras
 from Apps.Insumos.views import insumos
 
 app_name = "SadcomStetic"
@@ -112,20 +112,14 @@ urlpatterns = [
     
     #COMPRAS
     path(
-        "Compras",
-        view= Compras,
-        name= "Compras",
+        "ListarCompra/",
+        view= ListarCompra,
+        name= "Compra",
     ),
-    path(
-        "CrearCompra",
-        view= Crear_Compra,
-        name= "Compras.Crear-Compras",
-    ),
-    path(
-        "DetalleCompra",
-        view= Detalle_Compra,
-        name= "Compras.Detalles-De-Compra",
-    ),
+    path('CrearCompra/', CrearCompra),
+    path('FormularioAgregarCompra/', FormularioAgregarCompra,),
+    path('EliminarCompra/<int:id>', EliminarCompra, name='EliminarCompra'),
+    path('DetalleCompras/<int:id>', DetalleCompras, name='DetalleCompras'),
    #INSUMOS
     path(
         "Insumos",
