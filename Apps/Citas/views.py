@@ -33,7 +33,7 @@ def crearCita(request):
 def formularioCita(request):
     servicio=Servicios.objects.filter()
     context={"servicio":servicio}   
-    return render(request,"Citas/crearCita.html", context)
+    return render(request,"Citas/Crear-Cita.html", context)
 
 
 def listarCita(request):   
@@ -49,7 +49,7 @@ def editarCita(request, id):
     servicio=Servicios.objects.filter()
     ver=Citas.objects.filter(idCitas=id).first()
     context={"ver":ver,"servicio":servicio}
-    return render(request,"editarCita.html",context)
+    return render(request,"Citas/Editar-Cita.html",context)
 
 def editarCliente(request, id):
     mostrar=Clientes.objects.filter(idCliente=id).first()    
