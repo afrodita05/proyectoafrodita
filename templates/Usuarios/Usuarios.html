@@ -37,7 +37,7 @@
                         
                     </div>
                     <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
-                        <a href="{% url 'Usuarios.Crear-Usuarios'%}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear un usuario</a>
+                        <a href="/formularioUsuario/" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear un usuario</a>
                     </div>
                 </div>
             </div><!-- end col -->
@@ -46,10 +46,11 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive">
+                                
                                 <table id="datatable" class="table table-editable table-nowrap align-middle table-edits">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th>Documento</th>
                                             <th>Usuario</th>
                                             <th>Rol</th>
                                             <th>Correo</th>
@@ -58,35 +59,23 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {% for listar in usuario %}
                                         <tr data-id="1">
-                                            <td data-field="id" style="width: 80px">1</td>
-                                            <td data-field="name">Julian21</td>
+                                            <td data-field="id" style="width: 80px">{{listar.documento}}</td>
+                                            <td data-field="name">{{listar.nUsuario}}</td>
                                             <td data-field="rol">Admin</td>
-                                            <td data-field="correo">julianandres21@gmail.com</td>
+                                            <td data-field="correo">{{listar.correo}}</td>
                                             <td data-field="estado">
                                                 <span class="badge badge-soft-danger" style="font-size: 14px;">Inactivo</span>
                                             </td>
                                             <td>
-                                                <a href="{% url 'Usuarios.Editar-Usuarios'%}" class="btn btn-outline-primary btn-sm">
+                                                <a href="{% url 'editarUsuario' listar.idUsuario %}" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
                                                 </a>
                                             </td>
                                         </tr>
-                                        <tr data-id="2">
-                                            <td data-field="id" style="width: 80px">2</td>
-                                            <td data-field="name">Plabo13</td>
-                                            <td data-field="rol">Recepcionista</td>
-                                            <td data-field="correo">plavo13@gmail.com</td>
-                                            <td data-field="estado">
-                                                <span class="badge badge-soft-success" style="font-size: 14px;">Activo</span>   
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-outline-primary btn-sm">
-                                                    <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
-                                                </a>
-                                            </td>
-                                            
-                                        </tr>   
+                                        {% endfor %}
+                                        
                                     </tbody>
                                 </table>
                             </div>

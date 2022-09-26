@@ -27,36 +27,30 @@
             <div class="card">
                 <div style="margin: 60px;" >
                     <div style="align-items: center;">
-                        <form id="pristine-valid-example" novalidate method="post">
+                        <form action="{% url 'actualizarServicio' mostrar.idServicio %}"id="editss" novalidate method="GET">
                             {% csrf_token %}
                             <input type="hidden" />
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Nombre</label>
-                                        <input type="text" required
+                                        <input type="text"  required
                                             data-pristine-required-message="Por favor ingrese el nombre " placeholder="Ingrese el nombre "
-                                            class="form-control" />
+                                            class="form-control" name="nombre" value="{{mostrar.nServicio}}"  />
+                                            {% for x in errorS %}
+                                            <p style="color:red">Error. El nombre del servicio ingresado ya existe.</p>
+                                            {% endfor %}
                                     </div>
                                 </div>
-                                <div class="col-lg-12">
-                                    <div class="mb-3">
-                                        <label for="progresspill-address-input">Insumos</label>
-                                        <textarea id="progresspill-address-input" class="form-control" rows="2" placeholder="Insumos"></textarea>
-                                    </div>
+                
                                 </div>
                                 <div class=" col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Tiempo</label>
-                                        <input type="text" data-pristine-required-message="Por favor ingrese el tiempo" placeholder="Ingrese el tiempo" required class="form-control" />
+                                        <input type="text" data-pristine-required-message="Por favor ingrese el tiempo" placeholder="Ingrese el tiempo" required class="form-control" name="tiempo" value="{{mostrar.tiempo}}" />
                                     </div>
                                 </div>
-                                <div class=" col-md-6">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">Precio</label>
-                                        <input type="text" data-pristine-required-message="Por favor ingrese el precio" placeholder="Ingrese el precio" required class="form-control" />
-                                    </div>
-                                </div>
+                                
                                 <div class="form-check form-switch form-switch-md mb-3" dir="ltr" style="margin-left: 15px;">
                                     <input type="checkbox" class="form-check-input" id="customSwitchsizemd">
                                     <label class="form-check-label" for="customSwitchsizemd">Estado</label>
@@ -64,7 +58,7 @@
                             </div>
                             <!-- end row -->
                             <<div class="form-group" style=" display: flex; justify-content: center; align-items: center;" >
-                                <button type="submit" class="btn btn-primary" style="width: 20%; margin-right: 40px;">Guardar</button>
+                                <button type="submit" form="editss" class="btn btn-primary" style="width: 20%; margin-right: 40px;">Guardar</button>
                                 <a type="button" class="btn btn-danger" style="width: 20%;">Cancelar</a>
                             </div>
                         </form>

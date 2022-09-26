@@ -27,7 +27,7 @@
             <div class="card">
                 <div style="margin: 60px;" >
                     <div style="align-items: center;">
-                        <form id="pristine-valid-example" novalidate method="POST">
+                        <form action="/crearUsuario/" id="crear" novalidate method="POST"> {% csrf_token %}
                             <div class="row">
                                 <div style="text-align: center; margin-bottom: 30PX;">
                                     <div class="mt-4 mt-md-0" style="margin-bottom: 20px;">
@@ -38,7 +38,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Nombre</label>
-                                        <input type="text" required
+                                        <input name="nombre" type="text" required
                                             data-pristine-required-message="Por favor ingrese el nombre completo " placeholder="Ingrese el nombre completo"
                                             class="form-control" />
                                     </div>
@@ -47,19 +47,22 @@
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Documento</label>
-                                        <input type="text" data-pristine-required-message="Por favor ingrese el número de documento " placeholder="Ingrese el número de documento" required class="form-control" />
+                                        <input name="documento" type="text" data-pristine-required-message="Por favor ingrese el número de documento " placeholder="Ingrese el número de documento" required class="form-control" />
+                                        {% for x in error %}
+                                        <p style="color:red">Error. El documento ingresado ya existe en otro usuario.</p>
+                                        {% endfor %}
                                     </div>
                                 </div>
                                 <div class=" col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Usuario</label>
-                                        <input type="text" data-pristine-required-message="Por favor ingrese el usuario" placeholder="Ingrese el usuario" required class="form-control" />
+                                        <input name="usuario" type="text" data-pristine-required-message="Por favor ingrese el usuario" placeholder="Ingrese el usuario" required class="form-control" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label>Correo</label>
-                                        <input type="email" required
+                                        <input name="correo" type="email" required
                                             data-pristine-required-message="Por favor ingresar el correo electrónico" placeholder="Ingrese el correo electrónico"
                                             class="form-control" />
                                     </div>
@@ -67,22 +70,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label>Contraseña (requerida)</label>
-                                        <input type="password" id="pwd" required
+                                        <input name="contrasena" type="password" id="pwd" required
                                             data-pristine-required-message="Por favor ingresa la Contraseña" placeholder="Ingresa la contraseña"
                                             data-pristine-pattern="/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/"
                                             data-pristine-pattern-message="Minimum 8 characters, at least one uppercase letter, one lowercase letter and one number"
                                             class="form-control" />
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <label>Confirmar contraseña</label>
-                                        <input type="password" data-pristine-equals="#pwd"
-                                        placeholder="Ingresa la contraseña"
-                                            data-pristine-equals-message="Passwords don't match"
-                                            class="form-control" />
-                                    </div>
-                                </div>
+                               
                                 <div class="col-md-12" style="margin-bottom: 60px;">
                                     <div class="mb-3">
                                         <label class="form-label">Rol</label>
@@ -94,7 +89,7 @@
                                 </div>
                             </div> 
                             <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-top: 40px; margin-bottom: 20px;" >
-                                <button type="submit" class="btn btn-primary" style="width: 20%; margin-right: 20px;">Crear Usuario</button>
+                                <button type="submit" for="crear" class="btn btn-primary" style="width: 20%; margin-right: 20px;">Crear Usuario</button>
                                 <a type="submit" class="btn btn-danger" style="width: 20%">Cancelar</a>
                             </div>
                         </form>

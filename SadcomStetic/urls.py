@@ -24,7 +24,8 @@ from Apps.login.views import Login, recuperar_contrasena
 from Apps.login.views import Login, recuperar_contrasena
 # from Apps.Usuarios.views import Usuarios, Crear_Usuario, Editar_Usuario
 from Apps.Clientes.views import cliente,formularioCliente,crearCliente,editarCliente,actualizarCliente,detalleCliente,formularioCorporal,crearCorporal,VerDetalleCorporal,formularioFacial,crearFacial,VerDetalleFacial,formularioControlMedidas,crearControlMedidas,formularioPagosSesionesCorporal,crearPagosSesionesCorporal,formularioPagosSesionesFacial,crearPagosSesionesFacial
-from Apps.Servicios.views import Servicios, Crear_Servicio, Editar_Servicio, Detalle_Servicio
+from Apps.Usuarios.views import usuario, crearUsuario, formularioUsuario, editarU, actualizarU
+from Apps.Servicios.views import servicio, crearServicio, formularioServicio, editarS, actualizarS, eliminarS
 from Apps.Proveedores.views import Proveedores, Crear_Proveedor, Editar_Proveedor
 from Apps.Configuracion.views import Configuracion, Crear_rol, Permisos
 from Apps.Compras.views import Compras, Crear_Compra, Detalle_Compra
@@ -47,27 +48,34 @@ urlpatterns = [
 #urls acorta las rutas para buscar path
 #Siempre que vaya a crear una vista debo asignarle una URL
 
+
+    #USUARIOS
+
+    path(
+    "usuario",
+        view= usuario,
+        name= "Usuario",
+    ),
+    
+    path('crearUsuario/',crearUsuario),
+    path('formularioUsuario/',formularioUsuario),
+    path('editarU/<int:id>',editarU, name='editarUsuario'),
+    path('actualizarU/<int:id>',actualizarU, name='actualizarUsuario'),
+
+
+
     #SERVICIOS
     path(
-        "Servicios",
-        view= Servicios,
-        name= "Servicios",
+    "servicio",
+        view= servicio,
+        name= "Servicio",
     ),
-    path(
-        "CrearServicio",
-        view= Crear_Servicio,
-        name= "Servicios.Crear_Servicio",
-    ),
-    path(
-        "EditarServicio",
-        view= Editar_Servicio,
-        name= "Servicios.Editar-Servicio",
-    ),
-    path(
-        "DetalleServicios",
-        view= Detalle_Servicio,
-        name= "Servicios.Ver-Detalle",
-    ),
+    path('crearServicio/',crearServicio),
+    path('formularioServicio/',formularioServicio),
+    path('editarS/<int:id>',editarS, name='editarServicio'),
+    path('actualizarS/<int:id>',actualizarS, name='actualizarServicio'),
+    path('eliminarS/<int:id>',eliminarS, name='eliminarServicio'),
+
     #PROVEEDORES
     path(
         "Proveedores",
@@ -253,6 +261,25 @@ urlpatterns = [
         name= "Clientes.Ver-Detalles.Crear-Pagos-Sesiones-Facial",
     ),
 
+<<<<<<< HEAD
+=======
+
+    # path(
+    #     "CrearMedias",
+    #     view= crearMedidas,
+    #     name= "Clientes.Ver-Detalles.Ver-Detalles-Corporal.Crear-Medida",
+    # ),
+    # path(
+    #     "HistorialCoporal",
+    #     view= historialCorporal,
+    #     name= "Clientes.Ver-detalle.Historial-Corporal",
+    # ),
+    # path(
+    #     "HistorialFacial",
+    #     view= historialFacial,
+    #     name= "Clientes.Ver-detalle.Historial-Facial",
+    # ),
+>>>>>>> usuarios
     
     #slash al final del ruta  
  
