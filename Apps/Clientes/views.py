@@ -308,3 +308,6 @@ def crearControlMedidas(request,id):
     medidas.save()
     return redirect("Clientes.Ver-Detalles.Corporal",id)
 
+def formularioPagosSesiones(request):
+    return render(request,"Clientes/Crear-Pagos-Sesiones.html")
+  
