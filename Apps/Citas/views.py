@@ -27,7 +27,7 @@ def crearCita(request):
     fechaCita=request.POST['fechaCita']    
     citas=Citas(fecha=fechaCita,idServicio_id=idServicio,idCliente_id=idCliente)
     citas.save()
-    return redirect("/listarCita/")
+    return redirect("Cita")
 
     
 def formularioCita(request):
@@ -40,7 +40,7 @@ def listarCita(request):
     listarCita=Citas.objects.filter()
     listarClientes=Clientes.objects.filter()    
     servicio=Servicios.objects.filter()
-    context={"crcita":listarCita,"lrClientes":listarClientes,"servicio":servicio}
+    context={"crcita":listarCita,"lrClientes":listarClientes,"servicio":servicio,}
 
     return render(request,"Citas/Citas.html", context)
 

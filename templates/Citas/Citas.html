@@ -53,24 +53,23 @@
                                             <th>Teléfono</th>
                                             <th>Servicio</th>
                                             <th>Fecha</th>
-                                            <th>Valor</th>
                                             <th>Estado</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for listar in lrClientes %}
+                                        {% for listar in crcita %}
                                         <tr data-id="1">
                                             
-                                            <td data-field="name">{{listar.nombre}}</td>
-                                            <td data-field="documento">{{listar.documento}}</td>
-                                            <td data-field="telefono">{{listar.telefono}}</td>
-                                            <td data-field="servicio">Masaje reductor</td>
-                                            <td data-field="fecha">23/03/2023</td>
-                                            <td data-field="valor">60.000 COP</td>
+                                            <td data-field="name">{{listar.idCliente.nombre}}</td>
+                                            <td data-field="documento">{{listar.idCliente.documento}}</td>
+                                            <td data-field="telefono">{{listar.idCliente.telefono}}</td>
+                                            
+                                            <td data-field="servicio">{{listar.idServicio.nServicio}}</td>
+                                            <td data-field="fecha">{{listar.fecha}}</td>
                                             <td data-field="estado">
                                                 <span class="badge badge-soft-danger" style="font-size: 14px;">Cancelado</span>
-                                            </td>
+                                            </td> 
                                             <td>
                                                 <a href="#" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
