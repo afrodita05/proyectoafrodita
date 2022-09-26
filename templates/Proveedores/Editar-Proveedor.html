@@ -27,15 +27,15 @@
             <div class="card">
                 <div style="margin: 60px;" >
                     <div style="align-items: center;">
-                        <form id="pristine-valid-example" novalidate method="post">
+                        <form action="{% url 'ActualizarProveedor' EdiT.idProveedor %}" id="editp" novalidate method="GET">
                             {% csrf_token %}
                             <input type="hidden" />
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Nombre</label>
-                                        <input type="text" required
-                                            data-pristine-required-message="Por favor ingrese el nombre completo " placeholder="Ingrese el nombre completo"
+                                        <input type="text" name="nombre" required 
+                                            data-pristine-required-message="Por favor ingrese el nombre completo " placeholder="Ingrese el nombre completo" value="{{EdiT.nombre}}"
                                             class="form-control" />
                                     </div>
                                 </div>
@@ -43,27 +43,27 @@
                                 <div class=" col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Teléfono</label>
-                                        <input type="text" data-pristine-required-message="Por favor ingrese el número de teléfono" placeholder="Ingrese el teléfono" required class="form-control" />
+                                        <input name="telefono" type="text" data-pristine-required-message="Por favor ingrese el número de teléfono" placeholder="Ingrese el teléfono" value="{{EdiT.telefono}}" required class="form-control" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label>Correo</label>
-                                        <input type="email" required
-                                            data-pristine-required-message="Por favor ingrese el correo electrónico" placeholder="Ingrese el correo electrónico"
+                                        <input name="correo" type="email" required
+                                            data-pristine-required-message="Por favor ingrese el correo electrónico" placeholder="Ingrese el correo electrónico" value="{{EdiT.correo}}"
                                             class="form-control" />
                                     </div>
                                 </div>
                                 <div class=" col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Dirección</label>
-                                        <input type="text" data-pristine-required-message="Por favor ingrese la dirección" placeholder="Ingrese la dirección" required class="form-control" />
+                                        <input name="direccion" type="text" data-pristine-required-message="Por favor ingrese la dirección" placeholder="Ingrese la dirección" value="{{EdiT.direccion}}" required class="form-control" />
                                     </div>
                                 </div>
                             </div>
                             <!-- end row -->
                             <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-top: 40px;" >
-                                <button type="submit" class="btn btn-primary" style="width: 20%; margin-right: 20px;">Guardar</button>
+                                <button type="submit" form="editp" class="btn btn-primary" style="width: 20%; margin-right: 20px;">Guardar</button>
                                 <a type="submit" class="btn btn-danger" style="width: 20%">Cancelar</a>
                             </div>
                         </form>
