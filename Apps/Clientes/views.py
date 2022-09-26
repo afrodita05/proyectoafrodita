@@ -1,5 +1,6 @@
+from tkinter import S
 from django.shortcuts import render ,redirect
-from Apps.Clientes.models import Clientes,EsteticoCorporal,EsteticoFacial,ControlMedidas
+from Apps.Clientes.models import Clientes,EsteticoCorporal,EsteticoFacial,ControlMedidas,Seciones
 
 # Create your views here.
 
@@ -280,12 +281,14 @@ def crearFacial(request,id):
 def VerDetalleCorporal(request, id):
     mostrar=EsteticoCorporal.objects.filter(idCorporal=id).first()
     medidas=ControlMedidas.objects.filter(idCorporal=id)
-    contexto={"mostrar":mostrar,"medidas":medidas}
+    seciones=Seciones.objects.filter(idCorporal=id)
+    contexto={"mostrar":mostrar,"medidas":medidas,"seciones":seciones}
     return render(request,"Clientes/Historial-Corporal.html",contexto)
 
 def VerDetalleFacial(request, id):
     mostrar=EsteticoFacial.objects.filter(idFacial=id).first()
-    contexto={"mostrar":mostrar}
+    seciones=Seciones.objects.filter(idFacial=id)
+    contexto={"mostrar":mostrar,"seciones":seciones}
     return render(request,"Clientes/Historial-Facial.html",contexto)
 
 def formularioControlMedidas(request,id):
@@ -308,6 +311,33 @@ def crearControlMedidas(request,id):
     medidas.save()
     return redirect("Clientes.Ver-Detalles.Corporal",id)
 
-def formularioPagosSesiones(request):
-    return render(request,"Clientes/Crear-Pagos-Sesiones.html")
+def formularioPagosSesionesCorporal(request,id):
+    corporal=EsteticoCorporal.objects.filter(idCorporal=id).first()
+    contexto={"corporal":corporal}
+    return render(request,"Clientes/Crear-Pagos-Sesiones-Corporal.html",contexto)
+
+def formularioPagosSesionesFacial(request,id):
+    facial=EsteticoFacial.objects.filter(idFacial=id).first()
+    contexto={"facial":facial}
+    return render(request,"Clientes/Crear-Pagos-Sesiones-Facial.html",contexto)    
+
+def crearPagosSesionesCorporal(request,id):
+    crearIdC=EsteticoCorporal.objects.get(idCorporal=id)
+    secionesFecha=request.GET['fecha']
+    secionesC=request.GET['secionesC']
+    secionesValor=request.GET['valor']
+    seciones=Seciones(fecha=secionesFecha,Nseciones=secionesC,valor=secionesValor,idCorporal=crearIdC)
+    seciones.save()
+    return redirect("Clientes.Ver-Detalles.Corporal",id)
+
+def crearPagosSesionesFacial(request,id):
+    crearIdF=EsteticoFacial.objects.get(idFacial=id)
+    secionesFecha=request.GET['fecha']
+    secionesC=request.GET['secionesC']
+    secionesValor=request.GET['valor']
+    seciones=Seciones(fecha=secionesFecha,Nseciones=secionesC,valor=secionesValor,idFacial=crearIdF)
+    seciones.save()
+    return redirect("Clientes.Ver-Detalles.Facial",id)
+
+
   

@@ -30,14 +30,22 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body" style="margin: 60px;">
-                                    <form action="{% url 'Clientes.Ver-Detalles.Crear-Pagos-Sesiones'%}" id="CM" method="GET">
+                                    <form action="{% url 'Clientes.Ver-Detalles.Crear-Pagos-Sesiones-Facial' facial.idFacial %}" id="CM" method="GET">
                                         {% csrf_token %}
                                         <input type="hidden" />
                                         <div class="row" style="justify-content: center;">
                                             <div class="col-md-7">
                                                 <div class="form-group mb-3">
+                                                    <label class="form-label">Fecha</label>
+                                                    <input name="fecha" type="date" required
+                                                    data-pristine-required-message="Campo requerido" placeholder=""
+                                                    class="form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <div class="form-group mb-3">
                                                     <label class="form-label">Cantidad de sesiones</label>
-                                                    <input name="fecha" type="text" required
+                                                    <input name="secionesC" type="text" required
                                                     data-pristine-required-message="Campo requerido" placeholder=""
                                                     class="form-control"/>
                                                 </div>
@@ -45,7 +53,7 @@
                                             <div class="col-md-7">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Valor</label>
-                                                    <input name="brazoD" type="text" required
+                                                    <input name="valor" type="text" required
                                                     data-pristine-required-message="Campo requerido" placeholder=""
                                                     class="form-control" />
                                                 </div>

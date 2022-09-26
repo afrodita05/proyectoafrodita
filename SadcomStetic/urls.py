@@ -23,7 +23,7 @@ from Apps.Citas.views import Citas, Editar_Cita, Crear_Cita
 from Apps.login.views import Login, recuperar_contrasena
 from Apps.login.views import Login, recuperar_contrasena
 # from Apps.Usuarios.views import Usuarios, Crear_Usuario, Editar_Usuario
-from Apps.Clientes.views import cliente,formularioCliente,crearCliente,editarCliente,actualizarCliente,detalleCliente,formularioCorporal,crearCorporal,VerDetalleCorporal,formularioFacial,crearFacial,VerDetalleFacial,formularioControlMedidas,crearControlMedidas,formularioPagosSesiones
+from Apps.Clientes.views import cliente,formularioCliente,crearCliente,editarCliente,actualizarCliente,detalleCliente,formularioCorporal,crearCorporal,VerDetalleCorporal,formularioFacial,crearFacial,VerDetalleFacial,formularioControlMedidas,crearControlMedidas,formularioPagosSesionesCorporal,crearPagosSesionesCorporal,formularioPagosSesionesFacial,crearPagosSesionesFacial
 from Apps.Servicios.views import Servicios, Crear_Servicio, Editar_Servicio, Detalle_Servicio
 from Apps.Proveedores.views import Proveedores, Crear_Proveedor, Editar_Proveedor
 from Apps.Configuracion.views import Configuracion, Crear_rol, Permisos
@@ -233,31 +233,26 @@ urlpatterns = [
         name= "Clientes.Ver-Detalles.Crear-Control-Medidas",
     ),
     path(
-        "CrearPagoSesion",
-        view= formularioPagosSesiones,
-        name= "Clientes.Ver-Detalles.Crear-Pagos-Sesiones",
+        "FormularioPagoSesionCorporal/<int:id>",
+        view= formularioPagosSesionesCorporal,
+        name= "Clientes.Ver-Detalles.Formulario-Pagos-Sesiones-Corporal",
+    ),
+       path(
+        "CrearPagoSesionCorporal/<int:id>",
+        view= crearPagosSesionesCorporal,
+        name= "Clientes.Ver-Detalles.Crear-Pagos-Sesiones-Corporal",
+    ),
+     path(
+        "FormularioPagoSesionFacial/<int:id>",
+        view= formularioPagosSesionesFacial,
+        name= "Clientes.Ver-Detalles.Formulario-Pagos-Sesiones-Facial",
+    ),
+       path(
+        "CrearPagoSesionFacial/<int:id>",
+        view= crearPagosSesionesFacial,
+        name= "Clientes.Ver-Detalles.Crear-Pagos-Sesiones-Facial",
     ),
 
-
-
-
-
-    
-    # path(
-    #     "CrearMedias",
-    #     view= crearMedidas,
-    #     name= "Clientes.Ver-Detalles.Ver-Detalles-Corporal.Crear-Medida",
-    # ),
-    # path(
-    #     "HistorialCoporal",
-    #     view= historialCorporal,
-    #     name= "Clientes.Ver-detalle.Historial-Corporal",
-    # ),
-    # path(
-    #     "HistorialFacial",
-    #     view= historialFacial,
-    #     name= "Clientes.Ver-detalle.Historial-Facial",
-    # ),
     
     #slash al final del ruta  
  

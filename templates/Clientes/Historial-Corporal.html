@@ -815,7 +815,6 @@
                                         <table class="table table-nowrap align-middle">
                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
                                                     <th>Fecha de creación</th>
                                                     <th>Brazo derecho</th>
                                                     <th>Brazo izquierdo</th>
@@ -829,7 +828,6 @@
                                             <tbody>
                                                 {% for listar in medidas %}
                                                 <tr>
-                                                    <th scope="row">1</th>
                                                     <td>{{listar.fecha}}</td>
                                                     <td>{{listar.brazoD}}</td>
                                                     <td>{{listar.brazoI}}</td>
@@ -857,7 +855,7 @@
                                             <h4 class="my-0 text-primary" style="margin-top: 50%;">Pagos y sesiones</h4>
                                         </div>
                                         <div class="col-lg-6 ms-lg-auto" >
-                                            <a href="{% url 'Clientes.Ver-Detalles.Crear-Pagos-Sesiones'%}" type="button" class="btn btn-primary waves-effect "  style="margin-left: 40%;"><i class="mdi mdi-account-cash-outline"></i> Crear pago y sesion
+                                            <a href="{% url 'Clientes.Ver-Detalles.Formulario-Pagos-Sesiones-Corporal' mostrar.idCorporal %}" type="button" class="btn btn-primary waves-effect "  style="margin-left: 40%;"><i class="mdi mdi-account-cash-outline"></i> Crear pago y sesion
                                             </a>
                                         </div>
                                     </div>
@@ -867,29 +865,19 @@
                                         <table class="table table-nowrap align-middle">
                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
                                                     <th>Fecha de creación</th>
                                                     <th>Valor</th>
                                                     <th>Sesisones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <!--{% for listar in medidas %}-->
+                                                {% for listar in seciones %}
                                                 <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>01/02/2023</td>
-                                                    <td>1.000.000</td>
-                                                    <td>6</td>
-                                                     <!--<td>{{listar.fecha}}</td>
-                                                    <td>{{listar.brazoD}}</td>
-                                                    <td>{{listar.brazoI}}</td>
-                                                    <td>{{listar.abdomenA}}</td>
-                                                    <td>{{listar.abdomenB}}</td>
-                                                    <td>{{listar.cintura}}</td>
-                                                    <td>{{listar.piernaD}}</td>
-                                                    <td>{{listar.piernaI}}</td>-->
+                                                    <td>{{listar.fecha}}</td>
+                                                    <td>{{listar.Nseciones}}</td>
+                                                    <td>{{listar.valor}}</td>
                                                 </tr>
-                                                <!-- {% endfor %}-->
+                                                {% endfor %}
                                             </tbody>
                                         </table>
                                     </div>

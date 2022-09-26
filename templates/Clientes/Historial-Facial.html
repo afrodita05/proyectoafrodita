@@ -2,9 +2,10 @@
 {% load static %}
 {% block title %}Historial facial{% endblock title %}
 {% block extra_css %}
-    <!-- DataTables -->
-    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+<!-- DataTables -->
+<link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+<link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet"
+    type="text/css" />
 {% endblock extra_css %}
 {% block content %}
 
@@ -28,7 +29,8 @@
             <div class="card">
                 <div class="col-lg-12">
                     <div class="card-header bg-transparent border-primary">
-                        <h5 class="my-0 text-primary"><i class="mdi mdi-pulse mdi-24px me-3"></i>Información estetisista</h5>
+                        <h5 class="my-0 text-primary"><i class="mdi mdi-pulse mdi-24px me-3"></i>Información estetisista
+                        </h5>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
@@ -39,9 +41,10 @@
                                             <label class="form-label">Nombre del estetisista</label>
                                             <input name="nombreE" type="text" required
                                                 data-pristine-required-message="Por favor ingrese el nombre completo "
-                                                placeholder="Ingrese el nombre completo" value="{{mostrar.nombreE}}" readonly class="form-control" />
+                                                placeholder="Ingrese el nombre completo" value="{{mostrar.nombreE}}"
+                                                readonly class="form-control" />
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                                 <br>
                             </div>
@@ -52,7 +55,8 @@
             <div class="card">
                 <div class="col-lg-12">
                     <div class="card-header bg-transparent border-primary">
-                        <h5 class="my-0 text-primary"><i class="mdi mdi-pulse mdi-24px me-3"></i>Factores Agravantes</h5>
+                        <h5 class="my-0 text-primary"><i class="mdi mdi-pulse mdi-24px me-3"></i>Factores Agravantes
+                        </h5>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
@@ -61,23 +65,26 @@
                                     <div class="col-lg-3">
                                         <div class="mt-4 mt-lg-0">
                                             <div class="mb-3">
-                                                <label class="card-title">Actualmente esta en un tratamiento medico</label>
-                                                <input type="text"class="form-control" value="{{mostrar.tratamientoM}}" readonly/>
+                                                <label class="card-title">Actualmente esta en un tratamiento
+                                                    medico</label>
+                                                <input type="text" class="form-control" value="{{mostrar.tratamientoM}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-5">
                                         <div class="mb-3">
                                             <label for="progresspill-address-input">Cuál</label>
-                                            <textarea name="cualTM"  id="progresspill-address-input"
-                                                class="form-control" rows="1" readonly> {{mostrar.cualTM}}</textarea>
+                                            <textarea name="cualTM" id="progresspill-address-input" class="form-control"
+                                                rows="1" readonly> {{mostrar.cualTM}}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-2">
                                         <div class="mt-4 mt-lg-0">
                                             <div class="mb-3">
                                                 <label class="card-title">Sustitución hormonal</label>
-                                                <input type="text"class="form-control" value="{{mostrar.sustitucionH}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.sustitucionH}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -85,7 +92,8 @@
                                         <div class="mt-4 mt-lg-0">
                                             <div class="mb-3">
                                                 <label class="card-title">Toma anticonceptivo</label>
-                                                <input type="text"class="form-control" value="{{mostrar.tomaA}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.tomaA}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -94,22 +102,23 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Drogas</label>
-                                                <input type="text"class="form-control" value="{{mostrar.drogas}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.drogas}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label for="progresspill-address-input">Alimentos preferidos</label>
-                                            <textarea name="cualTM"  id="progresspill-address-input"
-                                                class="form-control" rows="1" readonly> {{mostrar.alimentosP}}</textarea>
+                                            <textarea name="cualTM" id="progresspill-address-input" class="form-control"
+                                                rows="1" readonly> {{mostrar.alimentosP}}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label for="progresspill-address-input">Alimentos rechazados</label>
-                                            <textarea name="cualTM"  id="progresspill-address-input"
-                                                class="form-control" rows="1" readonly> {{mostrar.alimentosR}}</textarea>
+                                            <textarea name="cualTM" id="progresspill-address-input" class="form-control"
+                                                rows="1" readonly> {{mostrar.alimentosR}}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-2">
@@ -117,7 +126,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Fuma</label>
-                                                <input type="text"class="form-control" value="{{mostrar.fuma}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.fuma}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -126,7 +136,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Toma licor</label>
-                                                <input type="text"class="form-control" value="{{mostrar.tomaL}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.tomaL}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -135,7 +146,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Se protege del sol</label>
-                                                <input type="text"class="form-control" value="{{mostrar.protegeS}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.protegeS}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -144,7 +156,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Duerme bien</label>
-                                                <input type="text"class="form-control" value="{{mostrar.duermeB}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.duermeB}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -153,7 +166,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Menopausia</label>
-                                                <input type="text"class="form-control" value="{{mostrar.menopausia}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.menopausia}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -162,15 +176,16 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Toma medicamentos orales o tópicos</label>
-                                                <input type="text"class="form-control" value="{{mostrar.medicamentosOT}}" readonly/>
+                                                <input type="text" class="form-control"
+                                                    value="{{mostrar.medicamentosOT}}" readonly />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label for="progresspill-address-input">Cuales</label>
-                                            <textarea name="cualTM"  id="progresspill-address-input"
-                                                class="form-control" rows="1" readonly> {{mostrar.cualesOT}}</textarea>
+                                            <textarea name="cualTM" id="progresspill-address-input" class="form-control"
+                                                rows="1" readonly> {{mostrar.cualesOT}}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-2">
@@ -178,7 +193,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Padece de estrés</label>
-                                                <input type="text"class="form-control" value="{{mostrar.padeceE}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.padeceE}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -187,7 +203,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Ha tenido cáncer de piel</label>
-                                                <input type="text"class="form-control" value="{{mostrar.cancerP}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.cancerP}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -196,7 +213,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Asma</label>
-                                                <input type="text"class="form-control" value="{{mostrar.asma}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.asma}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -205,7 +223,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Lupus</label>
-                                                <input type="text"class="form-control" value="{{mostrar.lupus}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.lupus}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -214,7 +233,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Herpes</label>
-                                                <input type="text"class="form-control" value="{{mostrar.herpes}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.herpes}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -223,7 +243,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Hepatitis</label>
-                                                <input type="text"class="form-control" value="{{mostrar.hepatitis}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.hepatitis}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -232,7 +253,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Epilepsia</label>
-                                                <input type="text"class="form-control" value="{{mostrar.epilepsia}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.epilepsia}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -241,7 +263,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Dolor de cabeza</label>
-                                                <input type="text"class="form-control" value="{{mostrar.dolorC}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.dolorC}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -250,7 +273,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Ampollas febriles</label>
-                                                <input type="text"class="form-control" value="{{mostrar.ampollasF}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.ampollasF}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -259,7 +283,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Tiroides</label>
-                                                <input type="text"class="form-control" value="{{mostrar.tiroides}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.tiroides}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -268,7 +293,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Problemas cardiacos</label>
-                                                <input type="text"class="form-control" value="{{mostrar.problemasC}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.problemasC}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -277,7 +303,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Psicológicos</label>
-                                                <input type="text"class="form-control" value="{{mostrar.psicologicos}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.psicologicos}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -286,7 +313,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Urinarios</label>
-                                                <input type="text"class="form-control" value="{{mostrar.urinarios}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.urinarios}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -295,7 +323,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Nasales</label>
-                                                <input type="text"class="form-control" value="{{mostrar.nasales}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.nasales}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -304,7 +333,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Digestivos</label>
-                                                <input type="text"class="form-control" value="{{mostrar.digestivos}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.digestivos}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -318,7 +348,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Alfahidroxiacidos</label>
-                                                <input type="text"class="form-control" value="{{mostrar.alfahidroxiacidos}}" readonly/>
+                                                <input type="text" class="form-control"
+                                                    value="{{mostrar.alfahidroxiacidos}}" readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -327,7 +358,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Retín A</label>
-                                                <input type="text"class="form-control" value="{{mostrar.retinA}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.retinA}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -336,7 +368,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Differin</label>
-                                                <input type="text"class="form-control" value="{{mostrar.differin}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.differin}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -345,22 +378,24 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Accutane</label>
-                                                <input type="text"class="form-control" value="{{mostrar.accutane}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.accutane}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="progresspill-address-input">Motivo de la consulta </label>
-                                            <textarea name="cualTM"  id="progresspill-address-input"
-                                                class="form-control" rows="3" readonly> {{mostrar.motivoC}}</textarea>
+                                            <textarea name="cualTM" id="progresspill-address-input" class="form-control"
+                                                rows="3" readonly> {{mostrar.motivoC}}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="progresspill-address-input">Es alérgico a algún producto cosmético o medicamento</label>
-                                            <textarea name="cualTM"  id="progresspill-address-input"
-                                                class="form-control" rows="3" readonly> {{mostrar.productoCM}}</textarea>
+                                            <label for="progresspill-address-input">Es alérgico a algún producto
+                                                cosmético o medicamento</label>
+                                            <textarea name="cualTM" id="progresspill-address-input" class="form-control"
+                                                rows="3" readonly> {{mostrar.productoCM}}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -381,12 +416,13 @@
                                     <h3>Textura</h3>
                                 </div>
                                 <div class="row" style="margin-top: 50px;">
-                                    <div class="col-lg-3" >
+                                    <div class="col-lg-3">
                                         <div class="mt-4 mt-lg-0">
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Normal</label>
-                                                <input type="text"class="form-control" value="{{mostrar.normal}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.normal}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -395,7 +431,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Gruesa</label>
-                                                <input type="text"class="form-control" value="{{mostrar.gruesa}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.gruesa}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -404,7 +441,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Áspera</label>
-                                                <input type="text"class="form-control" value="{{mostrar.aspera}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.aspera}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -413,7 +451,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Suave</label>
-                                                <input type="text"class="form-control" value="{{mostrar.suave}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.suave}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -421,15 +460,16 @@
                                 <div class="text-center mb-4" style="margin-top: 50px;">
                                     <h3>
                                         Aspecto del poro
-                                        </h3>
+                                    </h3>
                                 </div>
                                 <div class="row" style="margin-top: 50px;">
-                                    <div class="col-lg-4" >
+                                    <div class="col-lg-4">
                                         <div class="mt-4 mt-lg-0">
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Normal</label>
-                                                <input type="text"class="form-control" value="{{mostrar.normal1}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.normal1}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -438,7 +478,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Cerrado</label>
-                                                <input type="text"class="form-control" value="{{mostrar.cerrado}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.cerrado}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -447,7 +488,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Dilatado</label>
-                                                <input type="text"class="form-control" value="{{mostrar.dilatado}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.dilatado}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -456,12 +498,13 @@
                                     <h3> Brillo</h3>
                                 </div>
                                 <div class="row" style="margin-top: 50px;">
-                                    <div class="col-lg-6" >
+                                    <div class="col-lg-6">
                                         <div class="mt-4 mt-lg-0">
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Zonas mates</label>
-                                                <input type="text"class="form-control" value="{{mostrar.zonasM}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.zonasM}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -470,7 +513,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Zonas billantes</label>
-                                                <input type="text"class="form-control" value="{{mostrar.zonasB}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.zonasB}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -479,12 +523,13 @@
                                     <h3>Grado de hidratación</h3>
                                 </div>
                                 <div class="row" style="margin-top: 20px;">
-                                    <div class="col-lg-4" >
+                                    <div class="col-lg-4">
                                         <div class="mt-4 mt-lg-0">
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Normal</label>
-                                                <input type="text"class="form-control" value="{{mostrar.normal2}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.normal2}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -493,7 +538,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Deshidratada</label>
-                                                <input type="text"class="form-control" value="{{mostrar.deshidratada}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.deshidratada}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -502,7 +548,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Hiperdeshidratada</label>
-                                                <input type="text"class="form-control" value="{{mostrar.hiperdeshidratada}}" readonly/>
+                                                <input type="text" class="form-control"
+                                                    value="{{mostrar.hiperdeshidratada}}" readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -511,12 +558,13 @@
                                     <h3>Fototipo de piel</h3>
                                 </div>
                                 <div class="row" style="margin-top: 20px;">
-                                    <div class="col-lg-12" >
+                                    <div class="col-lg-12">
                                         <div class="mt-4 mt-lg-0">
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Fototipo</label>
-                                                <input type="text"class="form-control" value="{{mostrar.fototipoP}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.fototipoP}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -525,12 +573,13 @@
                                     <h3>Alteraciones del envejecimiento</h3>
                                 </div>
                                 <div class="row" style="margin-top: 20px;">
-                                    <div class="col-lg-4" >
+                                    <div class="col-lg-4">
                                         <div class="mt-4 mt-lg-0">
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Lineas Finas</label>
-                                                <input type="text"class="form-control" value="{{mostrar.lineasF}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.lineasF}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -539,7 +588,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Profundas</label>
-                                                <input type="text"class="form-control" value="{{mostrar.profundas}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.profundas}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -548,7 +598,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Flacidez</label>
-                                                <input type="text"class="form-control" value="{{mostrar.flacidez}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.flacidez}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -557,7 +608,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Párpados</label>
-                                                <input type="text"class="form-control" value="{{mostrar.parpados}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.parpados}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -566,7 +618,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Cuello</label>
-                                                <input type="text"class="form-control" value="{{mostrar.cuello}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.cuello}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -575,7 +628,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Nosogenianos</label>
-                                                <input type="text"class="form-control" value="{{mostrar.nasogenianos}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.nasogenianos}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -584,7 +638,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Labios</label>
-                                                <input type="text"class="form-control" value="{{mostrar.labios}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.labios}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -593,12 +648,13 @@
                                     <h3>Acné (Desde cuándo)</h3>
                                 </div>
                                 <div class="row" style="margin-top: 20px;">
-                                    <div class="col-lg-4" >
+                                    <div class="col-lg-4">
                                         <div class="mt-4 mt-lg-0">
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Comedones</label>
-                                                <input type="text"class="form-control" value="{{mostrar.comedones}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.comedones}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -607,7 +663,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Millas</label>
-                                                <input type="text"class="form-control" value="{{mostrar.milias}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.milias}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -616,7 +673,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Quistes</label>
-                                                <input type="text"class="form-control" value="{{mostrar.quistes}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.quistes}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -625,12 +683,13 @@
                                     <h3>Pigmentación</h3>
                                 </div>
                                 <div class="row" style="margin-top: 20px;">
-                                    <div class="col-lg-6" >
+                                    <div class="col-lg-6">
                                         <div class="mt-4 mt-lg-0">
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Melasma</label>
-                                                <input type="text"class="form-control" value="{{mostrar.melasma}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.melasma}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -639,7 +698,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Hipercromía</label>
-                                                <input type="text"class="form-control" value="{{mostrar.hipercromia}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.hipercromia}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -648,12 +708,13 @@
                                     <h3>Bolsas palpebrales</h3>
                                 </div>
                                 <div class="row" style="margin-top: 20px;">
-                                    <div class="col-lg-6" >
+                                    <div class="col-lg-6">
                                         <div class="mt-4 mt-lg-0">
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Edema</label>
-                                                <input type="text"class="form-control" value="{{mostrar.edema}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.edema}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -662,7 +723,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Grasa</label>
-                                                <input type="text"class="form-control" value="{{mostrar.grasa}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.grasa}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -675,7 +737,8 @@
             <div class="card">
                 <div class="col-lg-12">
                     <div class="card-header bg-transparent border-primary">
-                        <h5 class="my-0 text-primary"><i class="mdi mdi-pulse mdi-24px me-3"></i>Cuidados que realiza diariamente</h5>
+                        <h5 class="my-0 text-primary"><i class="mdi mdi-pulse mdi-24px me-3"></i>Cuidados que realiza
+                            diariamente</h5>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
@@ -687,8 +750,8 @@
                                     <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label for="progresspill-address-input">Cuales</label>
-                                            <textarea name="cualTM"  id="progresspill-address-input"
-                                                class="form-control" rows="3" readonly>{{mostrar.rutinasH}}</textarea>
+                                            <textarea name="cualTM" id="progresspill-address-input" class="form-control"
+                                                rows="3" readonly>{{mostrar.rutinasH}}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -701,8 +764,8 @@
                                     <div class="col-lg-10">
                                         <div class="mb-3">
                                             <label for="progresspill-address-input">Cuales</label>
-                                            <textarea name="cualTM"  id="progresspill-address-input"
-                                                class="form-control" rows="3" readonly>{{mostrar.cuidadosH}}</textarea>
+                                            <textarea name="cualTM" id="progresspill-address-input" class="form-control"
+                                                rows="3" readonly>{{mostrar.cuidadosH}}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-2">
@@ -710,7 +773,8 @@
                                             <div class="mb-3">
                                                 <label class="card-title">
                                                     Mensuales</label>
-                                                <input type="text"class="form-control" value="{{mostrar.mensuales}}" readonly/>
+                                                <input type="text" class="form-control" value="{{mostrar.mensuales}}"
+                                                    readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -724,8 +788,8 @@
                                     <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label for="progresspill-address-input">Cuales</label>
-                                            <textarea name="cualTM"  id="progresspill-address-input"
-                                                class="form-control" rows="3" readonly>{{mostrar.productoH}}</textarea>
+                                            <textarea name="cualTM" id="progresspill-address-input" class="form-control"
+                                                rows="3" readonly>{{mostrar.productoH}}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -742,8 +806,10 @@
                                 <div class="col-lg-5">
                                     <h4 class="my-0 text-primary" style="margin-top: 50%;">Pagos y sesiones</h4>
                                 </div>
-                                <div class="col-lg-6 ms-lg-auto" >
-                                    <a href="{% url 'Clientes.Ver-Detalles.Crear-Pagos-Sesiones'%}" type="button" class="btn btn-primary waves-effect "  style="margin-left: 40%;"><i class="mdi mdi-account-cash-outline"></i> Crear pago y sesion
+                                <div class="col-lg-6 ms-lg-auto">
+                                    <a href="{% url 'Clientes.Ver-Detalles.Formulario-Pagos-Sesiones-Facial' mostrar.idFacial %}"
+                                        type="button" class="btn btn-primary waves-effect " style="margin-left: 40%;"><i
+                                            class="mdi mdi-account-cash-outline"></i> Crear pago y sesion
                                     </a>
                                 </div>
                             </div>
@@ -753,29 +819,19 @@
                                 <table class="table table-nowrap align-middle">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
                                             <th>Fecha de creación</th>
                                             <th>Valor</th>
                                             <th>Sesisones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!--{% for listar in medidas %}-->
+                                        {% for listar in seciones %}
                                         <tr>
-                                            <th scope="row">1</th>
-                                            <td>01/02/2023</td>
-                                            <td>1.000.000</td>
-                                            <td>6</td>
-                                             <!--<td>{{listar.fecha}}</td>
-                                            <td>{{listar.brazoD}}</td>
-                                            <td>{{listar.brazoI}}</td>
-                                            <td>{{listar.abdomenA}}</td>
-                                            <td>{{listar.abdomenB}}</td>
-                                            <td>{{listar.cintura}}</td>
-                                            <td>{{listar.piernaD}}</td>
-                                            <td>{{listar.piernaI}}</td>-->
+                                            <td>{{listar.fecha}}</td>
+                                            <td>{{listar.Nseciones}}</td>
+                                            <td>{{listar.valor}}</td>
                                         </tr>
-                                        <!-- {% endfor %}-->
+                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
@@ -786,12 +842,12 @@
             </div>
         </div> <!-- container-fluid -->
     </div> <!-- End Page-content -->
-   
+
     {% block footer %}
-        {% include 'partials/footer.html' %}
+    {% include 'partials/footer.html' %}
     {% endblock footer %}
-</div>       
-        
+</div>
+
 <!-- end main content-->
 {% endblock content %}
 
@@ -814,7 +870,7 @@
 <!-- form wizard init -->
 <script src="{% static 'js/pages/form-wizard.init.js'%}"></script>
 <!-- Datatable init js -->
-<script src="{% static 'js/pages/datatables.init.js'%}"></script>   
+<script src="{% static 'js/pages/datatables.init.js'%}"></script>
 <!-- pristine js -->
 <script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
 <!-- form validation -->
