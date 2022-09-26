@@ -92,6 +92,7 @@
                                 <table id="datatable1" class="table table-nowrap align-middle">
                                     <thead>
                                         <tr>
+                                            <th>Documento</th>
                                             <th>Fecha de cita</th>
                                             <th>Servicio</th>
                                             <th>Acciones</th>
@@ -100,6 +101,7 @@
                                     <tbody>
                                         {% for listar in crcita %}
                                         <tr data-id="1">
+                                            <td data-field="fecha">{{listar.idCliente.documento}}</td>
                                             <td data-field="fecha">{{listar.fecha}}</td>
                                             <td data-field="servicio">{{listar.idServicio.nServicio}}</td>
                                             <td>
