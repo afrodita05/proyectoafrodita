@@ -44,7 +44,7 @@ btnGuardar.addEventListener('click', async () => {
     try{
         const csrfmiddlewaretoken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
         const data = {items: items, csrfmiddlewaretoken: csrfmiddlewaretoken};
-        const response = await fetch('Crear', {
+        const response = await fetch(`${new URL(window.location).origin}/CrearCompra/`, {
             method: "POST",
             redirect: 'follow', 
             body: JSON.stringify(data), headers: { "X-CSRFToken": csrfmiddlewaretoken },

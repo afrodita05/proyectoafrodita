@@ -14,11 +14,9 @@ def CrearCompra(request):
     print(items,type(items))
     for item in items:
         VCompra = Compra(
-            codigoCompra=item['codigoCompra'],
             proveedor=item['proveedor'],
             numeroFactura=item['numeroFactura'], 
             fechaRecibo=item['fechaRecibo'],
-            ValorTotal=item['ValorTotal']
         )
     VCompra.save()
     idCompra=VCompra.idCompra

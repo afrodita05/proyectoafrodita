@@ -116,7 +116,7 @@ urlpatterns = [
         view= ListarCompra,
         name= "Compra",
     ),
-    path('CrearCompra/', CrearCompra, name='EliminarCompra'),
+    path('CrearCompra/', CrearCompra, name='CrearCompra'),
     path('FormularioAgregarCompra/', FormularioAgregarCompra,),
     path('EliminarCompra/<int:id>', EliminarCompra, name='EliminarCompra'),
     path('DetalleCompras/<int:id>', DetalleCompras, name='DetalleCompras'),
