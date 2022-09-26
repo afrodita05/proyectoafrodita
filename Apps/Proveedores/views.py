@@ -7,12 +7,11 @@ from Apps.Proveedores.models import Proveedor
 # Create your views here.
 def CrearProveedor(request):
     EProveedor= request.POST['proveedor']
-    productoProveedor= request.POST['producto']
     telefonoProveedor= request.POST['telefono']
     nombreproveedor= request.POST['nombre']
     correoproveedor= request.POST['correo']
     direccionproveedor= request.POST['direccion']
-    ORMProveedores=Proveedor(proveedor=EProveedor,producto=productoProveedor,telefono=telefonoProveedor,nombre=nombreproveedor,correo=correoproveedor,direccion=direccionproveedor)
+    ORMProveedores=Proveedor(proveedor=EProveedor,telefono=telefonoProveedor,nombre=nombreproveedor,correo=correoproveedor,direccion=direccionproveedor)
     ORMProveedores.save()
     return redirect("Proveedor")
 
