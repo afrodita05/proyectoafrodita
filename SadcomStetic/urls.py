@@ -261,26 +261,4 @@ urlpatterns = [
         name= "Clientes.Ver-Detalles.Crear-Pagos-Sesiones-Facial",
     ),
 
-<<<<<<< HEAD
-=======
-
-    # path(
-    #     "CrearMedias",
-    #     view= crearMedidas,
-    #     name= "Clientes.Ver-Detalles.Ver-Detalles-Corporal.Crear-Medida",
-    # ),
-    # path(
-    #     "HistorialCoporal",
-    #     view= historialCorporal,
-    #     name= "Clientes.Ver-detalle.Historial-Corporal",
-    # ),
-    # path(
-    #     "HistorialFacial",
-    #     view= historialFacial,
-    #     name= "Clientes.Ver-detalle.Historial-Facial",
-    # ),
->>>>>>> usuarios
-    
-    #slash al final del ruta  
- 
 ]
