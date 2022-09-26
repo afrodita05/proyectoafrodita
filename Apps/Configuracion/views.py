@@ -1,18 +1,39 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from django.views.generic import TemplateView
+from Apps.Configuracion.models import Rol, RolesPermisos, permisoRol
 # Create your views here.
 
-class Configuracionview(TemplateView):
-    pass
+def crearRol(request):      
+    nombreRol=request.POST['nombre']
+    permisoRol=request.POST['Permiso']
+    rol=Rol(nombreRol=nombreRol,permisoRol=permisoRol)
+    rol.save()
+    return redirect("Rol")
 
-Configuracion = Configuracionview.as_view(
-    template_name="Configuracion/Configuracion.html"
-)
-Crear_rol = Configuracionview.as_view(
-    template_name="Configuracion/Crear-Rol.html"
-)
-Permisos = Configuracionview.as_view(
-    template_name="Configuracion/Permisos.html"
-)
+def formularioRol(request):       
+    return render(request,"Configuracion/Crear-Rol.html")
+
+def listarRol(request):   
+    listarRol=Rol.objects.filter()
+    listarRolesPermisos=RolesPermisos.objects.filter()    
+    context={"crRol":listarRol,"lrPermisos":listarRolesPermisos}
+    return render(request,"Configuracion/Configuracion.html", context)
+
+def editarRol(request, id):    
+    mostrar=Rol.objects.filter(idRol=id).first() 
+    #ver=RolesPermisos.objects.filter(idRolesPermisos=id)   
+    context={"mostrar":mostrar}
+    return render(request,"Configuracion/Permisos.html",context)
+
+def actualizarRol(request, id):      
+    nombreRol=request.GET['nombre']
+    permisoRol=request.GET['Permiso']
+
+    actualizar=Rol.objects.get(idRol=id)
+    actualizar.nombre=nombreRol
+    actualizar.permisoRol=permisoRol
+    actualizar.save()
+
+    return redirect("Rol")
