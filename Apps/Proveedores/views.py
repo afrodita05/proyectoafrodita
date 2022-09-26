@@ -1,17 +1,46 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from django.views.generic import TemplateView
-# Create your views here.
-class Proveedorview(TemplateView):
-    pass
+from Apps.Proveedores.models import Proveedor
 
-Proveedores = Proveedorview.as_view(
-    template_name="Proveedores/Proveedores.html"
-)
-Crear_Proveedor = Proveedorview.as_view(
-    template_name="Proveedores/Crear-Proveedor.html"
-)
-Editar_Proveedor = Proveedorview.as_view(
-    template_name="Proveedores/Editar-Proveedor.html"
-)
+# Create your views here.
+def CrearProveedor(request):
+    EProveedor= request.POST['proveedor']
+    productoProveedor= request.POST['producto']
+    telefonoProveedor= request.POST['telefono']
+    nombreproveedor= request.POST['nombre']
+    correoproveedor= request.POST['correo']
+    direccionproveedor= request.POST['direccion']
+    ORMProveedores=Proveedor(proveedor=EProveedor,producto=productoProveedor,telefono=telefonoProveedor,nombre=nombreproveedor,correo=correoproveedor,direccion=direccionproveedor)
+    ORMProveedores.save()
+    return redirect("Proveedor")
+
+def FormularioAgregarProveedor(request):
+    return render(request, 'Proveedores/Crear-Proveedor.html')
+
+def ListarProveedor(request):
+    LProveedor=Proveedor.objects.filter()
+    context={"Lproveedor":LProveedor}
+    return render(request,'Proveedores/Proveedores.html', context)
+
+
+def EditarProveedor(request, idProveedor):
+    EdiT=Proveedor.objects.filter(idProveedor=idProveedor).first()
+    context={"EdiT":EdiT}
+    return render(request,"Proveedores/Editar-Proveedor.html",context)
+
+def ActualizarProveedor(request, idProveedor):
+     nombreproveedor=request.GET['nombre']
+     telefonoProveedor= request.GET['telefono']  
+     correoproveedor= request.GET['correo']
+     direccionproveedor= request.GET['direccion']
+     ActualizarProveedor=Proveedor.objects.get(idProveedor=idProveedor)
+     ActualizarProveedor.nombre=nombreproveedor
+     ActualizarProveedor.telefono=telefonoProveedor
+     ActualizarProveedor.correo=correoproveedor
+     ActualizarProveedor.direccion=direccionproveedor
+     ActualizarProveedor.save()
+     return redirect ("Proveedor")
+
+    

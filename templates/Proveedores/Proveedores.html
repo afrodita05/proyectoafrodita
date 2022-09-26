@@ -37,7 +37,7 @@
                         
                     </div>
                     <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
-                        <a href="{% url 'Proveedores.Crear-Proveedor'%}" type="button" class="btn btn-primary waves-effect waves-light"  style="width: 50%;" >Crear un proveedor</a>
+                        <a href="/FormularioAgregarProveedor/" type="button" class="btn btn-primary waves-effect waves-light"  style="width: 50%;" >Crear un proveedor</a>
                     </div>
                 </div>
             </div><!-- end col -->
@@ -49,8 +49,7 @@
                                 <table id="datatable" class="table table-nowrap align-middle">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Código</th>
+                                            
                                             <th>Proveedor</th>
                                             <th>Productos</th>
                                             <th>Teléfono</th>
@@ -63,13 +62,13 @@
                                     <tbody>
                                         
                                         <tr data-id="1">
-                                            <td data-field="id" style="width: 80px">2</td>
-                                            <td data-field="codigo">0002</td>
-                                            <td data-field="proveedor">Belleza Ram</td>
-                                            <td data-field="productos">Productos</td>
-                                            <td data-field="telefono">8487877</td>
-                                            <td data-field="naombre">Julian Valenzuela</td>
-                                            <td data-field="correo">julianandres21@gmail.com</td>
+                                            {% for listar in Lproveedor %}
+                                            
+                                            <td data-field="proveedor">{{listar.proveedor}}</td>
+                                            <td data-field="productos">{{listar.producto}}</td>
+                                            <td data-field="telefono">{{listar.telefono}}</td>
+                                            <td data-field="nombre">{{listar.nombre}}</td>
+                                            <td data-field="correo">{{listar.correo}}</td>
                                             <td data-field="estado">
                                                 <span class="badge badge-soft-success" style="font-size: 14px;">Activo</span>   
                                             </td>
@@ -79,11 +78,12 @@
                                                     <label for="square-switch1" data-on-label="On"
                                                         data-off-label="Off"></label>
                                                 </div>
-                                                <a href="{% url 'Proveedores.Editar-Proveedor'%}" class="btn btn-outline-primary btn-sm">
+                                                <a href="#" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
                                                 </a>
                                             </td>
                                         </tr>   
+                                            {% endfor %}
                                     </tbody>
                                 </table>
                             </div>

@@ -26,7 +26,7 @@ from Apps.login.views import Login, recuperar_contrasena
 from Apps.Clientes.views import cliente,formularioCliente,crearCliente,detalleCliente,formularioCorporal,crearCorporal,VerDetalleCorporal,formularioFacial,crearFacial,VerDetalleFacial,formularioControlMedidas,crearControlMedidas,formularioPagosSesionesCorporal,crearPagosSesionesCorporal,formularioPagosSesionesFacial,crearPagosSesionesFacial
 from Apps.Usuarios.views import usuario, crearUsuario, formularioUsuario, editarU, actualizarU
 from Apps.Servicios.views import servicio, crearServicio, formularioServicio, editarS, actualizarS, eliminarS
-from Apps.Proveedores.views import Proveedores, Crear_Proveedor, Editar_Proveedor
+from Apps.Proveedores.views import FormularioAgregarProveedor,CrearProveedor,ListarProveedor,EditarProveedor,ActualizarProveedor
 from Apps.Configuracion.views import crearRol,actualizarRol,formularioRol,editarRol,listarRol
 from Apps.Compras.views import Compras, Crear_Compra, Detalle_Compra
 from Apps.Insumos.views import insumos
@@ -77,21 +77,16 @@ urlpatterns = [
     path('eliminarS/<int:id>',eliminarS, name='eliminarServicio'),
 
     #PROVEEDORES
+  
     path(
-        "Proveedores",
-        view= Proveedores,
-        name= "Proveedores",
-    ),
-    path(
-        "CrearProveedor",
-        view= Crear_Proveedor,
-        name= "Proveedores.Crear-Proveedor",
-    ),
-    path(
-        "EditarProveedor",
-        view= Editar_Proveedor,
-        name= "Proveedores.Editar-Proveedor",
-    ),
+        "ListarProveedor/", 
+         view=ListarProveedor,
+         name= "Proveedor"),
+         
+    path('CrearProveedor/', CrearProveedor),
+    path('FormularioAgregarProveedor/', FormularioAgregarProveedor),
+    path('EditarProveedor/<int:idProveedor>',EditarProveedor, name='EditarProveedor'),
+    path('ActualizarProveedor/<int:idProveedor>',ActualizarProveedor, name='ActualizarProveedor'),
 
     #CONFIGURACION
 
