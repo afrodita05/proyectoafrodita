@@ -49,8 +49,8 @@
                                 <table id="datatable" class="table table-nowrap align-middle">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
                                             <th>Rol</th>
+                                            <th>Permisos</th>
                                             <th>Estado</th>
                                             <th>Acciones</th>
                                         </tr>
@@ -58,8 +58,9 @@
                                     <tbody>
                                         {% for listar in crRol %}
                                         <tr data-id="1">
-                                            <td data-field="id" style="width: 80px">1</td>
+                        
                                             <td data-field="rol">{{listar.nombreRol}}</td>
+                                            <td data-field="permisos">{{listar.permisoRol}}</td>
                                             <td data-field="estado">
                                                 <span class="badge badge-soft-danger" style="font-size: 14px;">Inactivo</span>
                                             </td>
@@ -70,7 +71,7 @@
                                                         data-off-label="Off"></label>
                                                 </div>
                                                 <div class="dropdown">
-                                                    <a href="#" type="button" class="btn btn-outline-primary btn-sm" >
+                                                    <a href="{% url 'editarRol' listar.idRol %}" type="button" class="btn btn-outline-primary btn-sm" >
                                                         <i class="mdi mdi-account-cog-outline mdi-24px "></i>
                                                     </a>
                                                 </div>

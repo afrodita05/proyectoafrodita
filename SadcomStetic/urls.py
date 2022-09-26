@@ -16,7 +16,7 @@ Including another URLconf
 from cmath import log
 from http import client
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from SadcomStetic import views
 
 from Apps.Citas.views import crearCita, formularioCita, listarCita, editarCita, editarCliente, actualizarCita, actualizarCliente,servicio
@@ -29,7 +29,7 @@ from Apps.Servicios.views import servicio, crearServicio, formularioServicio, ed
 from Apps.Proveedores.views import Proveedores, Crear_Proveedor, Editar_Proveedor
 from Apps.Configuracion.views import crearRol,actualizarRol,formularioRol,editarRol,listarRol
 from Apps.Compras.views import Compras, Crear_Compra, Detalle_Compra
-from Apps.Insumos.views import Insumos, Crear_Insumo
+from Apps.Insumos.views import insumos
 
 app_name = "SadcomStetic"
 urlpatterns = [
@@ -131,17 +131,13 @@ urlpatterns = [
         view= Detalle_Compra,
         name= "Compras.Detalles-De-Compra",
     ),
-    #INSUMOS
+   #INSUMOS
     path(
         "Insumos",
-        view= Insumos,
+        view= insumos,
         name= "Insumos",
     ),
-    path(
-        "CrearInsumo",
-        view= Crear_Insumo,
-        name= "Insumos.Crear-Insumo",
-    ),
+    path ('', include ('Apps.Insumos.urls')),
     #CLIENTES
     path(
         "Clientes/", 

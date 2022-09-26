@@ -1,0 +1,90 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}Editar Insumo{% endblock title %}
+{% block extra_css %}
+
+{% endblock extra_css %}
+{% block content %}
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h3 class="mb-sm-0 font-size-40">Editar insumo</h3>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Insumos </a></li>
+                                <li class="breadcrumb-item active"> Editar inusmo </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div style="margin: 60px;">
+                    <!--  FORMULARIO CON VALIDACIONES -->
+                    <form class="needs-validation" action="/editarInsumo/" novalidate method="POST">
+                        {% csrf_token %}
+                        
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="mb-3">
+                                    <input type="hidden" name="id" value="{{insumo.idInsumos}}">
+                                    <label class="form-label" for="validationTooltip02">Insumo</label>
+                                    <input type="text" class="form-control" id="txtNombre" name="txtNombre" value="{{insumo.nombre}}"
+                                        placeholder="Insumo" required>
+                                    <div class="invalid-tooltip" style="margin-top: 5px;">
+                                        Por favor ingrese el insumo.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 ms-lg-auto">
+                                <div class="mt-4 mt-lg-0">
+                                    <div class="col-md-12">
+                                        <label for="example-number-input" class="form-label">Cantidad</label>
+                                        <input class="form-control" type="number"  value="{{insumo.cantidad}}" min="0"
+                                            id="numCantidad" name="numCantidad">
+                                        <div class="invalid-tooltip" style="margin-top: 5px;">
+                                            Por favor 1 o más unidades.
+                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-top: 40px; margin-bottom: 20px;" >
+                                <button type="submit" class="btn btn-primary" style="width: 20%; margin-right: 20px;">Editar insumo</button>
+                                <a type="button" class="btn btn-danger" style="width: 20%">Cancelar</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- container-fluid -->
+    </div> <!-- End Page-content -->
+    {% block footer %}
+        {% include 'partials/footer.html' %}
+    {% endblock footer %}
+</div>       
+        
+<!-- end main content-->
+{% endblock content %}
+
+{% block extra_js %}
+<!-- Buttons examples -->
+<script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js'%}"></script>
+<script src="{% static 'libs/jszip/jszip.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/pdfmake.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/vfs_fonts.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js'%}"></script>
+<!-- Responsive examples -->
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js'%}"></script>
+<!-- pristine js -->
+<script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
+<!-- form validation -->
+<script src="{% static 'js/pages/form-validation.init.js'%}"></script>
+{% endblock extra_js %}

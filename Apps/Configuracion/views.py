@@ -28,11 +28,9 @@ def editarRol(request, id):
     return render(request,"Configuracion/Permisos.html",context)
 
 def actualizarRol(request, id):      
-    nombreRol=request.GET['nombre']
     permisoRol=request.GET['Permiso']
 
     actualizar=Rol.objects.get(idRol=id)
-    actualizar.nombre=nombreRol
     actualizar.permisoRol=permisoRol
     actualizar.save()
 
