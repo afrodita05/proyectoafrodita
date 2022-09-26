@@ -1,6 +1,6 @@
 {% extends 'partials/base.html' %}
 {% load static %}
-{% block title %}Crear corporal{% endblock title %}
+{% block title %}Crear compra{% endblock title %}
 {% block extra_css %}
     <!-- DataTables -->
     <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
@@ -27,26 +27,26 @@
             <div class="card">
                 <div style="margin: 60px; " >
                     <!--  FORMULARIO CON VALIDACIONES -->
-                    <form id="pristine-valid-example" novalidate method="post">
+                    <form  action="" onsubmit="onSubmitForm" id="agregar" novalidate method="">
                         {% csrf_token %}
                         <input type="hidden"/>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Número de factura</label>
-                                    <input type="text"class="form-control" />
+                                    <input name="numeroFactura" type="text"class="form-control" />
                                 </div>
                             </div>
                             <div class=" col-lg-6">
                                 <div class="mb-3">
                                     <label class="form-label">Fecha de factura</label>
-                                    <input type="date" class="form-control" id="datepicker-basic">
+                                    <input name="fechaRecibo" type="date" class="form-control" id="datepicker-basic">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Proveedores</label>
-                                    <select class="form-select">
+                                    <select name="proveedor" class="form-select">
                                         <option value="Chocolaterapia">Victoria secret</option>
                                         <option value="Masaje">La cantalerta</option>
                                     </select>
@@ -54,18 +54,18 @@
                             </div>  
                             <div class="col-md-12">
                                 <label for="example-datetime-local-input" class="form-label">Productos</label>
-                                <input type="text" data-pristine-required-message="Por favor ingrese el producto" placeholder="Ingrese el producto" required class="form-control" />
+                                <input name="insumo" type="text" data-pristine-required-message="Por favor ingrese el producto" placeholder="Ingrese el producto" required class="form-control" />
                             </div>
                             <div class="row" style="margin-top: 20px;">
                                 <div class="col-md-4">
                                     <label for="example-number-input" class="form-label">Cantidad</label>
-                                    <input class="form-control" type="number" value="0"
+                                    <input name="cantidad" class="form-control" type="number" value="0"
                                         id="example-number-input">
                                 </div>
                                 <div class=" col-md-4">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Valor unitario</label>
-                                        <input type="text" class="form-control" />
+                                        <input name="valorunidad" type="text" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -78,11 +78,11 @@
                             <div class="col-lg-12">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Valor total</label>
-                                    <input type="text"class="form-control" />
+                                    <input name="ValorTotalInsumo" type="text"class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group" style=" margin-top: 40px; margin-bottom: 20px;" >
-                                <button type="submit" class="btn btn-primary" style="width: 20%">Agregar</button>
+                                <button type="submit"  for="agregar" class="btn btn-primary" style="width: 20%">Agregar</button>
                             </div>
                         </div>
                         <!-- end row -->
@@ -91,42 +91,43 @@
                 <div class="col-12">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="datatable" class="table table-nowrap align-middle">
+                            <table id="list" class="table table-nowrap align-middle">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                    
                                         <th>Nombre</th>
                                         <th>Cantidad</th>
                                         <th>Precio</th>
-                                        <th>Iva</th>
                                         <th>Total</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {% for listar in CListarInsumos %}
                                     <tr data-id="1">
-                                        <td data-field="id" style="width: 80px">1</td>
-                                        <td data-field="nombre">Barra de miel</td>
-                                        <td data-field="cantidad">6</td>
-                                        <td data-field="precio">100.000 COP</td>
-                                        <td data-field="iva">19%</td>
-                                        <td data-field="Total">600.000 COP</td>
+  
+                                        <td data-field="nombre">{{listar.insumo}}</td>
+                                        <td data-field="cantidad">{{listar.cantidad}}</td>
+                                        <td data-field="precio">{{listar.ValorUnidad}}</td>
+                                        <td data-field="Total">{{listar.ValorInsumo}}</td>
                                         <td>
                                             <a  href="#" class="btn btn-outline-primary btn-sm">
                                                 <i class="mdi mdi-cancel mdi-24px"></i>
                                             </a>
                                         </td>
                                     </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
                 <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-top: 40px; margin-bottom: 20px;" >
-                    <button type="submit" class="btn btn-primary" style="width: 20%; margin-right: 20px;">Crear compra</button>
-                    <button type="submit" class="btn btn-danger" style="width: 20%">Cancelar</button>
+                    <button type="submit" id= "guardar" class="btn btn-primary" style="width: 20%; margin-right: 20px;">Crear compra</button>
+                    <a href="{% url 'Compra' %}" type="submit" class="btn btn-danger" style="width: 20%">Cancelar</a>
                 </div>
                 
+        
             </div> <!-- end col -->
             
         </div> <!-- container-fluid -->
@@ -142,6 +143,11 @@
 {% endblock content %}
 
 {% block extra_js %}
+
+
+<script type="text/javascript" src="{% static  'js/localstorage.js' %}"></script>
+
+
 <!-- Table Editable plugin -->
 <script src="{% static 'libs/table-edits/build/table-edits.min.js'%}"></script>
 

@@ -23,7 +23,7 @@ from Apps.Citas.views import crearCita, formularioCita, listarCita, editarCita, 
 from Apps.login.views import Login, recuperar_contrasena
 from Apps.login.views import Login, recuperar_contrasena
 # from Apps.Usuarios.views import Usuarios, Crear_Usuario, Editar_Usuario
-from Apps.Clientes.views import cliente,formularioCliente,crearCliente,detalleCliente,formularioCorporal,crearCorporal,VerDetalleCorporal,formularioFacial,crearFacial,VerDetalleFacial,formularioControlMedidas,crearControlMedidas,formularioPagosSesionesCorporal,crearPagosSesionesCorporal,formularioPagosSesionesFacial,crearPagosSesionesFacial
+from Apps.Clientes.views import cliente,formularioCliente,crearCliente,detalleCliente,formularioCorporal,crearCorporal,VerDetalleCorporal,formularioFacial,crearFacial,VerDetalleFacial,formularioControlMedidas,crearControlMedidas,formularioPagosSesionesCorporal,crearPagosSesionesCorporal,formularioPagosSesionesFacial,crearPagosSesionesFacial,editarCliente
 from Apps.Usuarios.views import usuario, crearUsuario, formularioUsuario, editarU, actualizarU
 from Apps.Servicios.views import servicio, crearServicio, formularioServicio, editarS, actualizarS, eliminarS
 from Apps.Proveedores.views import FormularioAgregarProveedor,CrearProveedor,ListarProveedor,EditarProveedor,ActualizarProveedor
@@ -116,7 +116,7 @@ urlpatterns = [
         view= ListarCompra,
         name= "Compra",
     ),
-    path('CrearCompra/', CrearCompra),
+    path('CrearCompra/', CrearCompra, name='EliminarCompra'),
     path('FormularioAgregarCompra/', FormularioAgregarCompra,),
     path('EliminarCompra/<int:id>', EliminarCompra, name='EliminarCompra'),
     path('DetalleCompras/<int:id>', DetalleCompras, name='DetalleCompras'),
@@ -146,6 +146,17 @@ urlpatterns = [
         name= "Clientes.Crear-Cliente",
     ),
 
+    path(
+        "EditarCliente/<int:id>",
+        view= editarCliente,
+        name= "Clientes.Editar-Cliente",
+    ),
+
+      path(
+        "ActualizarCliente/<int:id>",
+        view= actualizarCliente,
+        name= "Clientes.Actualizar-Cliente",
+    ),
 
 
     path(

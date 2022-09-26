@@ -33,8 +33,7 @@ def CrearCompra(request):
         nuevoInsumo.save()
 
     idInsumo=nuevoInsumo.idInsumo
-    #for item in items:
-      # listIdInsumo.append(idInsumo)
+    
     for item in items:
         DCompra=Detalle_Compra(
         idCompra_id=idCompra,

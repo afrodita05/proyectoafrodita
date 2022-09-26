@@ -27,6 +27,34 @@ def crearCliente(request):
     clientes.save()
     return redirect("/Clientes/") #url 
 
+def editarCliente(request, id):
+    mostrar=Clientes.objects.filter(idCliente=id).first()
+    contexto={"mostrar":mostrar}
+    return render(request,"Clientes/Editar-Cliente.html",contexto)
+    
+def actualizarCliente(request, id):
+    nombreCliente=request.GET['nombre']
+    documentoCliente=request.GET['documento']
+    sexoCliente=request.GET['sexo']
+    telefonoCliente=request.GET['telefono']
+    direccionCliente=request.GET['direccion']
+    correoCliente=request.GET['correo']
+    fechaNacimientoCliente=request.GET['fechaNacimiento']
+    estadoCivilCliente=request.GET['estadoCivil']
+    numeroHijosCliente=request.GET['numeroHijos']
+    actualizar=Clientes.objects.get(idCliente=id)
+    actualizar.nombre=nombreCliente
+    actualizar.documento=documentoCliente
+    actualizar.sexo=sexoCliente
+    actualizar.telefono=telefonoCliente
+    actualizar.direccion=direccionCliente
+    actualizar.correo=correoCliente
+    actualizar.fechaNacimiento=fechaNacimientoCliente
+    actualizar.estadoCivil=estadoCivilCliente
+    actualizar.numeroHijos=numeroHijosCliente
+    actualizar.save()
+    return redirect("/Clientes/")
+
 def detalleCliente(request, id):
     mostrar=Clientes.objects.filter(idCliente=id).first()
     corporal=EsteticoCorporal.objects.filter(idCliente=id) 
