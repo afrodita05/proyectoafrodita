@@ -36,7 +36,7 @@
                         crear una nueva cita.</p>
                     </div>
                     <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
-                        <a href="{% url 'Citas.Crear-Cita'%}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear una cita</a>
+                        <a href="/formularioCita/" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear una cita</a>
                     </div>
                 </div>
             </div><!-- end col -->
@@ -48,7 +48,6 @@
                                 <table id="datatable" class="table table-nowrap align-middle">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
                                             <th>Nombre</th>
                                             <th>Documento</th>
                                             <th>Teléfono</th>
@@ -60,11 +59,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {% for listar in lrClientes %}
                                         <tr data-id="1">
-                                            <td data-field="id" style="width: 80px">1</td>
-                                            <td data-field="name">Julian Valenzuela</td>
-                                            <td data-field="documento">1045046042</td>
-                                            <td data-field="telefono">3194687398</td>
+                                            
+                                            <td data-field="name">{{listar.nombre}}</td>
+                                            <td data-field="documento">{{listar.documento}}</td>
+                                            <td data-field="telefono">{{listar.telefono}}</td>
                                             <td data-field="servicio">Masaje reductor</td>
                                             <td data-field="fecha">23/03/2023</td>
                                             <td data-field="valor">60.000 COP</td>
@@ -80,69 +80,8 @@
                                                 </a>
                                                 
                                             </td>
-                                        </tr>
-                                        <tr data-id="2">
-                                            <td data-field="id" style="width: 80px">2</td>
-                                            <td data-field="name">Julian Valenzuela</td>
-                                            <td data-field="documento">1045046042</td>
-                                            <td data-field="telefono">3194687398</td>
-                                            <td data-field="servicio">Masaje reductor</td>
-                                            <td data-field="fecha">23/03/2023</td>
-                                            <td data-field="valor">60.000 COP</td>
-                                            <td data-field="estado">
-                                                <span class="badge badge-soft-warning" style="font-size: 14px;">Espera</span>
-                                            </td>
-                                            <td>
-                                                <a href="{%url 'Citas.Editar-Cita'%}" class="btn btn-outline-primary btn-sm">
-                                                    <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
-                                                </a>
-                                                <a href="#" class="btn btn-outline-primary btn-sm">
-                                                    <i class="mdi mdi-cancel mdi-24px"></i>
-                                                </a>
-                                                
-                                            </td>
-                                        </tr>
-                                        <tr data-id="3">
-                                            <td data-field="id" style="width: 80px">3</td>
-                                            <td data-field="name">Julian Valenzuela</td>
-                                            <td data-field="documento">1045046042</td>
-                                            <td data-field="telefono">3194687398</td>
-                                            <td data-field="servicio">Masaje reductor</td>
-                                            <td data-field="fecha">23/03/2023</td>
-                                            <td data-field="valor">60.000 COP</td>
-                                            <td data-field="estado">
-                                                <span class="badge badge-soft-success" style="font-size: 14px;">Proceso</span>
-                                            </td>
-                                            <td>
-                                                <a href="{%url 'Citas.Editar-Cita'%}" class="btn btn-outline-primary btn-sm">
-                                                    <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
-                                                </a>
-                                                <a href="#" class="btn btn-outline-primary btn-sm">
-                                                    <i class="mdi mdi-cancel mdi-24px"></i>
-                                                </a>
-                                                
-                                            </td>
-                                        </tr>
-                                        <tr data-id="4">
-                                            <td data-field="id" style="width: 80px">4</td>
-                                            <td data-field="name">Julian Valenzuela</td>
-                                            <td data-field="documento">1045046042</td>
-                                            <td data-field="telefono">3194687398</td>
-                                            <td data-field="servicio">Masaje reductor</td>
-                                            <td data-field="fecha">23/03/2023</td>
-                                            <td data-field="valor">60.000 COP</td>
-                                            <td data-field="estado">
-                                                <span class="badge badge-soft-info" style="font-size: 14px;">Finalizado</span>
-                                            </td>
-                                            <td>
-                                                <a href="{%url 'Citas.Editar-Cita'%}" class="btn btn-outline-primary btn-sm">
-                                                    <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
-                                                </a>
-                                                <a href="#" class="btn btn-outline-primary btn-sm">
-                                                    <i class="mdi mdi-cancel mdi-24px"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        </tr>      
+                                        {% endfor %}                      
                                     </tbody>
                                 </table>
                             </div>

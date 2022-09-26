@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import path
 from SadcomStetic import views
 
-from Apps.Citas.views import Citas, Editar_Cita, Crear_Cita
+from Apps.Citas.views import crearCita, formularioCita, listarCita, editarCita, editarCliente, actualizarCita, actualizarCliente,servicio
 from Apps.login.views import Login, recuperar_contrasena
 from Apps.login.views import Login, recuperar_contrasena
 # from Apps.Usuarios.views import Usuarios, Crear_Usuario, Editar_Usuario
@@ -115,20 +115,17 @@ urlpatterns = [
     ),
     #CITAS
     path(
-        "Citas",
-        view= Citas,
-        name= "Citas",
+        "listarCita",
+        view= listarCita,
+        name= "Cita",
     ),
-    path(
-        "CrearCita",
-        view= Crear_Cita,
-        name= "Citas.Crear-Cita",
-    ),
-    path(
-        "EditarCita",
-        view= Editar_Cita,
-        name= "Citas.Editar-Cita",
-    ),
+    path('crearCita/',crearCita,name='crearCita'),
+    path('formularioCita/',formularioCita, name='formularioCita'),
+    path('editarCita/<int:id>',editarCita, name='editarCita'),
+    path('editarCliente/<int:id>',editarCliente, name='editarCliente'),
+    path('actualizarCita/<int:id>',actualizarCita, name='actualizarCita'),
+    path('actualizarCliente/<int:id>',actualizarCliente, name='actualizarCliente'),
+    
     #COMPRAS
     path(
         "Compras",
