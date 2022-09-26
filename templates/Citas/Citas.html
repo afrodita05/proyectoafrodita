@@ -43,7 +43,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
+                        <div class="card-header bg-transparent border-primary">
+                            <h5 class="my-0 text-primary"><i class="mdi mdi-bullseye-arrow me-3"></i>Clientes</h5>
+                        </div>
                         <div class="card-body">
+                            <br>
                             <div class="table-responsive">
                                 <table id="datatable" class="table table-nowrap align-middle">
                                     <thead>
@@ -51,32 +55,23 @@
                                             <th>Nombre</th>
                                             <th>Documento</th>
                                             <th>Teléfono</th>
-                                            <th>Servicio</th>
-                                            <th>Fecha</th>
-                                            <th>Estado</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for listar in crcita %}
+                                        {% for listar in lrClientes %}
                                         <tr data-id="1">
                                             
-                                            <td data-field="name">{{listar.idCliente.nombre}}</td>
-                                            <td data-field="documento">{{listar.idCliente.documento}}</td>
-                                            <td data-field="telefono">{{listar.idCliente.telefono}}</td>
+                                            <td data-field="name">{{listar.nombre}}</td>
+                                            <td data-field="documento">{{listar.documento}}</td>
+                                            <td data-field="telefono">{{listar.telefono}}</td>
                                             
-                                            <td data-field="servicio">{{listar.idServicio.nServicio}}</td>
-                                            <td data-field="fecha">{{listar.fecha}}</td>
-                                            <td data-field="estado">
-                                                <span class="badge badge-soft-danger" style="font-size: 14px;">Cancelado</span>
-                                            </td> 
+                                        
                                             <td>
-                                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                                <a href="{% url 'editarCliente' listar.idCliente %}" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
                                                 </a>
-                                                <a href="#" class="btn btn-outline-primary btn-sm">
-                                                    <i class="mdi mdi-cancel mdi-24px"></i>
-                                                </a>
+                                                
                                                 
                                             </td>
                                         </tr>      
@@ -86,6 +81,46 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="card">
+                        <div class="card-header bg-transparent border-primary">
+                            <h5 class="my-0 text-primary"><i class="mdi mdi-bullseye-arrow me-3"></i>Citas</h5>
+                        </div>
+                        <div class="card-body">
+                            <br>
+                            <div class="table-responsive">
+                                <table id="datatable1" class="table table-nowrap align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Fecha de cita</th>
+                                            <th>Servicio</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for listar in crcita %}
+                                        <tr data-id="1">
+                                            <td data-field="fecha">{{listar.fecha}}</td>
+                                            <td data-field="servicio">{{listar.idServicio.nServicio}}</td>
+                                            <td>
+                                                <a href="{% url 'editarCita' listar.idCitas %}" class="btn btn-outline-primary btn-sm">
+                                                    <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
+                                                </a>
+                                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                                    <i class="mdi mdi-cancel mdi-24px"></i>
+                                                </a>
+                                                
+                                            </td>
+                                        </tr>
+                                        {% endfor %}  
+                                    </tbody>
+                                </table>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div> <!-- end col -->
             </div> <!-- end row -->
         </div> <!-- container-fluid -->

@@ -40,7 +40,7 @@ def listarCita(request):
     listarCita=Citas.objects.filter()
     listarClientes=Clientes.objects.filter()    
     servicio=Servicios.objects.filter()
-    context={"crcita":listarCita,"lrClientes":listarClientes,"servicio":servicio,}
+    context={"crcita":listarCita,"lrClientes":listarClientes,"servicio":servicio}
 
     return render(request,"Citas/Citas.html", context)
 
@@ -54,32 +54,20 @@ def editarCita(request, id):
 def editarCliente(request, id):
     mostrar=Clientes.objects.filter(idCliente=id).first()    
     context={"mostrar":mostrar}
-    return render(request,"editarCliente.html",context)
+    return render(request,"Citas/Editar-Cliente.html",context)
 
 def actualizarCliente(request, id):
     nombreCliente=request.GET['nombre']
     documentoCliente=request.GET['documento']
-    sexoCliente=request.GET['sexo']
     telefonoCliente=request.GET['telefono']
-    direccionCliente=request.GET['direccion']
-    correoCliente=request.GET['correo']
-    fechaNacimientoCliente=request.GET['fechaNacimiento']
-    estadoCivilCliente=request.GET['estadoCivil']
-    numeroHijosCliente=request.GET['numeroHijos']
    
     actualizar=Clientes.objects.get(idCliente=id)
     actualizar.nombre=nombreCliente
-    actualizar.sexo=sexoCliente
     actualizar.documento=documentoCliente
-    actualizar.fechaNacimiento=fechaNacimientoCliente    
     actualizar.telefono=telefonoCliente
-    actualizar.direccion=direccionCliente
-    actualizar.correo=correoCliente    
-    actualizar.estadoCivil=estadoCivilCliente
-    actualizar.numeroHijos=numeroHijosCliente
     actualizar.save()
 
-    return redirect("/listarCita/")
+    return redirect("Cita")
    
 def actualizarCita(request, id):
     fechaCita=request.GET['fechaCita']
@@ -90,7 +78,7 @@ def actualizarCita(request, id):
     actualizar.idServicio_id=idServicio
     actualizar.save()
 
-    return redirect("/listarCita/")
+    return redirect("Cita")
 
 def servicio(request):
     servicio=Servicios.objects.filter()
