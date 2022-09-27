@@ -31,27 +31,47 @@
                         {% csrf_token %}
                         <input type="hidden"/>
                         <div class="row">
+                            
+                            <div class="col-lg-6">
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Código de compra</label>
+                                    <input name="codigoCompra" type="text"class="form-control" />
+                                </div>
+                            </div>
+
                             <div class="col-lg-6">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Número de factura</label>
                                     <input name="numeroFactura" type="text"class="form-control" />
                                 </div>
                             </div>
+                            
+                            <div class="col-md-12">
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Proveedor</label>
+                                    <select name="proveedor" class="form-select">
+                                        <option value="victoria secret">Victoria secret</option>
+                                        <option value="otro">La cantaleta</option>
+                                    </select>
+                                </div>
+                            </div>  
+
                             <div class=" col-lg-6">
                                 <div class="mb-3">
                                     <label class="form-label">Fecha de factura</label>
                                     <input name="fechaRecibo" type="date" class="form-control" id="datepicker-basic">
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Proveedores</label>
-                                    <select name="proveedor" class="form-select">
-                                        <option value="Chocolaterapia">Victoria secret</option>
-                                        <option value="Masaje">La cantalerta</option>
-                                    </select>
+                            
+                            <div class=" col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Valor total</label>
+                                    <input name="ValorTotal" type="number" class="form-control" id="datepicker-basic">
                                 </div>
-                            </div>  
+                            </div>
+
+                            <!-- Productos -->
+
                             <div class="col-md-12">
                                 <label for="example-datetime-local-input" class="form-label">Productos</label>
                                 <input name="insumo" type="text" data-pristine-required-message="Por favor ingrese el producto" placeholder="Ingrese el producto" required class="form-control" />
@@ -77,7 +97,7 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group mb-3">
-                                    <label class="form-label">Valor total</label>
+                                    <label class="form-label">Valor total del insumo</label>
                                     <input name="ValorTotalInsumo" type="text"class="form-control" />
                                 </div>
                             </div>

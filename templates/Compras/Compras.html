@@ -58,15 +58,16 @@
                                     </thead>
                                     <tbody>
                                         {% for listar in Lcompra %}
+                                            
                                         <tr data-id="1">
 
-                                            <td data-field="codigo">{{listar.idCompra.codigoCompra}}</td>
-                                            <td data-field="proveedor">{{listar.idCompra.proveedor}}</td>
-                                            <td data-field="factura">{{listar.idCompra.numeroFactura}}</td>
-                                            <td data-field="FechaRecibo">{{listar.idCompra.fechaRecibo}}</td>
-                                            <td data-field="valor">{{listar.idCompra.ValorTotal}}</td>
+                                            <td data-field="codigo">{{listar.codigoCompra}}</td>
+                                            <td data-field="proveedor">{{listar.proveedor}}</td>
+                                            <td data-field="factura">{{listar.numeroFactura}}</td>
+                                            <td data-field="FechaRecibo">{{listar.fechaRecibo}}</td>
+                                            <td data-field="valor">{{listar.ValorTotal}}</td>
                                             <td>
-                                                <a  href="{% url 'DetalleCompras' listar.idDetalle_Compra %}" class="btn btn-outline-primary btn-sm">
+                                                <a  href="#" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-eye-outline mdi-24px "></i>
                                                 </a>
                                                 <a  href="#" class="btn btn-outline-primary btn-sm">

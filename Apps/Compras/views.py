@@ -12,12 +12,14 @@ def CrearCompra(request):
     data= json.loads(request.body)
     items = data["items"]
     print(items,type(items))
-    vCompra=""
+    VCompra=""
     for item in items:
         VCompra = Compra(
+            codigoCompra=item['codigoCompra'],
             proveedor=item['proveedor'],
             numeroFactura=item['numeroFactura'], 
             fechaRecibo=item['fechaRecibo'],
+            ValorTotal=item['ValorTotal']
         )
     VCompra.save()
     idCompra=VCompra.idCompra
@@ -27,17 +29,13 @@ def CrearCompra(request):
             cantidad=item['cantidad'],
         )
         nuevoInsumo.save()
-
-    idInsumo=nuevoInsumo.idInsumos
-    
-    for item in items:
+        idInsumo=nuevoInsumo.idInsumo
         DCompra=Detalle_Compra(
         idCompra_id=idCompra,
         idInsumo_id=idInsumo
         ) 
-    DCompra.save()
+        DCompra.save()
 
-    
     return redirect("Compra")
 
 
@@ -46,7 +44,7 @@ def FormularioAgregarCompra(request):
     return render(request, 'Compras/Crear-Compra.html')
 
 def ListarCompra(request):
-    LCompra=Detalle_Compra.objects.filter()
+    LCompra=Compra.objects.filter()
     context={"Lcompra":LCompra}
     return render(request,'Compras/Compras.html', context)
 
