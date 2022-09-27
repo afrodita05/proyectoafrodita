@@ -50,8 +50,9 @@
                                 <div class="form-group mb-3">
                                     <label class="form-label">Proveedor</label>
                                     <select name="proveedor" class="form-select">
-                                        <option value="victoria secret">Victoria secret</option>
-                                        <option value="otro">La cantaleta</option>
+                                        {% for listar in proveedor %}
+                                        <option value="{{listar.proveedor}}">{{listar.proveedor}}</option>
+                                        {% endfor %} 
                                     </select>
                                 </div>
                             </div>  

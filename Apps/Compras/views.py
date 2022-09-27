@@ -6,22 +6,28 @@ from django.urls import reverse
 from django.views.generic import TemplateView
 from Apps.Compras.models import Compra, Detalle_Compra
 from Apps.Insumos.models import Insumo
+from Apps.Proveedores.models import Proveedor
 # Create your views here.
 
 def CrearCompra(request):
+    proveedor=Proveedor.objects.filter()
     data= json.loads(request.body)
     items = data["items"]
     print(items,type(items))
     VCompra=""
     for item in items:
+        proveedorCompra=item['proveedor'] 
+        idProveedor = Proveedor.objects.filter(proveedor=proveedorCompra).values('idProveedor')[0]['idProveedor']
         VCompra = Compra(
             codigoCompra=item['codigoCompra'],
-            proveedor=item['proveedor'],
+            idProveedor_id=idProveedor,
             numeroFactura=item['numeroFactura'], 
             fechaRecibo=item['fechaRecibo'],
             ValorTotal=item['ValorTotal']
         )
+        
     VCompra.save()
+    
     idCompra=VCompra.idCompra
     for item in items:
         nuevoInsumo=Insumo(
@@ -41,9 +47,10 @@ def CrearCompra(request):
     return redirect("Compra")
 
 
-
 def FormularioAgregarCompra(request):
-    return render(request, 'Compras/Crear-Compra.html')
+    proveedor=Proveedor.objects.filter()
+    context={"proveedor":proveedor}   
+    return render(request, 'Compras/Crear-Compra.html', context)
 
 def ListarCompra(request):
     LCompra=Compra.objects.filter()

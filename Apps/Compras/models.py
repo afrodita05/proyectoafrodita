@@ -1,12 +1,12 @@
-from django.db import models
-
+from django.db import models        
+from Apps.Proveedores.models import Proveedor
 # Create your models here.
 
 
 class Compra(models.Model):
     idCompra=models.AutoField(primary_key=True)
     codigoCompra=models.CharField(max_length=10)
-    proveedor=models.CharField(max_length=60)
+    idProveedor=models.ForeignKey(Proveedor, related_name='Compra', on_delete=models.PROTECT, null=True) 
     numeroFactura=models.CharField(max_length=60)
     fechaRecibo=models.DateTimeField(auto_now_add=True)
     ValorTotal=models.CharField(max_length=10)
