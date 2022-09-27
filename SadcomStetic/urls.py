@@ -19,11 +19,11 @@ from django.contrib import admin
 from django.urls import path, include
 from SadcomStetic import views
 
-from Apps.Citas.views import crearCita, formularioCita, listarCita, editarCita, editarCliente, actualizarCita, actualizarCliente,servicio
+from Apps.Citas.views import crearCita, formularioCita, listarCita, editarCita, editarClienteCitas, actualizarCita, actualizarClienteCitas,servicio
 from Apps.login.views import Login, recuperar_contrasena
 from Apps.login.views import Login, recuperar_contrasena
 # from Apps.Usuarios.views import Usuarios, Crear_Usuario, Editar_Usuario
-from Apps.Clientes.views import cliente,formularioCliente,crearCliente,detalleCliente,formularioCorporal,crearCorporal,VerDetalleCorporal,formularioFacial,crearFacial,VerDetalleFacial,formularioControlMedidas,crearControlMedidas,formularioPagosSesionesCorporal,crearPagosSesionesCorporal,formularioPagosSesionesFacial,crearPagosSesionesFacial,editarCliente
+from Apps.Clientes.views import cliente,formularioCliente,crearCliente,editarCliente,actualizarCliente,detalleCliente,formularioCorporal,crearCorporal,VerDetalleCorporal,formularioFacial,crearFacial,VerDetalleFacial,formularioControlMedidas,crearControlMedidas,formularioPagosSesionesCorporal,crearPagosSesionesCorporal,formularioPagosSesionesFacial,crearPagosSesionesFacial,editarCliente
 from Apps.Usuarios.views import usuario, crearUsuario, formularioUsuario, editarU, actualizarU
 from Apps.Servicios.views import servicio, crearServicio, formularioServicio, editarS, actualizarS, eliminarS
 from Apps.Proveedores.views import FormularioAgregarProveedor,CrearProveedor,ListarProveedor,EditarProveedor,ActualizarProveedor
@@ -99,16 +99,16 @@ urlpatterns = [
 
     #CITAS
     path(
-        "listarCita",
+        "listarCita/",
         view= listarCita,
         name= "Cita",
     ),
     path('crearCita/',crearCita,name='crearCita'),
     path('formularioCita/',formularioCita, name='formularioCita'),
     path('editarCita/<int:id>',editarCita, name='editarCita'),
-    path('editarCliente/<int:id>',editarCliente, name='editarCliente'),
+    path('editarCliente/<int:id>',editarClienteCitas, name='editarCliente'),
     path('actualizarCita/<int:id>',actualizarCita, name='actualizarCita'),
-    path('actualizarCliente/<int:id>',actualizarCliente, name='actualizarCliente'),
+    path('actualizarCliente/<int:id>',actualizarClienteCitas, name='actualizarCliente'),
     
     #COMPRAS
     path(

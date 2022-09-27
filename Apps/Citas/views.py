@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from django.views.generic import TemplateView
-from Apps.Citas.models import Clientes, Citas
+from Apps.Citas.models import Citas
+from Apps.Clientes.models import Clientes
 from Apps.Servicios.models import Servicios
 # Create your views here.
 
@@ -51,23 +52,20 @@ def editarCita(request, id):
     context={"ver":ver,"servicio":servicio}
     return render(request,"Citas/Editar-Cita.html",context)
 
-def editarCliente(request, id):
+def editarClienteCitas(request, id):  #se hizo cambio de nombre la vista editar y actualizar cliente en modulo de citas porque cuando edito una cliente desde el modulo de clientes se direcciona al modulo citas 
     mostrar=Clientes.objects.filter(idCliente=id).first()    
     context={"mostrar":mostrar}
     return render(request,"Citas/Editar-Cliente.html",context)
 
-def actualizarCliente(request, id):
+def actualizarClienteCitas(request, id):  
     nombreCliente=request.GET['nombre']
     documentoCliente=request.GET['documento']
     telefonoCliente=request.GET['telefono']
-   
     actualizar=Clientes.objects.get(idCliente=id)
     actualizar.nombre=nombreCliente
     actualizar.documento=documentoCliente
     actualizar.telefono=telefonoCliente
-    actualizar.save()
-
-    return redirect("Cita")
+    return redirect("/listarCita/")
    
 def actualizarCita(request, id):
     fechaCita=request.GET['fechaCita']
@@ -84,9 +82,6 @@ def servicio(request):
     servicio=Servicios.objects.filter()
     context={"lServicio":servicio}
     return render(request,"/listarCita/",context)
-
-
-
 
 # class Citaview(TemplateView):
 #     pass
