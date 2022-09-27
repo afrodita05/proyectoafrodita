@@ -16,22 +16,22 @@ def crearInsumos (request):
     messages.success(request, "Creado exitosamente")
     return redirect('Insumos')
 
-def edicionInsumos(request, idInsumos):
-   insumo = Insumo.objects.get(idInsumos = idInsumos)
+def edicionInsumos(request, idInsumo):
+   insumo = Insumo.objects.get(idInsumo = idInsumo)
    return render(request,'Insumos/Editar-Insumo.html', {'insumo':insumo})
 
 def editarInsumo (request):
-    idInsumos = request.POST['id']
+    idInsumo = request.POST['id']
     nombre = request.POST['txtNombre']
     cantidad = request.POST['numCantidad']
-    insumo = Insumo.objects.get(idInsumos = idInsumos)
+    insumo = Insumo.objects.get(idInsumo = idInsumo)
     insumo.nombre = nombre
     insumo.cantidad = cantidad
     insumo.save()
     return redirect('Insumos')
 
-def eliminarInsumos(request, idInsumos):
-    insumo = Insumo.objects.get(idInsumos = idInsumos)
+def eliminarInsumos(request, idInsumo):
+    insumo = Insumo.objects.get(idInsumo = idInsumo)
     insumo.delete()
     messages.success(request, "Insumo eliminado exitosamente")
     return redirect('Insumos')

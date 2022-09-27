@@ -12,6 +12,7 @@ def CrearCompra(request):
     data= json.loads(request.body)
     items = data["items"]
     print(items,type(items))
+    vCompra=""
     for item in items:
         VCompra = Compra(
             proveedor=item['proveedor'],
@@ -22,15 +23,12 @@ def CrearCompra(request):
     idCompra=VCompra.idCompra
     for item in items:
         nuevoInsumo=Insumo(
-            insumo=item['insumo'], 
+            nombre=item['insumo'], 
             cantidad=item['cantidad'],
-            ValorUnidad=item['valorunidad'],
-            ValorTotalInsumo=item['ValorTotalInsumo'],
-            idCompra_id=idCompra
         )
         nuevoInsumo.save()
 
-    idInsumo=nuevoInsumo.idInsumo
+    idInsumo=nuevoInsumo.idInsumos
     
     for item in items:
         DCompra=Detalle_Compra(

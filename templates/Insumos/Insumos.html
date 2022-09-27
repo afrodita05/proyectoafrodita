@@ -40,7 +40,7 @@
                             <div class="row">
                                 <div class="col-lg-5">
                                     <div class="mb-3">
-                                        <input type="hidden" name="id" value="{{insumo.idInsumos}}">
+                                        <input type="hidden" name="id" value="{{insumo.idInsumo}}">
                                         <label class="form-label" for="validationTooltip02">Insumo</label>
                                         <input type="text" class="form-control" id="txtNombre" name="txtNombre"
                                             placeholder="Insumo" required>
@@ -90,14 +90,14 @@
                                 {% for insumo in insumos %}
                                     <tbody>
                                         <tr data-id="1">
-                                            <td data-field="id" style="width: 80px">{{insumo.idInsumos}}</td>
+                                            <td data-field="id" style="width: 80px">{{insumo.idInsumo}}</td>
                                             <td data-field="insumo">{{insumo.nombre}}</td>
                                             <td data-field="cantidad">{{insumo.cantidad}}</td>
                                             <td>
-                                                <a href="{% url 'editar' insumo.idInsumos%}" class="btn btn-outline-primary btn-sm">
+                                                <a href="{% url 'editar' insumo.idInsumo%}" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
                                                 </a>
-                                                <a href="eliminarInsumos/{{insumo.idInsumos}}" class="btn btn-outline-primary btn-sm">
+                                                <a href="eliminarInsumos/{{insumo.idInsumo}}" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-delete-outline mdi-24px "></i>
                                                 </a>
                                                 <a  href="#" class="btn btn-outline-primary btn-sm">
