@@ -24,8 +24,45 @@
             </div>
             <div class="card">
                 <div style="margin: 60px;">
-                    <p>PONER EL CONTENIDO AQUÍ</p>
+                    <h2>Detalles de compra:</h2>
+                    <br>
+                    <p>Código de compra:</p>
+                    <li>{{DTCompras.idCompra.codigoCompra}}</li>
+                    <br>
+                    <p>Proveedor:</p>
+                    <li>{{DTCompras.idCompra.proveedor}}</li>
+                    <br>
+                    <p>Número de factura:</p>
+                    <li>{{DTCompras.idCompra.numeroFactura}}</li>
+                    <br>
+                    <p>Fecha de recibo:</p>
+                    <li>{{DTCompras.idCompra.fechaRecibo}}</li>
+                    <br>
+                    <p>Valor total:</p>
+                    <li>{{DTCompras.idCompra.ValorTotal}}</li>
+
                 </div>
+
+                
+                <div style="margin: 60px;">
+                    <table class="table table-nowrap align-middle">
+                    <thead>
+                        <tr>
+                            <th>Insumo</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for listar in idInsumos %}
+                    <tr>
+                    <td>{{listar.nombre}}</td>               
+                    <td>{{listar.cantidad}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                </table>
+                </div>
+                
                 <div class="form-group" style=" display: flex; justify-content: center; align-items: center;" >
                     <a type="button" class="btn btn-danger" style="width: 50%; margin-bottom: 20px;">Cerrar</a>
                 </div>

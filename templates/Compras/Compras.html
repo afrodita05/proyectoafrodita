@@ -67,7 +67,7 @@
                                             <td data-field="FechaRecibo">{{listar.fechaRecibo}}</td>
                                             <td data-field="valor">{{listar.ValorTotal}}</td>
                                             <td>
-                                                <a  href="#" class="btn btn-outline-primary btn-sm">
+                                                <a  href="{% url 'DetalleCompras' listar.idCompra %}" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-eye-outline mdi-24px "></i>
                                                 </a>
                                                 <a  href="#" class="btn btn-outline-primary btn-sm">

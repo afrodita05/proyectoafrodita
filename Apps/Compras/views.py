@@ -29,11 +29,13 @@ def CrearCompra(request):
             cantidad=item['cantidad'],
         )
         nuevoInsumo.save()
+
         idInsumo=nuevoInsumo.idInsumo
+
         DCompra=Detalle_Compra(
         idCompra_id=idCompra,
         idInsumo_id=idInsumo
-        ) 
+        )
         DCompra.save()
 
     return redirect("Compra")
@@ -49,11 +51,13 @@ def ListarCompra(request):
     return render(request,'Compras/Compras.html', context)
 
 def DetalleCompras(request, id):
-    DTCompras=Detalle_Compra.objects.filter(idDetalle_Compra=id).first()  
-    idCompras = Detalle_Compra.objects.filter(idDetalle_Compra=id).values('idCompra_id')[0]['idCompra_id']
-    objetos=Insumo.objects.filter(idCompra_id=idCompras)
-    objetosNombre=Insumo.objects.filter(idCompra_id=idCompras).values('insumo')
-    context={"DTCompras":DTCompras,"objetos":objetos,"idCompras":idCompras,"objetosNombre":objetosNombre}
+    DTCompras=Detalle_Compra.objects.filter(idCompra_id=id).first
+
+    idDTCompras = Detalle_Compra.objects.filter(idCompra_id=id).values_list('idDetalle_Compra', flat=True) #Obtener id de los DT compra basados en la id de compra
+    
+    idInsumos=Insumo.objects.filter(idInsumo__in=idDTCompras) #buscar los insumos que compartan el id de detalle de compra
+
+    context={"DTCompras":DTCompras, "idInsumos":idInsumos}
     return render(request,"Compras/Ver-Detalle.html",context) 
 
    
