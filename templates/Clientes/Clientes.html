@@ -52,7 +52,6 @@
                                         <table id="datatable" class="table table-nowrap align-middle">
                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
                                                     <th>Fecha de creación</th>
                                                     <th>Nombre</th>
                                                     <th>Documento</th>
@@ -62,8 +61,6 @@
                                             </thead>
                                             <tbody>
                                                 {% for listar in cliente %}
-                                                <tr data-id="1">
-                                                    <td data-field="id">1</td>
                                                     <td data-field="fechaCreacion">{{listar.fechaCreacion}}</td>
                                                     <td data-field="nombre">{{listar.nombre}}</td>
                                                     <td data-field="documento">{{listar.documento}}</td>
@@ -77,6 +74,7 @@
                                                             <i class="mdi mdi-eye-outline  mdi-24px "></i>
                                                         </a>
                                                     </td>
+                                                </tr>
                                                 {% endfor %}
                                             </tbody>
                                         </table>

@@ -36,7 +36,7 @@
                         crear un nuevo rol.</p>
                     </div>
                     <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
-                        <a href="/formularioRol/" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear un rol</a>
+                        <a href="{% url 'formularioRol' %}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear un rol</a>
                         
                     </div>
                 </div>
@@ -59,8 +59,8 @@
                                         {% for listar in crRol %}
                                         <tr data-id="1">
                         
-                                            <td data-field="rol">{{listar.nombreRol}}</td>
-                                            <td data-field="permisos">{{listar.permisoRol}}</td>
+                                            <td data-field="rol">{{listar.nombre}}</td>
+                                            <td data-field="permisos">{{listar.configuracion}}, {{listar.insumos}}, {{listar.citas}}, {{listar.clientes}}, {{listar.servicios}}, {{listar.compras}}, {{listar.proveedores}}, {{listar.usuarios}}</td>
                                             <td data-field="estado">
                                                 <span class="badge badge-soft-danger" style="font-size: 14px;">Inactivo</span>
                                             </td>
@@ -71,7 +71,7 @@
                                                         data-off-label="Off"></label>
                                                 </div>
                                                 <div class="dropdown">
-                                                    <a href="{% url 'editarRol' listar.idRol %}" type="button" class="btn btn-outline-primary btn-sm" >
+                                                    <a href="#" type="button" class="btn btn-outline-primary btn-sm" >
                                                         <i class="mdi mdi-account-cog-outline mdi-24px "></i>
                                                     </a>
                                                 </div>

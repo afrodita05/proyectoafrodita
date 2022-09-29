@@ -27,7 +27,7 @@ from Apps.Clientes.views import cliente,formularioCliente,crearCliente,editarCli
 from Apps.Usuarios.views import usuario, crearUsuario, formularioUsuario, editarU, actualizarU
 from Apps.Servicios.views import servicio, crearServicio, formularioServicio, editarS, actualizarS, eliminarS
 from Apps.Proveedores.views import FormularioAgregarProveedor,CrearProveedor,ListarProveedor,EditarProveedor,ActualizarProveedor
-from Apps.Configuracion.views import crearRol,actualizarRol,formularioRol,editarRol,listarRol
+from Apps.Configuracion.views import crearRol,formularioRol,listarRol
 from Apps.Compras.views import FormularioAgregarCompra,CrearCompra,ListarCompra,EliminarCompra,DetalleCompras
 from Apps.Insumos.views import insumos
 
@@ -94,13 +94,30 @@ urlpatterns = [
 
     #CONFIGURACION
 
-    path('crearRol/',crearRol, name= 'crearRol'),
-    path('editarRol/<int:id>',editarRol, name='editarRol'),
-    path('actualizarRol/<int:id>',actualizarRol, name='actualizarRol'),
-    path('formularioRol/',formularioRol, name='formularioRol'),
-    path('listarRol/',listarRol, name='Rol'),
+    path(
+        'crearRol/',
+        view=crearRol, 
+        name= 'crearRol'
+        ),
+    path(
+        'formularioRol/',
+        view=formularioRol, 
+        name='formularioRol'
+        ),
+    path(
+        'listarRol/',
+        view=listarRol, 
+        name='Rol'
+        ),
+    # path(
+    #     'editarRol/<int:id>',
+    #     view=editarRol, 
+    #     name='editarRol'),
 
 
+    # path('actualizarRol/<int:id>',actualizarRol, name='actualizarRol'),
+    
+ 
     #CITAS
     path(
         "listarCita/",
