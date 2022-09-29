@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from django.urls import reverse
 from django.views.generic import TemplateView
 from Apps.Usuarios.models import Usuarios
@@ -30,6 +31,8 @@ def crearUsuario(request):
         usuarios=Usuarios(documento=documentoUsuario,nPersona=nombrePersona,nUsuario=nombreUsuario,contrasena=password,correo=correo)
         error.clear()
         usuarios.save()
+
+    
     return redirect("Usuario")
 
 

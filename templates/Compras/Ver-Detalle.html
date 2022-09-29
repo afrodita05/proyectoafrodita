@@ -30,7 +30,7 @@
                     <li>{{DTCompras.idCompra.codigoCompra}}</li>
                     <br>
                     <p>Proveedor:</p>
-                    <li>{{DTCompras.idCompra.proveedor}}</li>
+                    <li>{{DTCompras.idCompra.idProveedor.proveedor}}</li>
                     <br>
                     <p>Número de factura:</p>
                     <li>{{DTCompras.idCompra.numeroFactura}}</li>
@@ -64,7 +64,7 @@
                 </div>
                 
                 <div class="form-group" style=" display: flex; justify-content: center; align-items: center;" >
-                    <a type="button" class="btn btn-danger" style="width: 50%; margin-bottom: 20px;">Cerrar</a>
+                    <a href="{% url 'Compra' %}"type="button" class="btn btn-danger" style="width: 50%; margin-bottom: 20px;">Cerrar</a>
                 </div>
             </div> <!-- end col -->
         </div> <!-- container-fluid -->

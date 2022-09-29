@@ -45,6 +45,10 @@ urlpatterns = [
         view= recuperar_contrasena,
         name= "pages.authentication.recuperarContraseña",
     ),
+
+     path('accounts/', include('django.contrib.auth.urls')),
+
+     
 #urls acorta las rutas para buscar path
 #Siempre que vaya a crear una vista debo asignarle una URL
 
