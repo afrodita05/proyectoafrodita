@@ -1,6 +1,6 @@
 from tkinter import S
 from django.shortcuts import render ,redirect
-from Apps.Clientes.models import Clientes,EsteticoCorporal,EsteticoFacial,ControlMedidas,Seciones
+from Apps.Clientes.models import Clientes,EsteticoCorporal,EsteticoFacial,ControlMedidas,Sesiones
 
 # Create your views here.
 
@@ -281,14 +281,14 @@ def crearFacial(request,id):
 def VerDetalleCorporal(request, id):
     mostrar=EsteticoCorporal.objects.filter(idCorporal=id).first()
     medidas=ControlMedidas.objects.filter(idCorporal=id)
-    seciones=Seciones.objects.filter(idCorporal=id)
-    contexto={"mostrar":mostrar,"medidas":medidas,"seciones":seciones}
+    sesiones=Sesiones.objects.filter(idCorporal=id)
+    contexto={"mostrar":mostrar,"medidas":medidas,"sesiones":sesiones}
     return render(request,"Clientes/Historial-Corporal.html",contexto)
 
 def VerDetalleFacial(request, id):
     mostrar=EsteticoFacial.objects.filter(idFacial=id).first()
-    seciones=Seciones.objects.filter(idFacial=id)
-    contexto={"mostrar":mostrar,"seciones":seciones}
+    sesiones=Sesiones.objects.filter(idFacial=id)
+    contexto={"mostrar":mostrar,"sesiones":sesiones}
     return render(request,"Clientes/Historial-Facial.html",contexto)
 
 def formularioControlMedidas(request,id):
@@ -323,21 +323,114 @@ def formularioPagosSesionesFacial(request,id):
 
 def crearPagosSesionesCorporal(request,id):
     crearIdC=EsteticoCorporal.objects.get(idCorporal=id)
-    secionesFecha=request.GET['fecha']
-    secionesC=request.GET['secionesC']
-    secionesValor=request.GET['valor']
-    seciones=Seciones(fecha=secionesFecha,Nseciones=secionesC,valor=secionesValor,idCorporal=crearIdC)
-    seciones.save()
+    sesionesFecha=request.GET['fecha']
+    sesionesC=request.GET['secionesC']
+    sesionesValor=request.GET['valor']
+    sesionesAbono=request.GET['abono']
+    
+    if sesionesAbono< sesionesValor:
+        seciones=Sesiones(fecha=sesionesFecha,Nseciones=sesionesC,valor=sesionesValor,abono=sesionesAbono,estado="Por pagar",idCorporal=crearIdC)
+        seciones.save()
+    elif sesionesAbono> sesionesValor:
+        seciones=Sesiones(fecha=sesionesFecha,Nseciones=sesionesC,valor=sesionesValor,abono=sesionesAbono,estado="Devolver",idCorporal=crearIdC)
+        seciones.save()
+    else:
+        seciones=Sesiones(fecha=sesionesFecha,Nseciones=sesionesC,valor=sesionesValor,abono=sesionesAbono,estado="Pagado",idCorporal=crearIdC)
+        seciones.save()
+
     return redirect("Clientes.Ver-Detalles.Corporal",id)
 
 def crearPagosSesionesFacial(request,id):
     crearIdF=EsteticoFacial.objects.get(idFacial=id)
-    secionesFecha=request.GET['fecha']
-    secionesC=request.GET['secionesC']
-    secionesValor=request.GET['valor']
-    seciones=Seciones(fecha=secionesFecha,Nseciones=secionesC,valor=secionesValor,idFacial=crearIdF)
-    seciones.save()
+    sesionesFecha=request.GET['fecha']
+    sesionesC=request.GET['secionesC']
+    sesionesValor=request.GET['valor']
+    sesionesAbono=request.GET['abono']
+
+    if sesionesAbono< sesionesValor:
+        seciones=Sesiones(fecha=sesionesFecha,Nseciones=sesionesC,valor=sesionesValor,abono=sesionesAbono,estado="Por pagar",idFacial=crearIdF)
+        seciones.save()
+    elif sesionesAbono> sesionesValor:
+        seciones=Sesiones(fecha=sesionesFecha,Nseciones=sesionesC,valor=sesionesValor,abono=sesionesAbono,estado="Devolver",idFacial=crearIdF)
+        seciones.save()
+    else:
+        seciones=Sesiones(fecha=sesionesFecha,Nseciones=sesionesC,valor=sesionesValor,abono=sesionesAbono,estado="Pagado",idFacial=crearIdF)
+        seciones.save()
+
     return redirect("Clientes.Ver-Detalles.Facial",id)
 
+def editarPagosSesionesFacial(request,id):
+    mostrar=Sesiones.objects.filter(idSesiones=id).first()
+    contexto={"mostrar":mostrar}
+    return render(request,"Clientes/Editar-Pagos-Sesiones-Facial.html",contexto)
 
-  
+def actualizarPagosSesionesFacial(request, id):
+    sesionesFecha=request.GET['fecha']
+    sesionesC=request.GET['secionesC']
+    sesionesValor=request.GET['valor']
+    sesionesAbono=request.GET['abono']
+
+    if sesionesAbono< sesionesValor:
+        actualizar=Sesiones.objects.get(idSesiones=id)
+        actualizar.fecha=sesionesFecha
+        actualizar.Nseciones=sesionesC
+        actualizar.valor=sesionesValor
+        actualizar.abono=sesionesAbono
+        actualizar.estado="Por pagar"
+        actualizar.save()
+    elif sesionesAbono> sesionesValor:
+        actualizar=Sesiones.objects.get(idSesiones=id)
+        actualizar.fecha=sesionesFecha
+        actualizar.Nseciones=sesionesC
+        actualizar.valor=sesionesValor
+        actualizar.abono=sesionesAbono
+        actualizar.estado="Devolver"
+        actualizar.save()
+    else:
+        actualizar=Sesiones.objects.get(idSesiones=id)
+        actualizar.fecha=sesionesFecha
+        actualizar.Nseciones=sesionesC
+        actualizar.valor=sesionesValor
+        actualizar.abono=sesionesAbono
+        actualizar.estado="Pagado"
+        actualizar.save()
+
+    return redirect("Clientes.Ver-Detalles.Facial",id)
+
+def editarPagosSesionesCorporal(request,id):
+    mostrar=Sesiones.objects.filter(idSesiones=id).first()
+    contexto={"mostrar":mostrar}
+    return render(request,"Clientes/Editar-Pagos-Sesiones-Corporal.html",contexto)
+
+def actualizarPagosSesionesCorporal(request, id):
+    sesionesFecha=request.GET['fecha']
+    sesionesC=request.GET['secionesC']
+    sesionesValor=request.GET['valor']
+    sesionesAbono=request.GET['abono']
+
+    if sesionesAbono< sesionesValor:
+        actualizar=Sesiones.objects.get(idSesiones=id)
+        actualizar.fecha=sesionesFecha
+        actualizar.Nseciones=sesionesC
+        actualizar.valor=sesionesValor
+        actualizar.abono=sesionesAbono
+        actualizar.estado="Por pagar"
+        actualizar.save()
+    elif sesionesAbono> sesionesValor:
+        actualizar=Sesiones.objects.get(idSesiones=id)
+        actualizar.fecha=sesionesFecha
+        actualizar.Nseciones=sesionesC
+        actualizar.valor=sesionesValor
+        actualizar.abono=sesionesAbono
+        actualizar.estado="Devolver"
+        actualizar.save()
+    else:
+        actualizar=Sesiones.objects.get(idSesiones=id)
+        actualizar.fecha=sesionesFecha
+        actualizar.Nseciones=sesionesC
+        actualizar.valor=sesionesValor
+        actualizar.abono=sesionesAbono
+        actualizar.estado="Pagado"
+        actualizar.save()
+
+    return redirect("Clientes.Ver-Detalles.Corporal",id)

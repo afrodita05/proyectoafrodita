@@ -23,7 +23,7 @@ from Apps.Citas.views import crearCita, formularioCita, listarCita, editarCita, 
 from Apps.login.views import Login, recuperar_contrasena
 from Apps.login.views import Login, recuperar_contrasena
 # from Apps.Usuarios.views import Usuarios, Crear_Usuario, Editar_Usuario
-from Apps.Clientes.views import cliente,formularioCliente,crearCliente,editarCliente,actualizarCliente,detalleCliente,formularioCorporal,crearCorporal,VerDetalleCorporal,formularioFacial,crearFacial,VerDetalleFacial,formularioControlMedidas,crearControlMedidas,formularioPagosSesionesCorporal,crearPagosSesionesCorporal,formularioPagosSesionesFacial,crearPagosSesionesFacial,editarCliente
+from Apps.Clientes.views import cliente,formularioCliente,crearCliente,editarCliente,actualizarCliente,detalleCliente,formularioCorporal,crearCorporal,VerDetalleCorporal,formularioFacial,crearFacial,VerDetalleFacial,formularioControlMedidas,crearControlMedidas,formularioPagosSesionesCorporal,crearPagosSesionesCorporal,formularioPagosSesionesFacial,crearPagosSesionesFacial,editarCliente,editarPagosSesionesFacial,actualizarPagosSesionesFacial,editarPagosSesionesCorporal,actualizarPagosSesionesCorporal
 from Apps.Usuarios.views import usuario, crearUsuario, formularioUsuario, editarU, actualizarU
 from Apps.Servicios.views import servicio, crearServicio, formularioServicio, editarS, actualizarS, eliminarS
 from Apps.Proveedores.views import FormularioAgregarProveedor,CrearProveedor,ListarProveedor,EditarProveedor,ActualizarProveedor
@@ -238,20 +238,40 @@ urlpatterns = [
         view= formularioPagosSesionesCorporal,
         name= "Clientes.Ver-Detalles.Formulario-Pagos-Sesiones-Corporal",
     ),
-       path(
+    path(
         "CrearPagoSesionCorporal/<int:id>",
         view= crearPagosSesionesCorporal,
         name= "Clientes.Ver-Detalles.Crear-Pagos-Sesiones-Corporal",
     ),
-     path(
+    path(
         "FormularioPagoSesionFacial/<int:id>",
         view= formularioPagosSesionesFacial,
         name= "Clientes.Ver-Detalles.Formulario-Pagos-Sesiones-Facial",
     ),
-       path(
+    path(
         "CrearPagoSesionFacial/<int:id>",
         view= crearPagosSesionesFacial,
         name= "Clientes.Ver-Detalles.Crear-Pagos-Sesiones-Facial",
     ),
-
+    path(
+        "EditarPagoSesionFacial/<int:id>",
+        view= editarPagosSesionesFacial,
+        name= "Clientes.Ver-Detalles.Editar-Pagos-Sesiones-Facial",
+    ),
+    path(
+        "ActualizarPagoSesionFacial/<int:id>",
+        view= actualizarPagosSesionesFacial,
+        name= "Clientes.Ver-Detalles.Actualizar-Pagos-Sesiones-Facial",
+    ),
+    path(
+        "EditarPagoSesionCorporal/<int:id>",
+        view= editarPagosSesionesCorporal,
+        name= "Clientes.Ver-Detalles.Editar-Pagos-Sesiones-Corporal",
+    ),
+    path(
+        "ActualizarPagoSesionCorporal/<int:id>",
+        view= actualizarPagosSesionesCorporal,
+        name= "Clientes.Ver-Detalles.Actualizar-Pagos-Sesiones-Corporal",
+    ),
+    
 ]

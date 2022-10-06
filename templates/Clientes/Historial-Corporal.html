@@ -868,14 +868,24 @@
                                                     <th>Fecha de creación</th>
                                                     <th>Valor</th>
                                                     <th>Sesisones</th>
+                                                    <th>Abono</th>
+                                                    <th>Estado</th>
+                                                    <th>Fecha Actualización</th>
+                                                    <th>Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {% for listar in seciones %}
+                                                {% for listar in sesiones %}
                                                 <tr>
                                                     <td>{{listar.fecha}}</td>
-                                                    <td>{{listar.Nseciones}}</td>
                                                     <td>{{listar.valor}}</td>
+                                                    <td>{{listar.Nseciones}}</td>
+                                                    <td>{{listar.abono}}</td>
+                                                    <td>{{listar.estado}}</td>
+                                                    <td>{{listar.fechaActualizacion}}</td>
+                                                    <td><a href="{% url 'Clientes.Ver-Detalles.Editar-Pagos-Sesiones-Corporal' listar.idSesiones %}" class="btn btn-outline-primary btn-sm ">
+                                                    <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
+                                                    </a></td>
                                                 </tr>
                                                 {% endfor %}
                                             </tbody>

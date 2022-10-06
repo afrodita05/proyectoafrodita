@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h3 class="mb-sm-0 font-size-32">Crear pagos y sesiones</h3>
+                                <h3 class="mb-sm-0 font-size-32">Editar pagos y sesiones</h3>
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="javascript: void(0);">Clientes</a></li>
@@ -30,14 +30,14 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body" style="margin: 60px;">
-                                    <form action="{% url 'Clientes.Ver-Detalles.Crear-Pagos-Sesiones-Facial' facial.idFacial %}" id="CM" method="GET">
+                                    <form action="{% url 'Clientes.Ver-Detalles.Actualizar-Pagos-Sesiones-Facial' mostrar.idSesiones  %} " id="CM" method="GET">
                                         {% csrf_token %}
                                         <input type="hidden" />
                                         <div class="row" style="justify-content: center;">
                                             <div class="col-md-7">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Fecha</label>
-                                                    <input name="fecha" type="date" required
+                                                    <input name="fecha" value="{{mostrar.fecha}}" type="date" required
                                                     data-pristine-required-message="Campo requerido" placeholder=""
                                                     class="form-control"/>
                                                 </div>
@@ -45,7 +45,7 @@
                                             <div class="col-md-7">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Cantidad de sesiones</label>
-                                                    <input name="secionesC" type="text" required
+                                                    <input name="secionesC" value="{{mostrar.Nseciones}}" type="text" required
                                                     data-pristine-required-message="Campo requerido" placeholder=""
                                                     class="form-control"/>
                                                 </div>
@@ -53,7 +53,7 @@
                                             <div class="col-md-7">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Valor</label>
-                                                    <input name="valor" type="text" required
+                                                    <input name="valor" value="{{mostrar.valor}}" type="text" required
                                                     data-pristine-required-message="Campo requerido" placeholder=""
                                                     class="form-control" />
                                                 </div>
@@ -61,7 +61,7 @@
                                             <div class="col-md-7">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Abono</label>
-                                                    <input name="abono" type="text" required
+                                                    <input name="abono" value="{{mostrar.abono}}" type="text" required
                                                     data-pristine-required-message="Campo requerido" placeholder=""
                                                     class="form-control" />
                                                 </div>
@@ -69,7 +69,7 @@
                                         </div>
                                         <div class="form-group" style="text-align: center;">
                                             <button type="submit" for="CM" class="btn btn-primary" style="width: 20%;">Guardar</button>
-                                            <a href="{% url 'Clientes' %}" type="submit" class="btn btn-danger" style="width: 20%">Cancelar</a>
+                                            <a href="" type="submit" class="btn btn-danger" style="width: 20%">Cancelar</a>
                                         </div>
                                     </form>
                                 </div>
