@@ -17,6 +17,8 @@ from cmath import log
 from http import client
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
+
 from SadcomStetic import views
 
 from Apps.Citas.views import crearCita, formularioCita, listarCita, editarCita, editarClienteCitas, actualizarCita, actualizarClienteCitas,servicio
@@ -24,7 +26,7 @@ from Apps.login.views import Login, recuperar_contrasena
 from Apps.login.views import Login, recuperar_contrasena
 # from Apps.Usuarios.views import Usuarios, Crear_Usuario, Editar_Usuario
 from Apps.Clientes.views import cliente,formularioCliente,crearCliente,editarCliente,actualizarCliente,detalleCliente,formularioCorporal,crearCorporal,VerDetalleCorporal,formularioFacial,crearFacial,VerDetalleFacial,formularioControlMedidas,crearControlMedidas,formularioPagosSesionesCorporal,crearPagosSesionesCorporal,formularioPagosSesionesFacial,crearPagosSesionesFacial,editarCliente,editarPagosSesionesFacial,actualizarPagosSesionesFacial,editarPagosSesionesCorporal,actualizarPagosSesionesCorporal
-from Apps.Usuarios.views import usuario, crearUsuario, formularioUsuario, editarU, actualizarU
+from Apps.Usuarios.views import usuario, crearUsuario, formularioUsuario, editarU, actualizarU, pruebaCr
 from Apps.Servicios.views import servicio, crearServicio, formularioServicio, editarS, actualizarS, eliminarS
 from Apps.Proveedores.views import FormularioAgregarProveedor,CrearProveedor,ListarProveedor,EditarProveedor,ActualizarProveedor
 from Apps.Configuracion.views import crearRol,formularioRol,listarRol
@@ -35,11 +37,15 @@ app_name = "SadcomStetic"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.DashboardView.as_view(), name="dashboard"),
-    path(
-        "Login",
-        view= Login,
-        name= "pages.authentication.login",
+    
+    path('login/', 
+        auth_views.LoginView.as_view(
+            template_name='registration/login.html'
+        ), 
+        name="login"
     ),
+
+    
     path(
         "Recuperar contraseña",
         view= recuperar_contrasena,
@@ -66,6 +72,8 @@ urlpatterns = [
     path('editarU/<int:id>',editarU, name='editarUsuario'),
     path('actualizarU/<int:id>',actualizarU, name='actualizarUsuario'),
 
+
+    path('pruebaCr/',pruebaCr),
 
 
     #SERVICIOS

@@ -1,11 +1,19 @@
 from django.shortcuts import redirect, render
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from allauth.account.views import PasswordSetView, PasswordChangeView
 from django_otp.plugins.otp_totp.models import TOTPDevice
 
+
+
+
 # Dashboard
+@login_required
+def index(request):
+    return render(request,'registration/base.html')
+
 class DashboardView(View):
     def get(self, request):
         return render(request, "dashboard.html")

@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
-
+from django.urls import reverse_lazy
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -116,9 +116,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'afrodita',
         'USER': 'root',
-        'PASSWORD': 'trogoncollaris1126',
+        'PASSWORD': '1234',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '3305',
     }
 }
 # Password validation
@@ -167,4 +167,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #LOGIN
 
-LOGIN_URL = 'pages.authentication.login' #la que está como el template
+LOGIN_URL = 'login' #la que está como el template
+
+#USUARIOS
+
+LOGIN_REDIRECT_URL = reverse_lazy('dashboard')
+
+AUTH_USER_MODEL = "Usuarios.User" #Establecer cual será el modelo de usuario

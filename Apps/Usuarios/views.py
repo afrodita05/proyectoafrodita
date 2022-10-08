@@ -3,13 +3,20 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.views.generic import TemplateView
-from Apps.Usuarios.models import Usuarios
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.decorators import login_required
+from Apps.Usuarios.models import Usuarios, User
 
+@login_required
 def usuario(request):
-    usuario=Usuarios.objects.filter()
+    usuario=User.objects.filter()
     context={"usuario":usuario}
     return render(request,"Usuarios/Usuarios.html",context)
 
+def pruebaCr(request):
+    usuario = User.objects.create_user('pepe', 'pepe@pepe.com', 'pepelo')
+    usuario.save()
+    return redirect("Usuario")
 
 def formularioUsuario(request):
     return render(request,'Usuarios/Crear-Usuario.html')
@@ -18,7 +25,7 @@ def formularioUsuario(request):
 def crearUsuario(request):
     documentoUsuario= request.POST['documento']
     error= []
-    if Usuarios.objects.filter(documento=documentoUsuario).exists():
+    if User.objects.filter(documento=documentoUsuario).exists():
         print("Error. El documento ingresado ya existe en otro usuario.")
         error.append(1)
         context={"error":error}
@@ -28,7 +35,7 @@ def crearUsuario(request):
         nombreUsuario= request.POST['usuario']
         password= request.POST['contrasena']
         correo= request.POST['correo']
-        usuarios=Usuarios(documento=documentoUsuario,nPersona=nombrePersona,nUsuario=nombreUsuario,contrasena=password,correo=correo)
+        usuarios=User(documento=documentoUsuario,nPersona=nombrePersona,username=nombreUsuario,password=make_password(password),email=correo)
         error.clear()
         usuarios.save()
 
@@ -37,7 +44,7 @@ def crearUsuario(request):
 
 
 def editarU(request, id):
-    mostrar=Usuarios.objects.filter(idUsuario=id).first()
+    mostrar=User.objects.filter(id=id).first()
     context={"mostrar":mostrar}
     return render(request,"Usuarios/Editar-Usuario.html",context)
     
@@ -49,11 +56,11 @@ def actualizarU(request, id):
     correo = request.GET['correo']
     password = request.GET['contrasena']
     
-    actualizar=Usuarios.objects.get(idUsuario=id)
+    actualizar=User.objects.get(id=id)
     actualizar.nPersona=nombrePersona #Será este?
-    actualizar.nUsuario=nombreUsuario 
-    actualizar.correo=correo
-    actualizar.contrasena=password
+    actualizar.username=nombreUsuario 
+    actualizar.email=correo
+    actualizar.password=password
     actualizar.save()
     return redirect("Usuario")
 

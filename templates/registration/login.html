@@ -2,6 +2,8 @@
 {% load static %}
 {% block title %}Login{% endblock title %}
 {% block content %}
+
+<!-- ESTE ES -->
                 <div class="auth-full-page-content d-flex p-sm-5 p-4">
                     <div class="w-100">
                         <div class="d-flex flex-column h-100">
@@ -15,10 +17,10 @@
                                     <h5 class="mb-0">Bienvenido de nuevo!</h5>
                                     <p class="text-muted mt-2">Inicia sesión para continuar.</p>    
                                 </div>
-                                <form method="post" action="{% url 'pages.authentication.login' %}" class="mt-4 pt-2" >
+                                <form method="post" >
                                     {% csrf_token %}
                                     <div class="form-floating form-floating-custom mb-4">
-                                        <input type="text" class="form-control" id="input-username" placeholder="Enter User Name">
+                                        <input type="text" class="form-control" placeholder="Enter User Name" name="username">
                                         <label for="input-username">Nombre de usuario</label>
                                         <div class="form-floating-icon">
                                            <i data-feather="users"></i>
@@ -26,7 +28,7 @@
                                     </div>
 
                                     <div class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
-                                        <input type="password" class="form-control pe-5" id="password-input" placeholder="Enter Password">
+                                        <input type="password" class="form-control pe-5" placeholder="Enter Password" name="password">
                                         
                                         <button type="button" class="btn btn-link position-absolute h-100 end-0 top-0" id="password-addon">
                                             <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
