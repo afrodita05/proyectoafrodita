@@ -65,6 +65,7 @@ def actualizarClienteCitas(request, id):
     actualizar.nombre=nombreCliente
     actualizar.documento=documentoCliente
     actualizar.telefono=telefonoCliente
+    actualizar.save()
     return redirect("/listarCita/")
    
 def actualizarCita(request, id):
