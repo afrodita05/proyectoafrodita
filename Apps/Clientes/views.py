@@ -1,6 +1,7 @@
 from tkinter import S
 from django.shortcuts import render ,redirect
 from Apps.Clientes.models import Clientes,EsteticoCorporal,EsteticoFacial,ControlMedidas,Sesiones
+import re
 
 # Create your views here.
 
@@ -23,6 +24,20 @@ def crearCliente(request):
     fechaNacimientoCliente=request.POST['fechaNacimiento']
     estadoCivilCliente=request.POST['estadoCivil']
     numeroHijosCliente=request.POST['numeroHijos']
+
+    cliente=Clientes.objects.filter(documento=documentoCliente).exists()
+    validarDocumento=re.match('^\d{6,11}$',documentoCliente)
+
+    if cliente:
+        error="Error.El documento ya está registrado"
+        contexto={"error":error}
+        return render(request,"Clientes/Crear-Cliente.html", contexto )
+
+    elif validarDocumento:
+        error="Error.El documento excede el número"
+        contexto={"error":error}
+        return render(request,"Clientes/Crear-Cliente.html", contexto )
+
     clientes=Clientes(nombre=nombreCliente,documento=documentoCliente,sexo=sexoCliente,telefono=telefonoCliente,direccion=direccionCliente,correo=correoCliente,fechaNacimiento=fechaNacimientoCliente,estadoCivil=estadoCivilCliente,numeroHijos=numeroHijosCliente)
     clientes.save()
     return redirect("/Clientes/") #url 
