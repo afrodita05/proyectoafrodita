@@ -25,8 +25,9 @@ def crearCita(request):
     idCliente=clientes.idCliente
     servicioCita=request.POST['servicios1'] 
     idServicio = Servicios.objects.filter(nServicio=servicioCita).values('idServicio')[0]['idServicio']     
-    fechaCita=request.POST['fechaCita']    
-    citas=Citas(fecha=fechaCita,idServicio_id=idServicio,idCliente_id=idCliente)
+    fechaCita=request.POST['fechaCita']
+    estadosCitas=request.POST['estadoc']    
+    citas=Citas(fecha=fechaCita,idServicio_id=idServicio,idCliente_id=idCliente,estado=estadosCitas)
     citas.save()
     return redirect("Cita")
 
