@@ -60,7 +60,7 @@ def actualizarU(request, id):
     actualizar.nPersona=nombrePersona #Será este?
     actualizar.username=nombreUsuario 
     actualizar.email=correo
-    actualizar.password=password
+    actualizar.password=make_password(password)
     actualizar.save()
     return redirect("Usuario")
 

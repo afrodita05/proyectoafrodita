@@ -34,11 +34,13 @@ def ActualizarProveedor(request, idProveedor):
      telefonoProveedor= request.GET['telefono']  
      correoproveedor= request.GET['correo']
      direccionproveedor= request.GET['direccion']
+     empresaproveedor= request.GET['proveedor']
      ActualizarProveedor=Proveedor.objects.get(idProveedor=idProveedor)
      ActualizarProveedor.nombre=nombreproveedor
      ActualizarProveedor.telefono=telefonoProveedor
      ActualizarProveedor.correo=correoproveedor
      ActualizarProveedor.direccion=direccionproveedor
+     ActualizarProveedor.proveedor=empresaproveedor
      ActualizarProveedor.save()
      return redirect ("Proveedor")
 
