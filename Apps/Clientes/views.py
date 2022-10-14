@@ -25,17 +25,29 @@ def crearCliente(request):
     estadoCivilCliente=request.POST['estadoCivil']
     numeroHijosCliente=request.POST['numeroHijos']
 
+    validarCliente=re.search(r'^[a-zA-Z\s]{2,60}$',nombreCliente, flags=re.MULTILINE)
     cliente=Clientes.objects.filter(documento=documentoCliente).exists()
-    validarDocumento=re.match('^\d{6,11}$',documentoCliente)
-
-    if cliente:
-        error="Error.El documento ya está registrado"
-        contexto={"error":error}
+    validarDocumento=re.search(r'^[0-9]{6,10}$',documentoCliente, flags=re.MULTILINE)
+    validarTelefono=re.search(r'^[0-9]{7,10}$',telefonoCliente, flags=re.MULTILINE)
+    
+    if validarCliente==None:
+        errorNombre="Error.solo se permiter ingresar caracteres alfabeticos"
+        contexto={"errorNombre":errorNombre}
         return render(request,"Clientes/Crear-Cliente.html", contexto )
 
-    elif validarDocumento:
-        error="Error.El documento excede el número"
-        contexto={"error":error}
+    elif cliente:
+        errorDocumento="Error.El documento ya está registrado"
+        contexto={"errorDocumento":errorDocumento}
+        return render(request,"Clientes/Crear-Cliente.html", contexto )
+
+    elif validarDocumento==None:
+        errorDocumento="Error.El documento solo permite números entre 6 y 10 caracteres"
+        contexto={"errorDocumento":errorDocumento}
+        return render(request,"Clientes/Crear-Cliente.html", contexto )
+
+    elif validarTelefono==None:
+        errorTelefono="Error.El número de telefonbo solo puede tener caracteres númericos"
+        contexto={"errorTelefono":errorTelefono}
         return render(request,"Clientes/Crear-Cliente.html", contexto )
 
     clientes=Clientes(nombre=nombreCliente,documento=documentoCliente,sexo=sexoCliente,telefono=telefonoCliente,direccion=direccionCliente,correo=correoCliente,fechaNacimiento=fechaNacimientoCliente,estadoCivil=estadoCivilCliente,numeroHijos=numeroHijosCliente)
