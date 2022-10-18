@@ -5023,6 +5023,21 @@ textarea.form-control-lg {
   border: 1px solid #e9e9ef;
   border-radius: 0.25rem;
 }
+.cardS {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border-radius: 0.25rem;
+}
 .card > hr {
   margin-left: 0;
   margin-right: 0;

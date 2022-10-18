@@ -136,4 +136,11 @@
 
 <!-- form wizard init -->
 <script src="{% static 'js/pages/form-wizard.init.js'%}"></script>
+<script>
+    $("#datatable").DataTable({
+   language: {
+     url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
+   },
+ });
+</script>
 {% endblock extra_js %}

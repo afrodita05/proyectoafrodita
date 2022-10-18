@@ -114,8 +114,8 @@
                         <div class="table-responsive">
                             <table id="list" class="table table-nowrap align-middle">
                                 <thead>
+                                    {% for listar in CListarInsumos %}
                                     <tr>
-                                    
                                         <th>Nombre</th>
                                         <th>Cantidad</th>
                                         <th>Precio</th>
@@ -124,9 +124,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for listar in CListarInsumos %}
+                                    
                                     <tr data-id="1">
-  
                                         <td data-field="nombre">{{listar.insumo}}</td>
                                         <td data-field="cantidad">{{listar.cantidad}}</td>
                                         <td data-field="precio">{{listar.ValorUnidad}}</td>
@@ -143,12 +142,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-top: 40px; margin-bottom: 20px;" >
+                <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-top: 20px; margin-bottom: 30px;" >
                     <button type="submit" id= "guardar" class="btn btn-primary" style="width: 20%; margin-right: 20px;">Guardar</button>
                     <a href="{% url 'Compra' %}" type="submit" class="btn btn-danger" style="width: 20%">Cancelar</a>
                 </div>
-                
-        
             </div> <!-- end col -->
             
         </div> <!-- container-fluid -->

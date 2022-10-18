@@ -126,5 +126,11 @@
 <script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
 <!-- form validation -->
 <script src="{% static 'js/pages/form-validation.init.js'%}"></script>
-
+<script>
+    $("#datatable").DataTable({
+   language: {
+     url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
+   },
+ });
+</script>
 {% endblock extra_js %}

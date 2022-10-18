@@ -19,8 +19,13 @@ const onSubmitForm = (event) => {
 renderItemList = () => {
     const list = document.querySelector('#list');
     list.innerHTML=""
+    
     items.forEach((item) => {
         const newRow = `
+<<<<<<< HEAD
+=======
+        
+>>>>>>> Julian
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -28,7 +33,11 @@ renderItemList = () => {
                 <th>Precio</th>
                 <th>Total</th>
             </tr>
+<<<<<<< HEAD
          </thead>
+=======
+        </thead>
+>>>>>>> Julian
             <tr>
                 <td>${item.insumo}</td>
                 <td>${item.cantidad}</td>
