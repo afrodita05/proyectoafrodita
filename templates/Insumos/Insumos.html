@@ -91,9 +91,9 @@
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
-                                            {% for insumo in insumos %}
                                                 <tbody>
                                                     <tr data-id="1">
+                                                        {% for insumo in insumos %}
                                                         <td data-field="id" style="width: 80px">{{insumo.idInsumo}}</td>
                                                         <td data-field="insumo">{{insumo.nombre}}</td>
                                                         <td data-field="cantidad">{{insumo.cantidad}}</td>
@@ -106,8 +106,8 @@
                                                             </a> 
                                                         </td>
                                                     </tr>
+                                                    {% endfor %}
                                                 </tbody>
-                                            {% endfor %}
                                         </table>
                                     </div>
                                 </div>
@@ -129,7 +129,6 @@
             </script>
         {% endif %}
     </div> <!-- End Page-content -->
-    
     {% block footer %}
         {% include 'partials/footer.html' %}
     {% endblock footer %}
@@ -156,7 +155,6 @@
 <script src="{% static 'libs/sweetalert2/dist/sweetalert2.min.js'%}"></script>
 <!-- Sweet alert init js-->
 <script src="{% static 'js/pages/sweetalert.init.js'%}"></script>
-
 <!-- Responsive examples -->
 <script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
 <script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js'%}"></script>
@@ -167,4 +165,11 @@
 <!-- form validation -->
 <script src="{% static 'js/pages/form-validation.init.js'%}"></script>
 
+<script>
+     $("#datatable").DataTable({
+    language: {
+      url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
+    },
+  });
+</script>
 {% endblock extra_js %}

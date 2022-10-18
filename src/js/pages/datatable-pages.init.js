@@ -14,3 +14,8 @@ $(document).ready(function() {
     });
     $(".dataTables_length select").addClass('form-select form-select-sm');
 });
+$("#datatable").DataTable({
+    language: {
+      url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
+    },
+  });
