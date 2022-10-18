@@ -27,76 +27,77 @@
             <div class="card">
                 <div style="margin: 60px; " >
                     <!--  FORMULARIO CON VALIDACIONES -->
-                    <form action="{% url 'Clientes.Crear-Cliente' %}" id="crear" method="POST" id="">
+                    <form id="crear" method="POST" id="">
                         {% csrf_token %}
                         <input type="hidden" />
                         <div class="row">
                             <div class="col-xl-4 col-lg-6">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Nombre</label>
-                                    <input name="nombre" type="text" required data-pristine-required-message="Por favor ingrese el nombre completo " placeholder="Ingrese el nombre completo" class="form-control"/>
-                                    <p style="color: red">{{errorNombre}}</p>
+                                    {{formulario_cliente.nombre}}
+                                    {% for error in formulario_cliente.nombre.errors %}
+                                    <p style="color:red"> {{error}}</p>
+                                    {% endfor %}
                                 </div>
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Documento</label>
-                                    <input name="documento" type="text" data-pristine-required-message="Por favor ingrese el número de documento " placeholder="Ingrese el número de documento" required class="form-control" />
-                                    <p style="color: red">{{errorDocumento}}</p> 
+                                    {{formulario_cliente.documento}}
+                                    {% for error in formulario_cliente.documento.errors %}
+                                    <p style="color:red"> {{error}}</p>
+                                    {% endfor %}
                                 </div>
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Sexo</label>
-                                    <select name="sexo" class="form-select" >
-                                        <option value="Masculino">Masculino</option>
-                                        <option value="Femenino">Femenino</option>
-                                    </select>
+                                    {{formulario_cliente.sexo}}
                                 </div>
                             </div>  
                             <div class="col-xl-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Estado civil</label>
-                                    <select name="estadoCivil" class="form-select">
-                                        <option value="Soltero">Soltero</option>
-                                        <option value="Casado">Casado</option>
-                                        <option value="Union libre">Union libre</option>
-                                        <option value="Divorciado">Divorciado</option>
-                                        <option value="Viudo">Viudo</option>
-                                    </select>
+                                    {{formulario_cliente.estadoCivil}}
                                 </div>
                             </div>  
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Número de hijos</label>
-                                    <input name="numeroHijos" type="text" data-pristine-required-message="Por favor ingrese un número de hijos " placeholder="Ingrese el número de hijos" required class="form-control"  />
+                                    {{formulario_cliente.numeroHijos}}
+                                    {% for error in formulario_cliente.numeroHijos.errors %}
+                                    <p style="color:red"> {{error}}</p>
+                                    {% endfor %}
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-6">
                                 <div class="mb-3">
                                     <label class="form-label">Fecha de nacimiento</label>
-                                    <input name="fechaNacimiento" type="date" class="form-control" id="datepicker-basic">
+                                    {{formulario_cliente.fechaNacimiento}}
                                 </div>
                             </div> 
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Teléfono</label>
-                                    <input name="telefono" type="text" data-pristine-required-message="Por favor ingrese un número de teléfono " placeholder="Ingrese el número de teléfono" required class="form-control" />
-                                    <p style="color: red">{{errorTelefono}}</p>
+                                    {{formulario_cliente.telefono}}
+                                    {% for error in formulario_cliente.telefono.errors %}
+                                    <p style="color:red"> {{error}}</p>
+                                    {% endfor %}
                                 </div>
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Dirección</label>
-                                    <input name="direccion" type="text" data-pristine-required-message="Por favor ingrese una dirección "placeholder="Ingrese la dirección" required class="form-control" />
+                                    {{formulario_cliente.direccion}}
+                                    {% for error in formulario_cliente.direccion.errors %}
+                                    <p style="color:red"> {{error}}</p>
+                                    {% endfor %}
                                 </div>
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Correo</label>
-                                    <input name="correo" type="email" required
-                                        data-pristine-required-message="Por favor ingresar el correo electrónico" placeholder="Ingrese el correo electrónico"
-                                        class="form-control" />
+                                    {{formulario_cliente.correo}}
                                 </div>
                             </div>
                         </div>

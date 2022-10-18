@@ -25,7 +25,7 @@ from Apps.Citas.views import crearCita, formularioCita, listarCita, editarCita, 
 from Apps.login.views import Login, recuperar_contrasena
 from Apps.login.views import Login, recuperar_contrasena
 # from Apps.Usuarios.views import Usuarios, Crear_Usuario, Editar_Usuario
-from Apps.Clientes.views import cliente,formularioCliente,crearCliente,editarCliente,actualizarCliente,detalleCliente,formularioCorporal,crearCorporal,VerDetalleCorporal,formularioFacial,crearFacial,VerDetalleFacial,formularioControlMedidas,crearControlMedidas,formularioPagosSesionesCorporal,crearPagosSesionesCorporal,formularioPagosSesionesFacial,crearPagosSesionesFacial,editarCliente,editarPagosSesionesFacial,actualizarPagosSesionesFacial,editarPagosSesionesCorporal,actualizarPagosSesionesCorporal
+from Apps.Clientes.views import *
 from Apps.Usuarios.views import usuario, crearUsuario, formularioUsuario, editarU, actualizarU, pruebaCr
 from Apps.Servicios.views import servicio, crearServicio, formularioServicio, editarS, actualizarS, eliminarS
 from Apps.Proveedores.views import FormularioAgregarProveedor,CrearProveedor,ListarProveedor,EditarProveedor,ActualizarProveedor
@@ -156,18 +156,19 @@ urlpatterns = [
         name= "Insumos",
     ),
     path ('', include ('Apps.Insumos.urls')),
+
     #CLIENTES
     path(
         "Clientes/", 
-        view= cliente,
+        view= listarCliente,
         name= "Clientes",
     ),
 
-    path(
-        "FormularioCliente/",
-        view= formularioCliente,
-        name= "Clientes.Formulario-Cliente",
-    ),
+    # path(
+    #     "FormularioCliente/",
+    #     view= formularioCliente,
+    #     name= "Clientes.Formulario-Cliente",
+    # ),
 
     path(
         "CrearCliente/",
@@ -181,13 +182,6 @@ urlpatterns = [
         name= "Clientes.Editar-Cliente",
     ),
 
-      path(
-        "ActualizarCliente/<int:id>",
-        view= actualizarCliente,
-        name= "Clientes.Actualizar-Cliente",
-    ),
-
-
     path(
         "VerDetalle/<int:id>",
         view= detalleCliente,
@@ -195,15 +189,9 @@ urlpatterns = [
     ),
 
     path(
-        "FormularioCorporal/<int:id>",
-        view= formularioCorporal,
-        name= "Clientes.Formulario-Corporal",
-    ),
-
-    path(
         "CrearCorporal/<int:id>",
         view= crearCorporal,
-        name= "Clientes.Ver-Detalles.Crear-Corporal",
+        name= "Crear-Corporal",
     ),
     
     path(
