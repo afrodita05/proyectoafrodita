@@ -126,7 +126,7 @@ class EsteticoCorporal(models.Model):
     sensacionPI=models.CharField(max_length=2)
     retieneL=models.CharField(max_length=2)
     varices=models.CharField(max_length=2)
-    arañitas=models.CharField(max_length=2)
+    aranitas=models.CharField(max_length=2)
     observaciones=models.TextField(blank=True,null=True)
     
 class ControlMedidas(models.Model):

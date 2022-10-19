@@ -70,8 +70,7 @@
                                 <div class="text-center mb-4" style="text-align: center;">
                                     <h5>Sufre problemas</h5>
                                 </div>
-                                <form action="{% url 'Crear-Corporal' cliente.idCliente  %}"
-                                    id="c" method="GET" id="crear">
+                                <form action="{% url 'Crear-Corporal' cliente.idCliente  %}" method="GET" id="crear">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
@@ -999,7 +998,7 @@
                                                     <i class="bx bx-chevron-left me-1"></i> Anterior </a>
                                             </li>
                                             <li class="float-end"> 
-                                                <button type="submit" for="c" class="btn btn-primary" >
+                                                <button type="submit" for="crear" class="btn btn-primary" >
                                                     Guardar
                                                     <i class="mdi mdi-content-save-outline ms-1"></i>
                                                 </button>
