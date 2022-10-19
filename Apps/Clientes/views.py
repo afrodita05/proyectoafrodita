@@ -42,144 +42,143 @@ def detalleCliente(request, id):
     contexto={"mostrar":mostrar,"corporal":corporal,"facial":facial}
     return render(request,"Clientes/Detalles-Clientes.html",contexto)
 
-# def formularioCorporal(request,id):
-#     cliente=Clientes.objects.filter(idCliente=id).first()
-#     contexto={"cliente":cliente}
-#     return render(request,"Clientes/Crear-Corporal.html",contexto)
+def formularioCorporal(request,id):
+    cliente=Clientes.objects.filter(idCliente=id).first()
+    contexto={"cliente":cliente}
+    return render(request,"Clientes/Crear-Corporal.html",contexto)
 
 def crearCorporal(request,id):
-    if request.method=='GET':
-        crearId=Clientes.objects.get(idCliente=id)
-        formulario_corporal=FormularioCorporal(request.GET,instance=crearId)
-        if formulario_corporal.is_valid():
-            formulario_corporal.save()
-            return redirect('Clientes.Ver-detalle',id)
-    else: 
-        formulario_corporal=FormularioCorporal()
-    contexto={'formulario_corporal':formulario_corporal}
-    return render(request,'Clientes/Crear-Corporal.html',contexto)
+    # if request.method=='GET':
+    #     crearId=Clientes.objects.get(idCliente=id)
+    #     formulario_corporal=FormularioCorporal(request.GET,instance=crearId)
+    #     if formulario_corporal.is_valid():
+    #         formulario_corporal.save()
+    #         return redirect('Clientes.Ver-detalle',id)
+    # else: 
+    #     formulario_corporal=FormularioCorporal()
+    # contexto={'formulario_corporal':formulario_corporal}
+    # return render(request,'Clientes/Crear-Corporal.html',contexto)
 
-
-    # crearId=Clientes.objects.get(idCliente=id)
-    # nombreECorporal=request.GET['nombreE']
-    # #Sufre problemas
-    # tensionACorporal=request.GET['tensionA']
-    # digestivoCorporal=request.GET['digestivo']
-    # circulacionCorporal=request.GET['circulacion']
-    # endocrinoCorporal=request.GET['endocrino']
-    # cardiacosCorporal=request.GET['cardiacos']
-    # otrosPCorporal=request.GET['otrosP']
-    # #Peso actual
-    # kilosCorporal=request.GET['kilos']
-    # tallaCorporal=request.GET['talla']
-    # alturaCorporal=request.GET['altura'] 
-    # masaCCorporal=request.GET['masaC']
-    # siluetasCorporal=request.GET['siluetas']
-    # cirugiasCorporal=request.GET['cirugias']
-    # fibrosisCorporal=request.GET['fibrosis']
-    # costumbresACorporal=request.GET['costumbresA']
-    # deportesPCorporal=request.GET['deportesP']
-    # #Modo vida
-    # modoVCorporal=request.GET['modoV']
-    # fumaCorporal=request.GET['fuma']
-    # alcoholCorporal=request.GET['alcohol']
-    # calidadSCorporal=request.GET['calidadS']
-    # notasVCorporal=request.GET['notasV']
-    # #Observaciones
-    # problemasTCorporal=request.GET['problemasT']
-    # #Grasa localizada
-    # abdomenCorporal=request.GET['abdomen']
-    # muslosCorporal=request.GET['muslos']
-    # nalgasCorporal=request.GET['nalgas']
-    # espaldaCorporal=request.GET['espalda']
-    # piernasCorporal=request.GET['piernas']
-    # brazosCorporal=request.GET['brazos']
-    # notasOCorporal=request.GET['notasO']
-    # tratamientosRCorporal=request.GET['tratamientosR']
-    # tratamientosECorporal=request.GET['tratamientosE']
-    # #Antecedentes personales
-    # dermatitisCorporal=request.GET['dermatitis']
-    # cirugias1Corporal=request.GET['cirugias1']
-    # cualesCCorporal=request.GET['cualesC']
-    # hemofiliaCorporal=request.GET['hemofilia']
-    # embarazoCorporal=request.GET['embarazo']
-    # cancerCorporal=request.GET['cancer']
-    # hepatitisCorporal=request.GET['hepatitis']
-    # diabetesCorporal=request.GET['diabetes']
-    # artitrisCorporal=request.GET['artritis']
-    # artrosisCorporal=request.GET['artrosis']
-    # escoliosisCorporal=request.GET['escoliosis']
-    # fracturasCorporal=request.GET['fracturas']
-    # implantesMCorporal=request.GET['implantesM']
-    # hipertensionCorporal=request.GET['hipertension']
-    # herniasDCorporal=request.GET['herniasD']
-    # dondeHDCorporal=request.GET['dondeHD']
-    # hiperlordosisCorporal=request.GET['hiperlordosis']
-    # hipercifosisCorporal=request.GET['hipercifosis']
-    # problemasCCorporal=request.GET['problemasC']
-    # hipotensionCorporal=request.GET['hipotension']
-    # osteoporosisCorporal=request.GET['osteoporosis']
-    # osteomielitisCorporal=request.GET['osteomielitis']
-    # comedonesCorporal=request.GET['comedones']
-    # pustulasCorporal=request.GET['pustulas']
-    # brotesCorporal=request.GET['brotes']
-    # quistesCorporal=request.GET['quistes']
-    # nodulosCorporal=request.GET['nodulos']
-    # zonasACorporal=request.GET['zonasA']
+    crearId=Clientes.objects.get(idCliente=id)
+    nombreECorporal=request.GET['nombreE']
+    #Sufre problemas
+    tensionACorporal=request.GET['tensionA']
+    digestivoCorporal=request.GET['digestivo']
+    circulacionCorporal=request.GET['circulacion']
+    endocrinoCorporal=request.GET['endocrino']
+    cardiacosCorporal=request.GET['cardiacos']
+    otrosPCorporal=request.GET['otrosP']
+    #Peso actual
+    kilosCorporal=request.GET['kilos']
+    tallaCorporal=request.GET['talla']
+    alturaCorporal=request.GET['altura'] 
+    masaCCorporal=request.GET['masaC']
+    siluetasCorporal=request.GET['siluetas']
+    cirugiasCorporal=request.GET['cirugias']
+    fibrosisCorporal=request.GET['fibrosis']
+    costumbresACorporal=request.GET['costumbresA']
+    deportesPCorporal=request.GET['deportesP']
+    #Modo vida
+    modoVCorporal=request.GET['modoV']
+    fumaCorporal=request.GET['fuma']
+    alcoholCorporal=request.GET['alcohol']
+    calidadSCorporal=request.GET['calidadS']
+    notasVCorporal=request.GET['notasV']
+    #Observaciones
+    problemasTCorporal=request.GET['problemasT']
+    #Grasa localizada
+    abdomenCorporal=request.GET['abdomen']
+    muslosCorporal=request.GET['muslos']
+    nalgasCorporal=request.GET['nalgas']
+    espaldaCorporal=request.GET['espalda']
+    piernasCorporal=request.GET['piernas']
+    brazosCorporal=request.GET['brazos']
+    notasOCorporal=request.GET['notasO']
+    tratamientosRCorporal=request.GET['tratamientosR']
+    tratamientosECorporal=request.GET['tratamientosE']
+    #Antecedentes personales
+    dermatitisCorporal=request.GET['dermatitis']
+    cirugias1Corporal=request.GET['cirugias1']
+    cualesCCorporal=request.GET['cualesC']
+    hemofiliaCorporal=request.GET['hemofilia']
+    embarazoCorporal=request.GET['embarazo']
+    cancerCorporal=request.GET['cancer']
+    hepatitisCorporal=request.GET['hepatitis']
+    diabetesCorporal=request.GET['diabetes']
+    artitrisCorporal=request.GET['artritis']
+    artrosisCorporal=request.GET['artrosis']
+    escoliosisCorporal=request.GET['escoliosis']
+    fracturasCorporal=request.GET['fracturas']
+    implantesMCorporal=request.GET['implantesM']
+    hipertensionCorporal=request.GET['hipertension']
+    herniasDCorporal=request.GET['herniasD']
+    dondeHDCorporal=request.GET['dondeHD']
+    hiperlordosisCorporal=request.GET['hiperlordosis']
+    hipercifosisCorporal=request.GET['hipercifosis']
+    problemasCCorporal=request.GET['problemasC']
+    hipotensionCorporal=request.GET['hipotension']
+    osteoporosisCorporal=request.GET['osteoporosis']
+    osteomielitisCorporal=request.GET['osteomielitis']
+    comedonesCorporal=request.GET['comedones']
+    pustulasCorporal=request.GET['pustulas']
+    brotesCorporal=request.GET['brotes']
+    quistesCorporal=request.GET['quistes']
+    nodulosCorporal=request.GET['nodulos']
+    zonasACorporal=request.GET['zonasA']
     
-    # #Adiposidad
-    # adiposidadLCorporal=request.GET['adiposidadL']
-    # adiposidadZCorporal=request.GET['adiposidadZ']
-    # adiposidadCCorporal=request.GET['adiposidadC']
-    # #Cicatrices o estrías
-    # cicatricesELCorporal=request.GET['cicatricesEL']
-    # cicatricesEZCorporal=request.GET['cicatricesEZ']
-    # cicatricesETCorporal=request.GET['cicatricesET']
-    # #Flacidez
-    # flacidezLCorporal=request.GET['flacidezL']
-    # flacidezZCorporal=request.GET['flacidezZ']
-    # flacidezCCorporal=request.GET['flacidezC']
-    # #Alt.vasculares
-    # altVascularesLCorporal=request.GET['altVascularesL']
-    # altVascularesZCorporal=request.GET['altVascularesZ']
-    # altVascularesTCorporal=request.GET['altVascularesT']
-    # #Celulitis
-    # celulitisLCorporal=request.GET['celulitisL']
-    # celulitisZCorporal=request.GET['celulitisZ']
-    # celulitisCCorporal=request.GET['celulitisC']
-    # #Temperatura
-    # temperaturaCorporal=request.GET['temperatura']
-    # #Alt.pigmentarias
-    # altpigmentariasARCorporal=request.GET['altpigmentariasAR']
-    # altpigmentariasALCorporal=request.GET['altpigmentariasAL']
-    # altpigmentariasAPCorporal=request.GET['altpigmentariasAP']
-    # altpigmentariasAMRCorporal=request.GET['altpigmentariasAMR']
-    # altpigmentariasALVCorporal=request.GET['altpigmentariasALV']
-    # altpigmentariasAPVCorporal=request.GET['altpigmentariasAPV']
-    # #Sensación
-    # sensacionLGCorporal=request.GET['sensacionLG']
-    # sensacionMGCorporal=request.GET['sensacionMG']
-    # sensacionMUGCorporal=request.GET['sensacionMUG']
-    # sensacionLFCorporal=request.GET['sensacionLF']
-    # sensacionMFCorporal=request.GET['sensacionMF']
-    # sensacionMUFCorporal=request.GET['sensacionMUF']
-    # sensacionPDCorporal=request.GET['sensacionPD']
-    # sensacionPICorporal=request.GET['sensacionPI']
-    # retieneLCorporal=request.GET['retieneL']
-    # varicesCorporal=request.GET['varices']
-    # aranitasCorporal=request.GET['aranitas']
-    # observacionesCorporal=request.GET['observaciones']
+    #Adiposidad
+    adiposidadLCorporal=request.GET['adiposidadL']
+    adiposidadZCorporal=request.GET['adiposidadZ']
+    adiposidadCCorporal=request.GET['adiposidadC']
+    #Cicatrices o estrías
+    cicatricesELCorporal=request.GET['cicatricesEL']
+    cicatricesEZCorporal=request.GET['cicatricesEZ']
+    cicatricesETCorporal=request.GET['cicatricesET']
+    #Flacidez
+    flacidezLCorporal=request.GET['flacidezL']
+    flacidezZCorporal=request.GET['flacidezZ']
+    flacidezCCorporal=request.GET['flacidezC']
+    #Alt.vasculares
+    altVascularesLCorporal=request.GET['altVascularesL']
+    altVascularesZCorporal=request.GET['altVascularesZ']
+    altVascularesTCorporal=request.GET['altVascularesT']
+    #Celulitis
+    celulitisLCorporal=request.GET['celulitisL']
+    celulitisZCorporal=request.GET['celulitisZ']
+    celulitisCCorporal=request.GET['celulitisC']
+    #Temperatura
+    temperaturaCorporal=request.GET['temperatura']
+    #Alt.pigmentarias
+    altpigmentariasARCorporal=request.GET['altpigmentariasAR']
+    altpigmentariasALCorporal=request.GET['altpigmentariasAL']
+    altpigmentariasAPCorporal=request.GET['altpigmentariasAP']
+    altpigmentariasAMRCorporal=request.GET['altpigmentariasAMR']
+    altpigmentariasALVCorporal=request.GET['altpigmentariasALV']
+    altpigmentariasAPVCorporal=request.GET['altpigmentariasAPV']
+    #Sensación
+    sensacionLGCorporal=request.GET['sensacionLG']
+    sensacionMGCorporal=request.GET['sensacionMG']
+    sensacionMUGCorporal=request.GET['sensacionMUG']
+    sensacionLFCorporal=request.GET['sensacionLF']
+    sensacionMFCorporal=request.GET['sensacionMF']
+    sensacionMUFCorporal=request.GET['sensacionMUF']
+    sensacionPDCorporal=request.GET['sensacionPD']
+    sensacionPICorporal=request.GET['sensacionPI']
+    retieneLCorporal=request.GET['retieneL']
+    varicesCorporal=request.GET['varices']
+    aranitasCorporal=request.GET['aranitas']
+    observacionesCorporal=request.GET['observaciones']
 
-    # corporal=EsteticoCorporal(nombreE=nombreECorporal,tensionA=tensionACorporal,digestivo=digestivoCorporal,circulacion=circulacionCorporal,endrocrino=endocrinoCorporal,cardiacos=cardiacosCorporal,otrosP=otrosPCorporal,kilos=kilosCorporal,talla=tallaCorporal,altura=alturaCorporal,masaC=masaCCorporal,siluetas=siluetasCorporal,cirugias=cirugiasCorporal,fibrosis=fibrosisCorporal,costumbresA=costumbresACorporal,deportesP=deportesPCorporal,modoV=modoVCorporal,fuma=fumaCorporal, alcohol=alcoholCorporal,calidadS=calidadSCorporal,notasV=notasVCorporal,problemasT=problemasTCorporal,abdomen=abdomenCorporal,muslos=muslosCorporal,nalgas=nalgasCorporal,espalda=espaldaCorporal,piernas=piernasCorporal,brazos=brazosCorporal,notasO=notasOCorporal,tratamientosR=tratamientosRCorporal,tratamientosE=tratamientosECorporal,dermatitis=dermatitisCorporal,cirugias1=cirugias1Corporal,
-    # cualesC=cualesCCorporal,hemofilia=hemofiliaCorporal,embarazo=embarazoCorporal,cancer=cancerCorporal,hepatitis=hepatitisCorporal,diabetes=diabetesCorporal,artritis=artitrisCorporal,artrosis=artrosisCorporal,escoliosis=escoliosisCorporal,fracturas=fracturasCorporal,implantesM=implantesMCorporal,hipertencion=hipertensionCorporal,
-    # herniasD=herniasDCorporal,dondeHD=dondeHDCorporal,hiperlordosis=hiperlordosisCorporal,hipercifosis=hipercifosisCorporal,
-    # problemasC=problemasCCorporal,
-    # hipotension=hipotensionCorporal,osteoporosis=osteoporosisCorporal,osteomielitis=osteomielitisCorporal,comedones=comedonesCorporal,pustulas=pustulasCorporal,brotes=brotesCorporal,quistes=quistesCorporal,nudulos=nodulosCorporal,zonasA=zonasACorporal,adiposidadL=adiposidadLCorporal,adiposidadZ=adiposidadZCorporal,adiposidadC=adiposidadCCorporal,cicatricesEL=cicatricesELCorporal,cicatricesEZ=cicatricesEZCorporal,cicatricesET=cicatricesETCorporal,flacidezL=flacidezLCorporal,flacidezZ=flacidezZCorporal,flacidezC=flacidezCCorporal,altVascularesL=altVascularesLCorporal,altVascularesZ=altVascularesZCorporal,
-    # altVascularesT=altVascularesTCorporal,celulitisL=celulitisLCorporal,celulitisZ=celulitisZCorporal,
-    # celulitisC=celulitisCCorporal,temperatura=temperaturaCorporal,altpigmentariasAR=altpigmentariasARCorporal,altpigmentariasAL=altpigmentariasALCorporal,altpigmentariasAP=altpigmentariasAPCorporal,altpigmentariasAMR=altpigmentariasAMRCorporal,altpigmentariasALV=altpigmentariasALVCorporal,altpigmentariasAPV=altpigmentariasAPVCorporal,sensacionLG=sensacionLGCorporal,sensacionMG=sensacionMGCorporal,sensacionMUG=sensacionMUGCorporal,sensacionLF=sensacionLFCorporal,sensacionMF=sensacionMFCorporal,sensacionMUF=sensacionMUFCorporal,sensacionPD=sensacionPDCorporal,sensacionPI=sensacionPICorporal,retieneL=retieneLCorporal,varices=varicesCorporal,arañitas=aranitasCorporal,observaciones=observacionesCorporal,idCliente=crearId
-    # )
-    # corporal.save()
-    # return redirect("Clientes.Ver-detalle",id)
+    corporal=EsteticoCorporal(nombreE=nombreECorporal,tensionA=tensionACorporal,digestivo=digestivoCorporal,circulacion=circulacionCorporal,endrocrino=endocrinoCorporal,cardiacos=cardiacosCorporal,otrosP=otrosPCorporal,kilos=kilosCorporal,talla=tallaCorporal,altura=alturaCorporal,masaC=masaCCorporal,siluetas=siluetasCorporal,cirugias=cirugiasCorporal,fibrosis=fibrosisCorporal,costumbresA=costumbresACorporal,deportesP=deportesPCorporal,modoV=modoVCorporal,fuma=fumaCorporal, alcohol=alcoholCorporal,calidadS=calidadSCorporal,notasV=notasVCorporal,problemasT=problemasTCorporal,abdomen=abdomenCorporal,muslos=muslosCorporal,nalgas=nalgasCorporal,espalda=espaldaCorporal,piernas=piernasCorporal,brazos=brazosCorporal,notasO=notasOCorporal,tratamientosR=tratamientosRCorporal,tratamientosE=tratamientosECorporal,dermatitis=dermatitisCorporal,cirugias1=cirugias1Corporal,
+    cualesC=cualesCCorporal,hemofilia=hemofiliaCorporal,embarazo=embarazoCorporal,cancer=cancerCorporal,hepatitis=hepatitisCorporal,diabetes=diabetesCorporal,artritis=artitrisCorporal,artrosis=artrosisCorporal,escoliosis=escoliosisCorporal,fracturas=fracturasCorporal,implantesM=implantesMCorporal,hipertencion=hipertensionCorporal,
+    herniasD=herniasDCorporal,dondeHD=dondeHDCorporal,hiperlordosis=hiperlordosisCorporal,hipercifosis=hipercifosisCorporal,
+    problemasC=problemasCCorporal,
+    hipotension=hipotensionCorporal,osteoporosis=osteoporosisCorporal,osteomielitis=osteomielitisCorporal,comedones=comedonesCorporal,pustulas=pustulasCorporal,brotes=brotesCorporal,quistes=quistesCorporal,nudulos=nodulosCorporal,zonasA=zonasACorporal,adiposidadL=adiposidadLCorporal,adiposidadZ=adiposidadZCorporal,adiposidadC=adiposidadCCorporal,cicatricesEL=cicatricesELCorporal,cicatricesEZ=cicatricesEZCorporal,cicatricesET=cicatricesETCorporal,flacidezL=flacidezLCorporal,flacidezZ=flacidezZCorporal,flacidezC=flacidezCCorporal,altVascularesL=altVascularesLCorporal,altVascularesZ=altVascularesZCorporal,
+    altVascularesT=altVascularesTCorporal,celulitisL=celulitisLCorporal,celulitisZ=celulitisZCorporal,
+    celulitisC=celulitisCCorporal,temperatura=temperaturaCorporal,altpigmentariasAR=altpigmentariasARCorporal,altpigmentariasAL=altpigmentariasALCorporal,altpigmentariasAP=altpigmentariasAPCorporal,altpigmentariasAMR=altpigmentariasAMRCorporal,altpigmentariasALV=altpigmentariasALVCorporal,altpigmentariasAPV=altpigmentariasAPVCorporal,sensacionLG=sensacionLGCorporal,sensacionMG=sensacionMGCorporal,sensacionMUG=sensacionMUGCorporal,sensacionLF=sensacionLFCorporal,sensacionMF=sensacionMFCorporal,sensacionMUF=sensacionMUFCorporal,sensacionPD=sensacionPDCorporal,sensacionPI=sensacionPICorporal,retieneL=retieneLCorporal,varices=varicesCorporal,arañitas=aranitasCorporal,observaciones=observacionesCorporal,idCliente=crearId
+    )
+    corporal.save()
+    return redirect("Clientes.Ver-detalle",id)
 
 def formularioFacial(request,id):
     mostrar=Clientes.objects.filter(idCliente=id).first()

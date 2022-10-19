@@ -33,7 +33,7 @@
                         <div class="row">
                             <div class="col-xl-4 col-lg-6">
                                 <div class="form-group mb-3">
-                                    <label class="form-label">Nombre</label>
+                                    <label class="form-label">Nombre *</label>
                                     {{formulario_cliente.nombre}}
                                     {% for error in formulario_cliente.nombre.errors %}
                                     <p style="color:red"> {{error}}</p>
@@ -42,7 +42,7 @@
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
-                                    <label class="form-label">Documento</label>
+                                    <label class="form-label">Documento *</label>
                                     {{formulario_cliente.documento}}
                                     {% for error in formulario_cliente.documento.errors %}
                                     <p style="color:red"> {{error}}</p>
@@ -72,13 +72,13 @@
                             </div>
                             <div class="col-xl-4 col-lg-6">
                                 <div class="mb-3">
-                                    <label class="form-label">Fecha de nacimiento</label>
+                                    <label class="form-label">Fecha de nacimiento *</label>
                                     {{formulario_cliente.fechaNacimiento}}
                                 </div>
                             </div> 
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
-                                    <label class="form-label">Teléfono</label>
+                                    <label class="form-label">Teléfono *</label>
                                     {{formulario_cliente.telefono}}
                                     {% for error in formulario_cliente.telefono.errors %}
                                     <p style="color:red"> {{error}}</p>

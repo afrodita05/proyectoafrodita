@@ -4,8 +4,7 @@
 {% block extra_css %}
 <!-- DataTables -->
 <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
-<link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet"
-    type="text/css" />
+<link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
 {% endblock extra_css %}
 {% block content %}
 <div class="main-content">
@@ -71,49 +70,67 @@
                                 <div class="text-center mb-4" style="text-align: center;">
                                     <h5>Sufre problemas</h5>
                                 </div>
-                                <form id="c" method="GET" id="crear">
+                                <form action="{% url 'Crear-Corporal' cliente.idCliente  %}"
+                                    id="c" method="GET" id="crear">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
-                                                <label class="form-label">Nombre del estetisista</label>
-                                                {{formulario_corporal.nombreE}}
+                                                <label class="form-label">Nombre del esteticista *</label>
+                                                <input name="nombreE" type="text"
+                                                    placeholder="Ingrese el nombre completo" class="form-control" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group mb-3">
                                                 <label class="form-label">Tensión arterial</label>
-                                                {{formulario_corporal.tensionA}}
+                                                <select name="tensionA" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group mb-3">
                                                 <label class="form-label">Digestivo</label>
-                                                {{formulario_corporal.digestivo}}
+                                                <select name="digestivo" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group mb-3">
                                                 <label class="form-label">Endocrino</label>
-                                                {{formulario_corporal.endrocrino}}
+                                                <select name="endocrino" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group mb-3">
                                                 <label class="form-label">Cardiaco</label>
-                                                {{formulario_corporal.cardiacos}}
+                                                <select name="cardiacos" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group mb-3">
                                                 <label class="form-label">Circulatorio</label>
-                                                {{formulario_corporal.circulacion}}
+                                                <select name="circulacion" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
                                                 <div class="mb-3">
                                                     <label for="progresspill-address-input">Otros</label>
-                                                    {{formulario_corporal.otrosP}}
+                                                    <textarea name="otrosP" id="progresspill-address-input"
+                                                        class="form-control" rows="2" placeholder="Otros"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -124,54 +141,70 @@
                                             <div class="col-lg-6">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Kilos</label>
-                                                    {{formulario_corporal.kilos}}
+                                                    <input name="kilos" type="text" 
+                                                        placeholder="Ingrese el nombre completo" class="form-control" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Talla</label>
-                                                    {{formulario_corporal.talla}}
+                                                    <input name="talla" type="text"
+                                                        placeholder="Ingrese el nombre completo" class="form-control" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Altura</label>
-                                                    {{formulario_corporal.altura}}
+                                                    <input name="altura" type="text" 
+                                                        placeholder="Ingrese el nombre completo" class="form-control" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Masa corporal</label>
-                                                    {{formulario_corporal.masaC}}
+                                                    <input name="masaC" type="text" placeholder="Ingrese el nombre completo" class="form-control" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <label class="form-label">Silueta</label>
-                                                {{formulario_corporal.siluetas}}
+                                                <select name="siluetas" class="form-select">
+                                                    <option value="Manzana">Manzana</option>
+                                                    <option value="Rectanguno">Rectangulo</option>
+                                                    <option value="Pera">Pera</option>
+                                                    <option value="Reloj de arena">Reloj de arena</option>
+                                                    <option value="Triangulo invertido">Triangulo invertido</option>
+                                                </select>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
                                                     <label for="progresspill-address-input">Cirugias</label>
-                                                    {{formulario_corporal.cirugias}}
+                                                    <textarea name="cirugias" id="progresspill-address-input"
+                                                        class="form-control" rows="2" placeholder="Cirugias"></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
                                                     <label for="progresspill-address-input">Fibrosis</label>
-                                                    {{formulario_corporal.fibrosis}}
+                                                    <textarea name="fibrosis" id="progresspill-address-input"
+                                                        class="form-control" rows="2" placeholder="Fibrosis"></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
-                                                    <label for="progresspill-address-input">Costumbres alimentarias</label>
-                                                    {{formulario_corporal.costumbresA}}
+                                                    <label for="progresspill-address-input">Costumbres
+                                                        alimentarias</label>
+                                                    <textarea name="costumbresA" id="progresspill-address-input"
+                                                        class="form-control" rows="2"
+                                                        placeholder="Costumbres alimentarias"></textarea>
                                                 </div>
                                             </div>
 
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
                                                     <label for="progresspill-address-input">Deportes practicados</label>
-                                                    {{formulario_corporal.deportesP}}
+                                                    <textarea name="deportesP" id="progresspill-address-input"
+                                                        class="form-control" rows="2"
+                                                        placeholder="Deportes practicados"></textarea>
                                                 </div>
                                             </div>
                                             <div class="text-center mb-4">
@@ -180,40 +213,55 @@
                                             <div class="col-lg-6">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Modo de vida</label>
-                                                    {{formulario_corporal.modoV}}
+                                                    <select name="modoV" class="form-select">
+                                                        <option value="Activa">Activa</option>
+                                                        <option value="Sedentaria">Sedentaria</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Fuma</label>
-                                                    {{formulario_corporal.fuma}}
+                                                    <select name="fuma" class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="si">Si</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Alcohol</label>
-                                                    {{formulario_corporal.alcohol}}
+                                                    <select name="alcohol" class="form-select">
+                                                        <option value="No">No</option>
+                                                        <option value="si">Si</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Calidad del sueño</label>
-                                                    {{formulario_corporal.calidadS}}
+                                                    <select name="calidadS" class="form-select">
+                                                        <option value="Buena">Buena</option>
+                                                        <option value="Mala">Mala</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
                                                     <label for="progresspill-address-input">Notas</label>
-                                                    {{formulario_corporal.notasV}}
+                                                    <textarea name="notasV" id="progresspill-address-input"
+                                                        class="form-control" rows="2" placeholder="Notas"></textarea>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
                                     <ul class="pager wizard twitter-bs-wizard-pager-link">
-                                        <li class="next"><a href="javascript: void(0);" class="btn btn-primary"
-                                                onclick="nextTab()">Siguiente <i
-                                                    class="bx bx-chevron-right ms-1"></i></a></li>
+                                        <li class="next">
+                                            <a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">
+                                                Siguiente 
+                                                <i class="bx bx-chevron-right ms-1"></i>
+                                            </a>
+                                        </li>
                                     </ul>
                             </div>
                             <div class="tab-pane" id="observaciones">
@@ -221,12 +269,15 @@
                                     <div class="text-center mb-4">
                                         <h5>Observaciones</h5>
                                     </div>
-
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="mb-3">
                                                 <label for="progresspill-address-input">Problemas a tratar</label>
-                                                {{formulario_corporal.problemasT}}
+                                                <textarea 
+                                                    name="problemasT" id="progresspill-address-input"
+                                                    class="form-control" rows="2"
+                                                    placeholder="Problemas a tratar">
+                                                </textarea>
                                             </div>
                                         </div>
                                         <div class="text-center mb-4">
@@ -235,63 +286,94 @@
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Abdomen</label>
-                                                {{formulario_corporal.abdomen}}
+                                                <select name="abdomen" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Muslos</label>
-                                                {{formulario_corporal.muslos}}
+                                                <select name="muslos" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Nalgas</label>
-                                                {{formulario_corporal.nalgas}}
+                                                <select name="nalgas" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Espalda</label>
-                                                {{formulario_corporal.espalda}}
+                                                <select name="espalda" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Piernas</label>
-                                                {{formulario_corporal.piernas}}
+                                                <select name="piernas" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Brazos</label>
-                                                {{formulario_corporal.brazos}}
+                                                <select name="brazos" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="mb-3">
                                                 <label for="progresspill-address-input">Notas</label>
-                                                {{formulario_corporal.notasO}}
+                                                <textarea 
+                                                    name="notasO" id="progresspill-address-input"
+                                                    class="form-control" 
+                                                    rows="2" placeholder="Notas">
+                                                </textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="mb-3">
                                                 <label for="progresspill-address-input">Tratamientos recomendados</label>
-                                                {{formulario_corporal.tratamientosR}}
+                                                <textarea 
+                                                    name="tratamientosR" id="progresspill-address-input"
+                                                    class="form-control" rows="2"
+                                                    placeholder="Tratamientos recomendados">
+                                                </textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="mb-3">
                                                 <label for="progresspill-address-input">Tratamientos efectuados</label>
-                                                {{formulario_corporal.tratamientosE}}
+                                                <textarea 
+                                                    name="tratamientosE" id="progresspill-address-input"
+                                                    class="form-control" rows="2"
+                                                    placeholder="Tratamientos efectuados">
+                                                </textarea>
                                             </div>
                                         </div>
                                     </div>
-
                                     <ul class="pager wizard twitter-bs-wizard-pager-link">
-                                        <li class="previous"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()"><i class="bx bx-chevron-left me-1"></i> Anterior</a>
+                                        <li class="previous"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">
+                                            <i class="bx bx-chevron-left me-1"></i>Anterior</a>
                                         </li>
-                                        <li class="next"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">Siguiente <i class="bx bx-chevron-right ms-1"></i></a></li>
+                                        <li class="next"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">
+                                            Siguiente<i class="bx bx-chevron-right ms-1"></i></a>
                                     </ul>
                                 </div>
                             </div>
@@ -302,180 +384,272 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Dermatitis</label>
-                                                {{formulario_corporal.dermatitis}}
+                                                <select name="dermatitis" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Cirugias</label>
-                                                {{formulario_corporal.cirugias1}}
+                                                <select name="cirugias1" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="mb-3">
                                                 <label for="progresspill-address-input">Cuales</label>
-                                                {{formulario_corporal.cualesC}}
+                                                <textarea 
+                                                    name="cualesC" 
+                                                    id="progresspill-address-input"
+                                                    class="form-control" 
+                                                    rows="2" placeholder="Notas">
+                                                </textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Hemofilia</label>
-                                                {{formulario_corporal.hemofilia}}
+                                                <select name="hemofilia" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Embarazo</label>
-                                                {{formulario_corporal.embarazo}}
+                                                <select name="embarazo" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Cáncer</label>
-                                                {{formulario_corporal.cancer}}
+                                                <select name="cancer" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Hepatitis</label>
-                                                {{formulario_corporal.hepatitis}}
+                                                <select name="hepatitis" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">diabetes</label>
-                                                {{formulario_corporal.diabetes}}
+                                                <select name="diabetes" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Artritis</label>
-                                                {{formulario_corporal.artritis}}
+                                                <select name="artritis" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Artrosis</label>
-                                                {{formulario_corporal.artrosis}}
+                                                <select name="artrosis" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Escoliosis</label>
-                                                {{formulario_corporal.escoliosis}}
+                                                <select name="escoliosis" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Fracturas</label>
-                                                {{formulario_corporal.fracturas}}
+                                                <select name="fracturas" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">implantes Metálicos</label>
-                                                {{formulario_corporal.implantesM}}
+                                                <select name="implantesM" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Hipertensión</label>
-                                                {{formulario_corporal.hipertencion}}
+                                                <select name="hipertension" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Hernias discales</label>
-                                                {{formulario_corporal.herniasD}}
+                                                <select name="herniasD" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="mb-3">
                                                 <label for="progresspill-address-input">Donde</label>
-                                                {{formulario_corporal.dondeHD}}
+                                                <textarea 
+                                                    name="dondeHD" 
+                                                    id="progresspill-address-input"
+                                                    class="form-control" 
+                                                    rows="2" placeholder="Donde">
+                                                </textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Híperlordosis</label>
-                                                {{formulario_corporal.hiperlordosis}}
+                                                <select name="hiperlordosis" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label"> Hípercifosis</label>
-                                                {{formulario_corporal.hipercifosis}}
+                                                <select name="hipercifosis" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Problemas cardiacos</label>
-                                                {{formulario_corporal.problemasC}}
+                                                <select name="problemasC" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Hipotensión</label>
-                                                {{formulario_corporal.hipotension}}
+                                                <select name="hipotension" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Osteoporosis</label>
-                                                {{formulario_corporal.osteoporosis}}
+                                                <select name="osteoporosis" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Osteomielitis</label>
-                                                {{formulario_corporal.osteomielitis}}
+                                                <select name="osteomielitis" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Comedones</label>
-                                                {{formulario_corporal.comedones}}
+                                                <select name="comedones" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Pústulas</label>
-                                                {{formulario_corporal.pustulas}}
+                                                <select name="pustulas" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label"> Brotes </label>
-                                                {{formulario_corporal.brotes}}
+                                                <select name="brotes" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Quistes</label>
-                                                {{formulario_corporal.quistes}}
+                                                <select name="quistes" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Nódulos</label>
-                                                {{formulario_corporal.nudulos}}
+                                                <select name="nodulos" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="mb-3">
                                                 <label for="progresspill-address-input">Zonas</label>
-                                                {{formulario_corporal.zonasA}}
+                                                <textarea 
+                                                    name="zonasA" 
+                                                    id="progresspill-address-input"
+                                                    class="form-control" 
+                                                    rows="2" 
+                                                    placeholder="Otros">
+                                                </textarea>
                                             </div>
                                         </div>
                                     </div>
-
                                     <ul class="pager wizard twitter-bs-wizard-pager-link">
-                                        <li class="previous"><a href="javascript: void(0);" class="btn btn-primary"
-                                                onclick="nextTab()"><i class="bx bx-chevron-left me-1"></i> Anterior</a>
+                                        <li class="previous">
+                                            <a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">
+                                                <i class="bx bx-chevron-left me-1"></i> Anterior </a>
                                         </li>
-                                        <li class="next"><a href="javascript: void(0);" class="btn btn-primary"
-                                                onclick="nextTab()">Siguiente <i
-                                                    class="bx bx-chevron-right ms-1"></i></a></li>
+                                        <li class="next">
+                                            <a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">
+                                            Siguiente <i class="bx bx-chevron-right ms-1"></i></a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -491,19 +665,28 @@
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Localizada</label>
-                                                {{formulario_corporal.adiposidadL}}
+                                                <select name="adiposidadL" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Zona</label>
-                                                {{formulario_corporal.adiposidadZ}}
+                                                <select name="adiposidadZ" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Completa</label>
-                                                {{formulario_corporal.adiposidadC}}
+                                                <select name="adiposidadC" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="text-center mb-4">
@@ -512,19 +695,28 @@
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Localizada</label>
-                                                {{formulario_corporal.cicatricesEL}}
+                                                <select name="cicatricesEL" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Zona</label>
-                                                {{formulario_corporal.cicatricesEZ}}
+                                                <select name="cicatricesEZ" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Tipo</label>
-                                                {{formulario_corporal.cicatricesET}}
+                                                <select name="cicatricesET" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="text-center mb-4">
@@ -533,19 +725,28 @@
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Localizada</label>
-                                                {{formulario_corporal.flacidezL}}
+                                                <select name="flacidezL" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Zona</label>
-                                                {{formulario_corporal.flacidezZ}}
+                                                <select name="flacidezZ" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Completa</label>
-                                                {{formulario_corporal.flacidezC}}
+                                                <select name="flacidezC" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="text-center mb-4">
@@ -554,19 +755,28 @@
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Localizada</label>
-                                                {{formulario_corporal.altVascularesL}}
+                                                <select name="altVascularesL" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Zona</label>
-                                                {{formulario_corporal.altVascularesZ}}
+                                                <select name="altVascularesZ" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Tipo</label>
-                                                {{formulario_corporal.altVascularesT}}
+                                                <select name="altVascularesT" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="text-center mb-4">
@@ -575,19 +785,28 @@
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Localizada</label>
-                                                {{formulario_corporal.celulitisL}}
+                                                <select name="celulitisL" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Zona</label>
-                                                {{formulario_corporal.celulitisZ}}
+                                                <select name="celulitisZ" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Completa</label>
-                                                {{formulario_corporal.celulitisC}}
+                                                <select name="celulitisC" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="text-center mb-4">
@@ -596,7 +815,11 @@
                                         <div class="col-lg-12">
                                             <div class="mb-3">
                                                 <label class="form-label">Temperatura</label>
-                                                {{formulario_corporal.temperatura}}
+                                                <select name="temperatura" class="form-select">
+                                                    <option value="Fria">Fría</option>
+                                                    <option value="tibia">Tibia</option>
+                                                    <option value="tibia">Caliente</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="text-center mb-4">
@@ -605,37 +828,55 @@
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Amarillo rojizo</label>
-                                                {{formulario_corporal.altpigmentariasAR}}
+                                                <select name="altpigmentariasAR" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Amarillo leve</label>
-                                                {{formulario_corporal.altpigmentariasAL}}
+                                                <select name="altpigmentariasAL" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Amarillo profundo</label>
-                                                {{formulario_corporal.altpigmentariasAP}}
+                                                <select name="altpigmentariasAP" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Amarillo medio rojizo</label>
-                                                {{formulario_corporal.altpigmentariasAMR}}
+                                                <select name="altpigmentariasAMR" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label"> Amarillo leve verdoso </label>
-                                                {{formulario_corporal.altpigmentariasALV}}
+                                                <select name="altpigmentariasALV" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Amarillo profundo verdoso</label>
-                                                {{formulario_corporal.altpigmentariasAPV}}
+                                                <select name="altpigmentariasAPV" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="text-center mb-4">
@@ -644,80 +885,124 @@
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Levemente gruesa</label>
-                                                {{formulario_corporal.sensacionLG}}
+                                                <select name="sensacionLG" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Medianamente gruesa</label>
-                                                {{formulario_corporal.sensacionMG}}
+                                                <select name="sensacionMG" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Muy gruesa</label>
-                                                {{formulario_corporal.sensacionMUG}}
+                                                <select name="sensacionMUG" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Levemente fina</label>
-                                                {{formulario_corporal.sensacionLF}}
+                                                <select name="sensacionLF" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Medianamente fina</label>
-                                                {{formulario_corporal.sensacionMF}}
+                                                <select name="sensacionMF" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Muy fina</label>
-                                                {{formulario_corporal.sensacionMUF}}
+                                                <select name="sensacionMUF" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Piel deshidratada</label>
-                                                {{formulario_corporal.sensacionPD}}
+                                                <select name="sensacionPD" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Piel infiltrada</label>
-                                                {{formulario_corporal.sensacionPI}}
+                                                <select name="sensacionPI" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Retiene líquidos</label>
-                                                {{formulario_corporal.retieneL}}
+                                                <select name="retieneL" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Varices</label>
-                                                {{formulario_corporal.varices}}
+                                                <select name="varices" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label class="form-label">Arañitas</label>
-                                                {{formulario_corporal.arañitas}}
+                                                <select name="aranitas" class="form-select">
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="mb-3">
                                                 <label for="progresspill-address-input">Observaciones</label>
-                                                {{formulario_corporal.observaciones}}
+                                                <textarea 
+                                                    name="observaciones" 
+                                                    id="progresspill-address-input"
+                                                    class="form-control" 
+                                                    rows="2" 
+                                                    placeholder="Otros">
+                                                </textarea>
                                             </div>
                                         </div>
                                         <ul class="pager wizard twitter-bs-wizard-pager-link">
-                                            <li class="previous"><a href="javascript: void(0);" class="btn btn-primary"
-                                                    onclick="nextTab()"><i class="bx bx-chevron-left me-1"></i> Anterior</a>
+                                            <li class="previous">
+                                                <a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">
+                                                    <i class="bx bx-chevron-left me-1"></i> Anterior </a>
                                             </li>
-                                            <li class="float-end"> <button type="submit" for="c" class="btn btn-primary" >Guardar<i class="mdi mdi-content-save-outline ms-1"></i></button>
+                                            <li class="float-end"> 
+                                                <button type="submit" for="c" class="btn btn-primary" >
+                                                    Guardar
+                                                    <i class="mdi mdi-content-save-outline ms-1"></i>
+                                                </button>
                                             </li>
                                         </ul>
                                     </div>
@@ -726,7 +1011,7 @@
                                     <!-- <li class="float-end"><a href="/CrearCorporal/{{cliente.idCliente}}" class="btn btn-primary"
                                                 for="crear">Guardar</a>
                                         </li> -->
-                                    
+                                
                                 </div>
                             </div>
                             <!-- tab pane -->

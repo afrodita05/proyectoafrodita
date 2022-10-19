@@ -164,12 +164,6 @@ urlpatterns = [
         name= "Clientes",
     ),
 
-    # path(
-    #     "FormularioCliente/",
-    #     view= formularioCliente,
-    #     name= "Clientes.Formulario-Cliente",
-    # ),
-
     path(
         "CrearCliente/",
         view= crearCliente,
@@ -186,6 +180,12 @@ urlpatterns = [
         "VerDetalle/<int:id>",
         view= detalleCliente,
         name= "Clientes.Ver-detalle",
+    ),
+
+    path(
+        "FormularioCorporal/<int:id>",
+        view= formularioCorporal,
+        name= "Formulario-Corporal",
     ),
 
     path(

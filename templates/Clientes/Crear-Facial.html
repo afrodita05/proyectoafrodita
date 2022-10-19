@@ -4,8 +4,7 @@
 {% block extra_css %}
 <!-- DataTables -->
 <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
-<link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet"
-    type="text/css" />
+<link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
 {% endblock extra_css %}
 {% block content %}
 <div class="main-content">
@@ -65,7 +64,7 @@
                                 <form action="{% url 'Clientes.Ver-Detalles.Crear-Facial' cliente.idCliente  %}" id="c" method="GET" >
                                     <div class="col-lg-12">
                                         <div class="form-group mb-3">
-                                            <label class="form-label">Nombre del estetisista</label>
+                                            <label class="form-label">Nombre del esteticista *</label>
                                             <input name="nombreE" type="text" placeholder="Ingrese el nombre completo" class="form-control" />
                                         </div>
                                     </div>
@@ -82,8 +81,12 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label for="progresspill-address-input">Cuál</label>
-                                                <textarea name="cualTM" id="progresspill-address-input"
-                                                    class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                <textarea 
+                                                    name="cualTM" 
+                                                    id="progresspill-address-input"
+                                                    class="form-control" 
+                                                    rows="2" 
+                                                    placeholder="Otros"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
@@ -123,8 +126,13 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label for="progresspill-address-input">Alimentos rechazados</label>
-                                                <textarea name="alimentosR" id="progresspill-address-input"
-                                                    class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                <textarea 
+                                                    name="alimentosR" 
+                                                    id="progresspill-address-input"
+                                                    class="form-control" 
+                                                    rows="2" 
+                                                    placeholder="Otros">
+                                                </textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
@@ -184,8 +192,13 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label for="progresspill-address-input">Cuales</label>
-                                                <textarea name="cualesOT" id="progresspill-address-input"
-                                                    class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                <textarea 
+                                                    name="cualesOT" 
+                                                    id="progresspill-address-input"
+                                                    class="form-control" 
+                                                    rows="2" 
+                                                    placeholder="Otros">
+                                                </textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
@@ -368,8 +381,13 @@
                                         <div class="col-lg-12">
                                             <div class="mb-3">
                                                 <label for="progresspill-address-input">Motivo de la consulta </label>
-                                                <textarea name="motivoC" id="progresspill-address-input"
-                                                    class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                <textarea 
+                                                    name="motivoC" 
+                                                    id="progresspill-address-input"
+                                                    class="form-control" 
+                                                    rows="2" 
+                                                    placeholder="Otros">
+                                                </textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
@@ -383,9 +401,10 @@
                                     </div>
 
                                     <ul class="pager wizard twitter-bs-wizard-pager-link">
-                                        <li class="next"><a href="javascript: void(0);" class="btn btn-primary"
-                                                onclick="nextTab()">Siguiente <i
-                                                    class="bx bx-chevron-right ms-1"></i></a></li>
+                                        <li class="next"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">
+                                            Siguiente 
+                                            <i class="bx bx-chevron-right ms-1"></i></a>
+                                        </li>
                                     </ul>
                             </div>
                             <div class="tab-pane" id="análisis-de-piel">
@@ -696,12 +715,13 @@
                                         </div>
                     
                                     <ul class="pager wizard twitter-bs-wizard-pager-link">
-                                        <li class="previous"><a href="javascript: void(0);" class="btn btn-primary"
-                                                onclick="nextTab()"><i class="bx bx-chevron-left me-1"></i> Anterior</a>
+                                        <li class="previous"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">
+                                            <i class="bx bx-chevron-left me-1"></i> 
+                                            Anterior</a>
                                         </li>
-                                        <li class="next"><a href="javascript: void(0);" class="btn btn-primary"
-                                                onclick="nextTab()">Siguiente <i
-                                                    class="bx bx-chevron-right ms-1"></i></a>
+                                        <li class="next"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">
+                                            Siguiente 
+                                            <i class="bx bx-chevron-right ms-1"></i></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -720,8 +740,13 @@
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
                                                     <label for="progresspill-address-input">Cuales</label>
-                                                    <textarea name="rutinaH" id="progresspill-address-input"
-                                                        class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                    <textarea 
+                                                        name="rutinaH" 
+                                                        id="progresspill-address-input"
+                                                        class="form-control" 
+                                                        rows="2" 
+                                                        placeholder="Otros">
+                                                    </textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -733,8 +758,13 @@
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
                                                     <label for="progresspill-address-input">Cuales</label>
-                                                    <textarea name="cuidadosH" id="progresspill-address-input"
-                                                        class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                    <textarea 
+                                                        name="cuidadosH" 
+                                                        id="progresspill-address-input"
+                                                        class="form-control" 
+                                                        rows="2" 
+                                                        placeholder="Otros">
+                                                    </textarea>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
@@ -764,7 +794,11 @@
                                             <li class="previous"><a href="javascript: void(0);" class="btn btn-primary"
                                                     onclick="nextTab()"><i class="bx bx-chevron-left me-1"></i> Anterior</a>
                                             </li>
-                                            <li class="float-end"> <button type="submit" for="c" class="btn btn-primary" >Guardar<i class="mdi mdi-content-save-outline ms-1"></i></button>
+                                            <li class="float-end"> 
+                                                <button type="submit" for="c" class="btn btn-primary" >
+                                                    Guardar
+                                                    <i class="mdi mdi-content-save-outline ms-1"></i>
+                                                </button>
                                             </li>
                                         </ul>
                                         <!-- uso de for en el boton y id del formulario -->

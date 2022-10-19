@@ -10,7 +10,7 @@ class FormularioCliente(forms.ModelForm):
         nombre=self.cleaned_data['nombre']
         validarCliente=re.search(r'^[a-zA-Z\s]{2,60}$',nombre, flags=re.MULTILINE)
         if validarCliente==None:
-            raise ValidationError("ERROR. Solo se permite ingresar caracteres alfabéticos")
+            raise ValidationError("Error. Solo se permite ingresar caracteres alfabéticos")
         return nombre 
     
     def clean_documento(self):
@@ -18,7 +18,7 @@ class FormularioCliente(forms.ModelForm):
         existe=Clientes.objects.filter(documento=documento).exists()
         validarDocumento=re.search(r'^[0-9]{6,10}$',documento, flags=re.MULTILINE)
         if existe:
-            raise ValidationError("Error.El documento ya existe")
+            raise ValidationError("Error. El documento ya existe")
         elif validarDocumento==None:
             raise ValidationError("Error. El documento solo permite caracteres numéricos, entre 6 y 10 caracteres")
         return documento
@@ -34,14 +34,14 @@ class FormularioCliente(forms.ModelForm):
         direccion=self.cleaned_data['direccion']
         validarDireccion=re.search(r'^[a-zA-Z0-9\s#-]{2,100}$',direccion, flags=re.MULTILINE)
         if validarDireccion==None:
-            raise ValidationError("Error. Solo se permite caracteres alfanuméricos, # o -, entre 10 y 100 caracteres")
+            raise ValidationError("Error. Solo se permite caracteres alfanuméricos, '#' o '-', entre 10 y 100 caracteres")
         return direccion
     
     def clean_numeroHijos(self):
         numeroHijos=self.cleaned_data['numeroHijos']
         validarNumeroHijos=re.search(r'^[0-9]{1,2}$',numeroHijos, flags=re.MULTILINE)
         if validarNumeroHijos==None:
-            raise ValidationError("Error. El número de hijos solo permite caracteres numéricos, entre 1 y 2 caracteres")
+            raise ValidationError("Error. Solo se permite caracteres numéricos, entre 1 y 2 caracteres")
         return numeroHijos
 
     class Meta:
