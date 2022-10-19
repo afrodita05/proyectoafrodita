@@ -2,7 +2,10 @@ from tkinter import Widget
 from django import forms
 from Apps.Clientes.models import *
 from django.forms import ValidationError
+from dateutil.relativedelta import relativedelta
+from datetime import datetime, timedelta 
 import re
+
 
 class FormularioCliente(forms.ModelForm):
 
@@ -43,6 +46,17 @@ class FormularioCliente(forms.ModelForm):
         if validarNumeroHijos==None:
             raise ValidationError("Error. Solo se permite caracteres numéricos, entre 1 y 2 caracteres")
         return numeroHijos
+
+    def clean_fechaNacimiento(self):  #para relativedelta hay que instalar "pip install python-dateutil"
+        actual=datetime.now()
+        actualStr=actual.strftime('%Y-%m-%d')
+        mayorEdad=relativedelta(years=-17)
+        sumaFecha=actual+mayorEdad
+        sumaFechaStr=sumaFecha.strftime('%Y-%m-%d')
+        fechaNacimento=self.cleaned_data['fechaNacimiento']
+        if fechaNacimento==actualStr or fechaNacimento>sumaFechaStr:
+             raise ValidationError("Error. El cliente es menor de edad")
+        return fechaNacimento
 
     class Meta:
         model=Clientes
