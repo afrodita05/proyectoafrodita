@@ -28,7 +28,7 @@ class EsteticoCorporal(models.Model):
     circulacion=models.CharField(max_length=2)
     endrocrino=models.CharField(max_length=2)
     cardiacos=models.CharField(max_length=2)
-    otrosP=models.TextField()
+    otrosP=models.TextField(blank=True,null=True)
     #Peso actual
     kilos=models.CharField(max_length=7,blank=True,null=True)
     talla=models.CharField(max_length=7,blank=True,null=True)
@@ -54,7 +54,7 @@ class EsteticoCorporal(models.Model):
     espalda=models.CharField(max_length=2)
     piernas=models.CharField(max_length=2)
     brazos=models.CharField(max_length=2) 
-    notasO=models.TextField()
+    notasO=models.TextField(blank=True,null=True)
     tratamientosR=models.TextField(blank=True,null=True)
     tratamientosE=models.TextField(blank=True,null=True)
     #Antecedentes personales

@@ -183,12 +183,6 @@ urlpatterns = [
     ),
 
     path(
-        "FormularioCorporal/<int:id>",
-        view= formularioCorporal,
-        name= "Formulario-Corporal",
-    ),
-
-    path(
         "CrearCorporal/<int:id>",
         view= crearCorporal,
         name= "Crear-Corporal",
