@@ -1,9 +1,8 @@
-from tkinter import Widget
 from django import forms
 from Apps.Clientes.models import *
 from django.forms import ValidationError
 from dateutil.relativedelta import relativedelta
-from datetime import datetime, timedelta 
+from datetime import datetime
 import re
 
 
@@ -219,7 +218,7 @@ class FormularioCorporal(forms.ModelForm):
             'sensacionPI':forms.Select(choices=Choices,attrs={'class':'form-select'}),
             'retieneL':forms.Select(choices=Choices,attrs={'class':'form-select'}),
             'varices':forms.Select(choices=Choices,attrs={'class':'form-select'}),
-            'arañitas':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'aranitas':forms.Select(choices=Choices,attrs={'class':'form-select'}),
             'observaciones':forms.Textarea(attrs={'class':'form-control','required':False,'id':'progresspill-address-input','rows':'2'}),
         
         }
