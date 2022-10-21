@@ -61,279 +61,187 @@
                                 <div class="text-center mb-4">
                                     <h4>Factores Agravantes</h4>
                                 </div>
-                                <form action="{% url 'Clientes.Ver-Detalles.Crear-Facial' cliente.idCliente  %}" id="c" method="GET" >
+                                <form method="POST" id="crear">{% csrf_token %}
+                                    <input value={{idCliente}} name="idCliente" hidden>
                                     <div class="col-lg-12">
                                         <div class="form-group mb-3">
                                             <label class="form-label">Nombre del esteticista *</label>
-                                            <input name="nombreE" type="text" placeholder="Ingrese el nombre completo" class="form-control" />
+                                            {{formulario_facial.nombreE}}
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Actualmente está en tratamiento médico</label>
-                                                <select name="tratamientoM" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.tratamientoM}}
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label for="progresspill-address-input">Cuál</label>
-                                                <textarea 
-                                                    name="cualTM" 
-                                                    id="progresspill-address-input"
-                                                    class="form-control" 
-                                                    rows="2" 
-                                                    placeholder="Otros"></textarea>
+                                                {{formulario_facial.cualTM}}
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Sustitución hormonal</label>
-                                                <select name="sustitucionH" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.sustitucionH}}
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Toma anticonceptivo</label>
-                                                <select name="tomaA" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.tomaA}}
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Drogas</label>
-                                                <select name="drogas" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.drogas}}
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label for="progresspill-address-input">Alimentos preferidos</label>
-                                                <textarea name="alimentosP" id="progresspill-address-input"
-                                                    class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                {{formulario_facial.alimentosP}}
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label for="progresspill-address-input">Alimentos rechazados</label>
-                                                <textarea 
-                                                    name="alimentosR" 
-                                                    id="progresspill-address-input"
-                                                    class="form-control" 
-                                                    rows="2" 
-                                                    placeholder="Otros">
-                                                </textarea>
+                                                {{formulario_facial.alimentosR}}
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Fuma</label>
-                                                <select name="fuma" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.fuma}}
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Toma licor</label>
-                                                <select name="tomaL" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.tomaL}}
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Se protege del sol</label>
-                                                <select name="protegeS" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.protegeS}}
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Duerme bien</label>
-                                                <select name="duermeB" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.duermeB}}
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label class="form-label">Menopausia</label>
-                                                <select name="menopausia" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.menopausia}}
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Toma medicamentos orales o tópicos</label>
-                                                <select name="medicamentosOT" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.medicamentosOT}}
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label for="progresspill-address-input">Cuales</label>
-                                                <textarea 
-                                                    name="cualesOT" 
-                                                    id="progresspill-address-input"
-                                                    class="form-control" 
-                                                    rows="2" 
-                                                    placeholder="Otros">
-                                                </textarea>
+                                                <label for="progresspill-address-input">¿Cuáles?</label>
+                                                {{formulario_facial.cualesOT}}
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Padece de estrés</label>
-                                                <select name="padeceE" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.padeceE}}
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Ha tenido cáncer de piel</label>
-                                                <select name="cancerP" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.cancerP}}
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Asma</label>
-                                                <select name="asma" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.asma}}
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Lupus</label>
-                                                <select name="lupus" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.lupus}}
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Herpes</label>
-                                                <select name="herpes" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.herpes}}
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Hepatitis</label>
-                                                <select name="hepatitis" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.hepatitis}}
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Epilepsia</label>
-                                                <select name="epilepsia" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.epilepsias}}
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Dolor de cabeza</label>
-                                                <select name="dolorC" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.dolorC}}
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Ampollas febriles</label>
-                                                <select name="ampollasF" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.ampollasF}}
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Tiroides</label>
-                                                <select name="tiroides" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.tiroides}}
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Problemas cardiacos</label>
-                                                <select name="problemasC" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.problemasC}}
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Psicológicos</label>
-                                                <select name="psicológicos" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.psicologicos}}
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Urinarios</label>
-                                                <select name="urinarios" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.urinarios}}
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Nasales</label>
-                                                <select name="nasales" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.nasales}}
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Digestivos</label>
-                                                <select name="digestivos" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.digestivos}}
                                             </div>
                                         </div>
                                     </div>
@@ -345,57 +253,37 @@
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Alfahidroxiacidos</label>
-                                                <select name="alfahidroxiacidos" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.alfahidroxiacidos}}
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Retín A</label>
-                                                <select name="retinA" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.retinA}}
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Differin</label>
-                                                <select name="differin" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.differin}}
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label"> Accutane </label>
-                                                <select name="accutane" class="form-select">
-                                                    <option value="No">No</option>
-                                                    <option value="Si">Si</option>
-                                                </select>
+                                                {{formulario_facial.accutane}}
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="mb-3">
                                                 <label for="progresspill-address-input">Motivo de la consulta </label>
-                                                <textarea 
-                                                    name="motivoC" 
-                                                    id="progresspill-address-input"
-                                                    class="form-control" 
-                                                    rows="2" 
-                                                    placeholder="Otros">
-                                                </textarea>
+                                                {{formulario_facial.motivoC}}
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="mb-3">
-                                                <label for="progresspill-address-input">Es alérgico a algún producto
-                                                    cosmético o medicamento</label>
-                                                <textarea name="productoCM" id="progresspill-address-input"
-                                                    class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                <label for="progresspill-address-input">¿Es alérgico a algún producto cosmético o medicamento?</label>
+                                                {{formulario_facial.productoCM}}
                                             </div>
                                         </div>
                                     </div>
@@ -420,37 +308,25 @@
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label class="form-label">Normal</label>
-                                                    <select name="normal" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.normal}}
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label class="form-label">Gruesa</label>
-                                                    <select name="gruesa" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.gruesa}}
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label class="form-label">Áspera</label>
-                                                    <select name="aspera" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.aspera}}
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label class="form-label">Suave</label>
-                                                    <select name="suave" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.suave}}
                                                 </div>
                                             </div>
                                         </div>
@@ -462,28 +338,19 @@
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Normal</label>
-                                                    <select name="normal1" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.normal1}}
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Cerrado</label>
-                                                    <select name="cerrado" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.cerrado}}
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Dilatado</label>
-                                                    <select name="dilatado" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.dilatado}}
                                                 </div>
                                             </div>
                                         </div>
@@ -495,19 +362,13 @@
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Zonas mates</label>
-                                                    <select name="zonasM" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.zonasM}}
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Zonas billantes</label>
-                                                    <select name="zonasB" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.zonasB}}
                                                 </div>
                                             </div>
                                         </div>
@@ -519,28 +380,19 @@
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Normal</label>
-                                                    <select name="normal2" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.normal2}}
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Deshidratada</label>
-                                                    <select name="deshidratada" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.deshidratada}}
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Hiperdeshidratada</label>
-                                                    <select name="hiperdeshidratada" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.hiperdeshidratada}}
                                                 </div>
                                             </div>
                                             <br>
@@ -552,14 +404,7 @@
                                             <div class="col-lg-10">
                                                 <div class="mb-3">
                                                     <label class="form-label">Fototipo</label>
-                                                    <select name="fototipoP" class="form-select">
-                                                        <option value="Fototipo 1">Fototipo 1</option>
-                                                        <option value="Fototipo 2">Fototipo 2</option>
-                                                        <option value="Fototipo 3">Fototipo 3</option>
-                                                        <option value="Fototipo 4">Fototipo 4</option>
-                                                        <option value="Fototipo 5">Fototipo 5</option>
-                                                        <option value="Fototipo 6">Fototipo 6</option>
-                                                    </select>
+                                                    {{formulario_facial.fototipoP}}
                                                 </div>
                                             </div>
                                         </div>
@@ -571,64 +416,43 @@
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label class="form-label">Lineas Finas</label>
-                                                    <select name="lineasF" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.lineasF}}
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label class="form-label">Profundas</label>
-                                                    <select name="profundas" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.profundas}}
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label class="form-label">Flacidez</label>
-                                                    <select name="flacidez" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.flacidez}}
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label class="form-label">Párpados</label>
-                                                    <select name="parpados" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.parpados}}
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label class="form-label">Cuello</label>
-                                                    <select name="cuello" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.cuello}}
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label class="form-label">Nosogenianos</label>
-                                                    <select name="nasogenianos" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.nasogenianos}}
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label class="form-label">Labios</label>
-                                                    <select name="labios" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.labios}}
                                                 </div>
                                             </div>
                                         </div>
@@ -640,28 +464,19 @@
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Comedones</label>
-                                                    <select name="comedones" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.comedones}}
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Millas</label>
-                                                    <select name="milias" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.milias}}
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Quistes</label>
-                                                    <select name="quistes" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.quistes}}
                                                 </div>
                                             </div>
                                         </div>
@@ -673,19 +488,13 @@
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Melasma</label>
-                                                    <select name="melasma" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.melasma}}
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Hipercromía</label>
-                                                    <select name="hipercromia" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.hipercromia}}
                                                 </div>
                                             </div>
                                         </div>
@@ -697,19 +506,13 @@
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Edema</label>
-                                                    <select name="edema" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.edema}}
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Grasa</label>
-                                                    <select name="grasa" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.grasa}}
                                                 </div>
                                             </div>
                                         </div>
@@ -740,13 +543,7 @@
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
                                                     <label for="progresspill-address-input">Cuales</label>
-                                                    <textarea 
-                                                        name="rutinaH" 
-                                                        id="progresspill-address-input"
-                                                        class="form-control" 
-                                                        rows="2" 
-                                                        placeholder="Otros">
-                                                    </textarea>
+                                                    {{formulario_facial.rutinasH}}
                                                 </div>
                                             </div>
                                         </div>
@@ -758,22 +555,13 @@
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
                                                     <label for="progresspill-address-input">Cuales</label>
-                                                    <textarea 
-                                                        name="cuidadosH" 
-                                                        id="progresspill-address-input"
-                                                        class="form-control" 
-                                                        rows="2" 
-                                                        placeholder="Otros">
-                                                    </textarea>
+                                                    {{formulario_facial.cuidadosH}}
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
                                                     <label class="form-label">Mensuales</label>
-                                                    <select name="mensuales" class="form-select">
-                                                        <option value="No">No</option>
-                                                        <option value="Si">Si</option>
-                                                    </select>
+                                                    {{formulario_facial.mensuales}}
                                                 </div>
                                             </div>
                                         </div>
@@ -785,8 +573,7 @@
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
                                                     <label for="progresspill-address-input">Cuales</label>
-                                                    <textarea name="productoH" id="progresspill-address-input"
-                                                        class="form-control" rows="2" placeholder="Otros"></textarea>
+                                                    {{formulario_facial.productoH}}
                                                 </div>
                                             </div>
                                         </div>
@@ -795,7 +582,7 @@
                                                     onclick="nextTab()"><i class="bx bx-chevron-left me-1"></i> Anterior</a>
                                             </li>
                                             <li class="float-end"> 
-                                                <button type="submit" for="c" class="btn btn-primary" >
+                                                <button type="submit" for="crear" class="btn btn-primary" >
                                                     Guardar
                                                     <i class="mdi mdi-content-save-outline ms-1"></i>
                                                 </button>

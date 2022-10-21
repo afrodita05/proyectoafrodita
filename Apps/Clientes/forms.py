@@ -223,7 +223,108 @@ class FormularioCorporal(forms.ModelForm):
         
         }
 
-   
-
+class FormularioFacial(forms.ModelForm): 
+    class Meta: 
+        model=EsteticoFacial
+        fields='__all__'
+        Choices=(                   
+            ('No','No'),
+            ('Si','Si'),
+            )
+        siluetasChoices=(                    
+            ('Manzana','Manzana'),
+            ('Rectangulo','Rectangulo'),
+            ('Pera','Pera'),
+            ('Reloj de arena','Reloj de arena'),
+            ('Triangulo invertido','Triangulo invertido'),
+            )
+        FototipoChoices=(                    
+            ('Fototipo 1','Fototipo 1'),
+            ('Fototipo 2','Fototipo 2'),
+            ('Fototipo 3','Fototipo 3'),
+            ('Fototipo 4','Fototipo 4'),
+            ('Fototipo 5','Fototipo 5'),
+            ('Fototipo 6','Fototipo 6'),
+            )
+        widgets={
+            'nombreE':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese el nombre completo','required':False}),
+            #Factores agravantes
+            'tratamientoM':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'cualTM':forms.Textarea(attrs={'class':'form-control','id':'progresspill-address-input','rows':'2','placeholder':'¿Cuál tratamiento Medico?','required':False}),
+            'sustitucionH':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'tomaA':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'drogas':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'alimentosP':forms.Textarea(attrs={'class':'form-control','id':'progresspill-address-input','rows':'2','placeholder':'Ingrese los alimentos preferidos','required':False}),
+            'alimentosR':forms.Textarea(attrs={'class':'form-control','id':'progresspill-address-input','rows':'2','placeholder':'Ingrese los alimentos rechazados','required':False}),
+            'fuma':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'tomaL':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'protegeS':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'duermeB':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'menopausia':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'medicamentosOT':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'cualesOT':forms.Textarea(attrs={'class':'form-control','id':'progresspill-address-input','rows':'2','placeholder':'Ingrese los medicamentos orales o tópicos','required':False}),
+            'padeceE':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'cancerP':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'asma':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'lupus':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'herpes':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'hepatitis':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'epilepsias':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'dolorC':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'ampollasF':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'tiroides':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'problemasC':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'psicologicos':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'urinarios':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'nasales':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'digestivos':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            #Está utilizando o uso
+            'alfahidroxiacidos':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'retinA':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'differin':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'accutane':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'motivoC':forms.Textarea(attrs={'class':'form-control','id':'progresspill-address-input','rows':'2','placeholder':'Ingrese el motivo de la consulta','required':False}),
+            'productoCM':forms.Textarea(attrs={'class':'form-control','id':'progresspill-address-input','rows':'2','placeholder':'Ingrese los productos a los que es alérgico','required':False}),
+            #Analisis de piel
+            'normal':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'gruesa':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'aspera':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'suave':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'normal1':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'cerrado':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'dilatado':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            #Brillo
+            'zonasM':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'zonasB':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            #Grado de hidratación
+            'normal2':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'deshidratada':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'hiperdeshidratada':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            #Fototipo de piel
+            'fototipoP':forms.Select(choices=FototipoChoices,attrs={'class':'form-select'}),
+            #Alteraciones del envejecimiento
+            'lineasF':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'profundas':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'flacidez':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'parpados':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'cuello':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'nasogenianos':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'labios':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            #Acné(desde cuándo)
+            'comedones':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'milias':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'quistes':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            #Pigmentación
+            'melasma':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'hipercromia':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'edema':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'grasa':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            #Cuidados que realiza diariamente
+            'rutinasH':forms.Textarea(attrs={'class':'form-control','id':'progresspill-address-input','rows':'2','placeholder':'Ingrese las rutinas diarias de higiene','required':False}),
+            'cuidadosH':forms.Textarea(attrs={'class':'form-control','id':'progresspill-address-input','rows':'2','placeholder':'Ingrese los cuidados habituales','required':False}),
+            'mensuales':forms.Select(choices=Choices,attrs={'class':'form-select'}),
+            'productoH':forms.Textarea(attrs={'class':'form-control','id':'progresspill-address-input','rows':'2','placeholder':'Ingrese los productos que utiliza habitualmente','required':False}),
+            
+        }
 
 

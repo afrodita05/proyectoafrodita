@@ -194,16 +194,16 @@ urlpatterns = [
         name= "Clientes.Ver-Detalles.Corporal",
     ),
 
-    path(
-        "FormularioFacial/<int:id>",
-        view= formularioFacial,
-        name= "Clientes.Formulario-Facial",
-    ),
+    # path(
+    #     "FormularioFacial/<int:id>",
+    #     view= formularioFacial,
+    #     name= "Clientes.Formulario-Facial",
+    # ),
 
     path(
         "CrearFacial/<int:id>",
         view= crearFacial,
-        name= "Clientes.Ver-Detalles.Crear-Facial",
+        name= "Crear-Facial",
     ),
 
     path(
