@@ -1,8 +1,6 @@
 from django.shortcuts import render ,redirect
 from Apps.Clientes.models import *
 from Apps.Clientes.forms import *
-import re
-from django.http import HttpResponseRedirect ,HttpResponse
 
 # Create your views here.
 
@@ -77,25 +75,16 @@ def VerDetalleFacial(request, id):
     contexto={"mostrar":mostrar,"sesiones":sesiones}
     return render(request,"Clientes/Historial-Facial.html",contexto)
 
-def formularioControlMedidas(request,id):
-    corporal=EsteticoCorporal.objects.filter(idCorporal=id).first()
-    contexto={"corporal":corporal}
-    return render(request,"Clientes/Crear-Medidas.html",contexto)    
-
 def crearControlMedidas(request,id):
-    crearIdC=EsteticoCorporal.objects.get(idCorporal=id)
-    #Control medidas
-    fechaMedida=request.GET['fecha']
-    brazoDMedida=request.GET['brazoD']
-    brazoIMedida=request.GET['brazoI']
-    abdomenAMedida=request.GET['abdomenA']
-    cinturaMedida=request.GET['cintura']
-    abdomenBMedida=request.GET['abdomenB']
-    piernaDMedida=request.GET['piernaD']
-    piernaIMedida=request.GET['piernaI']
-    medidas=ControlMedidas(fecha=fechaMedida,brazoD=brazoDMedida,brazoI=brazoIMedida,abdomenA=abdomenAMedida,cintura=cinturaMedida,abdomenB=abdomenBMedida,piernaD=piernaDMedida,piernaI=piernaIMedida,idCorporal=crearIdC)
-    medidas.save()
-    return redirect("Clientes.Ver-Detalles.Corporal",id)
+    if request.method=='POST':
+        formulario_medidas=FormularioMedidas(request.POST)
+        if formulario_medidas.is_valid():
+            formulario_medidas.save()
+            return redirect('Clientes.Ver-Detalles.Corporal',id)
+    else: 
+        formulario_medidas=FormularioMedidas()
+    contexto={'formulario_medidas':formulario_medidas,"idCorporal":id}
+    return render(request,'Clientes/Crear-Medidas.html',contexto)
 
 def formularioPagosSesionesCorporal(request,id):
     corporal=EsteticoCorporal.objects.filter(idCorporal=id).first()

@@ -326,5 +326,19 @@ class FormularioFacial(forms.ModelForm):
             'productoH':forms.Textarea(attrs={'class':'form-control','id':'progresspill-address-input','rows':'2','placeholder':'Ingrese los productos que utiliza habitualmente','required':False}),
             
         }
-
-
+        
+class FormularioMedidas(forms.ModelForm): 
+    class Meta: 
+        model=ControlMedidas
+        fields='__all__'
+        widgets={
+            'fecha':forms.TextInput(attrs={'class':'form-control','type':'date','placeholder':'Ingrese la fecha sus medidas','required':False}),
+            'brazoD':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese la medida'}),
+            'brazoI':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese la medida'}),
+            'abdomenA':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese la medida'}),
+            'cintura':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese la medida'}),
+            'abdomenB':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese la medida'}),
+            'piernaD':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese la medida'}),
+            'piernaI':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese la medida'}),
+         }
+        
