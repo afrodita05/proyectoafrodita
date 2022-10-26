@@ -39,6 +39,10 @@
                         <a href="{% url 'formularioRol' %}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear un rol</a>
                         
                     </div>
+                    <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
+                        <a href="{% url 'pruebaRol' %}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >PRUEBA ROL</a>
+                        
+                    </div>
                 </div>
             </div><!-- end col -->
             <div class="row">
@@ -59,8 +63,8 @@
                                         {% for listar in crRol %}
                                         <tr data-id="1">
                         
-                                            <td data-field="rol">{{listar.nombre}}</td>
-                                            <td data-field="permisos">{{listar.configuracion}}, {{listar.insumos}}, {{listar.citas}}, {{listar.clientes}}, {{listar.servicios}}, {{listar.compras}}, {{listar.proveedores}}, {{listar.usuarios}}</td>
+                                            <td data-field="rol">{{listar.name}}</td>
+                                            <td data-field="permisos">{{listar.permissions.name}}, {{listar.permissions.name}}, {{listar.permissions.name}}, {{listar.permissions.name}}, {{listar.permissions.name}}, {{listar.permissions.name}}, {{listar.permissions.name}}, {{listar.permissions.name}}</td>
                                             <td data-field="estado">
                                                 <span class="badge badge-soft-danger" style="font-size: 14px;">Inactivo</span>
                                             </td>

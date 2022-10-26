@@ -29,7 +29,7 @@ from Apps.Clientes.views import *
 from Apps.Usuarios.views import usuario, crearUsuario, formularioUsuario, editarU, actualizarU, pruebaCr
 from Apps.Servicios.views import servicio, crearServicio, formularioServicio, editarS, actualizarS, eliminarS
 from Apps.Proveedores.views import FormularioAgregarProveedor,CrearProveedor,ListarProveedor,EditarProveedor,ActualizarProveedor
-from Apps.Configuracion.views import crearRol,formularioRol,listarRol
+from Apps.Configuracion.views import crearRol,formularioRol,listarRol, pruebaRol
 from Apps.Compras.views import FormularioAgregarCompra,CrearCompra,ListarCompra,EliminarCompra,DetalleCompras
 from Apps.Insumos.views import insumos
 
@@ -116,6 +116,12 @@ urlpatterns = [
         'listarRol/',
         view=listarRol, 
         name='Rol'
+        ),
+    
+    path(
+        'pruebaRol/',
+        view=pruebaRol, 
+        name='pruebaRol'
         ),
     # path(
     #     'editarRol/<int:id>',
