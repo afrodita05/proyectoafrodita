@@ -18,11 +18,11 @@ from http import client
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
+from Apps.login.forms import UserPasswordResetForm, UserSetPasswordForm #aa
 
 from SadcomStetic import views
 
 from Apps.Citas.views import crearCita, formularioCita, listarCita, editarCita, editarClienteCitas, actualizarCita, actualizarClienteCitas,servicio
-from Apps.login.views import Login, recuperar_contrasena
 from Apps.login.views import Login, recuperar_contrasena
 # from Apps.Usuarios.views import Usuarios, Crear_Usuario, Editar_Usuario
 from Apps.Clientes.views import *
@@ -32,6 +32,7 @@ from Apps.Proveedores.views import FormularioAgregarProveedor,CrearProveedor,Lis
 from Apps.Configuracion.views import crearRol,formularioRol,listarRol, pruebaRol
 from Apps.Compras.views import FormularioAgregarCompra,CrearCompra,ListarCompra,EliminarCompra,DetalleCompras
 from Apps.Insumos.views import insumos
+
 
 app_name = "SadcomStetic"
 urlpatterns = [
@@ -45,16 +46,15 @@ urlpatterns = [
         name="login"
     ),
 
-    
-    path(
-        "Recuperar contraseña",
-        view= recuperar_contrasena,
-        name= "pages.authentication.recuperarContraseña",
-    ),
 
-     path('accounts/', include('django.contrib.auth.urls')),
 
-     
+    path('accounts/', include('django.contrib.auth.urls')),
+
+    path('reset_password', auth_views.PasswordResetView.as_view(form_class=UserPasswordResetForm), name='password_reset',), 
+    path('reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(form_class=UserSetPasswordForm), name='password_reset_confirm'), #Funcional. Buscar en la documentación de django el form_class para modificarlo por un extend (override) del original
+   
+
+
 #urls acorta las rutas para buscar path
 #Siempre que vaya a crear una vista debo asignarle una URL
 
