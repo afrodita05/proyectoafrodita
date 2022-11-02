@@ -26,8 +26,6 @@ renderItemList = () => {
             <tr>
                 <td>${item.insumo}</td>
                 <td>${item.cantidad}</td>
-                <td>${item.valorunidad}</td>
-                <td>${item.ValorTotalInsumo}</td>
             </tr>
         `;
         list.innerHTML += newRow;
@@ -46,7 +44,7 @@ btnGuardar.addEventListener('click', async () => {
     try{
         const csrfmiddlewaretoken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
         const data = {items: items, csrfmiddlewaretoken: csrfmiddlewaretoken};
-        const response = await fetch(`${new URL(window.location).origin}/CrearCompra/`, {
+        const response = await fetch(`${new URL(window.location).origin}/crearServicio/`, {
             method: "POST",
             redirect: 'follow', 
             body: JSON.stringify(data), headers: { "X-CSRFToken": csrfmiddlewaretoken },
