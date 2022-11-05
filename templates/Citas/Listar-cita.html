@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar citas</title>
+</head>
+<body>
+    <button><a href="{% url 'listar-Cliente' %}">Crear cliente</a> </button>
+    <button><a href="{% url 'verificar-Documento' %}">Crear citas</a> </button>
+    <table>
+        <tr>
+            <th>Fecha Cita</th>
+            <th>Estado</th>
+            <th>Nombre</th>
+            <th>Documento</th>
+            <th>Funciones</th>
+        </tr>
+
+        {% for listar in citas %}
+        <tr>
+            <td>{{listar.fechaCita}}</td>
+            <td>{{listar.estado}}</td>
+            <td>{{listar.idCliente.nombre}}</td>
+            <td>{{listar.idCliente.documento}}</td>
+            <td><button><a href="{% url 'editar-Citas' listar.idCita %}">Editar</a> </button></td>
+            <td><button><a href="{% url 'eliminar-Citas' listar.idCita %}">Eliminar</a> </button></td>
+            <td><button><a href="{% url 'verDetalle-Cita' listar.idCliente.idCliente %}">Ver Detalle</a> </button></td>
+        </tr>
+        {% endfor %}
+
+        </tr>
+    </table>
+</body>
+</html>

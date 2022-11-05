@@ -87,7 +87,8 @@ def editarAgendaCosto(request,id):
 def verDetalleCosto(request, id):
     agendaCosto=AgendaCosto.objects.filter(idAgendaCosto=id).first()
     agendaFecha=AgendaFecha.objects.filter(idAgendaCosto=id)
-    contexto={"agendaFecha":agendaFecha,"agendaCosto":agendaCosto}
+    cliente=Clientes.objects.filter(idCliente=id).first()
+    contexto={"agendaFecha":agendaFecha,"agendaCosto":agendaCosto,"cliente":cliente}
     return render(request,"Citas/VerDetalleCosto.html",contexto)
 
 def crearAgendaFecha(request, id):
@@ -115,13 +116,27 @@ def crearAgendaFecha(request, id):
             contexto={'estado':estado,'formulario_agenda_fecha':formulario_agenda_fecha,'idAgendaCosto':id}
             return render(request,'Citas/CrearFecha.html',contexto)
         else :
-            estado="Debe"
+            estado="Excedente"
             contexto={'estado':estado,'formulario_agenda_fecha':formulario_agenda_fecha,'idAgendaCosto':id}
             return render(request,'Citas/CrearFecha.html',contexto)
 
         
     contexto={'formulario_agenda_fecha':formulario_agenda_fecha}
     return render(request,'Citas/CrearFecha.html',contexto)
+
+def editarFechaAgenda(request,id):
+    fecha=AgendaFecha.objects.get(idAgendaFecha=id)
+    if request.method=='GET':
+         formulario_agenda_fecha=FormularioAgendaFecha(instance=fecha)
+    else:
+        formulario_agenda_fecha=FormularioAgendaFecha(request.POST,instance=fecha)
+        if formulario_agenda_fecha.is_valid():
+            formulario_agenda_fecha.save()
+            return redirect('verDetalle-Costo', id)
+    contexto={'formulario_agenda_fecha': formulario_agenda_fecha}
+    return render(request,'Citas/EditarFecha.html',contexto)
+
+
         # agendafecha=AgendaFecha.objects.filter(idAgendaCosto=id)
 
         # contador=0
@@ -133,6 +148,8 @@ def crearAgendaFecha(request, id):
         #     error='El número de sesiones es superior'
         #     contexto={'error':error}
         #     render(request,'Citas/crearFecha.html',contexto)
+
+
 
 
 

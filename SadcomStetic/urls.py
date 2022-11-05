@@ -186,6 +186,12 @@ urlpatterns = [
         view=crearAgendaFecha, 
         name='Agenda-Fecha'
         ),
+
+     path(
+        'editarFecha/<int:id>',
+        view=editarFechaAgenda, 
+        name='Editar-Fecha'
+        ),
     
     
     #COMPRAS

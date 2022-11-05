@@ -29,9 +29,11 @@
                     <div class="card-header bg-transparent border-primary">
                         <h5 class="my-0 text-primary"><i class="mdi mdi-card-account-details-outline me-3"></i> Datos personales del cliente </h5>
                     </div>
-                    <div class="row">
-                        
+                    <div class="row">  
                     <div class="card-body">
+                        <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
+                            <a href="{% url 'Agenda-Costo' cliente.idCliente %}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear Costo</a>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-nowrap align-middle">
                                 <thead>
@@ -52,14 +54,13 @@
                                         <td>{{listar.abono}}</td>
                                         <td>
                                             <a href="{% url 'Editar-Costo' listar.idAgendaCosto %}" class="btn btn-outline-primary btn-sm">
-                                                <i class="mdi mdi-eye-outline  mdi-24px "></i>
+                                                <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
                                             </a>
-                                        </td>
-                                        <td>
                                             <a href="{% url 'verDetalle-Costo' listar.idAgendaCosto %}" class="btn btn-outline-primary btn-sm">
                                                 <i class="mdi mdi-eye-outline  mdi-24px "></i>
                                             </a>
                                         </td>
+                                        
                                     </tr>
                                     {% endfor %}
                                 </tbody>
@@ -69,52 +70,7 @@
                     <!-- end card body -->
                 </div>
             </div>
-            <div class="col-xl-6">
-                <div class="card">
-                    <div class="card-header bg-transparent border-primary">
-                        <div class="row">
-                            <div class="col-lg-5">
-                                <h4 class="my-0 text-primary" style="margin-top: 50%;">Historial facial</h4>
-                            </div>
-                            <div class="col-lg-6 ms-lg-auto">
-                                <a  href="{% url 'Crear-Facial' mostrar.idCliente %}" 
-                                    type="button"
-                                    class="btn btn-primary waves-effect " style="margin-left: 43%;">
-                                <i class="mdi mdi-face-woman-outline"> </i> 
-                                    Adicionarfacial
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-nowrap align-middle">
-                                <thead>
-                                    <tr>
-                                        <th>Fecha de creación</th>
-                                        <th>Esteticista</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for listar in facial %}
-                                    <tr>
-                                        <td>{{listar.fechaCreacion}}</td>
-                                        <td>{{listar.nombreE}}</td>
-                                        <td>
-                                            <a href="{% url 'Clientes.Ver-Detalles.Facial' listar.idFacial %}" class="btn btn-outline-primary btn-sm">
-                                                <i class="mdi mdi-eye-outline  mdi-24px "></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- end card body -->
-                </div>
-            </div>
+           
             <!-- end card -->
         </div>
     </div> <!-- container-fluid -->

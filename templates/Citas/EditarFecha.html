@@ -14,11 +14,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h3 class="mb-sm-0 font-size-40">Crear costo</h3>
+                        <h3 class="mb-sm-0 font-size-40">Editar Fecha</h3>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Citas </a></li>
-                                <li class="breadcrumb-item active"> Crear costo </li>
+                                <li class="breadcrumb-item active"> Editar Fecha </li>
                             </ol>
                         </div>
                     </div>
@@ -28,31 +28,17 @@
                 <div style="margin: 60px;" >
                     <div style="align-items: center;">
                         <form id="crearC" method="post">{% csrf_token %}
-                            <input type="text" name="idCliente" hidden value="{{idCliente}}" >
+                            {{formulario_agenda_fecha.idAgendaCosto}}
+                            {{formulario_agenda_fecha.estado}}
                             <input type="hidden" />
                             <div class="row">
-                                
                                 <div class="col-lg-4">
                                     <div class="form-group mb-3">
-                                        <label class="form-label">Nuemero de seciones</label>
-                                        {{formulario_agenda_costo.sesiones}}
-                                        
+                                        <label class="form-label">Fecha Agenda</label>
+                                        {{formulario_agenda_fecha.fechaAgenda}}
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">Pagos</label>
-                                        {{formulario_agenda_costo.costo}}
-                                        
-                                    </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">Abono</label>
-                                        {{formulario_agenda_costo.abono}}
-                                            
-                                    </div>
-                                </div>
-                            </div>
+                              
                             <!-- end row -->
                             <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-top: 40px;" >
                                 <button type="submit" for="crearC" class="btn btn-primary" style="width: 20%; margin-right: 40px;">Guardar</button>
