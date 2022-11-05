@@ -22,7 +22,7 @@ from Apps.login.forms import UserPasswordResetForm, UserSetPasswordForm #aa
 
 from SadcomStetic import views
 
-from Apps.Citas.views import crearCita, formularioCita, listarCita, editarCita, editarClienteCitas, actualizarCita, actualizarClienteCitas,servicio
+from Apps.Citas.views import *
 from Apps.login.views import Login, recuperar_contrasena
 # from Apps.Usuarios.views import Usuarios, Crear_Usuario, Editar_Usuario
 from Apps.Clientes.views import *
@@ -134,16 +134,59 @@ urlpatterns = [
  
     #CITAS
     path(
-        "listarCita/",
-        view= listarCita,
-        name= "Cita",
-    ),
-    path('crearCita/',crearCita,name='crearCita'),
-    path('formularioCita/',formularioCita, name='formularioCita'),
-    path('editarCita/<int:id>',editarCita, name='editarCita'),
-    path('editarCliente/<int:id>',editarClienteCitas, name='editarCliente'),
-    path('actualizarCita/<int:id>',actualizarCita, name='actualizarCita'),
-    path('actualizarCliente/<int:id>',actualizarClienteCitas, name='actualizarCliente'),
+        'Cita/',
+        view=listarCita, 
+        name='Cita'
+        ),
+
+     path(
+        'verficarDocumento/',
+        view=verificarDocumento, 
+        name='verificar-Documento'
+        ),   
+
+    path(
+        'crearCitas/<int:id>',
+        view=crearCita, 
+        name='crear-Citas'
+        ),
+
+    path(
+        'editarCitas/<int:id>',
+        view=editarCita, 
+        name='editar-Citas'
+        ),   
+
+    path(
+        'verDetalleCita/<int:id>',
+        view=verDetalleCita, 
+        name='verDetalle-Cita'
+        ),
+
+    path(
+        'crearCosto/<int:id>',
+        view=crearAgendaCosto, 
+        name='Agenda-Costo'
+        ),
+
+     path(
+        'editarCosto/<int:id>',
+        view=editarAgendaCosto, 
+        name='Editar-Costo'
+        ),    
+
+    path(
+        'verDetalleCosto/<int:id>',
+        view=verDetalleCosto, 
+        name='verDetalle-Costo'
+        ),
+
+    path(
+        'crearFecha/<int:id>',
+        view=crearAgendaFecha, 
+        name='Agenda-Fecha'
+        ),
+    
     
     #COMPRAS
     path(

@@ -14,11 +14,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h3 class="mb-sm-0 font-size-40">Editar cita</h3>
+                        <h3 class="mb-sm-0 font-size-40">Crear Fecha</h3>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Citas </a></li>
-                                <li class="breadcrumb-item active"> Editar cita </li>
+                                <li class="breadcrumb-item active"> Crear Fecha </li>
                             </ol>
                         </div>
                     </div>
@@ -27,36 +27,18 @@
             <div class="card">
                 <div style="margin: 60px;" >
                     <div style="align-items: center;">
-                        <form id="crearC" method="post"> {% csrf_token %}
+                        <form id="crearC" method="post">{% csrf_token %}
+                            <input type="text" name="idAgendaCosto" hidden value="{{idAgendaCosto}}">
+                            <input type="text" name="estado" hidden value="{{estado}}" >
                             <input type="hidden" />
-                            <div class="row">             
-                                {{formulario_citas.idCliente}}                                
-                                <div class="col-md-4">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">Estado</label>
-                                        {{formulario_citas.estado}}
-                                    </div> 
-                                </div> 
+                            <div class="row">
                                 <div class="col-lg-4">
                                     <div class="form-group mb-3">
-                                        <label class="form-label">Fecha de cita</label>
-                                        {{formulario_citas.fechaCita}}
-                                        {% for error in formulario_citas.fechaCita.errors %}
-                                             <p style="color:red"> {{error}}</p>
-                                        {% endfor %}
+                                        <label class="form-label">Fecha Agenda</label>
+                                        {{formulario_agenda_fecha.fechaAgenda}}
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Servicio</label>
-                                    <select name="servicios1" class="form-select">
-                                        {% for listar in servicio %}
-                                        <option name="servicio" value="{{listar.nServicio}}" selected>{{listar.nServicio}}</option>
-                                        {% endfor %} 
-                                    </select>
-                                </div>
-                            </div>  
+                              
                             <!-- end row -->
                             <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-top: 40px;" >
                                 <button type="submit" for="crearC" class="btn btn-primary" style="width: 20%; margin-right: 40px;">Guardar</button>

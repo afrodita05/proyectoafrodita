@@ -27,109 +27,36 @@
             <div class="card">
                 <div style="margin: 60px;" >
                     <div style="align-items: center;">
-                        <form action="/crearCita/" id="crearC" novalidate method="post">
-                            {% csrf_token %}
+                        <form id="crearC" method="post"> {% csrf_token %}
                             <input type="hidden" />
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">Nombre</label>
-                                        <input name="nombre" type="text" required 
-                                            data-pristine-required-message="Por favor ingrese el nombre completo " placeholder="Ingrese el nombre completo"
-                                            class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">Documento</label>
-                                        <input name="documento" type="text" required 
-                                            data-pristine-required-message="Por favor ingrese el documento" placeholder="Ingrese el documento"
-                                            class="form-control" />
-                                    </div>
-                                </div>  
-                                <div class="col-xl-4 col-md-4">
-                                    <div class="mb-3">
-                                        <label class="form-label">Sexo</label>
-                                        <select name="sexo" class="form-select" >
-                                            <option value="Masculino">Masculino</option>
-                                            <option value="Femenino">Femenino</option>
-                                        </select>
-                                    </div>
-                                </div>  
-                                <div class="col-md-4">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">Teléfono</label>
-                                        <input name="telefono" type="text" data-pristine-required-message="Por favor ingrese un número de teléfono " placeholder="Ingrese el número de teléfono" required class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">Dirección</label>
-                                        <input name="direccion" type="text" data-pristine-required-message="Por favor ingrese la dirección " placeholder="Ingrese la dirección" required class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">Correo</label>
-                                        <input name="correo" type="text" data-pristine-required-message="Por favor ingrese un correo electrónico " placeholder="Ingrese el correo" required class="form-control" />
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">Fecha de nacimiento</label>
-                                        <input name="fechaNacimiento" type="date" required class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Estado civil</label>
-                                        <select name="estadoCivil" class="form-select">
-                                            <option value="Soltero">Soltero</option>
-                                            <option value="Casado">Casado</option>
-                                            <option value="Union libre">Union libre</option>
-                                            <option value="Divorciado">Divorciado</option>
-                                            <option value="Viudo">Viudo</option>
-                                        </select>
-                                    </div>
-                                </div>  
-                                <div class="col-md-4">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">Número de hijos</label>
-                                        <input name="numeroHijos" type="text" data-pristine-required-message="Por favor ingrese número de hijos " placeholder="Ingrese el número de hijos" required class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">Servicio</label>
-                                        <select name="servicios1" class="form-select">
-                                            {% for listar in servicio %}
-                                            <option name="servicio" value="{{listar.nServicio}}" selected>{{listar.nServicio}}</option>
-                                            {% endfor %} 
-                                        </select>
-                                    </div>
-                                </div>  
-                                
+                            <div class="row">             
+                                <input type="text" hidden  name="idCliente" value="{{idCliente}}">                                  
                                 <div class="col-md-4">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Estado</label>
-                                        <select name="estadoc" class="form-select">
-                                            <option value="espera">Espera</option>
-                                            <option value="cancelado">Cancelado</option>
-                                            <option value="proceso">Proceso</option>
-                                            <option value="finalizado">Finalizado</option>
-                                        </select>
+                                        {{formulario_citas.estado}}
                                     </div> 
                                 </div> 
                                 <div class="col-lg-4">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Fecha de cita</label>
-                                        <input name="fechaCita" type="date" required 
-                                            data-pristine-required-message="Por favor ingresa la fecha " placeholder="Fecha"
-                                            class="form-control" />
+                                        {{formulario_citas.fechaCita}}
+                                        {% for error in formulario_citas.fechaCita.errors %}
+                                             <p style="color:red"> {{error}}</p>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Servicio</label>
+                                    <select name="servicios1" class="form-select">
+                                        {% for listar in servicio %}
+                                        <option name="servicio" value="{{listar.nServicio}}" selected>{{listar.nServicio}}</option>
+                                        {% endfor %} 
+                                    </select>
+                                </div>
+                            </div>  
                             <!-- end row -->
                             <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-top: 40px;" >
                                 <button type="submit" for="crearC" class="btn btn-primary" style="width: 20%; margin-right: 40px;">Guardar</button>

@@ -1,99 +1,156 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import get_user_model
-from django.urls import reverse
-from django.views.generic import TemplateView
-from Apps.Citas.models import Citas
+from Apps.Citas.models import *
+from Apps.Citas.forms import *
 from Apps.Clientes.models import Clientes
-from Apps.Servicios.models import Servicios
+from django import forms
+
 # Create your views here.
 
+def listarCita(request):
+    citas=Citas.objects.filter()
+    contexto={"citas":citas}
+    return render(request,"Citas/Citas.html",contexto)
 
-def crearCita(request):
-    servicios=Servicios.objects.filter()  
-    nombreCliente=request.POST['nombre']
-    documentoCliente=request.POST['documento']
-    sexoCliente=request.POST['sexo']
-    telefonoCliente=request.POST['telefono']
-    direccionCliente=request.POST['direccion']
-    correoCliente=request.POST['correo']
-    fechaNacimientoCliente=request.POST['fechaNacimiento']
-    estadoCivilCliente=request.POST['estadoCivil']
-    numeroHijosCliente=request.POST['numeroHijos']
-    clientes=Clientes(nombre=nombreCliente,documento=documentoCliente,sexo=sexoCliente,telefono=telefonoCliente,direccion=direccionCliente,correo=correoCliente,fechaNacimiento=fechaNacimientoCliente,estadoCivil=estadoCivilCliente,numeroHijos=numeroHijosCliente)
-    clientes.save()
-
-    idCliente=clientes.idCliente
-    servicioCita=request.POST['servicios1'] 
-    idServicio = Servicios.objects.filter(nServicio=servicioCita).values('idServicio')[0]['idServicio']     
-    fechaCita=request.POST['fechaCita']
-    estadosCitas=request.POST['estadoc']    
-    citas=Citas(fecha=fechaCita,idServicio_id=idServicio,idCliente_id=idCliente,estado=estadosCitas)
-    citas.save()
-    return redirect("Cita")
-
+def verificarDocumento(request):
+    clienteDocumento= request.POST.get('documento')
+    existe=Clientes.objects.filter(documento=clienteDocumento).exists()
+    idCliente = Clientes.objects.filter(documento = clienteDocumento).values_list('idCliente', flat=True).first()
     
-def formularioCita(request):
-    servicio=Servicios.objects.filter()
-    context={"servicio":servicio}   
-    return render(request,"Citas/Crear-Cita.html", context)
+    if existe: 
+        return redirect('crear-Citas',idCliente)
+
+    else:
+        error="El documento que ingreso no está registrado en el sistema"
+        contexto={"error":error}
+        return render(request,'Citas/VerificarDocumento.html',contexto)
+    
+    
+
+def crearCita(request,id):
+    if request.method=='POST':
+        formulario_citas=FormularioCitas(request.POST)
+        if formulario_citas.is_valid():
+            formulario_citas.save()
+            return redirect('/Cita/')
+    else: 
+        formulario_citas=FormularioCitas()
+        
+    contexto={'formulario_citas':formulario_citas,'idCliente':id}
+    return render(request,'Citas/Crear-Cita.html',contexto)
+    
+    
+    
+def editarCita(request,id):
+    citas=Citas.objects.get(idCita=id)
+    if request.method=='GET':
+        formulario_citas=FormularioCitas(instance=citas)
+    else:
+        formulario_citas=FormularioCitas(request.POST,instance=citas)
+        if formulario_citas.is_valid():
+            formulario_citas.save()
+            return redirect('/Cita/')
+    contexto={'formulario_citas':formulario_citas}
+    return render(request,'Citas/Editar-Cita.html',contexto)
 
 
-def listarCita(request):   
-    listarCita=Citas.objects.filter()
-    listarClientes=Clientes.objects.filter()    
-    servicio=Servicios.objects.filter()
-    context={"crcita":listarCita,"lrClientes":listarClientes,"servicio":servicio}
+def verDetalleCita(request, id):
+    cliente=Clientes.objects.filter(idCliente=id).first()
+    agendaCosto=AgendaCosto.objects.filter(idCliente=id)
+    contexto={"agendaCosto":agendaCosto,"cliente":cliente}
+    return render(request,"Citas/VerDetalleCita.html",contexto)
 
-    return render(request,"Citas/Citas.html", context)
+def crearAgendaCosto(request, id):
+
+    if request.method=='POST':
+        formulario_agenda_costo=FormularioAgendaCosto(request.POST)
+        if formulario_agenda_costo.is_valid():
+            formulario_agenda_costo.save()
+            return redirect('verDetalle-Cita', id)
+    else: 
+        formulario_agenda_costo=FormularioAgendaCosto()
+    
+    contexto={'formulario_agenda_costo':formulario_agenda_costo,'idCliente':id}
+    return render(request,'Citas/CrearCosto.html',contexto)
+
+def editarAgendaCosto(request,id):
+    agendaCosto=AgendaCosto.objects.get(idAgendaCosto=id)
+    if request.method=='GET':
+        formulario_agenda_costo=FormularioAgendaCosto(instance=agendaCosto)
+    else:
+        formulario_agenda_costo=FormularioAgendaCosto(request.POST,instance=agendaCosto)
+        if formulario_agenda_costo.is_valid():
+            formulario_agenda_costo.save()
+            return redirect('verDetalle-Cita', id)
+    contexto={'formulario_agenda_costo':formulario_agenda_costo}
+    return render(request,'Citas/EditarCosto.html',contexto)
+
+def verDetalleCosto(request, id):
+    agendaCosto=AgendaCosto.objects.filter(idAgendaCosto=id).first()
+    agendaFecha=AgendaFecha.objects.filter(idAgendaCosto=id)
+    contexto={"agendaFecha":agendaFecha,"agendaCosto":agendaCosto}
+    return render(request,"Citas/VerDetalleCosto.html",contexto)
+
+def crearAgendaFecha(request, id):
+    if request.method=='POST':
+        formulario_agenda_fecha=FormularioAgendaFecha(request.POST)
+        if formulario_agenda_fecha.is_valid():
+            formulario_agenda_fecha.save()
+            return redirect('verDetalle-Costo', id)
+    else: 
+        formulario_agenda_fecha=FormularioAgendaFecha()
+
+    agendacosto=AgendaCosto.objects.filter(idAgendaCosto=id)
+    for listar in agendacosto:
+
+        clienteCosto=listar.costo
+        clienteAbono=listar.abono
 
 
-def editarCita(request, id):
-    servicio=Servicios.objects.filter()
-    ver=Citas.objects.filter(idCitas=id).first()
-    context={"ver":ver,"servicio":servicio}
-    return render(request,"Citas/Editar-Cita.html",context)
+        if clienteAbono<clienteCosto:
+            estado="Por pagar"
+            contexto={'estado':estado,'formulario_agenda_fecha':formulario_agenda_fecha,'idAgendaCosto':id}
+            return render(request,'Citas/CrearFecha.html',contexto)
+        elif clienteAbono==clienteCosto:
+            estado="Pagado"
+            contexto={'estado':estado,'formulario_agenda_fecha':formulario_agenda_fecha,'idAgendaCosto':id}
+            return render(request,'Citas/CrearFecha.html',contexto)
+        else :
+            estado="Debe"
+            contexto={'estado':estado,'formulario_agenda_fecha':formulario_agenda_fecha,'idAgendaCosto':id}
+            return render(request,'Citas/CrearFecha.html',contexto)
 
-def editarClienteCitas(request, id):  #se hizo cambio de nombre la vista editar y actualizar cliente en modulo de citas porque cuando edito una cliente desde el modulo de clientes se direcciona al modulo citas 
-    mostrar=Clientes.objects.filter(idCliente=id).first()    
-    context={"mostrar":mostrar}
-    return render(request,"Citas/Editar-Cliente.html",context)
+        
+    contexto={'formulario_agenda_fecha':formulario_agenda_fecha}
+    return render(request,'Citas/CrearFecha.html',contexto)
+        # agendafecha=AgendaFecha.objects.filter(idAgendaCosto=id)
 
-def actualizarClienteCitas(request, id):  
-    nombreCliente=request.GET['nombre']
-    documentoCliente=request.GET['documento']
-    telefonoCliente=request.GET['telefono']
-    actualizar=Clientes.objects.get(idCliente=id)
-    actualizar.nombre=nombreCliente
-    actualizar.documento=documentoCliente
-    actualizar.telefono=telefonoCliente
-    actualizar.save()
-    return redirect("/listarCita/")
-   
-def actualizarCita(request, id):
-    fechaCita=request.GET['fechaCita']
-    servicioCita=request.GET['servicios1']
-    actualizar=Citas.objects.get(idCitas=id)
-    idServicio = Servicios.objects.filter(nServicio=servicioCita).values('idServicio')[0]['idServicio']
-    actualizar.fecha=fechaCita
-    actualizar.idServicio_id=idServicio
-    actualizar.save()
+        # contador=0
+        # while contador<agendafecha:
+        #     contador+=1
 
-    return redirect("Cita")
+        
+        # if contador==clienteSesiones:
+        #     error='El número de sesiones es superior'
+        #     contexto={'error':error}
+        #     render(request,'Citas/crearFecha.html',contexto)
 
-def servicio(request):
-    servicio=Servicios.objects.filter()
-    context={"lServicio":servicio}
-    return render(request,"/listarCita/",context)
 
-# class Citaview(TemplateView):
-#     pass
 
-# Citas = Citaview.as_view(
-#     template_name="Citas/Citas.html"
-# )
-# Crear_Cita = Citaview.as_view(
-#     template_name="Citas/Crear-Cita.html"
-# )
-# Editar_Cita = Citaview.as_view(
-#     template_name="Citas/Editar-Cita.html"
-# )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

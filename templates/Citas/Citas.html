@@ -36,7 +36,10 @@
                         crear una nueva cita.</p>
                     </div>
                     <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
-                        <a href="/formularioCita/" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear una cita</a>
+                        <a href="{% url 'verificar-Documento' %}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear una cita</a>
+                    </div>
+                    <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
+                        <a href="{% url 'Clientes' %}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear un Clienete</a>
                     </div>
                 </div>
             </div><!-- end col -->
@@ -54,26 +57,26 @@
                                 <table id="datatable1" class="table table-nowrap align-middle">
                                     <thead>
                                         <tr>
-                                            <th>Documento</th>
+                                            <th>Fecha Cita</th>
+                                            <th>Estado</th>
                                             <th>Nombre</th>
-                                            <th>Teléfono</th>
-                                            <th>Servicio</th>
-                                            <th>Fecha de cita</th>
-                                            <th>Estado</th>                                            
-                                            <th>Acciones</th>
+                                            <th>Documento</th>
+                                            <th>Funciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for listar in crcita %}
+                                        {% for listar in citas %}
                                         <tr data-id="1">
-                                            <td data-field="fecha">{{listar.idCliente.documento}}</td>
-                                            <td data-field="name">{{listar.idCliente.nombre}}</td>
-                                            <td data-field="telefono">{{listar.idCliente.telefono}}</td>
-                                            <td data-field="servicio">{{listar.idServicio.nServicio}}</td>
-                                            <td data-field="fecha">{{listar.fecha}}</td>
-                                            <td data-field="estado">{{listar.estado}}</td>                                            
+                                            <td data-field="fechaCita">{{listar.fechaCita}}</td>
+                                            <td data-field="estado">{{listar.estado}}</td>
+                                            <td data-field="nombre">{{listar.idCliente.nombre}}</td>
+                                            <td data-field="documento">{{listar.idCliente.documento}}</td>
+                                                                                       
                                             <td>
-                                                <a href="{% url 'editarCita' listar.idCitas %}" class="btn btn-outline-primary btn-sm">
+                                                <a href="{% url 'editar-Citas' listar.idCita %}" class="btn btn-outline-primary btn-sm">
+                                                    <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
+                                                </a>
+                                                <a href="{% url 'verDetalle-Cita' listar.idCliente.idCliente %}" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
                                                 </a>
                                                 <a href="#" class="btn btn-outline-primary btn-sm">
