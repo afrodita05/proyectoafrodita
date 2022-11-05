@@ -65,14 +65,12 @@ def crearFacial(request,id):
 def VerDetalleCorporal(request, id):
     mostrar=EsteticoCorporal.objects.filter(idCorporal=id).first()
     medidas=ControlMedidas.objects.filter(idCorporal=id)
-    sesiones=Sesiones.objects.filter(idCorporal=id)
-    contexto={"mostrar":mostrar,"medidas":medidas,"sesiones":sesiones}
+    contexto={"mostrar":mostrar,"medidas":medidas}
     return render(request,"Clientes/Historial-Corporal.html",contexto)
 
 def VerDetalleFacial(request, id):
     mostrar=EsteticoFacial.objects.filter(idFacial=id).first()
-    sesiones=Sesiones.objects.filter(idFacial=id)
-    contexto={"mostrar":mostrar,"sesiones":sesiones}
+    contexto={"mostrar":mostrar}
     return render(request,"Clientes/Historial-Facial.html",contexto)
 
 def crearControlMedidas(request,id):
@@ -86,126 +84,5 @@ def crearControlMedidas(request,id):
     contexto={'formulario_medidas':formulario_medidas,"idCorporal":id}
     return render(request,'Clientes/Crear-Medidas.html',contexto)
 
-def formularioPagosSesionesCorporal(request,id):
-    corporal=EsteticoCorporal.objects.filter(idCorporal=id).first()
-    contexto={"corporal":corporal}
-    return render(request,"Clientes/Crear-Pagos-Sesiones-Corporal.html",contexto)
 
-def formularioPagosSesionesFacial(request,id):
-    facial=EsteticoFacial.objects.filter(idFacial=id).first()
-    contexto={"facial":facial}
-    return render(request,"Clientes/Crear-Pagos-Sesiones-Facial.html",contexto)    
 
-def crearPagosSesionesCorporal(request,id):
-    crearIdC=EsteticoCorporal.objects.get(idCorporal=id)
-    sesionesFecha=request.GET['fecha']
-    sesionesC=request.GET['secionesC']
-    sesionesValor=request.GET['valor']
-    sesionesAbono=request.GET['abono']
-    
-    if sesionesAbono< sesionesValor:
-        seciones=Sesiones(fecha=sesionesFecha,Nseciones=sesionesC,valor=sesionesValor,abono=sesionesAbono,estado="Por pagar",idCorporal=crearIdC)
-        seciones.save()
-    elif sesionesAbono> sesionesValor:
-        seciones=Sesiones(fecha=sesionesFecha,Nseciones=sesionesC,valor=sesionesValor,abono=sesionesAbono,estado="Devolver",idCorporal=crearIdC)
-        seciones.save()
-    else:
-        seciones=Sesiones(fecha=sesionesFecha,Nseciones=sesionesC,valor=sesionesValor,abono=sesionesAbono,estado="Pagado",idCorporal=crearIdC)
-        seciones.save()
-
-    return redirect("Clientes.Ver-Detalles.Corporal",id)
-
-def crearPagosSesionesFacial(request,id):
-    crearIdF=EsteticoFacial.objects.get(idFacial=id)
-    sesionesFecha=request.GET['fecha']
-    sesionesC=request.GET['secionesC']
-    sesionesValor=request.GET['valor']
-    sesionesAbono=request.GET['abono']
-
-    if sesionesAbono< sesionesValor:
-        seciones=Sesiones(fecha=sesionesFecha,Nseciones=sesionesC,valor=sesionesValor,abono=sesionesAbono,estado="Por pagar",idFacial=crearIdF)
-        seciones.save()
-    elif sesionesAbono> sesionesValor:
-        seciones=Sesiones(fecha=sesionesFecha,Nseciones=sesionesC,valor=sesionesValor,abono=sesionesAbono,estado="Devolver",idFacial=crearIdF)
-        seciones.save()
-    else:
-        seciones=Sesiones(fecha=sesionesFecha,Nseciones=sesionesC,valor=sesionesValor,abono=sesionesAbono,estado="Pagado",idFacial=crearIdF)
-        seciones.save()
-
-    return redirect("Clientes.Ver-Detalles.Facial",id)
-
-def editarPagosSesionesFacial(request,id):
-    mostrar=Sesiones.objects.filter(idSesiones=id).first()
-    contexto={"mostrar":mostrar}
-    return render(request,"Clientes/Editar-Pagos-Sesiones-Facial.html",contexto)
-
-def actualizarPagosSesionesFacial(request, id):
-    sesionesFecha=request.GET['fecha']
-    sesionesC=request.GET['secionesC']
-    sesionesValor=request.GET['valor']
-    sesionesAbono=request.GET['abono']
-
-    if sesionesAbono< sesionesValor:
-        actualizar=Sesiones.objects.get(idSesiones=id)
-        actualizar.fecha=sesionesFecha
-        actualizar.Nseciones=sesionesC
-        actualizar.valor=sesionesValor
-        actualizar.abono=sesionesAbono
-        actualizar.estado="Por pagar"
-        actualizar.save()
-    elif sesionesAbono> sesionesValor:
-        actualizar=Sesiones.objects.get(idSesiones=id)
-        actualizar.fecha=sesionesFecha
-        actualizar.Nseciones=sesionesC
-        actualizar.valor=sesionesValor
-        actualizar.abono=sesionesAbono
-        actualizar.estado="Devolver"
-        actualizar.save()
-    else:
-        actualizar=Sesiones.objects.get(idSesiones=id)
-        actualizar.fecha=sesionesFecha
-        actualizar.Nseciones=sesionesC
-        actualizar.valor=sesionesValor
-        actualizar.abono=sesionesAbono
-        actualizar.estado="Pagado"
-        actualizar.save()
-
-    return redirect("Clientes.Ver-Detalles.Facial",id)
-
-def editarPagosSesionesCorporal(request,id):
-    mostrar=Sesiones.objects.filter(idSesiones=id).first()
-    contexto={"mostrar":mostrar}
-    return render(request,"Clientes/Editar-Pagos-Sesiones-Corporal.html",contexto)
-
-def actualizarPagosSesionesCorporal(request, id):
-    sesionesFecha=request.GET['fecha']
-    sesionesC=request.GET['secionesC']
-    sesionesValor=request.GET['valor']
-    sesionesAbono=request.GET['abono']
-
-    if sesionesAbono< sesionesValor:
-        actualizar=Sesiones.objects.get(idSesiones=id)
-        actualizar.fecha=sesionesFecha
-        actualizar.Nseciones=sesionesC
-        actualizar.valor=sesionesValor
-        actualizar.abono=sesionesAbono
-        actualizar.estado="Por pagar"
-        actualizar.save()
-    elif sesionesAbono> sesionesValor:
-        actualizar=Sesiones.objects.get(idSesiones=id)
-        actualizar.fecha=sesionesFecha
-        actualizar.Nseciones=sesionesC
-        actualizar.valor=sesionesValor
-        actualizar.abono=sesionesAbono
-        actualizar.estado="Devolver"
-        actualizar.save()
-    else:
-        actualizar=Sesiones.objects.get(idSesiones=id)
-        actualizar.fecha=sesionesFecha
-        actualizar.Nseciones=sesionesC
-        actualizar.valor=sesionesValor
-        actualizar.abono=sesionesAbono
-        actualizar.estado="Pagado"
-        actualizar.save()
-
-    return redirect("Clientes.Ver-Detalles.Corporal",id)

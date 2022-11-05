@@ -85,30 +85,33 @@ class FormularioCliente(forms.ModelForm):
 
 
 class FormularioCorporal(forms.ModelForm): 
-    def clean_kilos(self):
-        kilos=self.cleaned_data['kilos']
-        validarKilos=re.search(r'^[0-9.]{1,7}$',kilos, flags=re.MULTILINE)
-        if validarKilos==None:
-            raise ValidationError("Error. Solo se permite ingresar decimales")
-        return kilos 
-    def clean_talla(self):
-        talla=self.cleaned_data['talla']
-        validarTalla=re.search(r'^[0-9.]{1,7}$',talla, flags=re.MULTILINE)
-        if validarTalla==None:
-            raise ValidationError("Error. Solo se permite ingresar decimales")
-        return talla
-    def clean_altura(self):
-        altura=self.cleaned_data['altura']
-        validarAltura=re.search(r'^[0-9.]{1,7}$',altura, flags=re.MULTILINE)
-        if validarAltura==None:
-            raise ValidationError("Error. Solo se permite ingresar decimales")
-        return altura 
-    def clean_masaC(self):
-        masaC=self.cleaned_data['masaC']
-        validarMasaC=re.search(r'^[0-9.]{1,7}$',masaC, flags=re.MULTILINE)
-        if validarMasaC==None:
-            raise ValidationError("Error. Solo se permite ingresar decimales")
-        return masaC
+    # def clean_kilos(self):
+    #     kilos=self.cleaned_data['kilos']
+    #     validarKilos=re.search(r'^[0-9.]{1,7}$',kilos, flags=re.MULTILINE)
+    #     validarvacio=re.search(r'^\s+$',kilos, flags=re.MULTILINE)
+    #     if validarKilos==None:
+    #         raise ValidationError("Error. Solo se permite ingresar decimales")
+    #     elif validarvacio:
+    #         raise ValidationError("Error. Este campo es requerido")
+    #     return kilos 
+    # def clean_talla(self):
+    #     talla=self.cleaned_data['talla']
+    #     validarTalla=re.search(r'^[0-9.]{1,7}$',talla, flags=re.MULTILINE)
+    #     if validarTalla==None:
+    #         raise ValidationError("Error. Solo se permite ingresar decimales")
+    #     return talla
+    # def clean_altura(self):
+    #     altura=self.cleaned_data['altura']
+    #     validarAltura=re.search(r'^[0-9.]{1,7}$',altura, flags=re.MULTILINE)
+    #     if validarAltura==None:
+    #         raise ValidationError("Error. Solo se permite ingresar decimales")
+    #     return altura 
+    # def clean_masaC(self):
+    #     masaC=self.cleaned_data['masaC']
+    #     validarMasaC=re.search(r'^[0-9.]{1,7}$',masaC, flags=re.MULTILINE)
+    #     if validarMasaC==None:
+    #         raise ValidationError("Error. Solo se permite ingresar decimales")
+    #     return masaC
     class Meta: 
         model=EsteticoCorporal
         fields='__all__'
@@ -352,6 +355,49 @@ class FormularioFacial(forms.ModelForm):
         }
         
 class FormularioMedidas(forms.ModelForm): 
+    def clean_brazoD(self):
+        brazoD=self.cleaned_data['brazoD']
+        validarbrazoD=re.search(r'^[0-9,]{1,7}$',brazoD, flags=re.MULTILINE)
+        if validarbrazoD==None:
+            raise ValidationError("Error. Solo se permite ingresar caracteres númericos")
+        return brazoD
+    def clean_brazoI(self):
+        brazoI=self.cleaned_data['brazoI']
+        validarbrazoI=re.search(r'^[0-9,]{1,7}$',brazoI, flags=re.MULTILINE)
+        if validarbrazoI==None:
+            raise ValidationError("Error. Solo se permite ingresar caracteres númericos")
+        return brazoI
+    def clean_abdomenA(self):
+        abdomenA=self.cleaned_data['abdomenA']
+        validarabdomenA=re.search(r'^[0-9,]{1,7}$',abdomenA, flags=re.MULTILINE)
+        if validarabdomenA==None:
+            raise ValidationError("Error. Solo se permite ingresar caracteres númericos")
+        return abdomenA
+    def clean_cintura(self):
+        cintura=self.cleaned_data['cintura']
+        validarcintura=re.search(r'^[0-9,]{1,7}$',cintura, flags=re.MULTILINE)
+        if validarcintura==None:
+            raise ValidationError("Error. Solo se permite ingresar caracteres númericos")
+        return cintura
+    def clean_abdomenB(self):
+        abdomenB=self.cleaned_data['abdomenB']
+        validarabdomenB=re.search(r'^[0-9,]{1,7}$',abdomenB, flags=re.MULTILINE)
+        if validarabdomenB==None:
+            raise ValidationError("Error. Solo se permite ingresar caracteres númericos")
+        return abdomenB
+    def clean_piernaD(self):
+        piernaD=self.cleaned_data['piernaD']
+        validarpiernaD=re.search(r'^[0-9,]{1,7}$',piernaD, flags=re.MULTILINE)
+        if validarpiernaD==None:
+            raise ValidationError("Error. Solo se permite ingresar caracteres númericos")
+        return piernaD
+    def clean_piernaI(self):
+        piernaI=self.cleaned_data['piernaI']
+        validarpiernaI=re.search(r'^[0-9,]{1,7}$',piernaI, flags=re.MULTILINE)
+        if validarpiernaI==None:
+            raise ValidationError("Error. Solo se permite ingresar caracteres númericos")
+        return piernaI
+    
     class Meta: 
         model=ControlMedidas
         fields='__all__'

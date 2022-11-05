@@ -45,42 +45,63 @@
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Brazo derecho</label>
                                                     {{formulario_medidas.brazoD}}
+                                                    {% for error in formulario_medidas.brazoD.errors %}
+                                                    <p style="color:red"> {{error}}</p>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Brazo izquierdo</label>
                                                     {{formulario_medidas.brazoI}}
+                                                    {% for error in formulario_medidas.brazoI.errors %}
+                                                    <p style="color:red"> {{error}}</p>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Abdomen alto</label>
                                                     {{formulario_medidas.abdomenA}}
+                                                    {% for error in formulario_medidas.abdomenA.errors %}
+                                                    <p style="color:red"> {{error}}</p>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Abdomen bajo</label>
                                                     {{formulario_medidas.abdomenB}}
+                                                    {% for error in formulario_medidas.abdomenB.errors %}
+                                                    <p style="color:red"> {{error}}</p>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Cintura</label>
                                                     {{formulario_medidas.cintura}}
+                                                    {% for error in formulario_medidas.cintura.errors %}
+                                                    <p style="color:red"> {{error}}</p>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Pierna derecha</label>
                                                     {{formulario_medidas.piernaD}}
+                                                    {% for error in formulario_medidas.piernaD.errors %}
+                                                    <p style="color:red"> {{error}}</p>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Pierna izquierda</label>
                                                     {{formulario_medidas.piernaI}}
+                                                    {% for error in formulario_medidas.piernaI.errors %}
+                                                    <p style="color:red"> {{error}}</p>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
                                         </div>

@@ -266,45 +266,5 @@ urlpatterns = [
         view= crearControlMedidas,
         name= "Clientes.Ver-Detalles.Crear-Control-Medidas",
     ),
-    path(
-        "FormularioPagoSesionCorporal/<int:id>",
-        view= formularioPagosSesionesCorporal,
-        name= "Clientes.Ver-Detalles.Formulario-Pagos-Sesiones-Corporal",
-    ),
-    path(
-        "CrearPagoSesionCorporal/<int:id>",
-        view= crearPagosSesionesCorporal,
-        name= "Clientes.Ver-Detalles.Crear-Pagos-Sesiones-Corporal",
-    ),
-    path(
-        "FormularioPagoSesionFacial/<int:id>",
-        view= formularioPagosSesionesFacial,
-        name= "Clientes.Ver-Detalles.Formulario-Pagos-Sesiones-Facial",
-    ),
-    path(
-        "CrearPagoSesionFacial/<int:id>",
-        view= crearPagosSesionesFacial,
-        name= "Clientes.Ver-Detalles.Crear-Pagos-Sesiones-Facial",
-    ),
-    path(
-        "EditarPagoSesionFacial/<int:id>",
-        view= editarPagosSesionesFacial,
-        name= "Clientes.Ver-Detalles.Editar-Pagos-Sesiones-Facial",
-    ),
-    path(
-        "ActualizarPagoSesionFacial/<int:id>",
-        view= actualizarPagosSesionesFacial,
-        name= "Clientes.Ver-Detalles.Actualizar-Pagos-Sesiones-Facial",
-    ),
-    path(
-        "EditarPagoSesionCorporal/<int:id>",
-        view= editarPagosSesionesCorporal,
-        name= "Clientes.Ver-Detalles.Editar-Pagos-Sesiones-Corporal",
-    ),
-    path(
-        "ActualizarPagoSesionCorporal/<int:id>",
-        view= actualizarPagosSesionesCorporal,
-        name= "Clientes.Ver-Detalles.Actualizar-Pagos-Sesiones-Corporal",
-    ),
     
 ]

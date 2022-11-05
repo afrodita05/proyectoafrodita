@@ -226,16 +226,6 @@ class EsteticoFacial(models.Model):
     mensuales=models.CharField(max_length=2)
     productoH=models.TextField(blank=True,null=True)
     
-class Sesiones(models.Model):
-    idSesiones=models.AutoField(primary_key=True)
-    idCorporal=models.ForeignKey(EsteticoCorporal, null=True, on_delete=models.PROTECT)
-    idFacial=models.ForeignKey(EsteticoFacial, null=True, on_delete=models.PROTECT)
-    fecha=models.CharField(max_length=10)
-    Nseciones=models.CharField(max_length=2)
-    valor=models.IntegerField()
-    abono=models.IntegerField()
-    estado=models.CharField(max_length=9)
-    fechaActualizacion=models.DateTimeField(auto_now=True)
 
 
 
