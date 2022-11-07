@@ -23,14 +23,6 @@ renderItemList = () => {
     items.forEach((item) => {
         const newRow = `
         
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Cantidad</th>
-                <th>Precio</th>
-                <th>Total</th>
-            </tr>
-        </thead>
             <tr>
                 <td>${item.insumo}</td>
                 <td>${item.cantidad}</td>
