@@ -45,16 +45,25 @@
                                                 <div class="mb-3">
                                                     <input type="hidden" name="id" value="{{insumo.idInsumo}}">
                                                     <label class="form-label" for="validationTooltip02">Insumo</label>
-                                                    <input type="text" class="form-control" id="txtNombre" name="txtNombre"
+                                                    <input type="text" class="form-control" id="Nombre" name="Nombre"
                                                         placeholder="Insumo" required>
                                                     <div class="invalid-tooltip" style="margin-top: 5px;">
                                                         Por favor ingrese el insumo.
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <label for="example-number-input" class="form-label">Cantidad</label>
-                                                    <input class="form-control" type="number" value="1" min="1"
-                                                        id="numCantidad" name="numCantidad">
+                                                    <label for="example-number-input" class="form-label">Unidades</label>
+                                                    <input class="form-control" type="number" value="0" min="0"
+                                                        id="Unidad" name="Unidad">
+                                                    <div class="invalid-tooltip" style="margin-top: 5px;">
+                                                        Por favor 1 o más unidades.
+                                                     </div>
+                                                </div>
+                                                <br>
+                                                <div class="col-md-12">
+                                                    <label for="example-number-input" class="form-label">Gramos</label>
+                                                    <input class="form-control" type="number" value="0" min="0"
+                                                        id="Gramos" name="Gramos">
                                                     <div class="invalid-tooltip" style="margin-top: 5px;">
                                                         Por favor 1 o más unidades.
                                                      </div>
@@ -85,18 +94,18 @@
                                         <table id="datatable" class="table table-nowrap align-middle">
                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
                                                     <th>Insumo</th>
-                                                    <th>Cantidad</th>
+                                                    <th>Unidades</th>
+                                                    <th>Gramos</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
                                                 <tbody>
                                                     <tr data-id="1">
                                                         {% for insumo in insumos %}
-                                                        <td data-field="id" style="width: 80px">{{insumo.idInsumo}}</td>
-                                                        <td data-field="insumo">{{insumo.nombre}}</td>
-                                                        <td data-field="cantidad">{{insumo.cantidad}}</td>
+                                                        <td data-field="insumo">{{insumo.nombreInsumo}}</td>
+                                                        <td data-field="cantidad">{{insumo.unidades}}</td>
+                                                        <td data-field="cantidad">{{insumo.gramos}}</td>
                                                         <td>
                                                             <a href="{% url 'editar' insumo.idInsumo%}" class="btn btn-outline-primary btn-sm">
                                                                 <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
