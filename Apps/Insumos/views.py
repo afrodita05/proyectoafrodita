@@ -9,12 +9,6 @@ def insumos (request):
     insumos = Insumo.objects.all()
     return render (request, 'Insumos/Insumos.html', {'insumos': insumos})
 
-def crearInsumos (request):
-    nombre = request.POST['txtNombre']
-    cantidad = request.POST['numCantidad']
-    insumo = Insumo.objects.create(nombre = nombre, cantidad= cantidad)
-    messages.success(request, "Creado exitosamente")
-    return redirect('Insumos')
 
 def edicionInsumos(request, idInsumo):
    insumo = Insumo.objects.get(idInsumo = idInsumo)
@@ -22,10 +16,10 @@ def edicionInsumos(request, idInsumo):
 
 def editarInsumo (request):
     idInsumo = request.POST['id']
-    nombre = request.POST['txtNombre']
+    nombreInsumo = request.POST['txtNombre']
     cantidad = request.POST['numCantidad']
     insumo = Insumo.objects.get(idInsumo = idInsumo)
-    insumo.nombre = nombre
+    insumo.nombreInsumo = nombreInsumo
     insumo.cantidad = cantidad
     insumo.save()
     return redirect('Insumos')

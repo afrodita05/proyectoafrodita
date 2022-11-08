@@ -403,9 +403,9 @@ def editarPagosSesionesCorporal(request,id):
     return render(request,"Clientes/Editar-Pagos-Sesiones-Corporal.html",contexto)
 
 def cantidadClientes(request):
-    totalClientes = Clientes.objects.all().count()
-    contexto= {"totalClientes":totalClientes}
-    return render(request,"partials/content.html", contexto)
+    totalClientes = Clientes.objects.count().filter()
+    context= {"totalClientes":totalClientes}
+    return render(request,"partials/content.html", context)
 
 def actualizarPagosSesionesCorporal(request, id):
     sesionesFecha=request.GET['fecha']
