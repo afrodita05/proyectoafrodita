@@ -10,11 +10,25 @@ def insumos (request):
     return render (request, 'Insumos/Insumos.html', {'insumos': insumos})
 
 def crearInsumos (request):
-    nombreInsumo = request.POST['Nombre']
-    unidades = request.POST['Unidad']
-    gramos = request.POST['Gramos']
-    insumo = Insumo.objects.create(nombreInsumo = nombreInsumo, unidades= unidades, gramos = gramos)
-    messages.success(request, "Creado exitosamente")
+    nInsumo = request.POST['Nombre']
+    errorI= []
+    errorInsO= []
+    if Insumo.objects.filter(nombreInsumo= nInsumo).exists():
+        errorI.append(1)
+        contex={"errorI": errorI}
+        return render(request,'Insumos/Insumos.html',contex)
+        
+    elif nInsumo == (''):
+        errorInsO.append(1)
+        contex={"errorInsO": errorInsO}
+        return render(request,'Insumos/Insumos.html',contex)
+    
+    else:
+        unidades = request.POST['Unidad']
+        gramos = request.POST['Gramos']
+        insumo = Insumo(nombreInsumo = nInsumo, unidades= unidades, gramos = gramos)
+        errorI.clear()
+        insumo.save()
     return redirect('Insumos')
 
 def edicionInsumos(request, idInsumo):
