@@ -46,11 +46,13 @@ btnGuardar.addEventListener('click', async () => {
     try{
         const csrfmiddlewaretoken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
         const data = {items: items, csrfmiddlewaretoken: csrfmiddlewaretoken};
-        const response = await fetch(`${new URL(window.location).origin}/CrearCompra/`, {
+        const response = await fetch(`${new URL(window.location=/CrearCompra/).origin}`, {
             method: "POST",
             redirect: 'follow', 
             body: JSON.stringify(data), headers: { "X-CSRFToken": csrfmiddlewaretoken },
         });
+
+        console.log(window.location.origin,'holaaa')
         // if (response.status===500) throw new Error("Internal Error")
         localStorage.removeItem(LOCAL_STORAGE_ITEMS_KEY)
         items.length=0
