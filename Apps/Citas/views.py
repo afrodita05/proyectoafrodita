@@ -80,7 +80,7 @@ def editarAgendaCosto(request,id):
         formulario_agenda_costo=FormularioAgendaCosto(request.POST,instance=agendaCosto)
         if formulario_agenda_costo.is_valid():
             formulario_agenda_costo.save()
-            return redirect('verDetalle-Cita', id)
+            return redirect('verDetalle-Cita', agendaCosto.idCliente.idCliente)
     contexto={'formulario_agenda_costo':formulario_agenda_costo}
     return render(request,'Citas/EditarCosto.html',contexto)
 
@@ -132,7 +132,7 @@ def editarFechaAgenda(request,id):
         formulario_agenda_fecha=FormularioAgendaFecha(request.POST,instance=fecha)
         if formulario_agenda_fecha.is_valid():
             formulario_agenda_fecha.save()
-            return redirect('verDetalle-Costo', id)
+            return redirect('verDetalle-Costo', fecha.idAgendaCosto.idAgendaCosto)
     contexto={'formulario_agenda_fecha': formulario_agenda_fecha}
     return render(request,'Citas/EditarFecha.html',contexto)
 
