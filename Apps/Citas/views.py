@@ -56,6 +56,7 @@ def editarCita(request,id):
 def verDetalleCita(request, id):
     cliente=Clientes.objects.filter(idCliente=id).first()
     agendaCosto=AgendaCosto.objects.filter(idCliente=id)
+    print(agendaCosto)
     contexto={"agendaCosto":agendaCosto,"cliente":cliente}
     return render(request,"Citas/VerDetalleCita.html",contexto)
 
@@ -89,11 +90,13 @@ def verDetalleCosto(request, id):
     agendaFecha=AgendaFecha.objects.filter(idAgendaCosto=id)
     cliente=Clientes.objects.filter(idCliente=id).first()
     contexto={"agendaFecha":agendaFecha,"agendaCosto":agendaCosto,"cliente":cliente}
+    print("DETALLE", contexto)
     return render(request,"Citas/VerDetalleCosto.html",contexto)
 
 def crearAgendaFecha(request, id):
     if request.method=='POST':
         formulario_agenda_fecha=FormularioAgendaFecha(request.POST)
+        
         if formulario_agenda_fecha.is_valid():
             formulario_agenda_fecha.save()
             return redirect('verDetalle-Costo', id)
@@ -101,12 +104,16 @@ def crearAgendaFecha(request, id):
         formulario_agenda_fecha=FormularioAgendaFecha()
 
     agendacosto=AgendaCosto.objects.filter(idAgendaCosto=id)
+    print("COSTO", agendacosto)
+
+    print("IDE",id)
+    print("Valido",formulario_agenda_fecha.is_valid())
     for listar in agendacosto:
 
         clienteCosto=listar.costo
         clienteAbono=listar.abono
 
-
+        
         if clienteAbono<clienteCosto:
             estado="Por pagar"
             contexto={'estado':estado,'formulario_agenda_fecha':formulario_agenda_fecha,'idAgendaCosto':id}
@@ -126,6 +133,7 @@ def crearAgendaFecha(request, id):
 
 def editarFechaAgenda(request,id):
     fecha=AgendaFecha.objects.get(idAgendaFecha=id)
+    
     if request.method=='GET':
          formulario_agenda_fecha=FormularioAgendaFecha(instance=fecha)
     else:
@@ -137,17 +145,17 @@ def editarFechaAgenda(request,id):
     return render(request,'Citas/EditarFecha.html',contexto)
 
 
-        # agendafecha=AgendaFecha.objects.filter(idAgendaCosto=id)
+        # agendafecha=AgendaFecha.objects.filter(idAgendaCosto=id) #Toma todos los idAgendaCosto relacionados al actual. Si el actual es 2, debe tomar todos los asociados al 2.
 
-        # contador=0
-        # while contador<agendafecha:
-        #     contador+=1
+        #  contador=0
+        #  while contador<agendafecha: #Sumará de uno en uno hasta llegar al número límite
+        #      contador+=1
 
         
-        # if contador==clienteSesiones:
-        #     error='El número de sesiones es superior'
-        #     contexto={'error':error}
-        #     render(request,'Citas/crearFecha.html',contexto)
+         
+        #  error='El número de sesiones es superior' #Al terminar el conteo, saltará un error: se excedió la cantidad
+        #  contexto={'error':error}
+        #  render(request,'Citas/crearFecha.html',contexto)
 
 
 
