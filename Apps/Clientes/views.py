@@ -85,8 +85,6 @@ def crearControlMedidas(request,id):
     return render(request,'Clientes/Crear-Medidas.html',contexto)
 
 
-<<<<<<< HEAD
-=======
 def crearPagosSesionesFacial(request,id):
     crearIdF=EsteticoFacial.objects.get(idFacial=id)
     sesionesFecha=request.GET['fecha']
@@ -184,5 +182,4 @@ def actualizarPagosSesionesCorporal(request, id):
         actualizar.abono=sesionesAbono
         actualizar.estado="Pagado"
         actualizar.save()
->>>>>>> 7b4a5018eefa1eb68f4c2fc8e09ab0ed29669771
 

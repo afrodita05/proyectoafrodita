@@ -1,10 +1,6 @@
 from django.db import models        
 from Apps.Proveedores.models import Proveedor
-<<<<<<< HEAD
-
-=======
 from Apps.Insumos.models import Insumo
->>>>>>> 7b4a5018eefa1eb68f4c2fc8e09ab0ed29669771
 # Create your models here.
 
 

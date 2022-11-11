@@ -28,22 +28,10 @@ from Apps.login.views import Login, recuperar_contrasena
 from Apps.Clientes.views import *
 from Apps.Usuarios.views import usuario, crearUsuario, formularioUsuario, editarU, actualizarU, pruebaCr
 from Apps.Servicios.views import servicio, crearServicio, formularioServicio, editarS, actualizarS, eliminarS
-<<<<<<< Updated upstream
-from Apps.Proveedores.views import FormularioAgregarProveedor,CrearProveedor,ListarProveedor,EditarProveedor,ActualizarProveedor
-<<<<<<< HEAD
-from Apps.Configuracion.views import crearRol,formularioRol,listarRol, pruebaRol
-=======
 from Apps.Configuracion.views import crearRol,formularioRol,listarRol
-<<<<<<< HEAD
-=======
 from Apps.Proveedores.views import CrearProveedor,ListarProveedor,EditarProveedor
 from Apps.Configuracion.views import crearRol,formularioRol,listarRol, pruebaRol
->>>>>>> Stashed changes
->>>>>>> dayana
-from Apps.Compras.views import FormularioAgregarCompra,CrearCompra,ListarCompra,EliminarCompra,DetalleCompras
-=======
 from Apps.Compras.views import FormularioAgregarCompra,CrearCompra,ListarCompra,EliminarCompra,DetalleCompras, FormularioAgregarInsumo, CrearInsumo
->>>>>>> 7b4a5018eefa1eb68f4c2fc8e09ab0ed29669771
 from Apps.Insumos.views import insumos
 
 
