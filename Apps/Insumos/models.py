@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Insumo(models.Model):
-    idInsumo= models.AutoField(primary_key=True) 
+    idInsumo= models.AutoField(primary_key=True)
     nombreInsumo = models.TextField(null= True, verbose_name='Insumo')
-    cantidad = models.CharField(null= True, max_length=4, verbose_name='Cantidad' )
+    cantidad = models.IntegerField(default= 0, verbose_name='Cantidad')
+    tipoUnidad = models.CharField(max_length=14, null = True)

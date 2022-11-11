@@ -47,7 +47,6 @@
                                 <table id="datatable" class="table table-nowrap align-middle">
                                     <thead>
                                         <tr>
-                                        
                                             <th>Código</th>
                                             <th>Proveedor</th>
                                             <th>Número de factura</th>
@@ -58,9 +57,7 @@
                                     </thead>
                                     <tbody>
                                         {% for listar in Lcompra %}
-                                            
                                         <tr data-id="1">
-
                                             <td data-field="codigo">{{listar.codigoCompra}}</td>
                                             <td data-field="proveedor">{{listar.idProveedor.proveedor}}</td>
                                             <td data-field="factura">{{listar.numeroFactura}}</td>
