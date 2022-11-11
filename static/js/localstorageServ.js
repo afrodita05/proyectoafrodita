@@ -53,6 +53,7 @@ btnGuardar.addEventListener('click', async () => {
         localStorage.removeItem(LOCAL_STORAGE_ITEMS_KEY)
         items.length=0
         renderItemList();
+        window.location = `${new URL(window.location).origin}/servicio`;
     }
 
     catch(error){

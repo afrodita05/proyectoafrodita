@@ -46,18 +46,18 @@ def CrearCompra(request):
         print( Detalle_Compra.idInsumo_id, 'xx', idInsumo)
         DCompra.save()
         # Error 
-        existenciasInsumo = Insumo.objects.filter(idInsumo=idInsumo).values_list('cantidad', flat=True).first()#Recoge el atributo "cantidad" de los insumos cuyo id sea igual al id almacenado en la variable "idInsumo"
+        # existenciasInsumo = Insumo.objects.filter(idInsumo=idInsumo).values_list('cantidad', flat=True).first()#Recoge el atributo "cantidad" de los insumos cuyo id sea igual al id almacenado en la variable "idInsumo"
         
-        print (existenciasInsumo, 'exiss')
-        cantidadComprada = item['cantidad']
-        print (cantidadComprada, 'cantidddddd')
-        nuevoInsumo = int(existenciasInsumo+cantidadComprada) 
+        # print (existenciasInsumo, 'exiss')
+        # cantidadComprada = item['cantidad']
+        # print (cantidadComprada, 'cantidddddd')
+        # nuevoInsumo = int(existenciasInsumo+cantidadComprada) 
 
-        insumoRecibido= Insumo.objects.get(idInsumo=idInsumo)
+        # insumoRecibido= Insumo.objects.get(idInsumo=idInsumo)
 
-        insumoRecibido.cantidad = nuevoInsumo
+        # insumoRecibido.cantidad = nuevoInsumo
         
-        insumoRecibido.save()
+        # insumoRecibido.save()
         
     return redirect("Compra")
 
