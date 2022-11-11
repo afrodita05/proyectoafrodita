@@ -37,7 +37,7 @@
                         
                     </div>
                     <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
-                        <a href="/FormularioAgregarProveedor/" type="button" class="btn btn-primary waves-effect waves-light"  style="width: 50%;" >Crear un proveedor</a>
+                        <a href="/CrearProveedor/" type="button" class="btn btn-primary waves-effect waves-light"  style="width: 50%;" >Crear un proveedor</a>
                     </div>
                 </div>
             </div><!-- end col -->
@@ -73,11 +73,7 @@
                                                 <span class="badge badge-soft-success" style="font-size: 14px;">Activo</span>   
                                             </td>
                                             <td>
-                                                <div class="square-switch">
-                                                    <input type="checkbox" id="square-switch1" switch="none" checked />
-                                                    <label for="square-switch1" data-on-label="On"
-                                                        data-off-label="Off"></label>
-                                                </div>
+                                               
                                                 <a href="{% url 'EditarProveedor' listar.idProveedor %}" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
                                                 </a>

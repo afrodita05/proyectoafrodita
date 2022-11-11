@@ -1,5 +1,6 @@
 from django.db import models        
 from Apps.Proveedores.models import Proveedor
+
 # Create your models here.
 
 
