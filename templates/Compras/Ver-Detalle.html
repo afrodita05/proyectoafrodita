@@ -40,9 +40,7 @@
                     <br>
                     <p>Valor total:</p>
                     <li>{{DTCompras.idCompra.ValorTotal}}</li>
-
                 </div>
-
                 
                 <div style="margin: 60px;">
                     <table class="table table-nowrap align-middle">
@@ -53,9 +51,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                    {% for listar in idInsumos %}
+                    {% for listar in idInsumo %}
                     <tr>
-                    <td>{{listar.nombre}}</td>               
+                    <td>{{listar.idInsumo.nombreInsumo}}</td>               
                     <td>{{listar.cantidad}}</td>
                     </tr>
                     {% endfor %}

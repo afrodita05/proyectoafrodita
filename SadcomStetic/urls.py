@@ -28,18 +28,10 @@ from Apps.login.views import Login, recuperar_contrasena
 from Apps.Clientes.views import *
 from Apps.Usuarios.views import usuario, crearUsuario, formularioUsuario, editarU, actualizarU, pruebaCr
 from Apps.Servicios.views import servicio, crearServicio, formularioServicio, editarS, actualizarS, eliminarS
-<<<<<<< Updated upstream
-from Apps.Proveedores.views import FormularioAgregarProveedor,CrearProveedor,ListarProveedor,EditarProveedor,ActualizarProveedor
-<<<<<<< HEAD
-from Apps.Configuracion.views import crearRol,formularioRol,listarRol, pruebaRol
-=======
 from Apps.Configuracion.views import crearRol,formularioRol,listarRol
-=======
 from Apps.Proveedores.views import CrearProveedor,ListarProveedor,EditarProveedor
 from Apps.Configuracion.views import crearRol,formularioRol,listarRol, pruebaRol
->>>>>>> Stashed changes
->>>>>>> dayana
-from Apps.Compras.views import FormularioAgregarCompra,CrearCompra,ListarCompra,EliminarCompra,DetalleCompras
+from Apps.Compras.views import FormularioAgregarCompra,CrearCompra,ListarCompra,EliminarCompra,DetalleCompras, FormularioAgregarInsumo, CrearInsumo
 from Apps.Insumos.views import insumos
 
 
@@ -219,6 +211,8 @@ urlpatterns = [
         name= "Compra",
     ),
     path('CrearCompra/', CrearCompra, name='CrearCompra'),
+    path('CrearInsumo/', CrearInsumo, name='CrearInsumo'),
+    path('FormularioAgregarInsumo/', FormularioAgregarInsumo,),
     path('FormularioAgregarCompra/', FormularioAgregarCompra,),
     path('EliminarCompra/<int:id>', EliminarCompra, name='EliminarCompra'),
     path('DetalleCompras/<int:id>', DetalleCompras, name='DetalleCompras'),

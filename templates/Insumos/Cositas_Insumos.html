@@ -1,0 +1,190 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}Insumos{% endblock title %}
+{% block extra_css %}
+    <link href="{% static 'libs/sweetalert2/dist/sweetalert2.min.css'%}" rel="stylesheet" type="text/css"/>    
+    <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+{% endblock extra_css %}
+{% block content %}
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h3 class="mb-sm-0 font-size-40">Salida de insumos</h3>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Insumos</a></li>
+                                <li class="breadcrumb-item active">Insumos</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class= "card">
+                <div class="row">
+                    <div class="col-xl-4">
+                        <div class="">
+                            <div class="card-header bg-transparent border-primary">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <h4 class="my-0 text-primary" style="margin-top: 50%;">Crear insumo</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div>
+                                    <form class="needs-validation"  action="/crearInsumos/" novalidate method="POST">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <input type="hidden" name="id" value="{{insumo.idInsumo}}">
+                                                    <label class="form-label" for="validationTooltip02">Insumo</label>
+                                                    <input type="text" class="form-control" id="txtNombre" name="txtNombre"
+                                                        placeholder="Insumo" required>
+                                                    <div class="invalid-tooltip" style="margin-top: 5px;">
+                                                        Por favor ingrese el insumo.
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <input type="hidden" name="id" value="{{insumo.idInsumo}}">
+                                                    <div class="col-md-12">
+                                                        <label for="example-number-input" class="form-label">Unidades</label>
+                                                        <input class="form-control" type="number" value="1" min="1"
+                                                            id="numCantidad" name="numCantidad">
+                                                        <div class="invalid-tooltip" style="margin-top: 5px;">
+                                                            Por favor 1 o más unidades.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <input type="hidden" name="id" value="{{insumo.idInsumo}}">
+                                                    <div class="col-md-12">
+                                                        <label for="example-number-input" class="form-label">Gramos</label>
+                                                        <input class="form-control" type="number" value="1" min="1"
+                                                            id="numCantidad" name="numCantidad">
+                                                        <div class="invalid-tooltip" style="margin-top: 5px;">
+                                                            Por favor 1 o más unidades.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" style=" margin-top: 40px; margin-bottom: 30px; text-align: center; " >
+                                                <button type="submit" class="btn btn-primary waves-effect btn-label waves-light" style="width: 96%;"><i class="mdi mdi-plus label-icon"></i> Agregar</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- end card body -->
+                        </div>
+                    </div>
+                    <div class="col-xl-8" >
+                        <div class="">
+                            <div class="card-header bg-transparent border-primary">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <h4 class="my-0 text-primary" style="margin-top: 50%; ">Lista de insumos</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div style="margin: 0px;">
+                                    <div class="table-responsive">
+                                        <table id="datatable" class="table table-nowrap align-middle">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Insumo</th>
+                                                    <th>Unidades</th>
+                                                    <th>Gramos</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                            </thead>
+                                                <tbody>
+                                                    <tr data-id="1">
+                                                        {% for insumo in insumos %}
+                                                        <td data-field="id" style="width: 80px">{{insumo.idInsumo}}</td>
+                                                        <td data-field="insumo">{{insumo.nombre}}</td>
+                                                        <td data-field="cantidad">{{insumo.cantidad}}</td>
+                                                        <td>
+                                                            <a href="{% url 'editar' insumo.idInsumo%}" class="btn btn-outline-primary btn-sm">
+                                                                <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
+                                                            </a>
+                                                            <a href="eliminarInsumos/{{insumo.idInsumo}}" class="btn btn-outline-primary btn-sm">
+                                                                <i class="mdi mdi-delete-outline mdi-24px "></i>
+                                                            </a> 
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card body -->
+                        </div>
+                    </div>
+                    <!-- end card -->
+                </div>
+            </div>
+        </div> <!-- container-fluid -->
+        {% if messages %}
+            <script>
+                Swal.fire({
+                    "title": "Good job!",
+                    "text": "{{m}}",
+                    "icon": "succes"
+                })   
+            </script>
+        {% endif %}
+    </div> <!-- End Page-content -->
+    {% block footer %}
+        {% include 'partials/footer.html' %}
+    {% endblock footer %}
+</div>       
+        
+<!-- end main content-->
+{% endblock content %}
+
+{% block extra_js %}
+<!-- Required datatable js -->
+<script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js'%}"></script>
+<!-- Buttons examples -->
+<script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js'%}"></script>
+<script src="{% static 'libs/jszip/jszip.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/pdfmake.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/vfs_fonts.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js'%}"></script>
+<!-- Sweet Alerts js -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{% static 'libs/sweetalert2/dist/sweetalert2.min.js'%}"></script>
+<!-- Sweet alert init js-->
+<script src="{% static 'js/pages/sweetalert.init.js'%}"></script>
+<!-- Responsive examples -->
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js'%}"></script>
+<!-- Datatable init js -->
+<script src="{% static 'js/pages/datatables.init.js'%}"></script>   
+<!-- pristine js -->
+<script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
+<!-- form validation -->
+<script src="{% static 'js/pages/form-validation.init.js'%}"></script>
+
+<script>
+     $("#datatable").DataTable({
+    language: {
+      url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
+    },
+  });
+</script>
+{% endblock extra_js %}
