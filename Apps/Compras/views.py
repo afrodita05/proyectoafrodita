@@ -11,6 +11,7 @@ from Apps.Proveedores.models import Proveedor
 
 def CrearCompra(request):
     proveedor=Proveedor.objects.filter()
+    insumo=Insumo.objects.filter()
     data= json.loads(request.body)
     items = data["items"]
     print(items,type(items))
@@ -25,54 +26,78 @@ def CrearCompra(request):
             fechaRecibo=item['fechaRecibo'],
             ValorTotal=item['ValorTotal']
         )
-        
     VCompra.save()
-    
     idCompra=VCompra.idCompra
     for item in items:
-        nuevoInsumo=Insumo(
-            nombre=item['insumo'], 
-            cantidad=item['cantidad'],
-        )
-        nuevoInsumo.save()
-
-        idInsumo=nuevoInsumo.idInsumo
-
+        insumoCompra=item['insumo']
+        print (insumoCompra)
+        idInsumo = Insumo.objects.filter(nombreInsumo=insumoCompra).values('idInsumo')[0]['idInsumo']
+        
         DCompra=Detalle_Compra(
         idCompra_id=idCompra,
-        idInsumo_id=idInsumo
+        idInsumo_id=idInsumo,
+        cantidad=item['cantidad'],
+        tipoUnidad=item['tipoUnidad'],
+        costoUnidad=item['valorunidad'],
+        subTotal=item['ValorTotalInsumo'],
+        total=item['ValorTotal'],
         )
+        
+        print( Detalle_Compra.idInsumo_id, 'xx', idInsumo)
         DCompra.save()
+        # Error 
+        existenciasInsumo = Insumo.objects.filter(idInsumo=idInsumo).values_list('cantidad', flat=True).first()#Recoge el atributo "cantidad" de los insumos cuyo id sea igual al id almacenado en la variable "idInsumo"
+        
+        print (existenciasInsumo, 'exiss')
+        cantidadComprada = item['cantidad']
+        print (cantidadComprada, 'cantidddddd')
+        nuevoInsumo = int(existenciasInsumo+cantidadComprada) 
 
+        insumoRecibido= Insumo.objects.get(idInsumo=idInsumo)
+
+        insumoRecibido.cantidad = nuevoInsumo
+        
+        insumoRecibido.save()
+        
     return redirect("Compra")
 
+def FormularioAgregarInsumo(request):
+    return render (request, 'Compras/Crear-Insumo.html')
+
+def CrearInsumo (request):
+    nombreInsumo = request.POST['txtNombre']
+    insumo = Insumo.objects.create(nombreInsumo =nombreInsumo)
+    return redirect('/FormularioAgregarCompra/')
 
 def FormularioAgregarCompra(request):
     proveedor=Proveedor.objects.filter()
-    context={"proveedor":proveedor}   
-    return render(request, 'Compras/Crear-Compra.html', context)
+    nombreInsumo=Insumo.objects.filter()
+    context={"proveedor":proveedor,"nombreInsumo":nombreInsumo}   
+    return render(request,'Compras/Crear-Compra.html', context)
 
 def ListarCompra(request):
     LCompra=Compra.objects.filter()
+    print(LCompra)
     context={"Lcompra":LCompra}
     return render(request,'Compras/Compras.html', context)
 
 def DetalleCompras(request, id):
     DTCompras=Detalle_Compra.objects.filter(idCompra_id=id).first
-
     idDTCompras = Detalle_Compra.objects.filter(idCompra_id=id).values_list('idDetalle_Compra', flat=True) #Obtener id de los DT compra basados en la id de compra
-    
-    idInsumos=Insumo.objects.filter(idInsumo__in=idDTCompras) #buscar los insumos que compartan el id de detalle de compra
-
-    context={"DTCompras":DTCompras, "idInsumos":idInsumos}
+    Insumos = Detalle_Compra.objects.filter(idCompra_id=id).values_list('idInsumo', flat= True) #buscar los insumos que compartan el id de detalle de compra
+    Cantidad = Detalle_Compra.objects.filter(idCompra_id =id).values_list('cantidad', flat= True)
+    print (Insumos,'zzz')
+    idInsumos = Detalle_Compra.objects.filter(idCompra_id=id,idInsumo__in=Insumos)
+    print(idInsumos, 'hola')
+    cantidadI = Detalle_Compra.objects.filter(idCompra_id=id,cantidad__in=Insumos)
+    context={"DTCompras":DTCompras, "idInsumo":idInsumos, "cantidad":cantidadI}
+    print (idDTCompras)
     return render(request,"Compras/Ver-Detalle.html",context) 
 
-   
 def EliminarCompra(request, id):   
     ECompra=Compra.objects.get(idCompra=id)
     ECompra.delete() 
     return redirect("Compra")
 
-def ListarInsumos(request):
-    pass
+
 

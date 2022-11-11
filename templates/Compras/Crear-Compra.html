@@ -23,7 +23,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>      
             <div class="card">
                 <div style="margin: 60px; " >
                     <!--  Formulario de agregar -->
@@ -31,7 +31,6 @@
                         {% csrf_token %}
                         <input type="hidden"/>
                         <div class="row">
-                            
                             <div class="col-lg-6">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Código de compra</label>
@@ -46,7 +45,7 @@
                                 </div>
                             </div>
                             
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Proveedor</label>
                                     <select name="proveedor" class="form-select">
@@ -64,49 +63,84 @@
                                 
                                 </div>
                             </div>
-                            
-                            <div class=" col-lg-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Valor total</label>
-                                    <input name="ValorTotal" type="number" class="form-control" id="datepicker-basic">
+                        </div>
+                        <div class="row">
+                            <!-- Productos -->
+                            <div class="col-xl-3">
+                                <div class="btn-group col-md-11" style="margin-top: 30px;">
+                                    <button class="btn btn-primary btn-lg" type="button">
+                                        Nuevo insumo
+                                    </button>
+                                    <a type="button" href="/FormularioAgregarInsumo/" class="btn btn-lg btn-primary dropdown-toggle dropdown-toggle-split">
+                                        <i class="mdi mdi-plus label-icon"></i>
+                                    </a>
                                 </div>
                             </div>
-
-                            <!-- Productos -->
-
-                            <div class="col-md-12">
-                                <label for="example-datetime-local-input" class="form-label">Productos</label>
-                                <input name="insumo" type="text" data-pristine-required-message="Por favor ingrese el producto" placeholder="Ingrese el producto" required class="form-control" />
+                            <div class="col-xl-9">
+                                <div class="col-md-12">
+                                    <label for="example-datetime-local-input" class="form-label">Productos</label>
+                                    <select name="insumo" class="form-select">
+                                        {% for insumo in nombreInsumo%}
+                                        <option value="{{insumo.nombreInsumo}}">{{insumo.nombreInsumo}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
                             </div>
+                        </div>
+                         
+                        <div class="row">
                             <div class="row" style="margin-top: 20px;">
+                                <div class="col-xl-2">
+                                    <div class="col-md-12">
+                                        <label for="example-datetime-local-input" class="form-label">Tipo de unidad</label>
+                                        <select name="tipoUnidad" class="form-select">
+                                            <option value="Unidades">Unidades</option>
+                                            <option value="Mililitros">Mililitros</option>
+                                            <option value="Gramos">Gramos</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="col-md-4">
                                     <label for="example-number-input" class="form-label">Cantidad</label>
                                     <input name="cantidad" class="form-control" type="number" value="0"
                                         id="example-number-input">
                                 </div>
-                                <div class=" col-md-4">
+                               
+                                <div class=" col-md-3">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Valor unitario</label>
                                         <input name="valorunidad" type="text" class="form-control" />
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Iva</label>
                                         <input type="text" class="form-control" />
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12">
+                            <div class="col-lg-6">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Valor total del insumo</label>
                                     <input name="ValorTotalInsumo" type="text"class="form-control" />
                                 </div>
                             </div>
+<<<<<<< HEAD
                             <div class="form-group" style=" margin-top: 40px; margin-bottom: 50px; text-align: center;" >
                                 <button type="submit"  for="agregar" class="btn btn-primary" style="width: 50%">Agregar</button>
+=======
+                            <div class=" col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Valor total</label>
+                                    <input name="ValorTotal" type="number" class="form-control" id="datepicker-basic">
+                                </div>
+                            </div>
+                            <div class="form-group" style=" margin-top: 40px; margin-bottom: 20px; text-align: center;" >
+                                <button type="submit" id="crearcompra"  for="agregar" class="btn btn-primary" style="width: 50%">Agregar</button>
+>>>>>>> 7b4a5018eefa1eb68f4c2fc8e09ab0ed29669771
                             </div>
                         </div>
+                        <hr>
                         <!-- end row -->
                     </form>
                 </div>
@@ -128,7 +162,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
                                     <tr data-id="1">
                                         <td data-field="nombre">{{listar.insumo}}</td>
                                         <td data-field="cantidad">{{listar.cantidad}}</td>
@@ -145,6 +178,7 @@
                             </table>
                         </div>
                     </div>
+                    <hr>
                 </div>
 
                 
@@ -153,7 +187,6 @@
                     <a href="{% url 'Compra' %}" type="submit" class="btn btn-danger" style="width: 20%">Cancelar</a>
                 </div>
             </div> <!-- end col -->
-            
         </div> <!-- container-fluid -->
         
     </div> <!-- End Page-content -->
@@ -191,11 +224,20 @@
 <!-- Responsive examples -->
 <script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
 <script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js'%}"></script>
-
 <!-- Datatable init js -->
 <script src="{% static 'js/pages/datatables.init.js'%}"></script>   
 <!-- pristine js -->
 <script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
 <!-- form validation -->
 <script src="{% static 'js/pages/form-validation.init.js'%}"></script>
+
+<script src="{% static 'js/pages/modal.init.js'%}"></script>
+    <script>
+        var $ = jQuery.noConflict();
+        function abrir_modal_crear(url){
+            $('#modalInsumo').load(url, function(){
+                $(this).modal('show');
+            });
+        }
+    </script>
 {% endblock extra_js %}

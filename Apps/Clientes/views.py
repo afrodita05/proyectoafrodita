@@ -85,4 +85,104 @@ def crearControlMedidas(request,id):
     return render(request,'Clientes/Crear-Medidas.html',contexto)
 
 
+<<<<<<< HEAD
+=======
+def crearPagosSesionesFacial(request,id):
+    crearIdF=EsteticoFacial.objects.get(idFacial=id)
+    sesionesFecha=request.GET['fecha']
+    sesionesC=request.GET['secionesC']
+    sesionesValor=request.GET['valor']
+    sesionesAbono=request.GET['abono']
+
+    if sesionesAbono< sesionesValor:
+        seciones=Sesiones(fecha=sesionesFecha,Nseciones=sesionesC,valor=sesionesValor,abono=sesionesAbono,estado="Por pagar",idFacial=crearIdF)
+        seciones.save()
+    elif sesionesAbono> sesionesValor:
+        seciones=Sesiones(fecha=sesionesFecha,Nseciones=sesionesC,valor=sesionesValor,abono=sesionesAbono,estado="Devolver",idFacial=crearIdF)
+        seciones.save()
+    else:
+        seciones=Sesiones(fecha=sesionesFecha,Nseciones=sesionesC,valor=sesionesValor,abono=sesionesAbono,estado="Pagado",idFacial=crearIdF)
+        seciones.save()
+
+    return redirect("Clientes.Ver-Detalles.Facial",id)
+
+def editarPagosSesionesFacial(request,id):
+    mostrar=Sesiones.objects.filter(idSesiones=id).first()
+    contexto={"mostrar":mostrar}
+    return render(request,"Clientes/Editar-Pagos-Sesiones-Facial.html",contexto)
+
+def actualizarPagosSesionesFacial(request, id):
+    sesionesFecha=request.GET['fecha']
+    sesionesC=request.GET['secionesC']
+    sesionesValor=request.GET['valor']
+    sesionesAbono=request.GET['abono']
+
+    if sesionesAbono< sesionesValor:
+        actualizar=Sesiones.objects.get(idSesiones=id)
+        actualizar.fecha=sesionesFecha
+        actualizar.Nseciones=sesionesC
+        actualizar.valor=sesionesValor
+        actualizar.abono=sesionesAbono
+        actualizar.estado="Por pagar"
+        actualizar.save()
+    elif sesionesAbono> sesionesValor:
+        actualizar=Sesiones.objects.get(idSesiones=id)
+        actualizar.fecha=sesionesFecha
+        actualizar.Nseciones=sesionesC
+        actualizar.valor=sesionesValor
+        actualizar.abono=sesionesAbono
+        actualizar.estado="Devolver"
+        actualizar.save()
+    else:
+        actualizar=Sesiones.objects.get(idSesiones=id)
+        actualizar.fecha=sesionesFecha
+        actualizar.Nseciones=sesionesC
+        actualizar.valor=sesionesValor
+        actualizar.abono=sesionesAbono
+        actualizar.estado="Pagado"
+        actualizar.save()
+
+    return redirect("Clientes.Ver-Detalles.Facial",id)
+
+def editarPagosSesionesCorporal(request,id):
+    mostrar=Sesiones.objects.filter(idSesiones=id).first()
+    contexto={"mostrar":mostrar}
+    return render(request,"Clientes/Editar-Pagos-Sesiones-Corporal.html",contexto)
+
+def cantidadClientes(request):
+    totalClientes = Clientes.objects.count().filter()
+    context= {"totalClientes":totalClientes}
+    return render(request,"partials/content.html", context)
+
+def actualizarPagosSesionesCorporal(request, id):
+    sesionesFecha=request.GET['fecha']
+    sesionesC=request.GET['secionesC']
+    sesionesValor=request.GET['valor']
+    sesionesAbono=request.GET['abono']
+
+    if sesionesAbono< sesionesValor:
+        actualizar=Sesiones.objects.get(idSesiones=id)
+        actualizar.fecha=sesionesFecha
+        actualizar.Nseciones=sesionesC
+        actualizar.valor=sesionesValor
+        actualizar.abono=sesionesAbono
+        actualizar.estado="Por pagar"
+        actualizar.save()
+    elif sesionesAbono> sesionesValor:
+        actualizar=Sesiones.objects.get(idSesiones=id)
+        actualizar.fecha=sesionesFecha
+        actualizar.Nseciones=sesionesC
+        actualizar.valor=sesionesValor
+        actualizar.abono=sesionesAbono
+        actualizar.estado="Devolver"
+        actualizar.save()
+    else:
+        actualizar=Sesiones.objects.get(idSesiones=id)
+        actualizar.fecha=sesionesFecha
+        actualizar.Nseciones=sesionesC
+        actualizar.valor=sesionesValor
+        actualizar.abono=sesionesAbono
+        actualizar.estado="Pagado"
+        actualizar.save()
+>>>>>>> 7b4a5018eefa1eb68f4c2fc8e09ab0ed29669771
 
