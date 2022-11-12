@@ -30,77 +30,83 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body" style="margin: 60px;">
-                                    <form action="{% url 'Clientes.Ver-Detalles.Crear-Control-Medidas' corporal.idCorporal %}" id="CM" method="GET">
+                                    <form id="Crear" method="POST">
                                         {% csrf_token %}
                                         <input type="hidden" />
+                                        <input value={{idCorporal}} name="idCorporal" hidden>
                                         <div class="row" style="justify-content: center;">
                                             <div class="col-md-7">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Fecha</label>
-                                                    <input name="fecha" type="text" required
-                                                    data-pristine-required-message="Campo requerido" placeholder=""
-                                                    class="form-control" />
+                                                    {{formulario_medidas.fecha}}
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Brazo derecho</label>
-                                                    <input name="brazoD" type="text" required
-                                                    data-pristine-required-message="Campo requerido" placeholder=""
-                                                    class="form-control" />
+                                                    {{formulario_medidas.brazoD}}
+                                                    {% for error in formulario_medidas.brazoD.errors %}
+                                                    <p style="color:red"> {{error}}</p>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Brazo izquierdo</label>
-                                                    <input name="brazoI" type="text" required
-                                                    data-pristine-required-message="Campo requerido" placeholder=""
-                                                    class="form-control" />
+                                                    {{formulario_medidas.brazoI}}
+                                                    {% for error in formulario_medidas.brazoI.errors %}
+                                                    <p style="color:red"> {{error}}</p>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Abdomen alto</label>
-                                                    <input name="abdomenA" type="text" required
-                                                    data-pristine-required-message="Campo requerido" placeholder=""
-                                                    class="form-control" />
+                                                    {{formulario_medidas.abdomenA}}
+                                                    {% for error in formulario_medidas.abdomenA.errors %}
+                                                    <p style="color:red"> {{error}}</p>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Abdomen bajo</label>
-                                                    <input name="abdomenB" type="text" required
-                                                    data-pristine-required-message="Campo requerido" placeholder=""
-                                                    class="form-control" />
+                                                    {{formulario_medidas.abdomenB}}
+                                                    {% for error in formulario_medidas.abdomenB.errors %}
+                                                    <p style="color:red"> {{error}}</p>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Cintura</label>
-                                                    <input name="cintura" type="text" required
-                                                    data-pristine-required-message="Campo requerido" placeholder=""
-                                                    class="form-control" />
+                                                    {{formulario_medidas.cintura}}
+                                                    {% for error in formulario_medidas.cintura.errors %}
+                                                    <p style="color:red"> {{error}}</p>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Pierna derecha</label>
-                                                    <input name="piernaD" type="text" required
-                                                    data-pristine-required-message="Campo requerido" placeholder=""
-                                                    class="form-control" />
+                                                    {{formulario_medidas.piernaD}}
+                                                    {% for error in formulario_medidas.piernaD.errors %}
+                                                    <p style="color:red"> {{error}}</p>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Pierna izquierda</label>
-                                                    <input name="piernaI" type="text" required
-                                                    data-pristine-required-message="Campo requerido" placeholder=""
-                                                    class="form-control" />
+                                                    {{formulario_medidas.piernaI}}
+                                                    {% for error in formulario_medidas.piernaI.errors %}
+                                                    <p style="color:red"> {{error}}</p>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group" style="text-align: center;">
-                                            <button type="submit" for="CM" class="btn btn-primary" style="width: 50%;">Guardar</button>
+                                            <button type="submit" for="Crear" class="btn btn-primary" style="width: 50%;">Guardar</button>
                                             <a href="{% url 'Clientes' %}"type="submit" class="btn btn-danger" style="width: 20%">Cancelar</a>
                                         </div>
                                     </form>

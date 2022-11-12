@@ -27,37 +27,53 @@
             <div class="card">
                 <div style="margin: 60px;" >
                     <div style="align-items: center;">
-                        <form action="{% url 'ActualizarProveedor' EdiT.idProveedor %}" id="editp" novalidate method="GET">
+                        <form  id="editp" novalidate method="POST">
                             {% csrf_token %}
                             <input type="hidden" />
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Nombre</label>
-                                        <input type="text" name="nombre" required 
-                                            data-pristine-required-message="Por favor ingrese el nombre completo " placeholder="Ingrese el nombre completo" value="{{EdiT.nombre}}"
-                                            class="form-control" />
+                                        {{formulario_proveedor.nombre}}
+                                        {% for error in formulario_proveedor.nombre.errors %}
+                                          <p style="color:red"> {{error}}</p>
+                                        {% endfor %}   
                                     </div>
                                 </div>
                                 
                                 <div class=" col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Teléfono</label>
-                                        <input name="telefono" type="text" data-pristine-required-message="Por favor ingrese el número de teléfono" placeholder="Ingrese el teléfono" value="{{EdiT.telefono}}" required class="form-control" />
+                                        {{formulario_proveedor.telefono}}
+                                        {% for error in formulario_proveedor.telefono.errors %}
+                                         <p style="color:red"> {{error}}</p>
+                                        {% endfor %}
                                     </div>
+
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label>Correo</label>
-                                        <input name="correo" type="email" required
-                                            data-pristine-required-message="Por favor ingrese el correo electrónico" placeholder="Ingrese el correo electrónico" value="{{EdiT.correo}}"
-                                            class="form-control" />
+                                        {{formulario_proveedor.correo}}
+                                        {% for error in formulario_proveedor.correo.errors %}
+                                        <p style="color:red"> {{error}}</p>
+                                        {% endfor %}
                                     </div>
                                 </div>
                                 <div class=" col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Dirección</label>
-                                        <input name="direccion" type="text" data-pristine-required-message="Por favor ingrese la dirección" placeholder="Ingrese la dirección" value="{{EdiT.direccion}}" required class="form-control" />
+                                        {{formulario_proveedor.direccion}}
+                                        {% for error in formulario_proveedor.direccion.errors %}
+                                        <p style="color:red"> {{error}}</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+                                <div class=" col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">Empresa</label>
+                                        {{formulario_proveedor.proveedor}}
                                     </div>
                                 </div>
                             </div>

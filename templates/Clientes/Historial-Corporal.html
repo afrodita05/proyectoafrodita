@@ -805,7 +805,7 @@
                                             <h4 class="my-0 text-primary" style="margin-top: 50%;">Control de medidas</h4>
                                         </div>
                                         <div class="col-lg-6 ms-lg-auto" >
-                                            <a href="{% url 'Clientes.Ver-Detalles.Formulario-Control-Medidas' mostrar.idCorporal %}" type="button" class="btn btn-primary waves-effect "  style="margin-left: 40%;"><i class="mdi mdi-human-male-height "></i> Adicionar control de medidas
+                                            <a href="{% url 'Clientes.Ver-Detalles.Crear-Control-Medidas' mostrar.idCorporal %}" type="button" class="btn btn-primary waves-effect "  style="margin-left: 40%;"><i class="mdi mdi-human-male-height "></i> Adicionar control de medidas
                                             </a>
                                         </div>
                                     </div>
@@ -846,59 +846,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xxl-12">
-                            <div class="card">
-                                <div class="card-header bg-transparent border-primary">
-                                    <div class="row">
-                                        <div class="col-lg-5">
-                                            <h4 class="my-0 text-primary" style="margin-top: 50%;">Pagos y sesiones</h4>
-                                        </div>
-                                        <div class="col-lg-6 ms-lg-auto" >
-                                            <a href="{% url 'Clientes.Ver-Detalles.Formulario-Pagos-Sesiones-Corporal' mostrar.idCorporal %}" type="button" class="btn btn-primary waves-effect "  style="margin-left: 40%;"><i class="mdi mdi-account-cash-outline"></i> Crear pago y sesion
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-nowrap align-middle">
-                                            <thead>
-                                                <tr>
-                                                    <th>Fecha de creación</th>
-                                                    <th>Valor</th>
-                                                    <th>Sesisones</th>
-                                                    <th>Abono</th>
-                                                    <th>Estado</th>
-                                                    <th>Fecha Actualización</th>
-                                                    <th>Acciones</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {% for listar in sesiones %}
-                                                <tr>
-                                                    <td>{{listar.fecha}}</td>
-                                                    <td>{{listar.valor}}</td>
-                                                    <td>{{listar.Nseciones}}</td>
-                                                    <td>{{listar.abono}}</td>
-                                                    <td>{{listar.estado}}</td>
-                                                    <td>{{listar.fechaActualizacion}}</td>
-                                                    <td><a href="{% url 'Clientes.Ver-Detalles.Editar-Pagos-Sesiones-Corporal' listar.idSesiones %}" class="btn btn-outline-primary btn-sm ">
-                                                    <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
-                                                    </a></td>
-                                                </tr>
-                                                {% endfor %}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <!-- end card body -->
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
-
         </div>
     <h2>Sensación</h2>
     <li>{{mostrar.sensacionLG}}</li>
@@ -913,9 +862,6 @@
     <li>{{mostrar.varices}}</li>
     <li>{{mostrar.arañitas}}</li>
     <li>{{mostrar.observaciones}}</li>
-    
-    
-        
             <div  class="modal fade bs-medidas" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -989,6 +935,7 @@
                                     <button type="submit" class="btn btn-primary" style="width: 50%;">Guardar</button>
                                 </div>
                             </form>
+                       
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->                          

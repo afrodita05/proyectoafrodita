@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver detalle Costo</title>
+</head>
+<body>
+    <button><a href="{% url 'Agenda-Fecha' agendaCosto.idAgendaCosto %}">Crear fecha</a> </button>
+    <table>
+        <tr>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Funciones</th>
+        </tr>
+
+        {% for listar in agendaFecha %}
+        <tr>
+            <td>{{listar.fechaAgenda}}</td>
+            <td>{{listar.estado}}</td>
+            <td><button><a href="">Editar</a> </button></td>
+            <td><button><a href="">Ver Detalle</a> </button></td>
+        </tr>
+        {% endfor %}
+
+        </tr>
+    </table> 
+</body>
+</html>

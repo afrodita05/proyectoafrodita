@@ -37,7 +37,7 @@
                             </div>
                             
                             <div class="gap-2" style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
-                                <a type="button" href="{% url 'Clientes.Formulario-Cliente'%}" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear un cliente</a>
+                                <a type="button" href="{% url 'Clientes.Crear-Cliente'%}" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear un cliente</a>
                                 <div class="d-flex flex-wrap gap-3">
                                 </div>
                             </div>
@@ -57,6 +57,7 @@
                                                     <th>Nombre</th>
                                                     <th>Documento</th>
                                                     <th>Sexo</th>
+                                                    <th>Ultima Actualizacion</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
@@ -66,6 +67,7 @@
                                                     <td data-field="nombre">{{listar.nombre}}</td>
                                                     <td data-field="documento">{{listar.documento}}</td>
                                                     <td data-field="sexo">{{listar.sexo}}</td>
+                                                    <td data-field="sexo">{{listar.fechaActualizacion}}</td>
                                                     <td>
                                                         <a href="{% url 'Clientes.Editar-Cliente' listar.idCliente %}" class="btn btn-outline-primary btn-sm ">
                                                             <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
@@ -135,4 +137,11 @@
 
 <!-- form wizard init -->
 <script src="{% static 'js/pages/form-wizard.init.js'%}"></script>
+<script>
+    $("#datatable").DataTable({
+   language: {
+     url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
+   },
+ });
+</script>
 {% endblock extra_js %}

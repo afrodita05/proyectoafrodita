@@ -59,9 +59,9 @@
                                         {% for listar in servicio %}
                                         <tr data-id="1">
                                             <td data-field="name">{{listar.nServicio}}</td>
-                                            <td data-field="tiempo">{{listar.tiempo}}</td>
+                                            <td data-field="tiempo">{{listar.tiempo }} Minutos</td>
                                             <td data-field="estado">
-                                                <span class="badge badge-soft-danger" style="font-size: 14px;">Inactivo</span>
+                                                <span class="badge badge-soft-success" style="font-size: 14px;">Activo</span>
                                             </td>
                                             <td>
                                                 <a href="{% url 'editarServicio' listar.idServicio %}" class="btn btn-outline-primary btn-sm">
@@ -74,8 +74,6 @@
                                             </td>
                                         </tr>
                                         {% endfor %}
-
-
                                     </tbody>
                                 </table>
                             </div>
@@ -84,17 +82,13 @@
                 </div> <!-- end col -->
             </div> <!-- end row -->
         </div> <!-- container-fluid -->
-        
     </div> <!-- End Page-content -->
-   
     {% block footer %}
         {% include 'partials/footer.html' %}
     {% endblock footer %}
-</div>       
-        
+</div>  
 <!-- end main content-->
 {% endblock content %}
-
 {% block extra_js %}
 <!-- Datatable init js -->
 <script src="{% static 'js/pages/datatables.init.js'%}"></script> 
@@ -120,16 +114,12 @@
 <script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
 <!-- form validation -->
 <script src="{% static 'js/pages/form-validation.init.js'%}"></script>
-<!-- Modal js -->
-<script src="{% static 'js/pages/modal.init.js'%}"></script>
-
-    <script>
-        var myModal = document.getElementById('myModal')
-        var myInput = document.getElementById('myInput')
-
-        myModal.addEventListener('shown.bs.modal', function () {
-        myInput.focus()
-        })
-    </script>
-
+<!-- Traduccion data table -->
+<script>
+    $("#datatable").DataTable({
+   language: {
+     url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
+   },
+ });
+</script>
 {% endblock extra_js %}

@@ -15,6 +15,9 @@ class Clientes(models.Model):
     estadoCivil=models.CharField(max_length=11)
     numeroHijos=models.CharField(max_length=2)
     fechaActualizacion=models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return '{}'.format(self.documento)
     
 class EsteticoCorporal(models.Model):
     
@@ -28,7 +31,7 @@ class EsteticoCorporal(models.Model):
     circulacion=models.CharField(max_length=2)
     endrocrino=models.CharField(max_length=2)
     cardiacos=models.CharField(max_length=2)
-    otrosP=models.TextField()
+    otrosP=models.TextField(blank=True,null=True)
     #Peso actual
     kilos=models.CharField(max_length=7,blank=True,null=True)
     talla=models.CharField(max_length=7,blank=True,null=True)
@@ -54,7 +57,7 @@ class EsteticoCorporal(models.Model):
     espalda=models.CharField(max_length=2)
     piernas=models.CharField(max_length=2)
     brazos=models.CharField(max_length=2) 
-    notasO=models.TextField()
+    notasO=models.TextField(blank=True,null=True)
     tratamientosR=models.TextField(blank=True,null=True)
     tratamientosE=models.TextField(blank=True,null=True)
     #Antecedentes personales
@@ -126,7 +129,7 @@ class EsteticoCorporal(models.Model):
     sensacionPI=models.CharField(max_length=2)
     retieneL=models.CharField(max_length=2)
     varices=models.CharField(max_length=2)
-    arañitas=models.CharField(max_length=2)
+    aranitas=models.CharField(max_length=2)
     observaciones=models.TextField(blank=True,null=True)
     
 class ControlMedidas(models.Model):
@@ -148,19 +151,19 @@ class EsteticoFacial(models.Model):
     nombreE=models.CharField(max_length=60)
     #Factores agravantes
     tratamientoM=models.CharField(max_length=2)
-    cualTM=models.TextField()
+    cualTM=models.TextField(blank=True,null=True)
     sustitucionH=models.CharField(max_length=2)
     tomaA=models.CharField(max_length=2)
     drogas=models.CharField(max_length=2)
-    alimentosP=models.TextField()
-    alimentosR=models.TextField()
+    alimentosP=models.TextField(blank=True,null=True)
+    alimentosR=models.TextField(blank=True,null=True)
     fuma=models.CharField(max_length=2)
     tomaL=models.CharField(max_length=2)
     protegeS=models.CharField(max_length=2)
     duermeB=models.CharField(max_length=2)
     menopausia=models.CharField(max_length=2)
     medicamentosOT=models.CharField(max_length=2)
-    cualesOT=models.TextField()
+    cualesOT=models.TextField(blank=True,null=True)
     padeceE=models.CharField(max_length=2)
     cancerP=models.CharField(max_length=2)
     asma=models.CharField(max_length=2)
@@ -181,8 +184,8 @@ class EsteticoFacial(models.Model):
     retinA=models.CharField(max_length=2)
     differin=models.CharField(max_length=2)
     accutane=models.CharField(max_length=2)
-    motivoC=models.TextField()
-    productoCM=models.TextField()
+    motivoC=models.TextField(blank=True,null=True)
+    productoCM=models.TextField(blank=True,null=True)
     #Analisis de piel
     normal=models.CharField(max_length=2)
     gruesa=models.CharField(max_length=2)
@@ -218,21 +221,11 @@ class EsteticoFacial(models.Model):
     edema=models.CharField(max_length=2)
     grasa=models.CharField(max_length=2)
     #Cuidados que realiza diariamente
-    rutinasH=models.TextField()
-    cuidadosH=models.TextField()
+    rutinasH=models.TextField(blank=True,null=True)
+    cuidadosH=models.TextField(blank=True,null=True)
     mensuales=models.CharField(max_length=2)
-    productoH=models.TextField()
+    productoH=models.TextField(blank=True,null=True)
     
-class Sesiones(models.Model):
-    idSesiones=models.AutoField(primary_key=True)
-    idCorporal=models.ForeignKey(EsteticoCorporal, null=True, on_delete=models.PROTECT)
-    idFacial=models.ForeignKey(EsteticoFacial, null=True, on_delete=models.PROTECT)
-    fecha=models.CharField(max_length=10)
-    Nseciones=models.CharField(max_length=2)
-    valor=models.IntegerField()
-    abono=models.IntegerField()
-    estado=models.CharField(max_length=9)
-    fechaActualizacion=models.DateTimeField(auto_now=True)
 
 
 

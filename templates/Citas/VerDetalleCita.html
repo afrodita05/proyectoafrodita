@@ -1,0 +1,114 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}Crear corporal{% endblock title %}
+{% block extra_css %}
+<!-- DataTables -->
+<link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+<link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+{% endblock extra_css %}
+{% block content %}
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h3 class="mb-sm-0 font-size-40">Ver detalle Cita</h3>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Paginas </a></li>
+                                <li class="breadcrumb-item active">Ver detalle Cita </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="col-lg-12">
+                    <div class="card-header bg-transparent border-primary">
+                        <h5 class="my-0 text-primary"><i class="mdi mdi-card-account-details-outline me-3"></i> Datos personales del cliente </h5>
+                    </div>
+                    <div class="row">  
+                    <div class="card-body">
+                        <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
+                            <a href="{% url 'Agenda-Costo' cliente.idCliente %}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear Costo</a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-nowrap align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Documento</th>
+                                        <th>Sesiones</th>
+                                        <th>Costo</th>
+                                        <th>Abono</th>
+                                        <th>Funciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for listar in agendaCosto %}
+                                    <tr>
+                                        <td>{{listar.idCliente.documento}}</td>
+                                        <td>{{listar.sesiones}}</td>
+                                        <td>{{listar.costo}}</td>
+                                        <td>{{listar.abono}}</td>
+                                        <td>
+                                            <a href="{% url 'Editar-Costo' listar.idAgendaCosto %}" class="btn btn-outline-primary btn-sm">
+                                                <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
+                                            </a>
+                                            <a href="{% url 'verDetalle-Costo' listar.idAgendaCosto %}" class="btn btn-outline-primary btn-sm">
+                                                <i class="mdi mdi-eye-outline  mdi-24px "></i>
+                                            </a>
+                                        </td>
+                                        
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- end card body -->
+                </div>
+            </div>
+           
+            <!-- end card -->
+        </div>
+    </div> <!-- container-fluid -->
+</div> <!-- End Page-content -->
+
+{% block footer %}
+{% include 'partials/footer.html' %}
+{% endblock footer %}
+</div>
+
+<!-- end main content-->
+{% endblock content %}
+
+{% block extra_js %}
+<!-- Table Editable plugin -->
+<script src="{% static 'libs/table-edits/build/table-edits.min.js'%}"></script>
+
+<script src="{% static 'js/pages/table-editable.int.js'%}"></script>
+<!-- Required datatable js -->
+<script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js'%}"></script>
+<!-- Buttons examples -->
+<script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js'%}"></script>
+<script src="{% static 'libs/jszip/jszip.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/pdfmake.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/vfs_fonts.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js'%}"></script>
+<!-- Responsive examples -->
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js'%}"></script>
+<!-- Datatable init js -->
+<script src="{% static 'js/pages/datatables.init.js'%}"></script>
+<!-- pristine js -->
+<script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
+<!-- form validation -->
+<script src="{% static 'js/pages/form-validation.init.js'%}"></script>
+
+{% endblock extra_js %}

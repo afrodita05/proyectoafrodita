@@ -18,20 +18,22 @@ from http import client
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
+from Apps.login.forms import UserPasswordResetForm, UserSetPasswordForm #aa
 
 from SadcomStetic import views
 
-from Apps.Citas.views import crearCita, formularioCita, listarCita, editarCita, editarClienteCitas, actualizarCita, actualizarClienteCitas,servicio
-from Apps.login.views import Login, recuperar_contrasena
+from Apps.Citas.views import *
 from Apps.login.views import Login, recuperar_contrasena
 # from Apps.Usuarios.views import Usuarios, Crear_Usuario, Editar_Usuario
-from Apps.Clientes.views import cliente,formularioCliente,crearCliente,editarCliente,actualizarCliente,detalleCliente,formularioCorporal,crearCorporal,VerDetalleCorporal,formularioFacial,crearFacial,VerDetalleFacial,formularioControlMedidas,crearControlMedidas,formularioPagosSesionesCorporal,crearPagosSesionesCorporal,formularioPagosSesionesFacial,crearPagosSesionesFacial,editarCliente,editarPagosSesionesFacial,actualizarPagosSesionesFacial,editarPagosSesionesCorporal,actualizarPagosSesionesCorporal
+from Apps.Clientes.views import *
 from Apps.Usuarios.views import usuario, crearUsuario, formularioUsuario, editarU, actualizarU, pruebaCr
 from Apps.Servicios.views import servicio, crearServicio, formularioServicio, editarS, actualizarS, eliminarS
-from Apps.Proveedores.views import FormularioAgregarProveedor,CrearProveedor,ListarProveedor,EditarProveedor,ActualizarProveedor
 from Apps.Configuracion.views import crearRol,formularioRol,listarRol
+from Apps.Proveedores.views import CrearProveedor,ListarProveedor,EditarProveedor
+from Apps.Configuracion.views import crearRol,formularioRol,listarRol, pruebaRol
 from Apps.Compras.views import FormularioAgregarCompra,CrearCompra,ListarCompra,EliminarCompra,DetalleCompras, FormularioAgregarInsumo, CrearInsumo
 from Apps.Insumos.views import insumos
+
 
 app_name = "SadcomStetic"
 urlpatterns = [
@@ -45,16 +47,15 @@ urlpatterns = [
         name="login"
     ),
 
-    
-    path(
-        "Recuperar contraseña",
-        view= recuperar_contrasena,
-        name= "pages.authentication.recuperarContraseña",
-    ),
 
-     path('accounts/', include('django.contrib.auth.urls')),
 
-     
+    path('accounts/', include('django.contrib.auth.urls')),
+
+    path('reset_password', auth_views.PasswordResetView.as_view(form_class=UserPasswordResetForm), name='password_reset',), 
+    path('reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(form_class=UserSetPasswordForm), name='password_reset_confirm'), #Funcional. Buscar en la documentación de django el form_class para modificarlo por un extend (override) del original
+   
+
+
 #urls acorta las rutas para buscar path
 #Siempre que vaya a crear una vista debo asignarle una URL
 
@@ -93,12 +94,21 @@ urlpatterns = [
     path(
         "ListarProveedor/", 
          view=ListarProveedor,
-         name= "Proveedor"),
+         name= "Proveedor"
+        ),
          
-    path('CrearProveedor/', CrearProveedor),
-    path('FormularioAgregarProveedor/', FormularioAgregarProveedor),
-    path('EditarProveedor/<int:idProveedor>',EditarProveedor, name='EditarProveedor'),
-    path('ActualizarProveedor/<int:idProveedor>',ActualizarProveedor, name='ActualizarProveedor'),
+    path(
+        'CrearProveedor/',
+         CrearProveedor
+        ),
+
+    path(
+        'EditarProveedor/<int:id>',
+        EditarProveedor, 
+        name='EditarProveedor'
+        ),
+    # path('FormularioAgregarProveedor/', FormularioAgregarProveedor),
+    #path('ActualizarProveedor/<int:idProveedor>',ActualizarProveedor, name='ActualizarProveedor'),
 
     #CONFIGURACION
 
@@ -117,6 +127,12 @@ urlpatterns = [
         view=listarRol, 
         name='Rol'
         ),
+    
+    path(
+        'pruebaRol/',
+        view=pruebaRol, 
+        name='pruebaRol'
+        ),
     # path(
     #     'editarRol/<int:id>',
     #     view=editarRol, 
@@ -128,16 +144,65 @@ urlpatterns = [
  
     #CITAS
     path(
-        "listarCita/",
-        view= listarCita,
-        name= "Cita",
-    ),
-    path('crearCita/',crearCita,name='crearCita'),
-    path('formularioCita/',formularioCita, name='formularioCita'),
-    path('editarCita/<int:id>',editarCita, name='editarCita'),
-    path('editarCliente/<int:id>',editarClienteCitas, name='editarCliente'),
-    path('actualizarCita/<int:id>',actualizarCita, name='actualizarCita'),
-    path('actualizarCliente/<int:id>',actualizarClienteCitas, name='actualizarCliente'),
+        'Cita/',
+        view=listarCita, 
+        name='Cita'
+        ),
+
+     path(
+        'verficarDocumento/',
+        view=verificarDocumento, 
+        name='verificar-Documento'
+        ),   
+
+    path(
+        'crearCitas/<int:id>',
+        view=crearCita, 
+        name='crear-Citas'
+        ),
+
+    path(
+        'editarCitas/<int:id>',
+        view=editarCita, 
+        name='editar-Citas'
+        ),   
+
+    path(
+        'verDetalleCita/<int:id>',
+        view=verDetalleCita, 
+        name='verDetalle-Cita'
+        ),
+
+    path(
+        'crearCosto/<int:id>',
+        view=crearAgendaCosto, 
+        name='Agenda-Costo'
+        ),
+
+     path(
+        'editarCosto/<int:id>',
+        view=editarAgendaCosto, 
+        name='Editar-Costo'
+        ),    
+
+    path(
+        'verDetalleCosto/<int:id>',
+        view=verDetalleCosto, 
+        name='verDetalle-Costo'
+        ),
+
+    path(
+        'crearFecha/<int:id>',
+        view=crearAgendaFecha, 
+        name='Agenda-Fecha'
+        ),
+
+     path(
+        'editarFecha/<int:id>',
+        view=editarFechaAgenda, 
+        name='Editar-Fecha'
+        ),
+    
     
     #COMPRAS
     path(
@@ -158,17 +223,12 @@ urlpatterns = [
         name= "Insumos",
     ),
     path ('', include ('Apps.Insumos.urls')),
+
     #CLIENTES
     path(
         "Clientes/", 
-        view= cliente,
+        view= listarCliente,
         name= "Clientes",
-    ),
-
-    path(
-        "FormularioCliente/",
-        view= formularioCliente,
-        name= "Clientes.Formulario-Cliente",
     ),
 
     path(
@@ -183,13 +243,6 @@ urlpatterns = [
         name= "Clientes.Editar-Cliente",
     ),
 
-      path(
-        "ActualizarCliente/<int:id>",
-        view= actualizarCliente,
-        name= "Clientes.Actualizar-Cliente",
-    ),
-
-
     path(
         "VerDetalle/<int:id>",
         view= detalleCliente,
@@ -197,15 +250,9 @@ urlpatterns = [
     ),
 
     path(
-        "FormularioCorporal/<int:id>",
-        view= formularioCorporal,
-        name= "Clientes.Formulario-Corporal",
-    ),
-
-    path(
         "CrearCorporal/<int:id>",
         view= crearCorporal,
-        name= "Clientes.Ver-Detalles.Crear-Corporal",
+        name= "Crear-Corporal",
     ),
     
     path(
@@ -215,15 +262,9 @@ urlpatterns = [
     ),
 
     path(
-        "FormularioFacial/<int:id>",
-        view= formularioFacial,
-        name= "Clientes.Formulario-Facial",
-    ),
-
-    path(
         "CrearFacial/<int:id>",
         view= crearFacial,
-        name= "Clientes.Ver-Detalles.Crear-Facial",
+        name= "Crear-Facial",
     ),
 
     path(
@@ -233,55 +274,9 @@ urlpatterns = [
     ),
 
     path(
-        "FormularioControlMedidas/<int:id>",
-        view= formularioControlMedidas,
-        name= "Clientes.Ver-Detalles.Formulario-Control-Medidas",
-    ),
-
-    path(
         "CrearControlMedidas/<int:id>",
         view= crearControlMedidas,
         name= "Clientes.Ver-Detalles.Crear-Control-Medidas",
-    ),
-    path(
-        "FormularioPagoSesionCorporal/<int:id>",
-        view= formularioPagosSesionesCorporal,
-        name= "Clientes.Ver-Detalles.Formulario-Pagos-Sesiones-Corporal",
-    ),
-    path(
-        "CrearPagoSesionCorporal/<int:id>",
-        view= crearPagosSesionesCorporal,
-        name= "Clientes.Ver-Detalles.Crear-Pagos-Sesiones-Corporal",
-    ),
-    path(
-        "FormularioPagoSesionFacial/<int:id>",
-        view= formularioPagosSesionesFacial,
-        name= "Clientes.Ver-Detalles.Formulario-Pagos-Sesiones-Facial",
-    ),
-    path(
-        "CrearPagoSesionFacial/<int:id>",
-        view= crearPagosSesionesFacial,
-        name= "Clientes.Ver-Detalles.Crear-Pagos-Sesiones-Facial",
-    ),
-    path(
-        "EditarPagoSesionFacial/<int:id>",
-        view= editarPagosSesionesFacial,
-        name= "Clientes.Ver-Detalles.Editar-Pagos-Sesiones-Facial",
-    ),
-    path(
-        "ActualizarPagoSesionFacial/<int:id>",
-        view= actualizarPagosSesionesFacial,
-        name= "Clientes.Ver-Detalles.Actualizar-Pagos-Sesiones-Facial",
-    ),
-    path(
-        "EditarPagoSesionCorporal/<int:id>",
-        view= editarPagosSesionesCorporal,
-        name= "Clientes.Ver-Detalles.Editar-Pagos-Sesiones-Corporal",
-    ),
-    path(
-        "ActualizarPagoSesionCorporal/<int:id>",
-        view= actualizarPagosSesionesCorporal,
-        name= "Clientes.Ver-Detalles.Actualizar-Pagos-Sesiones-Corporal",
     ),
     
 ]

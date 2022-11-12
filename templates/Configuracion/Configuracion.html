@@ -39,6 +39,10 @@
                         <a href="{% url 'formularioRol' %}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear un rol</a>
                         
                     </div>
+                    <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
+                        <a href="{% url 'pruebaRol' %}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >PRUEBA ROL</a>
+                        
+                    </div>
                 </div>
             </div><!-- end col -->
             <div class="row">
@@ -59,8 +63,8 @@
                                         {% for listar in crRol %}
                                         <tr data-id="1">
                         
-                                            <td data-field="rol">{{listar.nombre}}</td>
-                                            <td data-field="permisos">{{listar.configuracion}}, {{listar.insumos}}, {{listar.citas}}, {{listar.clientes}}, {{listar.servicios}}, {{listar.compras}}, {{listar.proveedores}}, {{listar.usuarios}}</td>
+                                            <td data-field="rol">{{listar.name}}</td>
+                                            <td data-field="permisos">{{listar.permissions.name}}, {{listar.permissions.name}}, {{listar.permissions.name}}, {{listar.permissions.name}}, {{listar.permissions.name}}, {{listar.permissions.name}}, {{listar.permissions.name}}, {{listar.permissions.name}}</td>
                                             <td data-field="estado">
                                                 <span class="badge badge-soft-danger" style="font-size: 14px;">Inactivo</span>
                                             </td>
@@ -102,7 +106,6 @@
 {% block extra_js %}
 <!-- Table Editable plugin -->
 <script src="{% static 'libs/table-edits/build/table-edits.min.js'%}"></script>
-
 <script src="{% static 'js/pages/table-editable.int.js'%}"></script> 
 <!-- Required datatable js -->
 <script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js'%}"></script>
@@ -116,27 +119,20 @@
 <script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js'%}"></script>
 <script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js'%}"></script>
 <script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js'%}"></script>
-
 <!-- Responsive examples -->
 <script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
 <script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js'%}"></script>
-
 <!-- Datatable init js -->
 <script src="{% static 'js/pages/datatables.init.js'%}"></script>   
 <!-- pristine js -->
 <script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
 <!-- form validation -->
 <script src="{% static 'js/pages/form-validation.init.js'%}"></script>
-<!-- Modal js -->
-<script src="{% static 'js/pages/modal.init.js'%}"></script>
-
-    <script>
-        var myModal = document.getElementById('myModal')
-        var myInput = document.getElementById('myInput')
-
-        myModal.addEventListener('shown.bs.modal', function () {
-        myInput.focus()
-        })
-    </script>
-
+<script>
+    $("#datatable").DataTable({
+   language: {
+     url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
+   },
+ });
+</script>
 {% endblock extra_js %}

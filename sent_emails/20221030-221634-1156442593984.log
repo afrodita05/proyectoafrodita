@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: juanpabloduquev@hotmail.com
+Date: Mon, 31 Oct 2022 03:16:34 -0000
+Message-ID: <166718619485.6788.1887158739359440536@DESKTOP-O39GJEE>
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/accounts/reset/MQ/be4ojm-b7e0790269034cba837ec7c04e32d96f/
+
+Your username, in case you’ve forgotten: afrodita
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+-------------------------------------------------------------------------------

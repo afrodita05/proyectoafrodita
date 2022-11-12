@@ -36,51 +36,16 @@
                         crear una nueva cita.</p>
                     </div>
                     <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
-                        <a href="/formularioCita/" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear una cita</a>
+                        <a href="{% url 'verificar-Documento' %}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear una cita</a>
+                    </div>
+                    <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
+                        <a href="{% url 'Clientes' %}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear un Clienete</a>
                     </div>
                 </div>
             </div><!-- end col -->
             <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header bg-transparent border-primary">
-                            <h5 class="my-0 text-primary"><i class="mdi mdi-bullseye-arrow me-3"></i>Clientes</h5>
-                        </div>
-                        <div class="card-body">
-                            <br>
-                            <div class="table-responsive">
-                                <table id="datatable" class="table table-nowrap align-middle">
-                                    <thead>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Documento</th>
-                                            <th>Teléfono</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for listar in lrClientes %}
-                                        <tr data-id="1">
-                                            
-                                            <td data-field="name">{{listar.nombre}}</td>
-                                            <td data-field="documento">{{listar.documento}}</td>
-                                            <td data-field="telefono">{{listar.telefono}}</td>
-                                            
-                                        
-                                            <td>
-                                                <a href="{% url 'editarCliente' listar.idCliente %}" class="btn btn-outline-primary btn-sm">
-                                                    <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
-                                                </a>
-                                                
-                                                
-                                            </td>
-                                        </tr>      
-                                        {% endfor %}                      
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-12">       
+                       
 
                     <div class="card">
                         <div class="card-header bg-transparent border-primary">
@@ -92,21 +57,27 @@
                                 <table id="datatable1" class="table table-nowrap align-middle">
                                     <thead>
                                         <tr>
+                                            <th>Fecha Cita</th>
+                                            <th>Estado</th>
+                                            <th>Nombre</th>
                                             <th>Documento</th>
-                                            <th>Fecha de cita</th>
-                                            <th>Servicio</th>
-                                            <th>Acciones</th>
+                                            <th>Funciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for listar in crcita %}
+                                        {% for listar in citas %}
                                         <tr data-id="1">
-                                            <td data-field="fecha">{{listar.idCliente.documento}}</td>
-                                            <td data-field="fecha">{{listar.fecha}}</td>
-                                            <td data-field="servicio">{{listar.idServicio.nServicio}}</td>
+                                            <td data-field="fechaCita">{{listar.fechaCita}}</td>
+                                            <td data-field="estado">{{listar.estado}}</td>
+                                            <td data-field="nombre">{{listar.idCliente.nombre}}</td>
+                                            <td data-field="documento">{{listar.idCliente.documento}}</td>
+                                                                                       
                                             <td>
-                                                <a href="{% url 'editarCita' listar.idCitas %}" class="btn btn-outline-primary btn-sm">
+                                                <a href="{% url 'editar-Citas' listar.idCita %}" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
+                                                </a>
+                                                <a href="{% url 'verDetalle-Cita' listar.idCliente.idCliente %}" class="btn btn-outline-primary btn-sm">
+                                                    <i class="mdi mdi-eye-outline  mdi-24px "></i>
                                                 </a>
                                                 <a href="#" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-cancel mdi-24px"></i>
@@ -165,16 +136,11 @@
 <script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
 <!-- form validation -->
 <script src="{% static 'js/pages/form-validation.init.js'%}"></script>
-<!-- Modal js -->
-<script src="{% static 'js/pages/modal.init.js'%}"></script>
-
-    <script>
-        var myModal = document.getElementById('myModal')
-        var myInput = document.getElementById('myInput')
-
-        myModal.addEventListener('shown.bs.modal', function () {
-        myInput.focus()
-        })
-    </script>
-
+<script>
+    $("#datatable").DataTable({
+   language: {
+     url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
+   },
+ });
+</script>
 {% endblock extra_js %}

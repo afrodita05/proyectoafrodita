@@ -27,10 +27,11 @@
             <div class="card">
                 <div style="margin: 60px;" >
                     <div style="align-items: center;">
-                        <form action="/crearServicio/" id="crearss" novalidate method="POST">
+                        <form action=" " onsubmit="onSubmitForm" id="agregar" novalidate method=" ">  <!-- basado en compras -->
                             {% csrf_token %}
                             <input type="hidden" />
                             <div class="row">
+
                                 <div class="col-lg-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Nombre</label>
@@ -41,14 +42,17 @@
                                             <p style="color:red">Error. El servicio ingresado ya existe.</p>
                                             {% endfor %}
                                     </div>
+
                                 </div>
                                 
+
                                 <div class=" col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Tiempo</label>
-                                        <input name="tiempo" type="text" data-pristine-required-message="Por favor ingrese el tiempo" placeholder="Ingrese el tiempo" required class="form-control" />
+                                        <input name="tiempo" type="text" data-pristine-required-message="Por favor ingrese el tiempo" placeholder="Ingrese el tiempo en minutos" required class="form-control" />
                                     </div>
                                 </div>
+
 
                                 <div class="form-check form-switch form-switch-md mb-3" dir="ltr" style="margin-left: 15px;">
                                     <input type="checkbox" class="form-check-input" id="customSwitchsizemd">
@@ -56,12 +60,69 @@
                                 </div>
                             </div>
                             <!-- end row -->
-                            <div class="form-group" style=" display: flex; justify-content: center; align-items: center;" >
-                                <button type="submit" for="crearss" class="btn btn-primary" style="width: 20%; margin-right: 40px;">Guardar</button>
-                                <a href="{% url 'Servicio' %}" type="button" class="btn btn-danger" style="width: 20%;">Cancelar</a>
+                            
+
+                            <!-- insumos usados -->
+
+
+                            <div class="col-md-12">
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Nombre del insumo</label>
+                                    <select name="insumo" class="form-select">
+                                        {% for listar in insumo %}
+                                        <option value="{{listar.nombre}}">{{listar.nombreInsumo}}</option>
+                                        {% endfor %} 
+                                    </select>
+                                </div>
+                            </div>  
+
+                            <div class="col-md-12">
+                                <label for="example-datetime-local-input" class="form-label">Cantidad del insumo utilizado</label>
+                                <input name="cantidad" type="number" value="0" data-pristine-required-message="Por favor ingrese la cantidad utilizada" required class="form-control" />
+                            </div>
+
+                            
+                            <div class="form-group" style=" margin-top: 40px; margin-bottom: 50px; text-align: center;" >
+                            <button type="submit"  for="agregar" class="btn btn-primary" style="width: 50%">Agregar</button>
                             </div>
                         </form>
                     </div>
+
+                    <div class="col-12">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="list" class="table table-nowrap align-middle">
+                                    <thead>
+                                        {% for listar in CListarInsumos %}
+                                        <tr>
+                                            <th>Nombre del insumo</th>
+                                            <th>Cantidad utilizada</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        <tr data-id="1">
+                                            <td data-field="nombre">{{listar.insumo}}</td>
+                                            <td data-field="cantidad">{{listar.cantidad}}</td>
+                                            <td>
+                                                <a  href="#" class="btn btn-outline-primary btn-sm">
+                                                    <i class="mdi mdi-cancel mdi-24px"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-top: 40px;" >
+                        <button type="submit" id="guardar" class="btn btn-primary" style="width: 20%; margin-right: 40px;">Guardar</button>
+                        <a href="{% url 'Servicio' %}" type="button" class="btn btn-danger" style="width: 20%;">Cancelar</a>
+                    </div>
+
                 </div>
             </div> <!-- end col -->
         </div> <!-- container-fluid -->
@@ -74,6 +135,10 @@
 {% endblock content %}
 
 {% block extra_js %}
+
+<script type="text/javascript" src="{% static  'js/localstorageServ.js' %}"></script>
+
+
 <!-- Buttons examples -->
 <script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js'%}"></script>
 <script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js'%}"></script>

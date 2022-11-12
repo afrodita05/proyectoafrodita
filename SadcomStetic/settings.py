@@ -118,7 +118,7 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': '1045046042Jv',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '3306',   
     }
 }
 # Password validation
@@ -174,3 +174,16 @@ LOGIN_URL = 'login' #la que está como el template
 LOGIN_REDIRECT_URL = reverse_lazy('dashboard')
 
 AUTH_USER_MODEL = "Usuarios.User" #Establecer cual será el modelo de usuario
+
+#RECUPERACION
+
+#SMTP CONFIGURATION
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True 
+EMAIL_HOST_USER = "proyectoafrodita5@gmail.com"
+EMAIL_HOST_PASSWORD = "nynhccqeyrftuiab"
+
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"

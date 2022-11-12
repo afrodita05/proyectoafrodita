@@ -798,58 +798,6 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xxl-12">
-                    <div class="card">
-                        <div class="card-header bg-transparent border-primary">
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <h4 class="my-0 text-primary" style="margin-top: 50%;">Pagos y sesiones</h4>
-                                </div>
-                                <div class="col-lg-6 ms-lg-auto">
-                                    <a href="{% url 'Clientes.Ver-Detalles.Formulario-Pagos-Sesiones-Facial' mostrar.idFacial %}"
-                                        type="button" class="btn btn-primary waves-effect " style="margin-left: 40%;"><i
-                                            class="mdi mdi-account-cash-outline"></i> Crear pago y sesion
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-nowrap align-middle">
-                                    <thead>
-                                        <tr>
-                                            <th>Fecha de creación</th>
-                                            <th>Valor</th>
-                                            <th>Sesisones</th>
-                                            <th>Abono</th>
-                                            <th>Estado</th>
-                                            <th>Fecha Actualización</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for listar in sesiones %}
-                                        <tr>
-                                            <td>{{listar.fecha}}</td>
-                                            <td>{{listar.valor}}</td>
-                                            <td>{{listar.Nseciones}}</td>
-                                            <td>{{listar.abono}}</td>
-                                            <td>{{listar.estado}}</td>
-                                            <td>{{listar.fechaActualizacion}}</td>
-                                            <td><a href="{% url 'Clientes.Ver-Detalles.Editar-Pagos-Sesiones-Facial' listar.idSesiones %}" class="btn btn-outline-primary btn-sm ">
-                                            <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
-                                            </a></td>
-                                        </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <!-- end card body -->
-                    </div>
-                </div>
-            </div>
         </div> <!-- container-fluid -->
     </div> <!-- End Page-content -->
 
