@@ -24,8 +24,6 @@ def verificarDocumento(request):
         contexto={"error":error}
         return render(request,'Citas/VerificarDocumento.html',contexto)
     
-    
-
 def crearCita(request,id):
     if request.method=='POST':
         formulario_citas=FormularioCitas(request.POST)
@@ -37,9 +35,7 @@ def crearCita(request,id):
         
     contexto={'formulario_citas':formulario_citas,'idCliente':id}
     return render(request,'Citas/Crear-Cita.html',contexto)
-    
-    
-    
+       
 def editarCita(request,id):
     citas=Citas.objects.get(idCita=id)
     if request.method=='GET':
@@ -52,7 +48,6 @@ def editarCita(request,id):
     contexto={'formulario_citas':formulario_citas}
     return render(request,'Citas/Editar-Cita.html',contexto)
 
-
 def verDetalleCita(request, id):
     cliente=Clientes.objects.filter(idCliente=id).first()
     agendaCosto=AgendaCosto.objects.filter(idCliente=id)
@@ -61,7 +56,6 @@ def verDetalleCita(request, id):
     return render(request,"Citas/VerDetalleCita.html",contexto)
 
 def crearAgendaCosto(request, id):
-
     if request.method=='POST':
         formulario_agenda_costo=FormularioAgendaCosto(request.POST)
         if formulario_agenda_costo.is_valid():
@@ -105,7 +99,6 @@ def crearAgendaFecha(request, id):
 
     agendacosto=AgendaCosto.objects.filter(idAgendaCosto=id)
     print("COSTO", agendacosto)
-
     print("IDE",id)
     print("Valido",formulario_agenda_fecha.is_valid())
     for listar in agendacosto:

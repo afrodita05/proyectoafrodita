@@ -38,6 +38,8 @@
                             <table class="table table-nowrap align-middle">
                                 <thead>
                                     <tr>
+                                        <th>Documento</th>
+                                        <th>Nombre</th>
                                         <th>Fecha</th>
                                         <th>Estado</th>
                                         <th>Funciones</th>
@@ -46,6 +48,8 @@
                                 <tbody>
                                     {% for listar in agendaFecha %}
                                     <tr>
+                                        <td>{{listar.idAgendaCosto.idCliente.documento}}</td>
+                                        <td>{{listar.idAgendaCosto.idCliente.nombre}}</td>
                                         <td>{{listar.fechaAgenda}}</td>
                                         <td>{{listar.estado}}</td>
                                         <td>

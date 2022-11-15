@@ -25,6 +25,7 @@ class FormularioCitas(forms.ModelForm):
         widgets={   
             'fechaCita':forms.TextInput(attrs={'class':'form-control','required data-pristine-required-message':'Por favor ingresa la fecha','type':'date'}),
             'estado':forms.Select(choices=estadoCita,attrs={'class':'form-select'}),
+            'idServicio':forms.Select(attrs={'class':'form-select'}),
             'idCliente':forms.TextInput(attrs={'hidden':''}),
         }
 

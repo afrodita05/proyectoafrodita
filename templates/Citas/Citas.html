@@ -39,7 +39,7 @@
                         <a href="{% url 'verificar-Documento' %}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear una cita</a>
                     </div>
                     <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
-                        <a href="{% url 'Clientes' %}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear un Clienete</a>
+                        <a href="{% url 'Clientes' %}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear un Cliente</a>
                     </div>
                 </div>
             </div><!-- end col -->
@@ -61,6 +61,7 @@
                                             <th>Estado</th>
                                             <th>Nombre</th>
                                             <th>Documento</th>
+                                            <th>Servicio</th>
                                             <th>Funciones</th>
                                         </tr>
                                     </thead>
@@ -71,6 +72,7 @@
                                             <td data-field="estado">{{listar.estado}}</td>
                                             <td data-field="nombre">{{listar.idCliente.nombre}}</td>
                                             <td data-field="documento">{{listar.idCliente.documento}}</td>
+                                            <td data-field="documento">{{listar.idServicio.nServicio}}</td>
                                                                                        
                                             <td>
                                                 <a href="{% url 'editar-Citas' listar.idCita %}" class="btn btn-outline-primary btn-sm">

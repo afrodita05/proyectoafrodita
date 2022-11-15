@@ -1,5 +1,7 @@
 from django.db import models
 from Apps.Clientes.models import Clientes
+from Apps.Servicios.models import Servicios
+
 
 # Create your models here.
 
@@ -8,6 +10,7 @@ class Citas(models.Model):
     idCliente=models.ForeignKey(Clientes, on_delete=models.PROTECT)
     fechaCita=models.CharField(max_length=60)
     estado=models.CharField(max_length=10)
+    idServicio=models.ForeignKey(Servicios,on_delete=models.PROTECT)
 
 class AgendaCosto(models.Model):
     idAgendaCosto=models.AutoField(primary_key=True)

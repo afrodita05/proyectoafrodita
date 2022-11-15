@@ -39,6 +39,7 @@
                                 <thead>
                                     <tr>
                                         <th>Documento</th>
+                                        <th>Nombre</th>
                                         <th>Sesiones</th>
                                         <th>Costo</th>
                                         <th>Abono</th>
@@ -49,6 +50,7 @@
                                     {% for listar in agendaCosto %}
                                     <tr>
                                         <td>{{listar.idCliente.documento}}</td>
+                                        <td>{{listar.idCliente.nombre}}</td>
                                         <td>{{listar.sesiones}}</td>
                                         <td>{{listar.costo}}</td>
                                         <td>{{listar.abono}}</td>

@@ -6,6 +6,10 @@ class Servicios(models.Model):
     idServicio=models.AutoField(primary_key=True)
     nServicio=models.CharField(max_length=50)
     tiempo= models.IntegerField()
+    
+    def __str__(self) -> str:
+        return '{}'.format(self.nServicio)
+    
 
 class Servicios_Insumo(models.Model):
     idServicios_Insumo= models.AutoField(primary_key=True)
