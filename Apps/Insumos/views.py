@@ -7,19 +7,17 @@ from django.contrib import messages
 
 def insumos (request):
     insumos = Insumo.objects.all()
-    return render (request, 'Insumos/Insumos.html', {'insumos': insumos})
-
-def estadoInsumo(request):
-    estado = Insumo.objects.filter(estado)
-    estadoT = estado
-    estadoF = estado
-    if estado == True:
+    estadoT = ("Activo")
+    estadoF = ("Inactivo")
+    if insumos == True:
         estado = estadoT
     else:
         estado = estadoF
-        
-    print (estadoT, 'zzz')
-    return render (request, 'Insumos/Insumos.html', {'estadoF': estadoF}, {'estadoT': estadoT})
+    return render (request, 'Insumos/Insumos.html', {'insumos': insumos})
+
+def estadoInsumo(request):
+    
+    return render (request, 'Insumos/Insumos.html', )
 
 
 def edicionInsumos(request, idInsumo):
