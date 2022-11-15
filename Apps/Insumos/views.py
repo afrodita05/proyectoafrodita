@@ -9,6 +9,18 @@ def insumos (request):
     insumos = Insumo.objects.all()
     return render (request, 'Insumos/Insumos.html', {'insumos': insumos})
 
+def estadoInsumo(request):
+    estado = Insumo.objects.filter(estado)
+    estadoT = estado
+    estadoF = estado
+    if estado == True:
+        estado = estadoT
+    else:
+        estado = estadoF
+        
+    print (estadoT, 'zzz')
+    return render (request, 'Insumos/Insumos.html', {'estadoF': estadoF}, {'estadoT': estadoT})
+
 
 def edicionInsumos(request, idInsumo):
    insumo = Insumo.objects.get(idInsumo = idInsumo)
@@ -18,9 +30,11 @@ def editarInsumo (request):
     idInsumo = request.POST['id']
     nombreInsumo = request.POST['txtNombre']
     cantidad = request.POST['numCantidad']
+    estado = request.POST['Estado']
     insumo = Insumo.objects.get(idInsumo = idInsumo)
     insumo.nombreInsumo = nombreInsumo
     insumo.cantidad = cantidad
+    insumo.estado = estado
     insumo.save()
     return redirect('Insumos')
 

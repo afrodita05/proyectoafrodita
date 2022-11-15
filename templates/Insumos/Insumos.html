@@ -43,24 +43,28 @@
                                             <thead>
                                                 <tr>
                                                     <th>Insumo</th>
-                                                    <th>Unidades</th>
-                                                    <th>Gramos</th>
+                                                    <th>Cantidad</th>
+                                                    <th>Tipo de unidad</th>
+                                                    <th> Estado</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
+                                            
                                                 <tbody>
                                                     <tr data-id="1">
                                                         {% for insumo in insumos %}
-                                                        <td data-field="id" style="width: 80px">{{insumo.idInsumo}}</td>
                                                         <td data-field="insumo">{{insumo.nombreInsumo}}</td>
                                                         <td data-field="cantidad">{{insumo.cantidad}}</td>
+                                                        <td data-field="tipoUnidad">{{insumo.tipoUnidad}}</td>
+                                                        <td data-field="estado">
+                                                            <span class="badge badge-soft-success">{{estadoT}} Activo</span>
+                                                            <span class="badge badge-soft-danger">{{estadoF}}Inactivo</span>
+                                                        </td>
                                                         <td>
                                                             <a href="{% url 'editar' insumo.idInsumo%}" class="btn btn-outline-primary btn-sm">
                                                                 <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
                                                             </a>
-                                                            <a href="eliminarInsumos/{{insumo.idInsumo}}" class="btn btn-outline-primary btn-sm">
-                                                                <i class="mdi mdi-delete-outline mdi-24px "></i>
-                                                            </a> 
+                                                            
                                                         </td>
                                                     </tr>
                                                     {% endfor %}

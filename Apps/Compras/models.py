@@ -3,7 +3,11 @@ from Apps.Proveedores.models import Proveedor
 from Apps.Insumos.models import Insumo
 # Create your models here.
 
-
+tipUnidad= [
+    (1, 'Unidedes'),
+    (2, 'Mililitros'),
+    (3, 'Gramos')
+]
 class Compra(models.Model):
     idCompra=models.AutoField(primary_key=True)
     codigoCompra=models.CharField(max_length=10)
@@ -18,7 +22,7 @@ class Detalle_Compra(models.Model):
     idCompra=models.ForeignKey(Compra, on_delete=models.PROTECT) 
     idInsumo=models.ForeignKey('Insumos.Insumo', on_delete=models.PROTECT) 
     cantidad = models.IntegerField(null= True)
-    tipoUnidad = models.CharField(max_length=14, null = True)
+    tipoUnidad = models.CharField(max_length=14, null = True, choices=tipUnidad)
     costoUnidad = models.IntegerField(null= True)
     subTotal = models.IntegerField(null= True)
     total = models.IntegerField(null = True)

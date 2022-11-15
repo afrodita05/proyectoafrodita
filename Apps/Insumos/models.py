@@ -7,3 +7,4 @@ class Insumo(models.Model):
     nombreInsumo = models.TextField(null= True, verbose_name='Insumo')
     cantidad = models.IntegerField(default= 0, verbose_name='Cantidad')
     tipoUnidad = models.CharField(max_length=14, null = True)
+    estado = models.BooleanField(default= True, verbose_name='Estado')

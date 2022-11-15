@@ -53,7 +53,7 @@ def CrearCompra(request):
         cantidadComprada = int(cantidadComprada)
         print (cantidadComprada, 'cantidddddd')
         nuevoInsumo = existenciasInsumo+cantidadComprada 
-
+        
         insumoRecibido= Insumo.objects.get(idInsumo=idInsumo)
 
         insumoRecibido.cantidad = nuevoInsumo
@@ -66,9 +66,31 @@ def FormularioAgregarInsumo(request):
     return render (request, 'Compras/Crear-Insumo.html')
 
 def CrearInsumo (request):
-    nombreInsumo = request.POST['txtNombre']
-    insumo = Insumo.objects.create(nombreInsumo =nombreInsumo)
+    nInsumo = request.POST['txtNombre']
+    tipoUnidad = (Detalle_Compra.tipoUnidad)
+    errorI= []
+    errorInsO= []
+    if Insumo.objects.filter(nombreInsumo= nInsumo).exists():
+        errorI.append(1)
+        contex={"errorI": errorI}
+        return render(request,'Compras/Crear-Insumo.html',contex)
+        
+    elif nInsumo == (''):
+        errorInsO.append(1)
+        contex={"errorInsO": errorInsO}
+        return render(request,'Compras/Crear-Insumo.html',contex)
+    
+    else:
+        insumo = Insumo(nombreInsumo = nInsumo)
+        tipoUnidad = Insumo (tipoUnidad = tipoUnidad)
+        errorI.clear()
+        insumo.save()
     return redirect('/FormularioAgregarCompra/')
+
+#def CrearInsumo (request):
+#    nombreInsumo = request.POST['txtNombre']
+#    insumo = Insumo.objects.create(nombreInsumo =nombreInsumo)
+#    return redirect('/FormularioAgregarCompra/')
 
 def FormularioAgregarCompra(request):
     proveedor=Proveedor.objects.filter()

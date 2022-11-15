@@ -27,6 +27,14 @@
             <div class="card">
                 <div style="margin: 60px;" >
                     <div style="align-items: center;">
+                        {% for x in errorI %}
+                            <div class="alert alert-danger alert-dismissible alert-label-icon label-arrow fade show"
+                                role="alert" style="margin-top: 10px;">
+                                <i class="mdi mdi-block-helper label-icon"></i><strong>Error.</strong> El insumo ingresado ya existe.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                aria-label="Close"></button>
+                                        </div>
+                        {% endfor %}
                         <div>
                             <form class="needs-validation"  action="/CrearInsumo/" novalidate method="POST">
                                 {% csrf_token %}
@@ -39,6 +47,9 @@
                                             <div class="invalid-tooltip" style="margin-top: 5px;">
                                                 Por favor ingrese el insumo.
                                             </div>
+                                            {% for x in errorInsO %}
+                                                <p style="color:red">Error. Este campo es requerido.</p>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                     <div class="form-group" style=" margin-top: 40px; margin-bottom: 30px; text-align: center; " >
