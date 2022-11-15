@@ -1,0 +1,87 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}Crear servicio{% endblock title %}
+{% block extra_css %}
+    <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+{% endblock extra_css %}
+{% block content %}
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h3 class="mb-sm-0 font-size-40">Crear servicio</h3>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Servicios</a></li>
+                                <li class="breadcrumb-item active"> Crear servicio </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div style="margin: 60px;" >
+                    <div style="align-items: center;">
+                        <form action= "/verificacionServicio/" id="crearS" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" />
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">Nombre del servicio</label>
+                                        <input name="nServicio" type="text" required 
+                                            data-pristine-required-message="Por favor ingrese el nombre del servicio " placeholder="Ingrese el nombre del servicio"
+                                            class="form-control" />
+                                            <p style="color: red;">{{error}}</p>
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">Duración del servicio en minutos</label>
+                                        <input name="tiempo" maxlength="3" type="text" required 
+                                            data-pristine-required-message="Por favor ingrese la duración del servicio " placeholder="Ingrese la duración del servicio en minutos"
+                                            class="form-control" />
+                                    </div>
+                                </div>
+                               
+                            </div>
+                            <!-- end row -->
+                            <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-top: 40px;" >
+                                <button type="submit" for="crearS" class="btn btn-primary" style="width: 20%; margin-right: 40px;">Verificar</button>
+                                <a href="{% url 'Servicio' %}" type="button" class="btn btn-danger" style="width: 20%;">Cancelar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- container-fluid -->
+    </div> <!-- End Page-content -->
+    {% block footer %}
+        {% include 'partials/footer.html' %}
+    {% endblock footer %}
+</div> 
+<!-- end main content-->
+{% endblock content %}
+
+{% block extra_js %}
+<!-- Buttons examples -->
+<script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js'%}"></script>
+<script src="{% static 'libs/jszip/jszip.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/pdfmake.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/vfs_fonts.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js'%}"></script>
+<!-- Responsive examples -->
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js'%}"></script>
+<!-- pristine js -->
+<script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
+<!-- form validation -->
+<script src="{% static 'js/pages/form-validation.init.js'%}"></script>
+{% endblock extra_js %}

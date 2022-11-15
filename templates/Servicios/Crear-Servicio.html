@@ -27,20 +27,20 @@
             <div class="card">
                 <div style="margin: 60px;" >
                     <div style="align-items: center;">
-                        <form action=" " onsubmit="onSubmitForm" id="agregar" novalidate method=" ">  <!-- basado en compras -->
+                        <form action="" onsubmit="onSubmitForm" id="agregar" novalidate method=" ">  <!-- basado en compras -->
                             {% csrf_token %}
                             <input type="hidden" />
                             <div class="row">
+
+                                <input type="hidden" name="idActual" value="{{mostrar.idServicio}}"/>
 
                                 <div class="col-lg-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Nombre</label>
                                         <input name="nombre" type="text" required
-                                            data-pristine-required-message="Por favor ingrese el nombre " placeholder="Ingrese el nombre "
-                                            class="form-control" />
-                                            {% for x in errorS %}
-                                            <p style="color:red">Error. El servicio ingresado ya existe.</p>
-                                            {% endfor %}
+                                            data-pristine-required-message="Por favor ingrese el nombre " value="{{mostrar.nServicio}}"
+                                            class="form-control" readonly/>
+                                            
                                     </div>
 
                                 </div>
@@ -49,7 +49,7 @@
                                 <div class=" col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Tiempo</label>
-                                        <input name="tiempo" type="text" data-pristine-required-message="Por favor ingrese el tiempo" placeholder="Ingrese el tiempo en minutos" required class="form-control" />
+                                        <input name="tiempo" type="text" data-pristine-required-message="Por favor ingrese el tiempo" value="{{mostrar.tiempo}}" placeholder="{{mostrar.tiempo}}" required class="form-control" readonly />
                                     </div>
                                 </div>
 
@@ -70,7 +70,7 @@
                                     <label class="form-label">Nombre del insumo</label>
                                     <select name="insumo" class="form-select">
                                         {% for listar in insumo %}
-                                        <option value="{{listar.nombre}}">{{listar.nombreInsumo}}</option>
+                                        <option value="{{listar.nombreInsumo}}">{{listar.nombreInsumo}}</option>
                                         {% endfor %} 
                                     </select>
                                 </div>

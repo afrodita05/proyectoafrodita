@@ -27,7 +27,7 @@ from Apps.login.views import Login, recuperar_contrasena
 # from Apps.Usuarios.views import Usuarios, Crear_Usuario, Editar_Usuario
 from Apps.Clientes.views import *
 from Apps.Usuarios.views import usuario, crearUsuario, formularioUsuario, editarU, actualizarU, pruebaCr
-from Apps.Servicios.views import servicio, crearServicio, formularioServicio, editarS, actualizarS, eliminarS
+from Apps.Servicios.views import *
 from Apps.Configuracion.views import crearRol,formularioRol,listarRol
 from Apps.Proveedores.views import CrearProveedor,ListarProveedor,EditarProveedor
 from Apps.Configuracion.views import crearRol,formularioRol,listarRol, pruebaRol
@@ -84,7 +84,9 @@ urlpatterns = [
         name= "Servicio",
     ),
     path('crearServicio/',crearServicio),
-    path('formularioServicio/',formularioServicio),
+    path('rutaV/',rutaV),
+    path('verificacionServicio/',verificacionServicio),
+    path('formularioServicio/<int:id>',formularioServicio, name='formularioServicio'),
     path('editarS/<int:id>',editarS, name='editarServicio'),
     path('actualizarS/<int:id>',actualizarS, name='actualizarServicio'),
     path('eliminarS/<int:id>',eliminarS, name='eliminarServicio'),

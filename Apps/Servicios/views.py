@@ -6,6 +6,7 @@ from Apps.Servicios.models import Servicios, Servicios_Insumo
 from Apps.Insumos.models import Insumo
 import json
 from multiprocessing import context
+from Apps.Servicios.forms import *
 
 def servicio(request):
     servicio=Servicios.objects.filter()
@@ -13,10 +14,37 @@ def servicio(request):
     return render(request,"Servicios/Servicios.html",context)
 
 
-def formularioServicio(request):
+def formularioServicio(request,id):
     insumo=Insumo.objects.filter()
-    context={"insumo":insumo}   
+    mostrar=Servicios.objects.filter(idServicio=id).first()
+    context={"insumo":insumo,'idServicio':id, "mostrar":mostrar}
     return render(request,'Servicios/Crear-Servicio.html',context)
+
+def rutaV(request):
+    servicio=Servicios.objects.filter()
+    context={"servicio":servicio}
+    return render(request,"Servicios/VerificarNombre.html",context)
+
+def verificacionServicio(request):
+    nombreServicio= request.POST['nServicio']
+    tiempoServicio= request.POST['tiempo']
+    existe=Servicios.objects.filter(nServicio=nombreServicio).exists()
+    idServicio = Servicios.objects.filter(nServicio=nombreServicio).values_list('idServicio', flat=True).first()
+
+    if Servicios.objects.filter(idServicio=idServicio).exists():
+            error="Ya existe"
+            contexto={"error":error}
+            return render(request,'Servicios/VerificarNombre.html',contexto)
+    else:   
+        servicios = Servicios(
+            nServicio=nombreServicio, 
+            tiempo= tiempoServicio,
+        )
+
+        servicios.save()
+        idServicio= servicios.idServicio
+        return redirect('formularioServicio',idServicio)
+
 
 
 def crearServicio(request):
@@ -24,10 +52,12 @@ def crearServicio(request):
     items = data["items"]
     print(items,type(items))
     servicios=""
-
+    idServicio= request.POST.get('idActual')
+    print("ID ES:",idServicio)
     for item in items:
 
         servicios = Servicios(
+            idServicio=idServicio,
             nServicio=item['nombre'],
             tiempo=item['tiempo'], 
         )
@@ -35,10 +65,11 @@ def crearServicio(request):
     servicios.save()
 
     idServicio=servicios.idServicio
+    print("ID ES:",idServicio)
 
     for item in items:
         insumoCompra=item['insumo'] 
-        idInsumo = Insumo.objects.filter(nombre=insumoCompra).values('idInsumo')[0]['idInsumo']
+        idInsumo = Insumo.objects.filter(nombreInsumo=insumoCompra).values('idInsumo')[0]['idInsumo']
 
         ServiciosxInsumo= Servicios_Insumo(
             idServicio_id=idServicio,
@@ -49,26 +80,6 @@ def crearServicio(request):
 
     return redirect("Servicio")
 
-    # DCompra=Detalle_Compra(
-    #     idCompra_id=idCompra,
-    #     idInsumo_id=idInsumo
-    #     )
-    #     DCompra.save()
-
-    # # Crear tabla intermedia y guardar los valores correspondientes utilizando la view
-    
-    # errorS= []
-    # if Servicios.objects.filter(nServicio=nombreServicio).exists():
-      
-    #     errorS.append(1)
-    #     context={"errorS":errorS}
-    #     return render(request, 'Servicios/Crear-Servicio.html',context)
-    # else:
-    #     tiempoServicio= request.POST['tiempo']
-    #     servicios=Servicios(nServicio=nombreServicio,tiempo=tiempoServicio) 
-    #     errorS.clear()
-    #     servicios.save()
-    
 
 
 
