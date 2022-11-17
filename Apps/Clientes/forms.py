@@ -10,7 +10,7 @@ class FormularioCliente(forms.ModelForm):
 
     def clean_nombre(self):
         nombre=self.cleaned_data['nombre']
-        validarCliente=re.search(r'^[a-zA-Z\s]{2,60}$',nombre, flags=re.MULTILINE)
+        validarCliente=re.search(r'^[a-zA-Z\s]{3,60}$',nombre, flags=re.MULTILINE)
         if validarCliente==None:
             raise ValidationError("Error. Solo se permite ingresar caracteres alfabéticos")
         return nombre 
@@ -34,7 +34,7 @@ class FormularioCliente(forms.ModelForm):
 
     def clean_direccion(self):
         direccion=self.cleaned_data['direccion']
-        validarDireccion=re.search(r'^[a-zA-Z0-9\s#-]{2,100}$',direccion, flags=re.MULTILINE)
+        validarDireccion=re.search(r'^[a-zA-Z0-9\s#-]{2,50}$',direccion, flags=re.MULTILINE)
         if validarDireccion==None:
             raise ValidationError("Error. Solo se permite caracteres alfanuméricos, '#' o '-', entre 10 y 100 caracteres")
         return direccion
