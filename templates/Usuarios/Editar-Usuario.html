@@ -27,7 +27,7 @@
             <div class="card">
                 <div style="margin: 60px;" >
                     <div style="align-items: center;">
-                        <form  novalidate method="GET" action="{% url 'actualizarUsuario' mostrar.id %}" id="edit"> {% csrf_token %}
+                        <form  novalidate method="GET" action="{% url 'actualizarU' mostrar.id %}" id="edit"> {% csrf_token %}
                             <div class="row">
                                 <div style="text-align: center; margin-bottom: 30PX;">
                                     <div class="mt-4 mt-md-0" style="margin-bottom: 20px;">
@@ -48,6 +48,9 @@
                                     <div class="form-group mb-3">
                                         <label class="form-label">Usuario</label>
                                         <input name="usuario" type="text" data-pristine-required-message="Por favor ingrese el usuario" placeholder="Ingrese el usuario" value="{{mostrar.username}}" required class="form-control" />
+                                        {% for x in errorUsuario %}
+                                        <p style="color:red">El usuario ingresado ya existe.</p>
+                                        {% endfor %}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -56,6 +59,9 @@
                                         <input name="correo" type="email" required
                                             data-pristine-required-message="Por favor ingresar el correo electrónico" placeholder="Ingrese el correo electrónico" value="{{mostrar.email}}"
                                             class="form-control" />
+                                            {% for x in errorCorreo %}
+                                            <p style="color:red">El correo ingresado ya existe.</p>
+                                            {% endfor %}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -64,7 +70,7 @@
                                         <input name="contrasena" type="password" id="pwd" required
                                             data-pristine-required-message="Por favor ingresa la Contraseña" placeholder="Ingresa la contraseña" value="{{mostrar.contrasena}}"
                                             data-pristine-pattern="/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/"
-                                            data-pristine-pattern-message="Minimum 8 characters, at least one uppercase letter, one lowercase letter and one number"
+                                            
                                             class="form-control" />
                                     </div>
                                 </div>
@@ -72,10 +78,13 @@
                                     <div class="form-group mb-3">
                                         <label>Confirmar contraseña</label> 
                                         <!-- ACTUALIZAR CAMBIO -->
-                                        <input type="password" data-pristine-equals="#pwd"
+                                        <input name= "contrasena2" type="password" data-pristine-equals="#pwd"
                                         placeholder="Ingresa la contraseña"
-                                            data-pristine-equals-message="Passwords don't match"
+                                            
                                             class="form-control" />
+                                            {% for x in errorContrasena %}
+                                            <p style="color:red">Las contraseñas no coinciden.</p>
+                                            {% endfor %}
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom: 60px;">

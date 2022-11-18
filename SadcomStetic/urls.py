@@ -71,7 +71,8 @@ urlpatterns = [
     path('crearUsuario/',crearUsuario),
     path('formularioUsuario/',formularioUsuario),
     path('editarU/<int:id>',editarU, name='editarUsuario'),
-    path('actualizarU/<int:id>',actualizarU, name='actualizarUsuario'),
+    path('actualizarU/<int:id>',actualizarU, name='actualizarU'),
+
 
 
     path('pruebaCr/',pruebaCr),
