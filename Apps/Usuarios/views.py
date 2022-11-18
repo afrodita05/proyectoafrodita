@@ -24,23 +24,35 @@ def formularioUsuario(request):
 
 def crearUsuario(request):
     documentoUsuario= request.POST['documento']
+    correo= request.POST['correo']
+    nombreUsuario= request.POST['usuario']
     error= []
+    errorCorreo= []
+    errorUsuario= []
     if User.objects.filter(documento=documentoUsuario).exists():
         print("Error. El documento ingresado ya existe en otro usuario.")
         error.append(1)
         context={"error":error}
         return render(request, 'Usuarios/Crear-Usuario.html',context)
     else:
-        nombrePersona= request.POST['nombre']
-        nombreUsuario= request.POST['usuario']
-        password= request.POST['contrasena']
-        correo= request.POST['correo']
-        usuarios=User(documento=documentoUsuario,nPersona=nombrePersona,username=nombreUsuario,password=make_password(password),email=correo)
-        error.clear()
-        usuarios.save()
+        if User.objects.filter(email=correo).exists():
+            errorCorreo.append(1)
+            context={"errorCorreo":errorCorreo}
+            return render(request, 'Usuarios/Crear-Usuario.html',context)
+        else:
 
-    
-    return redirect("Usuario")
+            if User.objects.filter(username=nombreUsuario).exists():
+                errorUsuario.append(1)
+                context={"errorUsuario":errorUsuario}
+                return render(request, 'Usuarios/Crear-Usuario.html',context)
+            else:
+
+                nombrePersona= request.POST['nombre']
+                password= request.POST['contrasena']
+                usuarios=User(documento=documentoUsuario,nPersona=nombrePersona,username=nombreUsuario,password=make_password(password),email=correo)
+                error.clear()
+                usuarios.save()
+                return redirect("Usuario")
 
 
 def editarU(request, id):
