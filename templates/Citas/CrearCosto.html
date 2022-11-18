@@ -36,20 +36,26 @@
                                     <div class="form-group mb-3">
                                         <label class="form-label">Nuemero de seciones</label>
                                         {{formulario_agenda_costo.sesiones}}
-                                        
+                                        {% for error in formulario_agenda_costo.sesiones.errors %}
+                                        <p style="color:red"> {{error}}</p>
+                                        {% endfor %}
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Pagos</label>
                                         {{formulario_agenda_costo.costo}}
-                                        
+                                        {% for error in formulario_agenda_costo.costo.errors %}
+                                        <p style="color:red"> {{error}}</p>
+                                        {% endfor %}
                                     </div>
                                 <div class="col-lg-4">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Abono</label>
                                         {{formulario_agenda_costo.abono}}
-                                            
+                                        {% for error in formulario_agenda_costo.abono.errors %}
+                                        <p style="color:red"> {{error}}</p>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
