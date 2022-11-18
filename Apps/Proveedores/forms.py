@@ -9,7 +9,7 @@ class FormularioProveedor(forms.ModelForm):
 
     def clean_nombre(self):
         nombre=self.cleaned_data['nombre']
-        validarProveedor=re.search(r'^[a-zA-Z\s]{2,60}$',nombre, flags=re.MULTILINE)
+        validarProveedor=re.search(r'^[a-zA-Z\s]{3,60}$',nombre, flags=re.MULTILINE)
         if validarProveedor==None:
             raise ValidationError("Error. Solo se permite ingresar caracteres alfabéticos")
         return nombre 
@@ -21,14 +21,12 @@ class FormularioProveedor(forms.ModelForm):
             raise ValidationError("Error. El número telefónico solo permite caracteres numéricos, entre 7 y 10 caracteres")
         return telefono
 
-
     def clean_direccion(self):
         direccion=self.cleaned_data['direccion']
-        validarDireccion=re.search(r'^[a-zA-Z0-9\s#-]{2,100}$',direccion, flags=re.MULTILINE)
+        validarDireccion=re.search(r'^[a-zA-Z0-9\s#-]{2,50}$',direccion, flags=re.MULTILINE)
         if validarDireccion==None:
-            raise ValidationError("Error. Solo se permite caracteres alfanuméricos, '#' o '-', entre 10 y 100 caracteres")
+            raise ValidationError("Error. Solo se permite caracteres alfanuméricos, '#' o '-', entre 1 y 50 caracteres")
         return direccion
-
 
     def clean_correo(self):
         correo=self.cleaned_data['correo']
@@ -36,9 +34,6 @@ class FormularioProveedor(forms.ModelForm):
         if validarDireccion==None:
             raise ValidationError("Error. Solo se permite correos validos ")
         return correo
-
-   
-
 
     class Meta:
         model=Proveedor

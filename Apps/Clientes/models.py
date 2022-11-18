@@ -10,7 +10,7 @@ class Clientes(models.Model):
     documento=models.CharField(max_length=10)
     fechaNacimiento=models.CharField(max_length=10)
     telefono=models.CharField(max_length=10)
-    direccion=models.CharField(max_length=100)
+    direccion=models.CharField(max_length=50)
     correo=models.EmailField(blank=True,null=True)
     estadoCivil=models.CharField(max_length=11)
     numeroHijos=models.CharField(max_length=2)
