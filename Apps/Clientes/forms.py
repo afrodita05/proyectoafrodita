@@ -36,7 +36,7 @@ class FormularioCliente(forms.ModelForm):
         direccion=self.cleaned_data['direccion']
         validarDireccion=re.search(r'^[a-zA-Z0-9\s#-]{2,50}$',direccion, flags=re.MULTILINE)
         if validarDireccion==None:
-            raise ValidationError("Error. Solo se permite caracteres alfanuméricos, '#' o '-', entre 10 y 100 caracteres")
+            raise ValidationError("Error. Solo se permite caracteres alfanuméricos, '#' o '-', entre 1 y 50 caracteres")
         return direccion
     
     def clean_numeroHijos(self):
