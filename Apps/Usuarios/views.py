@@ -29,25 +29,25 @@ def crearUsuario(request):
     errorCorreo= []
     errorUsuario= []
     if User.objects.filter(documento=documentoUsuario).exists():
-        print("Error. El documento ingresado ya existe en otro usuario.")
+       
         error.append(1)
         context={"error":error}
         return render(request, 'Usuarios/Crear-Usuario.html',context)
     else:
-        print("Primer filtro completado")
+        
         if User.objects.filter(email=correo).exists():
             
             errorCorreo.append(1)
             context={"errorCorreo":errorCorreo}
             return render(request, 'Usuarios/Crear-Usuario.html',context)
         else:
-            print("Segundo filtro completado")
+            
             if User.objects.filter(username=nombreUsuario).exists():
                 errorUsuario.append(1)
                 context={"errorUsuario":errorUsuario}
                 return render(request, 'Usuarios/Crear-Usuario.html',context)
             else:
-                print("Último filtro completado")
+                
                 nombrePersona= request.POST['nombre']
                 password= request.POST['contrasena']
                 usuarios=User(documento=documentoUsuario,nPersona=nombrePersona,username=nombreUsuario,password=make_password(password),email=correo)
@@ -55,19 +55,18 @@ def crearUsuario(request):
                 errorUsuario.clear()
                 errorCorreo.clear()
                 usuarios.save()
-                print("Documento: ",documentoUsuario,"Nombre: ",nombrePersona, "Usuario: ", nombreUsuario, "Contraseña: ", password, "Email: ", correo)
+                
                 return redirect("Usuario")
 
 def editarU(request, id):
     mostrar=User.objects.filter(id=id).first()
-    print(mostrar, "ID DEL USUARIO: ", id)
-    print(mostrar.id, "PRUEBA 2")
+   
     context={"mostrar":mostrar}
     return render(request,"Usuarios/Editar-Usuario.html",context)
     
 
 def actualizarU(request, id):
-    print("La id enviada es: ", id)
+    
     errorUsuario= []
     errorCorreo= []
     errorContrasena= []
@@ -87,16 +86,16 @@ def actualizarU(request, id):
         return render(request,"Usuarios/Editar-Usuario.html",context)
         
     else:
-        print("Primer filtro superado")
+        
         if User.objects.filter(email=correo).exists() and (actualizar.email != correo):
             errorCorreo.append(1)
             mostrar=User.objects.filter(id=id).first()
             context={"errorCorreo":errorCorreo,"mostrar":mostrar}
             return render(request, 'Usuarios/Editar-Usuario.html',context)
         else:
-            print("Segundo filtro superado")
+            
             if password==password2:
-                print("Tercer filtro superado")
+               
                 errorUsuario.clear()
                 errorCorreo.clear()
                 errorContrasena.clear()
