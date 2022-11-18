@@ -40,14 +40,14 @@
                                         <label class="form-label">Nombre</label>
                                         <input name="nombre" type="text" required
                                             data-pristine-required-message="Por favor ingrese el nombre completo " placeholder="Ingrese el nombre completo" value="{{mostrar.nPersona}}"
-                                            class="form-control" maxlength="40"/>
+                                            class="form-control" maxlength="40" pattern="[^\s][A-z-À-ž\s]+" oninvalid="this.setCustomValidity('Debes ingresar un nombre. Este no puede contener caracteres especiales ni números.')"/>
                                     </div>
                                 </div>
                                 
                                 <div class=" col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Usuario</label>
-                                        <input name="usuario" type="text" data-pristine-required-message="Por favor ingrese el usuario" placeholder="Ingrese el usuario" value="{{mostrar.username}}" required class="form-control"  maxlength="30"/>
+                                        <input name="usuario" type="text" data-pristine-required-message="Por favor ingrese el usuario" placeholder="Ingrese el usuario" value="{{mostrar.username}}" required class="form-control"  maxlength="30" pattern="[^\s][A-z-0-9\s]+" oninvalid="this.setCustomValidity('Debes ingresar un usuario. Este no puede contener caracteres especiales.')"/>
                                         {% for x in errorUsuario %}
                                         <p style="color:red">El usuario ingresado ya existe.</p>
                                         {% endfor %}
