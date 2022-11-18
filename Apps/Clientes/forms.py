@@ -85,33 +85,30 @@ class FormularioCliente(forms.ModelForm):
 
 
 class FormularioCorporal(forms.ModelForm): 
-    # def clean_kilos(self):
-    #     kilos=self.cleaned_data['kilos']
-    #     validarKilos=re.search(r'^[0-9.]{1,7}$',kilos, flags=re.MULTILINE)
-    #     validarvacio=re.search(r'^\s+$',kilos, flags=re.MULTILINE)
-    #     if validarKilos==None:
-    #         raise ValidationError("Error. Solo se permite ingresar decimales")
-    #     elif validarvacio:
-    #         raise ValidationError("Error. Este campo es requerido")
-    #     return kilos 
-    # def clean_talla(self):
-    #     talla=self.cleaned_data['talla']
-    #     validarTalla=re.search(r'^[0-9.]{1,7}$',talla, flags=re.MULTILINE)
-    #     if validarTalla==None:
-    #         raise ValidationError("Error. Solo se permite ingresar decimales")
-    #     return talla
-    # def clean_altura(self):
-    #     altura=self.cleaned_data['altura']
-    #     validarAltura=re.search(r'^[0-9.]{1,7}$',altura, flags=re.MULTILINE)
-    #     if validarAltura==None:
-    #         raise ValidationError("Error. Solo se permite ingresar decimales")
-    #     return altura 
-    # def clean_masaC(self):
-    #     masaC=self.cleaned_data['masaC']
-    #     validarMasaC=re.search(r'^[0-9.]{1,7}$',masaC, flags=re.MULTILINE)
-    #     if validarMasaC==None:
-    #         raise ValidationError("Error. Solo se permite ingresar decimales")
-    #     return masaC
+    def clean_kilos(self):
+        kilos=self.cleaned_data['kilos']
+        validarKilos=re.search(r'^[0-9.]{1,7}$',kilos, flags=re.MULTILINE)
+        if validarKilos==None:
+            raise ValidationError("Error. Solo se permite ingresar decimales")
+        return kilos 
+    def clean_talla(self):
+        talla=self.cleaned_data['talla']
+        validarTalla=re.search(r'^[0-9.]{1,7}$',talla, flags=re.MULTILINE)
+        if validarTalla==None:
+            raise ValidationError("Error. Solo se permite ingresar decimales")
+        return talla
+    def clean_altura(self):
+        altura=self.cleaned_data['altura']
+        validarAltura=re.search(r'^[0-9.]{1,7}$',altura, flags=re.MULTILINE)
+        if validarAltura==None:
+            raise ValidationError("Error. Solo se permite ingresar decimales")
+        return altura 
+    def clean_masaC(self):
+        masaC=self.cleaned_data['masaC']
+        validarMasaC=re.search(r'^[0-9.]{1,7}$',masaC, flags=re.MULTILINE)
+        if validarMasaC==None:
+            raise ValidationError("Error. Solo se permite ingresar decimales")
+        return masaC
     class Meta: 
         model=EsteticoCorporal
         fields='__all__'

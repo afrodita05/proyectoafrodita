@@ -103,8 +103,8 @@ def crearAgendaFecha(request, id):
     print("Valido",formulario_agenda_fecha.is_valid())
     for listar in agendacosto:
 
-        clienteCosto=listar.costo
-        clienteAbono=listar.abono
+        clienteCosto=int(listar.costo)
+        clienteAbono=int(listar.abono)
 
         
         if clienteAbono<clienteCosto:

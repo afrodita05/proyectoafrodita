@@ -16,8 +16,8 @@ class AgendaCosto(models.Model):
     idAgendaCosto=models.AutoField(primary_key=True)
     idCliente=models.ForeignKey( Clientes, on_delete=models.PROTECT)
     sesiones=models.CharField(max_length=2)
-    costo=models.IntegerField()
-    abono=models.IntegerField()
+    costo=models.CharField(max_length=8)
+    abono=models.CharField(max_length=8)
     
 class AgendaFecha(models.Model):
     idAgendaFecha=models.AutoField(primary_key=True)
