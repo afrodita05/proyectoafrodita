@@ -40,14 +40,14 @@
                                         <label class="form-label">Nombre</label>
                                         <input name="nombre" type="text" required
                                             data-pristine-required-message="Por favor ingrese el nombre completo " placeholder="Ingrese el nombre completo" value="{{mostrar.nPersona}}"
-                                            class="form-control" />
+                                            class="form-control" maxlength="40"/>
                                     </div>
                                 </div>
                                 
                                 <div class=" col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Usuario</label>
-                                        <input name="usuario" type="text" data-pristine-required-message="Por favor ingrese el usuario" placeholder="Ingrese el usuario" value="{{mostrar.username}}" required class="form-control" />
+                                        <input name="usuario" type="text" data-pristine-required-message="Por favor ingrese el usuario" placeholder="Ingrese el usuario" value="{{mostrar.username}}" required class="form-control"  maxlength="30"/>
                                         {% for x in errorUsuario %}
                                         <p style="color:red">El usuario ingresado ya existe.</p>
                                         {% endfor %}
@@ -58,7 +58,7 @@
                                         <label>Correo</label>
                                         <input name="correo" type="email" required
                                             data-pristine-required-message="Por favor ingresar el correo electrónico" placeholder="Ingrese el correo electrónico" value="{{mostrar.email}}"
-                                            class="form-control" />
+                                            class="form-control" maxlength="50"/>
                                             {% for x in errorCorreo %}
                                             <p style="color:red">El correo ingresado ya existe.</p>
                                             {% endfor %}
@@ -71,7 +71,7 @@
                                             data-pristine-required-message="Por favor ingresa la Contraseña" placeholder="Ingresa la contraseña" value="{{mostrar.contrasena}}"
                                             data-pristine-pattern="/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/"
                                             
-                                            class="form-control" />
+                                            class="form-control" maxlength="100"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -81,7 +81,7 @@
                                         <input name= "contrasena2" type="password" data-pristine-equals="#pwd"
                                         placeholder="Ingresa la contraseña"
                                             
-                                            class="form-control" />
+                                            class="form-control" maxlength="100" />
                                             {% for x in errorContrasena %}
                                             <p style="color:red">Las contraseñas no coinciden.</p>
                                             {% endfor %}
