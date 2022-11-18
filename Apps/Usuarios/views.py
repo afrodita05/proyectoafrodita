@@ -7,7 +7,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
 from Apps.Usuarios.models import Usuarios, User
 
-@login_required
+#@login_required
 def usuario(request):
     usuario=User.objects.filter()
     context={"usuario":usuario}
