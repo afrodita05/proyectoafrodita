@@ -1,45 +1,52 @@
 from multiprocessing import context
 import json
+import random
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from django.views.generic import TemplateView
 from Apps.Compras.models import Compra, Detalle_Compra
-from Apps.Insumos.models import Insumo
+from Apps.Insumos.models import Insumo 
 from Apps.Proveedores.models import Proveedor
-# Create your views here.
 
 def CrearCompra(request):
     proveedor=Proveedor.objects.filter()
     insumo=Insumo.objects.filter()
+    
+    numeros="1234567890"
+    longitud = 5
+    unir = f"{numeros}"
+    extension = random.sample(unir, longitud)
+    codigoCompra = "".join(extension)
+    
     data= json.loads(request.body)
     items = data["items"]
     print(items,type(items))
     VCompra=""
     for item in items:
-        proveedorCompra=item['proveedor'] 
+        proveedorCompra=item['proveedor']
         idProveedor = Proveedor.objects.filter(proveedor=proveedorCompra).values('idProveedor')[0]['idProveedor']
         VCompra = Compra(
-            codigoCompra=item['codigoCompra'],
+            codigoCompra=codigoCompra,
             idProveedor_id=idProveedor,
             numeroFactura=item['numeroFactura'], 
             fechaRecibo=item['fechaRecibo'],
-            ValorTotal=item['ValorTotal']
+            ValorTotal=item['ValorTotal'],
         )
     VCompra.save()
     idCompra=VCompra.idCompra
     for item in items:
         insumoCompra=item['insumo']
+        
         print (insumoCompra)
         idInsumo = Insumo.objects.filter(nombreInsumo=insumoCompra).values('idInsumo')[0]['idInsumo']
-        
         DCompra=Detalle_Compra(
         idCompra_id=idCompra,
         idInsumo_id=idInsumo,
         cantidad=item['cantidad'],
-        tipoUnidad=item['tipoUnidad'],
+        unidad = item['unidades'],
         costoUnidad=item['valorunidad'],
-        subTotal=item['ValorTotalInsumo'],
+        subTotal=item['subtotal'],
         total=item['ValorTotal'],
         )
         
@@ -53,7 +60,7 @@ def CrearCompra(request):
         cantidadComprada = int(cantidadComprada)
         print (cantidadComprada, 'cantidddddd')
         nuevoInsumo = existenciasInsumo+cantidadComprada 
-        
+
         insumoRecibido= Insumo.objects.get(idInsumo=idInsumo)
 
         insumoRecibido.cantidad = nuevoInsumo
@@ -67,7 +74,7 @@ def FormularioAgregarInsumo(request):
 
 def CrearInsumo (request):
     nInsumo = request.POST['txtNombre']
-    tipoUnidad = (Detalle_Compra.tipoUnidad)
+    tipoUnidad = request.POST['tipoUnidad']
     errorI= []
     errorInsO= []
     if Insumo.objects.filter(nombreInsumo= nInsumo).exists():
@@ -81,8 +88,7 @@ def CrearInsumo (request):
         return render(request,'Compras/Crear-Insumo.html',contex)
     
     else:
-        insumo = Insumo(nombreInsumo = nInsumo)
-        tipoUnidad = Insumo (tipoUnidad = tipoUnidad)
+        insumo = Insumo(nombreInsumo = nInsumo, tipoUnidad = tipoUnidad)
         errorI.clear()
         insumo.save()
     return redirect('/FormularioAgregarCompra/')

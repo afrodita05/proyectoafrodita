@@ -48,8 +48,8 @@
                                     <thead>
                                         <tr>
                                             <th>Código</th>
-                                            <th>Proveedor</th>
                                             <th>Número de factura</th>
+                                            <th>Proveedor</th>
                                             <th>Fecha de recibo</th>
                                             <th>Valor</th>
                                             <th>Acciones</th>
@@ -59,8 +59,8 @@
                                         {% for listar in Lcompra %}
                                         <tr data-id="1">
                                             <td data-field="codigo">{{listar.codigoCompra}}</td>
-                                            <td data-field="proveedor">{{listar.idProveedor.proveedor}}</td>
                                             <td data-field="factura">{{listar.numeroFactura}}</td>
+                                            <td data-field="proveedor">{{listar.idProveedor.proveedor}}</td>
                                             <td data-field="FechaRecibo">{{listar.fechaRecibo}}</td>
                                             <td data-field="valor">{{listar.ValorTotal}}</td>
                                             <td>

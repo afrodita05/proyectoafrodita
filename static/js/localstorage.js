@@ -34,7 +34,7 @@ renderItemList = () => {
                 <td>${item.insumo}</td>
                 <td>${item.cantidad}</td>
                 <td>${item.valorunidad}</td>
-                <td>${item.ValorTotalInsumo}</td>
+                <td>${item.subtotal}</td>
             </tr>
         `;
         list.innerHTML += newRow;
@@ -75,5 +75,3 @@ btnGuardar.addEventListener('click', async (event) => {
     
     
 });
-
-
