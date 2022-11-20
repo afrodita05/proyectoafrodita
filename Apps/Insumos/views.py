@@ -27,11 +27,13 @@ def edicionInsumos(request, idInsumo):
 def editarInsumo (request):
     idInsumo = request.POST['id']
     nombreInsumo = request.POST['txtNombre']
-    cantidad = request.POST['numCantidad']
+    cantidad = request.POST['cantidad']
+    tipoUnidad = request.POST['tipoUnidad']
     estado = request.POST['Estado']
     insumo = Insumo.objects.get(idInsumo = idInsumo)
     insumo.nombreInsumo = nombreInsumo
     insumo.cantidad = cantidad
+    insumo.tipoUnidad =  tipoUnidad
     insumo.estado = estado
     insumo.save()
     return redirect('Insumos')

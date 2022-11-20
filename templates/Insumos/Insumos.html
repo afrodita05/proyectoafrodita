@@ -57,9 +57,12 @@
                                                         <td data-field="cantidad">{{insumo.cantidad}}</td>
                                                         <td data-field="tipoUnidad">{{insumo.tipoUnidad}}</td>
                                                         <td data-field="estado">
-                                                            <span class="badge badge-soft-danger">{{insumo.estado}}</span>
+                                                            {% if insumo.estado == False %}
+                                                            <span class="badge badge-soft-danger">Inactivo</span>
+                                                            {% else %}
+                                                            <span class="badge badge-soft-success">Activo</span>
+                                                            {% endif %}
                                                         </td>
-                                                        
                                                         <td>
                                                             <a href="{% url 'editar' insumo.idInsumo%}" class="btn btn-outline-primary btn-sm">
                                                                 <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>

@@ -19,6 +19,8 @@ def CrearCompra(request):
     extension = random.sample(unir, longitud)
     codigoCompra = "".join(extension)
     
+    
+    
     data= json.loads(request.body)
     items = data["items"]
     print(items,type(items))
@@ -29,10 +31,11 @@ def CrearCompra(request):
         VCompra = Compra(
             codigoCompra=codigoCompra,
             idProveedor_id=idProveedor,
-            numeroFactura=item['numeroFactura'], 
+            numeroFactura=item['numeroFactura'],
             fechaRecibo=item['fechaRecibo'],
             ValorTotal=item['ValorTotal'],
         )
+        
     VCompra.save()
     idCompra=VCompra.idCompra
     for item in items:

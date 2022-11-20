@@ -75,3 +75,16 @@ btnGuardar.addEventListener('click', async (event) => {
     
     
 });
+
+let numFactura = document.getElementById('numFactura')
+
+numFactura.addEventListener('keypress', (event) =>{
+    event.preventDefault()
+    let codigoKey = event.keyCode
+    let valorKey = String.fromCharCode(codigoKey)
+    let valor = parseInt(valorKey)
+    if (valor){
+        numFactura.value += valor
+    }
+})
+

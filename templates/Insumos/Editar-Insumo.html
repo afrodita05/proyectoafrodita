@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}Editar Insumo{% endblock title %}
 {% block extra_css %}
-
+    <link href="{% static 'css/validaciones.css'%}" rel="stylesheet" type="text/css" />
 {% endblock extra_css %}
 {% block content %}
 <div class="main-content">
@@ -29,7 +29,7 @@
                         {% csrf_token %}
                         
                         <div class="row">
-                            <div class="col-lg-5">
+                            <div class="col-lg-6">
                                 <div class="mb-3">
                                     <input type="hidden" name="id" value="{{insumo.idInsumo}}">
                                     <label class="form-label" for="validationTooltip02">Insumo</label>
@@ -45,14 +45,25 @@
                                     <div class="col-md-12">
                                         <label for="example-number-input" class="form-label">Cantidad</label>
                                         <input class="form-control" type="number"  value="{{insumo.cantidad}}" min="0"
-                                            id="numCantidad" name="numCantidad" required>
+                                            id="cantidad" name="cantidad" required>
                                         <div class="invalid-tooltip" style="margin-top: 5px;">
                                             Campo obligatorio .
                                          </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-2">
+                            <div class="col-xl-6">
+                                <div class="col-md-12">
+                                    <label for="example-datetime-local-input" class="form-label">Tipo de unidad</label>
+                                    <select name="tipoUnidad" class="form-select" >
+                                        <option value="{{insumo.tipoUnidad}}">{{insumo.tipoUnidad}}</option>
+                                        <option value="Unidades">Unidades</option>
+                                        <option value="Mililitros">Mililitros</option>
+                                        <option value="Gramos">Gramos</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
                                 <div class="col-md-12">
                                     <label for="example-datetime-local-input" class="form-label">Estado</label>
                                     <select name="Estado" class="form-select">
@@ -96,4 +107,5 @@
 <script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
 <!-- form validation -->
 <script src="{% static 'js/pages/form-validation.init.js'%}"></script>
+<script type="text/javascript" src="{% static  'js/validaciones.js' %}"></script>
 {% endblock extra_js %}
