@@ -28,13 +28,13 @@
                 <div style="margin: 60px;" >
                     <div style="align-items: center;">
                         <form id="crearC" method="post">{% csrf_token %}
-                            {{formulario_agenda_costo.idCliente}}
+                            {{formulario_agenda_costo.idCita}}
                             <input type="hidden" />
                             <div class="row">
                                 
                                 <div class="col-lg-4">
                                     <div class="form-group mb-3">
-                                        <label class="form-label">Nuemero de seciones</label>
+                                        <label class="form-label">Nuemero de sesiones</label>
                                         {{formulario_agenda_costo.sesiones}}
                                         
                                     </div>

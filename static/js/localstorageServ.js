@@ -26,6 +26,7 @@ renderItemList = () => {
             <tr>
                 <td>${item.insumo}</td>
                 <td>${item.cantidad}</td>
+                <td>${item.valor}</td>
             </tr>
         `;
         list.innerHTML += newRow;

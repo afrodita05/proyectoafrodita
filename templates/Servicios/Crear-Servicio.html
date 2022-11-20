@@ -81,6 +81,10 @@
                                 <input name="cantidad" type="number" value="0" data-pristine-required-message="Por favor ingrese la cantidad utilizada" required class="form-control" />
                             </div>
 
+                            <div class="col-md-12">
+                                <label for="example-datetime-local-input" class="form-label">Costo total del servicio</label>
+                                <input name="valor" type="number" value="1" maxlength="6"  pattern="[^\s][A-z-À-ž\s]+" oninvalid="this.setCustomValidity('Debes ingresar un costo. Este debe ser de mínimo 1000.')" required class="form-control" />
+                            </div>
                             
                             <div class="form-group" style=" margin-top: 40px; margin-bottom: 50px; text-align: center;" >
                             <button type="submit"  for="agregar" class="btn btn-primary" style="width: 50%">Agregar</button>

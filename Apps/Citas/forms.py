@@ -56,7 +56,7 @@ class FormularioAgendaCosto(forms.ModelForm):
             'sesiones':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese el Número de sesiones'}),
             'costo':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese el costo del servicio'}),
             'abono':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese el abono del servicio'}),
-            'idCliente':forms.TextInput(attrs={'hidden':''}),
+            'idCita':forms.TextInput(attrs={'hidden':''}),
         }
 
 class FormularioAgendaFecha(forms.ModelForm):

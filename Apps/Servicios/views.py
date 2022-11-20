@@ -48,18 +48,22 @@ def verificacionServicio(request):
 
 
 def crearServicio(request):
+    #PASO 2:
+    #Añadir costo del servicio
     data= json.loads(request.body)
     items = data["items"]
+    
     print(items,type(items))
     servicios=""
     idServicio= request.POST.get('idActual')
-    print("ID ES:",idServicio)
+    print("Obteniendo esta id:",idServicio)
     for item in items:
 
         servicios = Servicios(
-            idServicio=idServicio,
+            idServicio=item['idActual   '],
             nServicio=item['nombre'],
             tiempo=item['tiempo'], 
+            valor=item['valor'],
         )
 
     servicios.save()

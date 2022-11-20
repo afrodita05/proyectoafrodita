@@ -49,22 +49,39 @@ def editarCita(request,id):
     return render(request,'Citas/Editar-Cita.html',contexto)
 
 def verDetalleCita(request, id):
-    cliente=Clientes.objects.filter(idCliente=id).first()
-    agendaCosto=AgendaCosto.objects.filter(idCliente=id)
-    print(agendaCosto)
-    contexto={"agendaCosto":agendaCosto,"cliente":cliente}
+    
+
+    idCliente = Citas.objects.filter(idCita=id).values_list('idCliente', flat=True).first()
+    idCliente= int(idCliente)
+    cliente = Clientes.objects.get(idCliente=idCliente)
+    cita=Citas.objects.get(idCita=id)
+    agendaCosto=AgendaCosto.objects.filter(idCita=id)
+    contexto={"agendaCosto":agendaCosto,"cita":cita}
     return render(request,"Citas/VerDetalleCita.html",contexto)
 
 def crearAgendaCosto(request, id):
+    print(id, "ESTA ES LA ID DE CITA")
+    
     if request.method=='POST':
         formulario_agenda_costo=FormularioAgendaCosto(request.POST)
+        
         if formulario_agenda_costo.is_valid():
             formulario_agenda_costo.save()
+            valorPagoServicio=request.POST.get('costo')
+
+            #PASO 3:
+            #Dividir el costo de valorPagoServicio sobre el costo del servicio
+            #Esto dará la cantidad de veces que el cobro vale el servicio
+            #Descontar los insumos del servicio con base en este valor
+
+
+            print(valorPagoServicio)
             return redirect('verDetalle-Cita', id)
+            
     else: 
         formulario_agenda_costo=FormularioAgendaCosto()
-    
-    contexto={'formulario_agenda_costo':formulario_agenda_costo,'idCliente':id}
+        
+    contexto={'formulario_agenda_costo':formulario_agenda_costo,'idCita':id}
     return render(request,'Citas/CrearCosto.html',contexto)
 
 def editarAgendaCosto(request,id):
@@ -75,7 +92,7 @@ def editarAgendaCosto(request,id):
         formulario_agenda_costo=FormularioAgendaCosto(request.POST,instance=agendaCosto)
         if formulario_agenda_costo.is_valid():
             formulario_agenda_costo.save()
-            return redirect('verDetalle-Cita', agendaCosto.idCliente.idCliente)
+            return redirect('verDetalle-Cita', agendaCosto.idCita.idCita)
     contexto={'formulario_agenda_costo':formulario_agenda_costo}
     return render(request,'Citas/EditarCosto.html',contexto)
 

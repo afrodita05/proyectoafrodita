@@ -32,7 +32,7 @@
                     <div class="row">  
                     <div class="card-body">
                         <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
-                            <a href="{% url 'Agenda-Costo' cliente.idCliente %}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear Costo</a>
+                            <a href="{% url 'Agenda-Costo' cita.idCita %}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear Costo</a>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-nowrap align-middle">
@@ -49,8 +49,8 @@
                                 <tbody>
                                     {% for listar in agendaCosto %}
                                     <tr>
-                                        <td>{{listar.idCliente.documento}}</td>
-                                        <td>{{listar.idCliente.nombre}}</td>
+                                        <td>{{listar.idCita.idCliente.documento}}</td>
+                                        <td>{{listar.idCita.idCliente.nombre}}</td>
                                         <td>{{listar.sesiones}}</td>
                                         <td>{{listar.costo}}</td>
                                         <td>{{listar.abono}}</td>
