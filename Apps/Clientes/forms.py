@@ -10,18 +10,18 @@ class FormularioCliente(forms.ModelForm):
 
     def clean_nombre(self):
         nombre=self.cleaned_data['nombre']
-        validarCliente=re.search(r'^[a-zA-Z\s]{3,60}$',nombre, flags=re.MULTILINE)
+        validarCliente=re.search(r'^[a-zA-Z\u00C0-\u017F\s]{3,60}$',nombre, flags=re.MULTILINE)
         if validarCliente==None:
             raise ValidationError("Error. Solo se permite ingresar caracteres alfabéticos")
         return nombre 
     
     def clean_documento(self):
         documento=self.cleaned_data['documento']
-        existe=Clientes.objects.filter(documento=documento).exists()
+        # existe=Clientes.objects.filter(documento=documento).exists()
         validarDocumento=re.search(r'^[0-9]{6,10}$',documento, flags=re.MULTILINE)
-        if existe:
-            raise ValidationError("Error. El documento ya existe")
-        elif validarDocumento==None:
+        # if existe:
+        #     raise ValidationError("Error. El documento ya existe")
+        if validarDocumento==None:
             raise ValidationError("Error. El documento solo permite caracteres numéricos, entre 6 y 10 caracteres")
         return documento
         

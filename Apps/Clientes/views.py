@@ -14,8 +14,15 @@ def crearCliente(request):
     if request.method=='POST':
         formulario_cliente=FormularioCliente(request.POST)
         if formulario_cliente.is_valid():
-            formulario_cliente.save()
-            return redirect('/Clientes/')
+            documento=formulario_cliente.cleaned_data.get('documento')
+            existe=Clientes.objects.filter(documento=documento).exists()
+            if existe:
+                mensaje_error="El documento ya existe"
+                contexto={'formulario_cliente':formulario_cliente,"mensaje_error":mensaje_error}
+                return render(request,'Clientes/Crear-Cliente.html',contexto)
+            else:
+                formulario_cliente.save()
+                return redirect('/Clientes/')
     else: 
         formulario_cliente=FormularioCliente()
     contexto={'formulario_cliente':formulario_cliente}
@@ -23,14 +30,26 @@ def crearCliente(request):
 
 def editarCliente(request, id):
     cliente=Clientes.objects.get(idCliente=id)
+    documento=cliente.documento
     if request.method=='GET':
         formulario_cliente=FormularioCliente(instance=cliente)
     else:
         formulario_cliente=FormularioCliente(request.POST,instance=cliente)
         if formulario_cliente.is_valid():
-            formulario_cliente.save()
-            return redirect('/Clientes/')
-    contexto={'formulario_cliente':formulario_cliente}
+            inputDocumento=formulario_cliente.cleaned_data.get('documento')
+            existe=Clientes.objects.filter(documento=documento).exists()
+            if documento==inputDocumento:
+                formulario_cliente.save()
+                return redirect('/Clientes/')
+            elif existe== False:
+                formulario_cliente.save()
+                return redirect('/Clientes/')
+            elif existe:
+                mensaje_error="El documento ya existe"
+                contexto={'formulario_cliente':formulario_cliente,"mensaje_error":mensaje_error}
+                return render(request,'Clientes/Editar-Cliente.html',contexto)
+                  
+    contexto={'formulario_cliente':formulario_cliente,"documento":documento}
     return render(request,'Clientes/Editar-Cliente.html',contexto)
 
 def detalleCliente(request, id):
