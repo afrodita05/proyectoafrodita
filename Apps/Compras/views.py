@@ -1,6 +1,12 @@
 from multiprocessing import context
 import json
 import random
+import os
+from django.conf import settings
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.contrib.staticfiles import finders
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from django.urls import reverse
@@ -8,6 +14,7 @@ from django.views.generic import TemplateView
 from Apps.Compras.models import Compra, Detalle_Compra
 from Apps.Insumos.models import Insumo 
 from Apps.Proveedores.models import Proveedor
+
 
 def CrearCompra(request):
     proveedor=Proveedor.objects.filter()
@@ -115,8 +122,8 @@ def ListarCompra(request):
 
 def DetalleCompras(request, id):
     DTCompras=Detalle_Compra.objects.filter(idCompra_id=id).first
-    idDTCompras = Detalle_Compra.objects.filter(idCompra_id=id).values_list('idDetalle_Compra', flat=True) #Obtener id de los DT compra basados en la id de compra
-    Insumos = Detalle_Compra.objects.filter(idCompra_id=id).values_list('idInsumo', flat= True) #buscar los insumos que compartan el id de detalle de compra
+    idDTCompras = Detalle_Compra.objects.filter(idCompra_id=id).values_list('idDetalle_Compra', flat=True)
+    Insumos = Detalle_Compra.objects.filter(idCompra_id=id).values_list('idInsumo', flat= True) 
     Cantidad = Detalle_Compra.objects.filter(idCompra_id =id).values_list('cantidad', flat= True)
     print (Insumos,'zzz')
     idInsumos = Detalle_Compra.objects.filter(idCompra_id=id,idInsumo__in=Insumos)
@@ -130,3 +137,22 @@ def EliminarCompra(request, id):
     ECompra=Compra.objects.get(idCompra=id)
     ECompra.delete() 
     return redirect("Compra")
+
+def FacturaPDF(request, id):
+    try:
+        LCompra=Compra.objects.filter()
+        DTCompras=Detalle_Compra.objects.filter(idCompra_id=id).first
+        idDTCompras = Detalle_Compra.objects.filter(idCompra_id=id).values_list('idDetalle_Compra', flat=True)
+        Insumos = Detalle_Compra.objects.filter(idCompra_id=id).values_list('idInsumo', flat= True) 
+        idInsumos = Detalle_Compra.objects.filter(idCompra_id=id,idInsumo__in=Insumos)
+        cantidadI = Detalle_Compra.objects.filter(idCompra_id=id,cantidad__in=Insumos)
+        template =  get_template('Compras/Factura.html')
+        context = {"DTCompras":DTCompras, "idInsumo":idInsumos, "cantidad":cantidadI, "Lcompra":LCompra}
+        html = template.render(context)
+        response = HttpResponse(content_type='application/pdf')
+        pisa_status = pisa.CreatePDF(
+            html, dest=response)
+        return response   
+    except:
+        pass
+    return redirect('Compra')

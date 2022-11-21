@@ -31,7 +31,7 @@ from Apps.Servicios.views import servicio, crearServicio, formularioServicio, ed
 from Apps.Configuracion.views import crearRol,formularioRol,listarRol
 from Apps.Proveedores.views import CrearProveedor,ListarProveedor,EditarProveedor
 from Apps.Configuracion.views import crearRol,formularioRol,listarRol, pruebaRol
-from Apps.Compras.views import FormularioAgregarCompra,CrearCompra,ListarCompra,EliminarCompra,DetalleCompras, FormularioAgregarInsumo, CrearInsumo
+from Apps.Compras.views import FormularioAgregarCompra,CrearCompra,ListarCompra,EliminarCompra,DetalleCompras, FormularioAgregarInsumo, CrearInsumo, FacturaPDF
 from Apps.Insumos.views import insumos
 
 
@@ -216,6 +216,7 @@ urlpatterns = [
     path('FormularioAgregarCompra/', FormularioAgregarCompra,),
     path('EliminarCompra/<int:id>', EliminarCompra, name='EliminarCompra'),
     path('DetalleCompras/<int:id>', DetalleCompras, name='DetalleCompras'),
+    path('FacturaPDF/<int:id>', FacturaPDF, name='Factura'),
    #INSUMOS
     path(
         "Insumos",

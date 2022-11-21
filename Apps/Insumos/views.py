@@ -38,6 +38,7 @@ def editarInsumo (request):
     insumo.save()
     return redirect('Insumos')
 
+
 def eliminarInsumos(request, idInsumo):
     insumo = Insumo.objects.get(idInsumo = idInsumo)
     insumo.delete()

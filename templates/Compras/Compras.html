@@ -70,7 +70,7 @@
                                                 <a  href="#" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-cancel mdi-24px"></i>
                                                 </a>
-                                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                                <a  href="{% url 'Factura' listar.idCompra %}" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-script-text-outline mdi-24px"></i>
                                                 </a>
                                             </td>
@@ -82,7 +82,61 @@
                         </div>
                     </div>
                 </div> <!-- end col -->
-            </div> <!-- end row -->
+            </div> 
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Detalle de compra</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div >
+                                <div style="margin: 60px;">
+                                    <h2>Detalles de compra:</h2>
+                                    <br>
+                                    <p>Código de compra:</p>
+                                    <li>{{DTCompras.idCompra.codigoCompra}}</li>
+                                    <br>
+                                    <p>Proveedor:</p>
+                                    <li>{{DTCompras.idCompra.idProveedor.proveedor}}</li>
+                                    <br>
+                                    <p>Número de factura:</p>
+                                    <li>{{DTCompras.idCompra.numeroFactura}}</li>
+                                    <br>
+                                    <p>Fecha de recibo:</p>
+                                    <li>{{DTCompras.idCompra.fechaRecibo}}</li>
+                                    <br>
+                                    <p>Valor total:</p>
+                                    <li>{{DTCompras.idCompra.ValorTotal}}</li>
+                                </div>
+                                
+                                <div style="margin: 60px;">
+                                    <table class="table table-nowrap align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Insumo</th>
+                                            <th>Cantidad</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for listar in idInsumo %}
+                                    <tr>
+                                    <td>{{listar.idInsumo.nombreInsumo}}</td>               
+                                    <td>{{listar.cantidad}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                </table>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{% url 'Compra' %}"type="button" class="btn btn-danger" style="width: 50%; margin-bottom: 20px;">Cerrar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div> <!-- container-fluid -->
         
     </div> <!-- End Page-content -->
@@ -123,6 +177,7 @@
 <script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
 <!-- form validation -->
 <script src="{% static 'js/pages/form-validation.init.js'%}"></script>
+
 <script>
     $("#datatable").DataTable({
    language: {
