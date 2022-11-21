@@ -17,4 +17,5 @@ class Servicios(models.Model):
 class Servicios_Insumo(models.Model):
     idServicios_Insumo= models.AutoField(primary_key=True)
     idServicio= models.ForeignKey(Servicios, on_delete=models.PROTECT) 
-    idInsumo= models.ForeignKey('Insumos.Insumo', on_delete=models.PROTECT) 
+    idInsumo= models.ForeignKey('Insumos.Insumo', on_delete=models.PROTECT)
+    cantidadUsada = models.IntegerField(default=0) 
