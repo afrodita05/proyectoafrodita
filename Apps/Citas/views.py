@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from Apps.Citas.models import *
 from Apps.Citas.forms import *
 from Apps.Clientes.models import Clientes
+from Apps.Servicios.models import *
+from Apps.Insumos.models import *
 from django import forms
 
 # Create your views here.
@@ -68,12 +70,46 @@ def crearAgendaCosto(request, id):
         if formulario_agenda_costo.is_valid():
             formulario_agenda_costo.save()
             valorPagoServicio=request.POST.get('costo')
+            valorPagoServicio= int(valorPagoServicio)
+            idServicio= Citas.objects.filter(idCita = id).values_list('idServicio', flat=True).first() #Obtengo el id del servicio basado en el id de la cita
+            idServicio=int(idServicio) #Lo convierto a integer
+            print("El id del servicio será: ", idServicio)
+            valorServicio = Servicios.objects.filter(idServicio = idServicio).values_list('valor', flat= True).first() #encuentro el valor del servicior
+            valorServicio = int(valorServicio) #lo convierto a integer
+            proporcionServicio= valorPagoServicio/valorServicio #obtengo la proporción del servicio: el valor pagado dividido el valor original = cuántas veces estoy pagando el servicio
+            insumosServicio = Servicios_Insumo.objects.filter(idServicio_id=idServicio).values_list('idInsumo', flat= True) #obtengo los id de los insumos usados por este servicio
+            insumos = Servicios_Insumo.objects.filter() #Obtengo una lista de todos los insumos mencionados anteriormente
+            contador=0
+            
+
+            print("Los id de los servicios son: ", insumosServicio)
+            print("Los valores son: ")
+
+            for insumos.idInsumo in insumosServicio:
+                
+                idInsumo = insumos.idInsumo
+                print("El id del insumo para el caso es: ",idInsumo)
+                cantidadInsumo = Insumo.objects.filter(idInsumo=idInsumo).values_list('cantidad', flat= True).first()
+                print("La cantidad del insumo para el caso es: ", cantidadInsumo)
+                cantidadServicio = Servicios_Insumo.objects.filter(idInsumo=idInsumo).values_list('cantidadUsada', flat= True).first()
+                cantidadInsumo=int(cantidadInsumo)
+                cantidadServicio=int(cantidadServicio)
+                print("La nueva cantidad de insumo es: ", cantidadInsumo, ". Y la nueva cantidad de servicio es: ", cantidadServicio)
+                nombreInsumo = Insumo.objects.filter(idInsumo=idInsumo).values_list('nombreInsumo', flat= True).first()
+                nombreInsumo= str(nombreInsumo)
+                cantidadFinal= cantidadInsumo-(cantidadServicio*proporcionServicio)
+                print("El resultante es: ", cantidadFinal)
+                insumos =  Insumo(idInsumo=idInsumo, cantidad=cantidadFinal, nombreInsumo=nombreInsumo)
+                insumos.save()
+                    
+
+
+
 
             #PASO 3:
             #Dividir el costo de valorPagoServicio sobre el costo del servicio
             #Esto dará la cantidad de veces que el cobro vale el servicio
             #Descontar los insumos del servicio con base en este valor
-
 
             print(valorPagoServicio)
             return redirect('verDetalle-Cita', id)
@@ -83,6 +119,7 @@ def crearAgendaCosto(request, id):
         
     contexto={'formulario_agenda_costo':formulario_agenda_costo,'idCita':id}
     return render(request,'Citas/CrearCosto.html',contexto)
+
 
 def editarAgendaCosto(request,id):
     agendaCosto=AgendaCosto.objects.get(idAgendaCosto=id)

@@ -60,7 +60,7 @@ def crearServicio(request):
     for item in items:
 
         servicios = Servicios(
-            idServicio=item['idActual   '],
+            idServicio=item['idActual'],
             nServicio=item['nombre'],
             tiempo=item['tiempo'], 
             valor=item['valor'],
@@ -77,7 +77,8 @@ def crearServicio(request):
 
         ServiciosxInsumo= Servicios_Insumo(
             idServicio_id=idServicio,
-            idInsumo_id=idInsumo
+            idInsumo_id=idInsumo,
+            cantidadUsada=item['cantidad'],
 
         )
         ServiciosxInsumo.save()
