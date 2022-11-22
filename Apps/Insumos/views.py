@@ -10,10 +10,13 @@ def insumos (request):
     insumos = Insumo.objects.all()
     return render (request, 'Insumos/Insumos.html', {'insumos': insumos})
 
+@permission_required('Insumos.view_insumo') 
 
 def edicionInsumos(request, idInsumo):
    insumo = Insumo.objects.get(idInsumo = idInsumo)
    return render(request,'Insumos/Editar-Insumo.html', {'insumo':insumo})
+
+@permission_required('Insumos.view_insumo') 
 
 def editarInsumo (request):
     idInsumo = request.POST['id']
@@ -24,6 +27,8 @@ def editarInsumo (request):
     insumo.cantidad = cantidad
     insumo.save()
     return redirect('Insumos')
+
+@permission_required('Insumos.view_insumo') 
 
 def eliminarInsumos(request, idInsumo):
     insumo = Insumo.objects.get(idInsumo = idInsumo)

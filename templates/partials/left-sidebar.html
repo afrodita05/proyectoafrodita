@@ -18,7 +18,7 @@
                             </a>
                         </li>
                         <li class="menu-title" data-key="t-apps">Apps</li>
-                        {% if perms.app_label.view_group %}
+                        
                         <li>
                             
                             
@@ -29,8 +29,8 @@
                             </a>
                             
                         </li>
-                        {% endif %}
-                        {% if perms.app_label.view_user %}
+                        
+                        
                         <li>
                             <a href="{% url 'Usuario' %}">
                                 <i class="mdi mdi-account-group-outline
@@ -38,9 +38,8 @@
                                 <span >Usuarios</span>
                             </a>
                         </li>
-                        {% endif %}
+                        
 
-                        {% if perms.app_label.view_proveedor %}
                         <li>
                             <a href="{% url 'Proveedor'%}" >
                                 <i class="mdi mdi-truck-fast-outline
@@ -48,51 +47,47 @@
                                 <span data-key="proveedores">Proveedores</span>
                             </a>
                         </li>
-                        {% endif %}
-
-                        {% if perms.app_label.view_compra %}
+                       
                         <li>
                             <a  href="{% url 'Compra' %}">
                                 <i class="mdi mdi-cart-check"></i>
                                 <span data-key="compras">Compras</span>
                             </a>
                         </li>
-                        {% endif %}
-                        {% if perms.app_label.view_insumo %}
+                       
+                       
                         <li>
                             <a  href="{% url 'Insumos' %}">
                                 <i class="bx bx-test-tube"></i>
                                 <span data-key="compras">Insumos</span>
                             </a>
                         </li>
-                        {% endif %}
+                    
 
-                        {%if perms.app_label.view_servicios %}
+                    
                         <li>
                             <a href="{% url 'Servicio' %}">
                                 <i class="mdi mdi-needle
                                 "></i>
                                 <span data-key="servicios">Servicios</span>
                             </a>
-                        {% endif %}
+                       
                         </li>
 
-                        {%if perms.app_label.view_clientes %}
                         <li>
                             <a href="{% url 'Clientes' %}">
                                 <i class="mdi mdi-folder-account-outline"></i>
                                 <span data-key="clientes">Clientes</span>
                             </a>
                         </li>
-                        {% endif %}
-                        {%if perms.app_label.view_citas %}
+                       
                         <li>
                             <a href="{% url 'Cita' %}" >
                                 <i class="mdi mdi-calendar-check-outline"></i> 
                                 <span data-key="citas">Citas</span>
                             </a>
                         </li>
-                        {% endif %}
+            
 
                 </div>
                 <!-- Sidebar -->

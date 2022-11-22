@@ -26,7 +26,7 @@ from Apps.Citas.views import *
 from Apps.login.views import Login, recuperar_contrasena
 # from Apps.Usuarios.views import Usuarios, Crear_Usuario, Editar_Usuario
 from Apps.Clientes.views import *
-from Apps.Usuarios.views import usuario, crearUsuario, formularioUsuario, editarU, actualizarU, pruebaCr
+from Apps.Usuarios.views import *
 from Apps.Servicios.views import *
 from Apps.Configuracion.views import *
 from Apps.Proveedores.views import CrearProveedor,ListarProveedor,EditarProveedor
@@ -72,9 +72,6 @@ urlpatterns = [
     path('editarU/<int:id>',editarU, name='editarUsuario'),
     path('actualizarU/<int:id>',actualizarU, name='actualizarU'),
 
-
-
-    path('pruebaCr/',pruebaCr),
 
 
     #SERVICIOS

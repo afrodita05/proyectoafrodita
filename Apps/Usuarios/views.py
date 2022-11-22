@@ -7,8 +7,10 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
 from Apps.Usuarios.models import User
 from django.contrib.auth.models import Group, Permission
+from django.contrib.auth.decorators import permission_required
 
 #@login_required
+@permission_required('user.view_user') 
 def usuario(request):
     usuario=User.objects.all()
     # usuario = {group.name: group.user_set.values_list('id', flat=True) for group in Group.objects.all()}
@@ -16,16 +18,13 @@ def usuario(request):
     context={"usuario":usuario}
     return render(request,"Usuarios/Usuarios.html",context)
 
-def pruebaCr(request):
-    usuario = User.objects.create_user('pepe', 'pepe@pepe.com', 'pepelo')
-    usuario.save()
-    return redirect("Usuario")
-
+@permission_required('user.view_user') 
 def formularioUsuario(request):
     rol=Group.objects.filter()
     context={"rol":rol}
     return render(request,'Usuarios/Crear-Usuario.html',context)
 
+@permission_required('user.view_user') 
 def crearUsuario(request):
     documentoUsuario= request.POST['documento']
     correo= request.POST['correo']
@@ -68,6 +67,7 @@ def crearUsuario(request):
 
                 return redirect("Usuario")
 
+@permission_required('user.view_user') 
 def editarU(request, id):
     rol=Group.objects.filter()
     mostrar=User.objects.filter(id=id).first()
@@ -76,6 +76,7 @@ def editarU(request, id):
     return render(request,"Usuarios/Editar-Usuario.html",context)
     
 
+@permission_required('user.view_user') 
 def actualizarU(request, id):
     
     errorUsuario= []

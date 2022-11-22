@@ -7,8 +7,10 @@ from django.views.generic import TemplateView
 from Apps.Compras.models import Compra, Detalle_Compra
 from Apps.Insumos.models import Insumo
 from Apps.Proveedores.models import Proveedor
+from django.contrib.auth.decorators import permission_required
 # Create your views here.
 
+@permission_required('Compras.view_compra') 
 def CrearCompra(request):
     proveedor=Proveedor.objects.filter()
     insumo=Insumo.objects.filter()
@@ -62,26 +64,31 @@ def CrearCompra(request):
         
     return redirect("Compra")
 
+@permission_required('Compras.view_compra') 
 def FormularioAgregarInsumo(request):
     return render (request, 'Compras/Crear-Insumo.html')
 
+@permission_required('Compras.view_compra') 
 def CrearInsumo (request):
     nombreInsumo = request.POST['txtNombre']
     insumo = Insumo.objects.create(nombreInsumo =nombreInsumo)
     return redirect('/FormularioAgregarCompra/')
 
+@permission_required('Compras.view_compra') 
 def FormularioAgregarCompra(request):
     proveedor=Proveedor.objects.filter()
     nombreInsumo=Insumo.objects.filter()
     context={"proveedor":proveedor,"nombreInsumo":nombreInsumo}   
     return render(request,'Compras/Crear-Compra.html', context)
 
+@permission_required('Compras.view_compra') 
 def ListarCompra(request):
     LCompra=Compra.objects.filter()
     print(LCompra)
     context={"Lcompra":LCompra}
     return render(request,'Compras/Compras.html', context)
 
+@permission_required('Compras.view_compra') 
 def DetalleCompras(request, id):
     DTCompras=Detalle_Compra.objects.filter(idCompra_id=id).first
     idDTCompras = Detalle_Compra.objects.filter(idCompra_id=id).values_list('idDetalle_Compra', flat=True) #Obtener id de los DT compra basados en la id de compra
@@ -95,6 +102,7 @@ def DetalleCompras(request, id):
     print (idDTCompras)
     return render(request,"Compras/Ver-Detalle.html",context) 
 
+@permission_required('Compras.view_compra') 
 def EliminarCompra(request, id):   
     ECompra=Compra.objects.get(idCompra=id)
     ECompra.delete() 
