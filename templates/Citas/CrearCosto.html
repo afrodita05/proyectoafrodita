@@ -34,7 +34,7 @@
                                 
                                 <div class="col-lg-4">
                                     <div class="form-group mb-3">
-                                        <label class="form-label">Nuemero de sesiones</label>
+                                        <label class="form-label">Número de sesiones</label>
                                         {{formulario_agenda_costo.sesiones}}
                                         {% for error in formulario_agenda_costo.sesiones.errors %}
                                         <p style="color:red"> {{error}}</p>
@@ -48,6 +48,10 @@
                                         {% for error in formulario_agenda_costo.costo.errors %}
                                         <p style="color:red"> {{error}}</p>
                                         {% endfor %}
+
+                                        
+                                        <p style="color:red"> {{errorCantidad}}</p>
+                                        
                                     </div>
                                 <div class="col-lg-4">
                                     <div class="form-group mb-3">
