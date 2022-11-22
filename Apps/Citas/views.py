@@ -5,7 +5,7 @@ from Apps.Clientes.models import Clientes
 from Apps.Servicios.models import *
 from Apps.Insumos.models import *
 from django import forms
-
+from django.db.models import Q
 # Create your views here.
 
 def listarCita(request):
@@ -62,57 +62,72 @@ def verDetalleCita(request, id):
     return render(request,"Citas/VerDetalleCita.html",contexto)
 
 def crearAgendaCosto(request, id):
-    print(id, "ESTA ES LA ID DE CITA")
     
     if request.method=='POST':
         formulario_agenda_costo=FormularioAgendaCosto(request.POST)
         
         if formulario_agenda_costo.is_valid():
-            formulario_agenda_costo.save()
+            
             valorPagoServicio=request.POST.get('costo')
             valorPagoServicio= int(valorPagoServicio)
             idServicio= Citas.objects.filter(idCita = id).values_list('idServicio', flat=True).first() #Obtengo el id del servicio basado en el id de la cita
             idServicio=int(idServicio) #Lo convierto a integer
-            print("El id del servicio será: ", idServicio)
+            
             valorServicio = Servicios.objects.filter(idServicio = idServicio).values_list('valor', flat= True).first() #encuentro el valor del servicior
             valorServicio = int(valorServicio) #lo convierto a integer
             proporcionServicio= valorPagoServicio/valorServicio #obtengo la proporción del servicio: el valor pagado dividido el valor original = cuántas veces estoy pagando el servicio
             insumosServicio = Servicios_Insumo.objects.filter(idServicio_id=idServicio).values_list('idInsumo', flat= True) #obtengo los id de los insumos usados por este servicio
             insumos = Servicios_Insumo.objects.filter() #Obtengo una lista de todos los insumos mencionados anteriormente
-            contador=0
+            contador = 0
+            listaIDs=[]
             
-
-            print("Los id de los servicios son: ", insumosServicio)
-            print("Los valores son: ")
+            
 
             for insumos.idInsumo in insumosServicio:
                 
                 idInsumo = insumos.idInsumo
-                print("El id del insumo para el caso es: ",idInsumo)
+                
                 cantidadInsumo = Insumo.objects.filter(idInsumo=idInsumo).values_list('cantidad', flat= True).first()
-                print("La cantidad del insumo para el caso es: ", cantidadInsumo)
-                cantidadServicio = Servicios_Insumo.objects.filter(idInsumo=idInsumo).values_list('cantidadUsada', flat= True).first()
+                
+                cantidadServicio = Servicios_Insumo.objects.filter(Q(idInsumo=idInsumo) & Q(idServicio=idServicio)).values_list('cantidadUsada', flat= True).first() #Anidar condiciones: No basta con que la cantidad usada coincida en id de insumo, sino también en idServicios_Insumo.
                 cantidadInsumo=int(cantidadInsumo)
                 cantidadServicio=int(cantidadServicio)
-                print("La nueva cantidad de insumo es: ", cantidadInsumo, ". Y la nueva cantidad de servicio es: ", cantidadServicio)
-                nombreInsumo = Insumo.objects.filter(idInsumo=idInsumo).values_list('nombreInsumo', flat= True).first()
+
+                if cantidadServicio<=cantidadInsumo:
+                    listaIDs.append(idInsumo)
+
+
+                else:
+                    listaIDs.clear()
+                    formulario_agenda_costo=FormularioAgendaCosto()
+                    insuficiente="No hay insumos suficientes para realizar el servicio."
+                    contexto={'formulario_agenda_costo':formulario_agenda_costo,'idCita':id, 'errorCantidad':insuficiente}
+                    return render(request,'Citas/CrearCosto.html',contexto)  
+
+            for insumos.idInsumo in insumosServicio:
+
+                idInsumoActual=listaIDs[contador]
+                
+                nombreInsumo = Insumo.objects.filter(idInsumo=idInsumoActual).values_list('nombreInsumo', flat= True).first()
                 nombreInsumo= str(nombreInsumo)
+                cantidadInsumo = Insumo.objects.filter(idInsumo=idInsumoActual).values_list('cantidad', flat= True).first()
+               
+                cantidadServicio = Servicios_Insumo.objects.filter(Q(idInsumo=idInsumoActual) & Q(idServicio=idServicio)).values_list('cantidadUsada', flat= True).first() #Anidar condiciones: No basta con que la cantidad usada coincida en id de insumo, sino también en idServicios_Insumo.
+                cantidadInsumo=int(cantidadInsumo)
+                cantidadServicio=int(cantidadServicio)
+
                 cantidadFinal= cantidadInsumo-(cantidadServicio*proporcionServicio)
-                print("El resultante es: ", cantidadFinal)
-                insumos =  Insumo(idInsumo=idInsumo, cantidad=cantidadFinal, nombreInsumo=nombreInsumo)
+                
+            
+
+                insumos =  Insumo(idInsumo=idInsumoActual, cantidad=cantidadFinal, nombreInsumo=nombreInsumo)
                 insumos.save()
-                    
+                contador=contador+1
 
 
 
-
-            #PASO 3:
-            #Dividir el costo de valorPagoServicio sobre el costo del servicio
-            #Esto dará la cantidad de veces que el cobro vale el servicio
-            #Descontar los insumos del servicio con base en este valor
-
-            print(valorPagoServicio)
-            return redirect('verDetalle-Cita', id)
+            formulario_agenda_costo.save()
+            return redirect('verDetalle-Cita', id)        
             
     else: 
         formulario_agenda_costo=FormularioAgendaCosto()
