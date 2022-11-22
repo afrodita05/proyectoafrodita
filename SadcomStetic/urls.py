@@ -30,7 +30,7 @@ from Apps.Usuarios.views import *
 from Apps.Servicios.views import *
 from Apps.Configuracion.views import *
 from Apps.Proveedores.views import CrearProveedor,ListarProveedor,EditarProveedor
-from Apps.Compras.views import FormularioAgregarCompra,CrearCompra,ListarCompra,EliminarCompra,DetalleCompras, FormularioAgregarInsumo, CrearInsumo
+from Apps.Compras.views import FormularioAgregarCompra,CrearCompra,ListarCompra,EliminarCompra,DetalleCompras, FormularioAgregarInsumo, CrearInsumo, estadoCompra, esatdocompra
 from Apps.Insumos.views import insumos
 
 
@@ -226,8 +226,11 @@ urlpatterns = [
     path('CrearInsumo/', CrearInsumo, name='CrearInsumo'),
     path('FormularioAgregarInsumo/', FormularioAgregarInsumo,),
     path('FormularioAgregarCompra/', FormularioAgregarCompra,),
+    path ('estadoCompra/', esatdocompra,  ),
     path('EliminarCompra/<int:id>', EliminarCompra, name='EliminarCompra'),
     path('DetalleCompras/<int:id>', DetalleCompras, name='DetalleCompras'),
+    path('EstadoCompra/<int:id>', estadoCompra, name='estadocompra'),
+    
    #INSUMOS
     path(
         "Insumos",

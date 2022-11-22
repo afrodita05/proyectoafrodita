@@ -5,6 +5,7 @@
     <!-- DataTables -->
     <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
     <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/validaciones.css'%}" rel="stylesheet" type="text/css" />
 {% endblock extra_css %}
 {% block content %}
 <div class="main-content">
@@ -27,25 +28,35 @@
             <div class="card">
                 <div style="margin: 60px; " >
                     <!--  Formulario de agregar -->
-                    <form  action="" onsubmit="onSubmitForm" id="agregar" novalidate method="">
+                    {% for x in errorC %}
+                        <div class="alert alert-danger alert-dismissible alert-label-icon label-arrow fade show"
+                             role="alert" style="margin-top: 10px;">
+                            <i class="mdi mdi-block-helper label-icon"></i><strong>Error.</strong> El insumo ingresado ya existe.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                            aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                    <form action="" class="formulario" onsubmit="onSubmitForm" id="agregar">
                         {% csrf_token %}
                         <input type="hidden"/>
                         <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Código de compra</label>
-                                    <input name="codigoCompra" type="text"class="form-control" />
+                            <div class="col-lg-2 formulario__grupo"  id="grupo__numeroFactura">
+                                <label for="numeroFactura" class="formulario__label">Número de factura</label>
+                                <div class=" formulario__grupo" id="grupo__numeroFactura">
+                                    <input id="numeroFactura" name="numeroFactura" type="text" class="form-control formulario__input"/>
+                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                </div>
+                                <p class="formulario__input-error" style="color: red;">El número de factura tiene que ser de 2 a 6 dígitos y solo puede contener números.</p>
+                            </div>
+                            <div class=" col-lg-2">
+                                <div class="mb-3 formulario__grupo">
+                                    <label class="form-label">Fecha de factura</label>
+                                    <div class="formulario__grupo-input">
+                                        <input name="fechaRecibo" type="date" class="form-control" id="datepicker-basic">
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="col-lg-6">
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Número de factura</label>
-                                    <input name="numeroFactura" type="text"class="form-control" />
-                                </div>
-                            </div>
-                            
-                            <div class="col-md-6">
+                            <div class="col-lg-8">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Proveedor</label>
                                     <select name="proveedor" class="form-select">
@@ -54,29 +65,18 @@
                                         {% endfor %} 
                                     </select>
                                 </div>
-                            </div>  
-
-                            <div class=" col-lg-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Fecha de factura</label>
-                                    <input name="fechaRecibo" type="date" class="form-control" id="datepicker-basic">
-                                
-                                </div>
-                            </div>
+                            </div> 
                         </div>
                         <div class="row">
                             <!-- Productos -->
-                            <div class="col-xl-3">
-                                <div class="btn-group col-md-11" style="margin-top: 30px;">
-                                    <button class="btn btn-primary btn-lg" type="button">
+                            <div class="col-lg-2">
+                                <div class="btn-group col-md-12" style="margin-top: 35px;">
+                                    <a href="/FormularioAgregarInsumo/" class="btn btn-primary waves-effect btn-label waves-light"><i class="bx bx-plus label-icon"></i>
                                         Nuevo insumo
-                                    </button>
-                                    <a type="button" href="/FormularioAgregarInsumo/" class="btn btn-lg btn-primary dropdown-toggle dropdown-toggle-split">
-                                        <i class="mdi mdi-plus label-icon"></i>
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-xl-9">
+                            <div class="col-lg-4">
                                 <div class="col-md-12">
                                     <label for="example-datetime-local-input" class="form-label">Productos</label>
                                     <select name="insumo" class="form-select">
@@ -86,83 +86,87 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
-                         
-                        <div class="row">
+                        
+                            <div class="col-lg-4 formulario__grupo"  id="grupo__cantidad">
+                                <label for="cantidad" class="formulario__label">Cantidad</label>
+                                <div class=" formulario__grupo" id="grupo__cantidad">
+                                    <input id="cantidad" name="cantidad" type="text" class="form-control formulario__input"/>
+                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                </div>
+                                <p class="formulario__input-error" style="color: red;">La cantidad tiene que ser de 1 a 6 dígitos y solo puede contener números.</p>
+                            </div>
+                            <div class="col-lg-2">
+                                <label for="example-number-input" class="form-label">Tipo de medida</label>
+                                <input name="medida" class="form-control" type="text" readonly
+                                    id="example-number-input">
+                            </div>
                             <div class="row" style="margin-top: 20px;">
-                                <div class="col-xl-2">
-                                    <div class="col-md-12">
-                                        <label for="example-datetime-local-input" class="form-label">Tipo de unidad</label>
-                                        <select name="tipoUnidad" class="form-select">
-                                            <option value="Unidades">Unidades</option>
-                                            <option value="Mililitros">Mililitros</option>
-                                            <option value="Gramos">Gramos</option>
-                                        </select>
+                                <div class="col-lg-3 formulario__grupo"  id="grupo__unidades">
+                                    <label for="unidades" class="formulario__label">Unidades</label>
+                                    <div class=" formulario__grupo" id="unidades">
+                                        <input class="form-control formulario__input" id="unidades" name="unidades" type="number"  step="0.001" oninput="calcular()"/>
+                                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                     </div>
+                                    <p class="formulario__input-error" style="color: red;">La Unidades tiene que ser de 1 a 6 dígitos y solo puede contener números.</p>
                                 </div>
-                                <div class="col-md-4">
-                                    <label for="example-number-input" class="form-label">Cantidad</label>
-                                    <input name="cantidad" class="form-control" type="number" value="0"
-                                        id="example-number-input">
-                                </div>
-                               
-                                <div class=" col-md-3">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">Valor unitario</label>
-                                        <input name="valorunidad" type="text" class="form-control" />
+                                <div class="col-lg-3 formulario__grupo"  id="grupo__valorunidad">
+                                    <label for="valorunidad" class="formulario__label">Valor unitario</label>
+                                    <div class=" formulario__grupo" id="valorunidad">
+                                        <input class="form-control formulario__input" id="valorunidad" name="valorunidad" type="number" step="0.001" oninput="calcular()"/>
+                                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                     </div>
+                                    <p class="formulario__input-error" style="color: red;">El valor unitario tiene que ser de 1 a 6 dígitos y solo puede contener números.</p>
                                 </div>
-                                <div class="col-md-3">
+                                
+                                <div class="col-lg-1">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Iva</label>
-                                        <input type="text" class="form-control" />
+                                        <input type="text" class="form-control"  readonly value="0%" />
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Valor total del insumo</label>
-                                    <input name="ValorTotalInsumo" type="text"class="form-control" />
+                                <div class="col-lg-5">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">Subtotal</label>
+                                        <input class="form-control" id="Subtotal" name="subtotal" type="number" step="0.001" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class=" col-lg-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Valor total</label>
-                                    <input name="ValorTotal" type="number" class="form-control" id="datepicker-basic">
+                                <div class=" col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Valor total</label>
+                                        <input class="form-control" id="valorTotal" name="ValorTotal" type="number" step="0.001" >
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group" style=" margin-top: 40px; margin-bottom: 20px; text-align: center;" >
-                                <button type="submit" id="crearcompra"  for="agregar" class="btn btn-primary" style="width: 50%">Agregar</button>
-                                <button type="button" id="borrar" class="btn btn-danger" style="width: 20%; margin-right: 20px;">Limpiar lista</button>
+                                <div class="form-group" style=" margin-top: 40px; margin-bottom: 20px; text-align: center;" >
+                                    <button type="submit" id="crearcompra"  for="agregar" class="btn btn-primary" style="width: 20%">Agregar</button>
+                                    <button type="button" id="borrar" class="btn btn-danger" style="width: 20%; margin-right: 20px;">Limpiar lista</button>
+                                </div>
                             </div>
                         </div>
-                        <hr>
-                        <!-- end row -->
                     </form>
                 </div>
-
-
-
+                <hr>
                 <div class="col-12">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="list" class="table table-nowrap align-middle">
+                            <table class="table table-nowrap align-middle"> 
                                 <thead>
-                                    {% for listar in CListarInsumos %}
                                     <tr>
                                         <th>Nombre</th>
                                         <th>Cantidad</th>
                                         <th>Precio</th>
                                         <th>Total</th>
-                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
+                            </table>
+                            <table id="list" class="table table-nowrap align-middle">
+                                
                                 <tbody>
+                                    {% for listar in CListarInsumos %}
                                     <tr data-id="1">
                                         <td data-field="nombre">{{listar.insumo}}</td>
                                         <td data-field="cantidad">{{listar.cantidad}}</td>
                                         <td data-field="precio">{{listar.ValorUnidad}}</td>
-                                        <td data-field="Total">{{listar.ValorInsumo}}</td>
+                                        <td data-field="Total">{{listar.total}}</td>
                                         <td>
                                             <a  href="#" class="btn btn-outline-primary btn-sm">
                                                 <i class="mdi mdi-cancel mdi-24px"></i>
@@ -176,10 +180,8 @@
                     </div>
                     <hr>
                 </div>
-
-                
                 <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-top: 20px; margin-bottom: 30px;" >
-                    <button type="button" id= "guardar" class="btn btn-primary" style="width: 20%; margin-right: 20px;">Guardar</button>
+                    <button type="button" id= "guardar" class="btn btn-primary" style="width: 20%; margin-right: 90px;">Guardar</button>
                     <a href="{% url 'Compra' %}" type="submit" class="btn btn-danger" style="width: 20%">Cancelar</a>
                 </div>
             </div> <!-- end col -->
@@ -199,7 +201,8 @@
 
 
 <script type="text/javascript" src="{% static  'js/localstorage.js' %}"></script>
-
+<script type="text/javascript" src="{% static  'js/validaciones.js' %}"></script>
+<script type="text/javascript" src="{% static  'js/calculo.js' %}"></script>
 
 <!-- Table Editable plugin -->
 <script src="{% static 'libs/table-edits/build/table-edits.min.js'%}"></script>
@@ -227,13 +230,4 @@
 <!-- form validation -->
 <script src="{% static 'js/pages/form-validation.init.js'%}"></script>
 
-<script src="{% static 'js/pages/modal.init.js'%}"></script>
-    <script>
-        var $ = jQuery.noConflict();
-        function abrir_modal_crear(url){
-            $('#modalInsumo').load(url, function(){
-                $(this).modal('show');
-            });
-        }
-    </script>
 {% endblock extra_js %}

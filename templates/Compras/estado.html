@@ -12,11 +12,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h3 class="mb-sm-0 font-size-40">Editar insumo</h3>
+                        <h3 class="mb-sm-0 font-size-40">Estado compra</h3>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Insumos </a></li>
-                                <li class="breadcrumb-item active"> Editar inusmo </li>
+                                <li class="breadcrumb-item active"> Cambiar estado </li>
                             </ol>
                         </div>
                     </div>
@@ -25,48 +25,14 @@
             <div class="card">
                 <div style="margin: 60px;">
                     <!--  FORMULARIO CON VALIDACIONES -->
-                    <form class="needs-validation" action="/editarInsumo/" novalidate method="POST">
+                    <form class="needs-validation" action="/estadoCompra/" novalidate method="POST">
                         {% csrf_token %}
-                        
+                        <input type="hidden" name="id" value="{{insumo.idInsumo}}">
                         <div class="row">
-                            <div class="col-lg-6">
-                                <div class="mb-3">
-                                    <input type="hidden" name="id" value="{{insumo.idInsumo}}">
-                                    <label class="form-label" for="validationTooltip02">Insumo</label>
-                                    <input type="text" class="form-control" id="txtNombre" name="txtNombre" value="{{insumo.nombreInsumo}}"
-                                        placeholder="Insumo" required>
-                                    <div class="invalid-tooltip" style="margin-top: 5px;">
-                                        Por favor ingrese el insumo.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 ms-lg-auto">
-                                <div class="mt-4 mt-lg-0">
-                                    <div class="col-md-12">
-                                        <label for="example-number-input" class="form-label">Cantidad</label>
-                                        <input class="form-control" type="number"  value="{{insumo.cantidad}}" min="0"
-                                            id="cantidad" name="cantidad" required>
-                                        <div class="invalid-tooltip" style="margin-top: 5px;">
-                                            Campo obligatorio .
-                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="col-md-12">
-                                    <label for="example-datetime-local-input" class="form-label">Tipo de unidad</label>
-                                    <select name="tipoUnidad" class="form-select" >
-                                        <option value="{{insumo.tipoUnidad}}">{{insumo.tipoUnidad}}</option>
-                                        <option value="Unidades">Unidades</option>
-                                        <option value="Mililitros">Mililitros</option>
-                                        <option value="Gramos">Gramos</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-xl-6">
+                            <div class="col-xl-12">
                                 <div class="col-md-12">
                                     <label for="example-datetime-local-input" class="form-label">Estado</label>
-                                    <select name="Estado" class="form-select">
+                                    <select name="EstadoC" class="form-select">
                                         <option value="1">Activo</option>
                                         <option value="0">Inactivo</option>
                                     </select>
