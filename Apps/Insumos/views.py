@@ -2,9 +2,10 @@ from django.shortcuts import render, redirect
 from .models import Insumo
 from .forms import Insumo
 from django.contrib import messages
-
+from django.contrib.auth.decorators import permission_required
 # Create your views here.
 
+@permission_required('Insumos.view_insumo') 
 def insumos (request):
     insumos = Insumo.objects.all()
     return render (request, 'Insumos/Insumos.html', {'insumos': insumos})

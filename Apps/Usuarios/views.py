@@ -6,10 +6,13 @@ from django.views.generic import TemplateView
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
 from Apps.Usuarios.models import User
+from django.contrib.auth.models import Group, Permission
 
 #@login_required
 def usuario(request):
-    usuario=User.objects.filter()
+    usuario=User.objects.all()
+    # usuario = {group.name: group.user_set.values_list('id', flat=True) for group in Group.objects.all()}
+    print(usuario)
     context={"usuario":usuario}
     return render(request,"Usuarios/Usuarios.html",context)
 
@@ -19,12 +22,16 @@ def pruebaCr(request):
     return redirect("Usuario")
 
 def formularioUsuario(request):
-    return render(request,'Usuarios/Crear-Usuario.html')
+    rol=Group.objects.filter()
+    context={"rol":rol}
+    return render(request,'Usuarios/Crear-Usuario.html',context)
 
 def crearUsuario(request):
     documentoUsuario= request.POST['documento']
     correo= request.POST['correo']
     nombreUsuario= request.POST['usuario']
+    rol = request.POST['rol']
+    print("El id del rol es: ",rol)
     error= []
     errorCorreo= []
     errorUsuario= []
@@ -56,12 +63,16 @@ def crearUsuario(request):
                 errorCorreo.clear()
                 usuarios.save()
                 
+                usuarios.groups.add(rol)
+
+
                 return redirect("Usuario")
 
 def editarU(request, id):
+    rol=Group.objects.filter()
     mostrar=User.objects.filter(id=id).first()
    
-    context={"mostrar":mostrar}
+    context={"mostrar":mostrar, "rol": rol}
     return render(request,"Usuarios/Editar-Usuario.html",context)
     
 
@@ -76,6 +87,7 @@ def actualizarU(request, id):
     correo = request.GET['correo']
     password = request.GET['contrasena']
     password2 = request.GET['contrasena2']
+    rol= request.GET['rol']
 
     actualizar=User.objects.get(id=id)
     if (User.objects.filter(username=nombreUsuario).exists()) and (actualizar.username != nombreUsuario):
@@ -104,7 +116,13 @@ def actualizarU(request, id):
                 actualizar.email=correo
                 actualizar.password=make_password(password)
                 actualizar.save()
-                return redirect("Usuario")
+
+                users_in_group = Group.objects.get(id=rol).user_set.all()
+                if actualizar in users_in_group:
+                    return redirect("Usuario")
+                else:
+                    actualizar.groups.add(rol)
+                    return redirect("Usuario")
             else:
                 errorContrasena.append(1)
                 mostrar=User.objects.filter(id=id).first()

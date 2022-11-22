@@ -90,9 +90,10 @@
                                 <div class="col-md-12" style="margin-bottom: 60px;">
                                     <div class="mb-3">
                                         <label class="form-label">Rol *</label>
-                                        <select required class="form-control form-select">
-                                            <option value="Masculino">Administrador</option>
-                                            <option value="Femenino">Recepcionista</option>
+                                        <select name="rol" required class="form-control form-select">
+                                            {% for listar in rol %}
+                                            <option value="{{listar.id}}">{{listar.name}}</option>
+                                            {% endfor %} 
                                         </select>
                                     </div>
                                 </div>

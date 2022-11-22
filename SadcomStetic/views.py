@@ -12,14 +12,18 @@ from django_otp.plugins.otp_totp.models import TOTPDevice
 # Dashboard
 @login_required
 def index(request):
-    return render(request,'registration/base.html')
+
+    return render(request,'partials/base.html')
 
 class DashboardView(View):
+    
     def get(self, request):
+        
         return render(request, "dashboard.html")
 
 
-class Settings( View):
+
+class Settings(View):
     template_name = "settings.html"
 
     def __init__(self, *args):
@@ -29,4 +33,3 @@ class Settings( View):
         k = TOTPDevice.objects.filter(user=request.user)
         context_data = {"k": k}
         return render(request, self.template_name, context_data)
-

@@ -28,9 +28,8 @@ from Apps.login.views import Login, recuperar_contrasena
 from Apps.Clientes.views import *
 from Apps.Usuarios.views import usuario, crearUsuario, formularioUsuario, editarU, actualizarU, pruebaCr
 from Apps.Servicios.views import *
-from Apps.Configuracion.views import crearRol,formularioRol,listarRol
+from Apps.Configuracion.views import *
 from Apps.Proveedores.views import CrearProveedor,ListarProveedor,EditarProveedor
-from Apps.Configuracion.views import crearRol,formularioRol,listarRol, pruebaRol
 from Apps.Compras.views import FormularioAgregarCompra,CrearCompra,ListarCompra,EliminarCompra,DetalleCompras, FormularioAgregarInsumo, CrearInsumo
 from Apps.Insumos.views import insumos
 
@@ -133,9 +132,21 @@ urlpatterns = [
         ),
     
     path(
-        'pruebaRol/',
-        view=pruebaRol, 
-        name='pruebaRol'
+        'detalleRol/<int:id>',
+        view=detalleRol, 
+        name='detalleRol'
+        ),
+
+    path(
+        'editarRol/<int:id>',
+        view=editarRol, 
+        name='editarRol'
+        ),
+
+    path(
+        'actualizarRol/<int:id>',
+        view=actualizarRol, 
+        name='actualizarRol'
         ),
     # path(
     #     'editarRol/<int:id>',

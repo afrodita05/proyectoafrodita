@@ -7,25 +7,28 @@ from Apps.Insumos.models import Insumo
 import json
 from multiprocessing import context
 from Apps.Servicios.forms import *
+from django.contrib.auth.decorators import permission_required
 
+@permission_required('Servicios.view_servicios') 
 def servicio(request):
     servicio=Servicios.objects.filter()
     context={"servicio":servicio}
     return render(request,"Servicios/Servicios.html",context)
 
-
+@permission_required('Servicios.view_servicios') 
 def formularioServicio(request,id):
     insumo=Insumo.objects.filter()
     mostrar=Servicios.objects.filter(idServicio=id).first()
     context={"insumo":insumo,'idServicio':id, "mostrar":mostrar}
     return render(request,'Servicios/Crear-Servicio.html',context)
 
+@permission_required('Servicios.view_servicios') 
 def rutaV(request):
     servicio=Servicios.objects.filter()
     context={"servicio":servicio}
     return render(request,"Servicios/VerificarNombre.html",context)
     
-
+@permission_required('Servicios.view_servicios') 
 def verificacionServicio(request):
     nombreServicio= request.POST['nServicio']
     tiempoServicio= request.POST['tiempo']
@@ -46,13 +49,14 @@ def verificacionServicio(request):
         idServicio= servicios.idServicio
         return redirect('formularioServicio',idServicio)
 
-
+@permission_required('Servicios.view_servicios') 
 def editarS(request, id):
     mostrar=Servicios.objects.filter(idServicio=id).first()
     print(mostrar)
     context={"mostrar":mostrar}
     return render(request,"Servicios/VerificarNombreEditar.html",context)
 
+@permission_required('Servicios.view_servicios') 
 def verificacionServicioEditar(request,id):
 
     nombreServicio= request.GET['nombre']
@@ -82,7 +86,7 @@ def verificacionServicioEditar(request,id):
 
 
 
-
+@permission_required('Servicios.view_servicios') 
 def crearServicio(request):
     #PASO 2:
     #Añadir costo del servicio
@@ -122,7 +126,7 @@ def crearServicio(request):
 
 
     
-
+@permission_required('Servicios.view_servicios') 
 def actualizarS(request, id):
     nombreServicio= request.GET['nombre']
     errorS= []
@@ -149,7 +153,7 @@ def actualizarS(request, id):
         
     
 
-
+@permission_required('Servicios.view_servicios') 
 def eliminarS(request, id):   
     registro= Servicios.objects.get(idServicio=id)
     registro.delete() 

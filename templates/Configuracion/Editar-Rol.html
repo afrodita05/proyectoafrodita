@@ -25,14 +25,14 @@
             <div class="card">
                 <div style="margin: 60px;">
                     <!--  FORMULARIO CON VALIDACIONES -->
-                    <form action="/crearRol/" id="crearR" method="POST">
+                    <form action="{% url 'actualizarRol' mostrar.id %}" id="crearR" method="GET">
                         {% csrf_token %}
                         <input type="hidden" />
                         <div class="row">
                             <div class=" col-md-12">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Rol</label>
-                                    <input name="nombre" type="text" data-pristine-required-message="Por favor ingrese el rol" placeholder="Ingrese el rol" required class="form-control" />
+                                    <input name="nombre" type="text" data-pristine-required-message="Por favor ingrese el rol" placeholder="Ingrese el rol" required class="form-control" value="{{mostrar.name}}" />
                                     <br>
                                     <input type="checkbox" name="permisos" value="Configuracion" >
                                     <label>Configuración</label><br>

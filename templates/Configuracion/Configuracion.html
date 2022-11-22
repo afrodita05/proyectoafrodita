@@ -39,10 +39,7 @@
                         <a href="{% url 'formularioRol' %}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear un rol</a>
                         
                     </div>
-                    <div class="gap-2"  style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
-                        <a href="{% url 'pruebaRol' %}" type="button" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >PRUEBA ROL</a>
-                        
-                    </div>
+                   
                 </div>
             </div><!-- end col -->
             <div class="row">
@@ -54,7 +51,6 @@
                                     <thead>
                                         <tr>
                                             <th>Rol</th>
-                                            <th>Permisos</th>
                                             <th>Estado</th>
                                             <th>Acciones</th>
                                         </tr>
@@ -62,9 +58,9 @@
                                     <tbody>
                                         {% for listar in crRol %}
                                         <tr data-id="1">
-                        
+                                            
                                             <td data-field="rol">{{listar.name}}</td>
-                                            <td data-field="permisos">{{listar.permissions.name}}, {{listar.permissions.name}}, {{listar.permissions.name}}, {{listar.permissions.name}}, {{listar.permissions.name}}, {{listar.permissions.name}}, {{listar.permissions.name}}, {{listar.permissions.name}}</td>
+                                            
                                             <td data-field="estado">
                                                 <span class="badge badge-soft-danger" style="font-size: 14px;">Inactivo</span>
                                             </td>
@@ -75,10 +71,14 @@
                                                         data-off-label="Off"></label>
                                                 </div>
                                                 <div class="dropdown">
-                                                    <a href="#" type="button" class="btn btn-outline-primary btn-sm" >
+                                                    <a href="{% url 'editarRol' listar.id %}" type="button" class="btn btn-outline-primary btn-sm" >
                                                         <i class="mdi mdi-account-cog-outline mdi-24px "></i>
                                                     </a>
+                                                    <a href="{% url 'detalleRol' listar.id %}" class="btn btn-outline-primary btn-sm">
+                                                        <i class="mdi mdi-eye-outline  mdi-24px "></i>
+                                                    </a>
                                                 </div>
+                                                
                                             </td>
                                         </tr>
                                         {% endfor %}
