@@ -24,6 +24,7 @@ def rutaV(request):
     servicio=Servicios.objects.filter()
     context={"servicio":servicio}
     return render(request,"Servicios/VerificarNombre.html",context)
+    
 
 def verificacionServicio(request):
     nombreServicio= request.POST['nServicio']
@@ -32,7 +33,7 @@ def verificacionServicio(request):
     idServicio = Servicios.objects.filter(nServicio=nombreServicio).values_list('idServicio', flat=True).first()
 
     if Servicios.objects.filter(idServicio=idServicio).exists():
-            error="Ya existe"
+            error="El servicio ingresado ya existe. Por favor, ingresa uno diferente."
             contexto={"error":error}
             return render(request,'Servicios/VerificarNombre.html',contexto)
     else:   
@@ -46,6 +47,41 @@ def verificacionServicio(request):
         return redirect('formularioServicio',idServicio)
 
 
+def editarS(request, id):
+    mostrar=Servicios.objects.filter(idServicio=id).first()
+    print(mostrar)
+    context={"mostrar":mostrar}
+    return render(request,"Servicios/VerificarNombreEditar.html",context)
+
+def verificacionServicioEditar(request,id):
+
+    nombreServicio= request.GET['nombre']
+    tiempoServicio = request.GET['tiempo']
+    actualizar=Servicios.objects.get(idServicio=id)
+    actualizar.nServicio=nombreServicio
+    servicio= Servicios.objects.filter(idServicio=id)
+
+    nombrePropio = Servicios.objects.filter(idServicio=id).values('nServicio')[0]['nServicio']
+    
+    if Servicios.objects.filter(nServicio=nombrePropio):
+        actualizar.tiempo=tiempoServicio 
+        actualizar.save()
+        idServicio= actualizar.idServicio
+        return redirect('formularioServicio',idServicio)
+    else:   
+        if Servicios.objects.filter(nServicio=actualizar.nServicio).exists():
+            error="El servicio ingresado ya existe. Por favor, ingresa uno diferente."
+            context={"error":error}
+            return render(request, 'Servicios/Editar-Servicio.html',context) #editar
+        else:
+            actualizar.tiempo=tiempoServicio 
+            actualizar.save()
+            idServicio= actualizar.idServicio
+            return redirect('formularioServicio',idServicio)
+    
+
+
+
 
 def crearServicio(request):
     #PASO 2:
@@ -56,7 +92,6 @@ def crearServicio(request):
     print(items,type(items))
     servicios=""
     idServicio= request.POST.get('idActual')
-    print("Obteniendo esta id:",idServicio)
     for item in items:
 
         servicios = Servicios(
@@ -86,13 +121,6 @@ def crearServicio(request):
     return redirect("Servicio")
 
 
-
-
-
-def editarS(request, id):
-    mostrar=Servicios.objects.filter(idServicio=id).first()
-    context={"mostrar":mostrar}
-    return render(request,"Servicios/Editar-Servicio.html",context)
     
 
 def actualizarS(request, id):

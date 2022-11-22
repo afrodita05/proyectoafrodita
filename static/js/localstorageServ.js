@@ -4,7 +4,7 @@ const saveItemsList = () => {
     localStorage.setItem(LOCAL_STORAGE_ITEMS_KEY, rawItems);
 }
 const getSavedItems = () => JSON.parse(localStorage.getItem(LOCAL_STORAGE_ITEMS_KEY)) ?? [];
-const items = getSavedItems();
+let items = getSavedItems();
 const onSubmitForm = (event) => {
     event.preventDefault();
     const newData = {};
@@ -12,9 +12,16 @@ const onSubmitForm = (event) => {
         newData[key] = value;
     });
     items.push(newData);
-    renderItemList()
-    saveItemsList()
+    renderItemList(items)
+    saveItemsList(items)
 };
+
+
+const clearLocalStorage = () => {
+    items = [];
+    saveItemsList();
+    renderItemList([]);
+} ;
 
 renderItemList = () => {
     const list = document.querySelector('#list');
@@ -33,13 +40,13 @@ renderItemList = () => {
     });
 }
 
-renderItemList()
+renderItemList(items)
 
 const form = document.querySelector('#agregar');
 form.addEventListener('submit', onSubmitForm);
 
-
-
+const btnEliminar = document.querySelector('#borrar');
+btnEliminar.addEventListener("click", clearLocalStorage)
 const btnGuardar = document.querySelector('#guardar');
 btnGuardar.addEventListener('click', async () => {
     try{
@@ -53,7 +60,7 @@ btnGuardar.addEventListener('click', async () => {
         // if (response.status===500) throw new Error("Internal Error")
         localStorage.removeItem(LOCAL_STORAGE_ITEMS_KEY)
         items.length=0
-        renderItemList();
+        renderItemList(items);
         window.location = `${new URL(window.location).origin}/servicio`;
     }
 

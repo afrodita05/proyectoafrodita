@@ -87,6 +87,7 @@ urlpatterns = [
     path('crearServicio/',crearServicio),
     path('rutaV/',rutaV),
     path('verificacionServicio/',verificacionServicio),
+    path('verificacionServicioEditar/<int:id>',verificacionServicioEditar, name='verificacionServicioEditar'),
     path('formularioServicio/<int:id>',formularioServicio, name='formularioServicio'),
     path('editarS/<int:id>',editarS, name='editarServicio'),
     path('actualizarS/<int:id>',actualizarS, name='actualizarServicio'),
