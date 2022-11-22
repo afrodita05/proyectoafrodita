@@ -35,14 +35,25 @@ class FormularioProveedor(forms.ModelForm):
             raise ValidationError("Error. Solo se permite correos validos ")
         return correo
 
+
+                          #select de un input
+    
+    
+
     class Meta:
         model=Proveedor
-        fields='__all__' #atributos de la tabla clientes
+        fields='__all__'
+        Choises=(                    #select de un input
+            ('1', 'Activo'),
+            ('0','Inactivo'),
+            ) 
+        #atributos de la tabla clientes
         
         widgets={      #los widgets son los campos de nuestra formulario donde  podremos asignar los atributos de nuestro formulario html
             'nombre':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese el nombre completo'}), 
             'telefono':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese el número de teléfono'}),
             'direccion':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese la dirección'}),
             'correo':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese el correo electrónico'}),
-            'proveedor':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese el nombre de la empresa'}),          
+            'proveedor':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese el nombre de la empresa'}),  
+            'estado':forms.Select(choices=Choises,attrs={'class':'form-select'}),         
         }

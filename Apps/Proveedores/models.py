@@ -9,3 +9,4 @@ class Proveedor(models.Model):
     nombre=models.CharField(max_length=60)
     correo=models.CharField(max_length=40)
     direccion=models.CharField(max_length=50)
+    estado=models.BooleanField(default=True, verbose_name="estado")

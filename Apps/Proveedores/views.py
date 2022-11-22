@@ -4,6 +4,7 @@ from Apps.Proveedores.forms import *
 
 # Create your views here.
 def CrearProveedor(request):
+
     if request.method=='POST':
         formulario_proveedor=FormularioProveedor(request.POST)
         if formulario_proveedor.is_valid():
@@ -13,7 +14,8 @@ def CrearProveedor(request):
         formulario_proveedor=FormularioProveedor()
     contexto={'formulario_proveedor':formulario_proveedor}
     return render(request,'Proveedores/Crear-Proveedor.html',contexto)
-
+    
+    
     
 def EditarProveedor(request, id):
     proveedor=Proveedor.objects.get(idProveedor=id)
@@ -25,7 +27,9 @@ def EditarProveedor(request, id):
             formulario_proveedor.save()
             return redirect('Proveedor')
     contexto={'formulario_proveedor':formulario_proveedor}
+    
     return render(request,'Proveedores/Editar-Proveedor.html',contexto)
+
 # def FormularioAgregarProveedor(request):
 #     return render(request, 'Proveedores/Crear-Proveedor.html')
 
@@ -33,6 +37,8 @@ def ListarProveedor(request):
     LProveedor=Proveedor.objects.filter()
     context={"Lproveedor":LProveedor}
     return render(request,'Proveedores/Proveedores.html', context)
+
+
 
 
 # def EditarProveedor(request, idProveedor):

@@ -69,8 +69,12 @@
                                             <td data-field="nombre">{{listar.nombre}}</td>
                                             <td data-field="correo">{{listar.correo}}</td>
                                             <td data-field="direccion">{{listar.direccion}}</td>
-                                            <td data-field="estado">
-                                                <span class="badge badge-soft-success" style="font-size: 14px;">Activo</span>   
+                                            <td data-field="estado"> 
+                                               {% if listar.estado == False %}                                               
+                                                <span class="badge badge-soft-danger" style="font-size: 14px;">Inactivo</span>
+                                               {% else %}
+                                                <span class="badge badge-soft-success" style="font-size: 14px;">Activo</span> 
+                                               {% endif %}
                                             </td>
                                             <td>
                                                
