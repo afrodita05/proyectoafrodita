@@ -7,16 +7,9 @@ from django.contrib import messages
 
 def insumos (request):
     insumos = Insumo.objects.all()
-    estadoT = ("Activo")
-    estadoF = ("Inactivo")
-    if insumos == True:
-        estado = estadoT
-    else:
-        estado = estadoF
     return render (request, 'Insumos/Insumos.html', {'insumos': insumos})
 
 def estadoInsumo(request):
-    
     return render (request, 'Insumos/Insumos.html', )
 
 
@@ -37,7 +30,6 @@ def editarInsumo (request):
     insumo.estado = estado
     insumo.save()
     return redirect('Insumos')
-
 
 def eliminarInsumos(request, idInsumo):
     insumo = Insumo.objects.get(idInsumo = idInsumo)

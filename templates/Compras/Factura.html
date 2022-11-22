@@ -35,12 +35,6 @@
 </style>
 <body>
 
-<img src="{{ icon }}" class="img-invoice">
-<p class="head">
-    {{ comp.name|upper }}<br>
-    {{ comp.ruc }}<br>
-    {{ comp.address|upper }}
-</p>
 <p>
     {% for listar in Lcompra %}
     <b>FACTURA:</b> {{listar.dEnumeroFactura}}<br>
