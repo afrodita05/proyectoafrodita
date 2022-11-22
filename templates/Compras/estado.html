@@ -1,0 +1,77 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}Editar Insumo{% endblock title %}
+{% block extra_css %}
+    <link href="{% static 'css/validaciones.css'%}" rel="stylesheet" type="text/css" />
+{% endblock extra_css %}
+{% block content %}
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h3 class="mb-sm-0 font-size-40">Estado compra</h3>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Insumos </a></li>
+                                <li class="breadcrumb-item active"> Cambiar estado </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div style="margin: 60px;">
+                    <!--  FORMULARIO CON VALIDACIONES -->
+                    <form class="needs-validation" action="/estadoCompra/" novalidate method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{insumo.idInsumo}}">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="col-md-12">
+                                    <label for="example-datetime-local-input" class="form-label">Estado</label>
+                                    <select name="EstadoC" class="form-select">
+                                        <option value="1">Activo</option>
+                                        <option value="0">Inactivo</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-top: 40px; margin-bottom: 20px;" >
+                                <button type="submit" class="btn btn-primary" style="width: 20%; margin-right: 20px;">Editar insumo</button>
+                                <a href="{% url 'Insumos' %}" type="button" class="btn btn-danger" style="width: 20%">Cancelar</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- container-fluid -->
+    </div> <!-- End Page-content -->
+    {% block footer %}
+        {% include 'partials/footer.html' %}
+    {% endblock footer %}
+</div>       
+        
+<!-- end main content-->
+{% endblock content %}
+
+{% block extra_js %}
+<!-- Buttons examples -->
+<script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js'%}"></script>
+<script src="{% static 'libs/jszip/jszip.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/pdfmake.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/vfs_fonts.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js'%}"></script>
+<!-- Responsive examples -->
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js'%}"></script>
+<!-- pristine js -->
+<script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
+<!-- form validation -->
+<script src="{% static 'js/pages/form-validation.init.js'%}"></script>
+<script type="text/javascript" src="{% static  'js/validaciones.js' %}"></script>
+{% endblock extra_js %}

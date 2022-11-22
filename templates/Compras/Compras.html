@@ -67,10 +67,9 @@
                                                 <a  href="{% url 'DetalleCompras' listar.idCompra %}" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-eye-outline mdi-24px "></i>
                                                 </a>
-                                                <a  href="#" class="btn btn-outline-primary btn-sm">
-                                                    <i class="mdi mdi-cancel mdi-24px"></i>
-                                                </a>
-                                                
+                                                <a href="{% url 'estadocompra' listar.idCompra%}" class="btn btn-outline-primary btn-sm">
+                                                    <i class="mdi mdi-cancel mdi-24px"></i></i>
+                                                </a> 
                                         </tr>
                                         {% endfor %}
                                     </tbody>

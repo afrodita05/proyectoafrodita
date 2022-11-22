@@ -2,6 +2,7 @@ import json
 import random
 from django.contrib.staticfiles import finders
 from django.shortcuts import render, redirect
+
 from django.views.generic import TemplateView
 from Apps.Compras.models import Compra, Detalle_Compra
 from Apps.Insumos.models import Insumo 
@@ -56,6 +57,7 @@ def CrearCompra(request):
         DCompra.save()
         
         existenciasInsumo=Insumo.objects.filter(idInsumo=idInsumo).values_list('cantidad', flat=True).first()#Recoge el atributo "cantidad" de los insumos cuyo id sea igual al id almacenado en la variable "idInsumo"
+        
         existenciasInsumo = int(existenciasInsumo)
         print (existenciasInsumo, 'exiss')
         cantidadComprada =item['cantidad']
@@ -113,6 +115,7 @@ def ListarCompra(request):
     return render(request,'Compras/Compras.html', context)
 
 def DetalleCompras(request, id):
+    
     DTCompras=Detalle_Compra.objects.filter(idCompra_id=id).first
     idDTCompras = Detalle_Compra.objects.filter(idCompra_id=id).values_list('idDetalle_Compra', flat=True)
     Insumos = Detalle_Compra.objects.filter(idCompra_id=id).values_list('idInsumo', flat= True) 
@@ -124,6 +127,18 @@ def DetalleCompras(request, id):
     context={"DTCompras":DTCompras, "idInsumo":idInsumos, "cantidad":cantidadI}
     print (idDTCompras)
     return render(request,"Compras/Ver-Detalle.html",context) 
+
+def estadoCompra(request, id):
+   estadoCompra = Insumo.objects.get(estado= id)
+   return render(request,'Compras/estado.html', {'estadoCompra':estadoCompra})
+
+def esatdocompra (request):
+    idCompra = request.POST['id']
+    estadoC = request.POST['EstadoC']
+    compra = Insumo.objects.get(idCompra = idCompra)
+    compra.estadoC = estadoC
+    compra.save()
+    return redirect('Compra')
 
 def EliminarCompra(request, id):   
     ECompra=Compra.objects.get(idCompra=id)

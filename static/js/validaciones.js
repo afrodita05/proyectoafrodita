@@ -4,7 +4,7 @@ const inputs = document.querySelectorAll('#agregar input');
 const expresiones = {
 	numeroFactura: /^\d{2,6}$/, 
     cantidad: /^\d{1,6}$/, 
-    valorunidad: /^\d{1,6}$/, 
+    valorunidad: /^\d{1,3}(\.\d{3})*(,\d+)?$/, 
     unidades: /^\d{1,6}$/,
 }
 
@@ -55,15 +55,3 @@ inputs.forEach((input) => {
 	input.addEventListener('blur', validarFormulario);
 });
 
-formulario.addEventListener('submit', (e) => {
-	e.preventDefault();
-	if(campos.numeroFactura && campos.unidades && campos.valorunidad && campos.cantidad ){
-		formulario.reset();
-
-		document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
-			icono.classList.remove('formulario__grupo-correcto');
-		});
-	} else {
-		document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
-	}
-});

@@ -9,6 +9,7 @@ class Compra(models.Model):
     numeroFactura=models.CharField(max_length=60)
     fechaRecibo=models.DateTimeField(auto_now_add=True)
     ValorTotal=models.FloatField(max_length=10)
+    estadoC = models.BooleanField(default= True, verbose_name='Estado')
 
     
 class Detalle_Compra(models.Model):
