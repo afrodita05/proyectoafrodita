@@ -86,7 +86,6 @@
                                     </select>
                                 </div>
                             </div>
-                        
                             <div class="col-lg-4 formulario__grupo"  id="grupo__cantidad">
                                 <label for="cantidad" class="formulario__label">Cantidad</label>
                                 <div class=" formulario__grupo" id="grupo__cantidad">
@@ -100,24 +99,20 @@
                                 <input name="medida" class="form-control" type="text" readonly
                                     id="example-number-input">
                             </div>
+
                             <div class="row" style="margin-top: 20px;">
-                                <div class="col-lg-3 formulario__grupo"  id="grupo__unidades">
-                                    <label for="unidades" class="formulario__label">Unidades</label>
-                                    <div class=" formulario__grupo" id="unidades">
-                                        <input class="form-control formulario__input" id="unidades" name="unidades" type="number"  step="0.001" oninput="calcular()"/>
-                                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                                    </div>
-                                    <p class="formulario__input-error" style="color: red;">La Unidades tiene que ser de 1 a 6 dígitos y solo puede contener números.</p>
+                                <div class="col-md-3">
+                                    <label for="example-number-input" class="form-label">Unidades</label>
+                                    <input name="unidades" class="form-control" id="Cantidad" onkeypress="CalcularT()"
+                                        type="text" value="0" onkeypress="return valideKey(event);"  id="example-number-input">
                                 </div>
-                                <div class="col-lg-3 formulario__grupo"  id="grupo__valorunidad">
-                                    <label for="valorunidad" class="formulario__label">Valor unitario</label>
-                                    <div class=" formulario__grupo" id="valorunidad">
-                                        <input class="form-control formulario__input" id="valorunidad" name="valorunidad" type="number" step="0.001" oninput="calcular()"/>
-                                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                <div class=" col-md-3">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">Valor unitario</label>
+                                        <input name="valorunidad" type="text" id="Valor_Unitario"
+                                            onkeypress="CalcularT()" class="form-control" />
                                     </div>
-                                    <p class="formulario__input-error" style="color: red;">El valor unitario tiene que ser de 1 a 6 dígitos y solo puede contener números.</p>
                                 </div>
-                                
                                 <div class="col-lg-1">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Iva</label>
@@ -126,16 +121,18 @@
                                 </div>
                                 <div class="col-lg-5">
                                     <div class="form-group mb-3">
-                                        <label class="form-label">Subtotal</label>
-                                        <input class="form-control" id="Subtotal" name="subtotal" type="number" step="0.001" />
+                                        <label class="form-label">Valor total del insumo</label>
+                                        <input name="subtotal" value="$0" name="subtotal" readonly id="Valor_Total_Insumo"
+                                            class="form-control" />
                                     </div>
                                 </div>
                                 <div class=" col-lg-12">
                                     <div class="mb-3">
                                         <label class="form-label">Valor total</label>
-                                        <input class="form-control" id="valorTotal" name="ValorTotal" type="number" step="0.001" >
+                                        <input name="ValorTotal" value="$0"  id="ValorT" class="form-control" id="datepicker-basic">
                                     </div>
                                 </div>
+                                
                                 <div class="form-group" style=" margin-top: 40px; margin-bottom: 20px; text-align: center;" >
                                     <button type="submit" id="crearcompra"  for="agregar" class="btn btn-primary" style="width: 20%">Agregar</button>
                                     <button type="button" id="borrar" class="btn btn-danger" style="width: 20%; margin-right: 20px;">Limpiar lista</button>
@@ -229,5 +226,20 @@
 <script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
 <!-- form validation -->
 <script src="{% static 'js/pages/form-validation.init.js'%}"></script>
+<script>
+    
 
+    const Cantidad = document.querySelector("#Cantidad")
+    const Valor_Unitario = document.querySelector("#Valor_Unitario")
+    const Valor_Total_Insumo = document.querySelector("#Valor_Total_Insumo")
+    const Valor_Total = document.querySelector("#ValorT")
+
+
+    const CalcularT = () => {
+        Valor_Total_Insumo.value = "$" + Cantidad.value * Valor_Unitario.value
+        Valor_Total.value = Valor_Total_Insumo.value
+
+    }
+     
+</script>
 {% endblock extra_js %}
