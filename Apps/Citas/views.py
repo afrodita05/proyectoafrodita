@@ -118,16 +118,19 @@ def crearAgendaCosto(request, id):
                 nombreInsumo = Insumo.objects.filter(idInsumo=idInsumoActual).values_list('nombreInsumo', flat= True).first()
                 nombreInsumo= str(nombreInsumo)
                 cantidadInsumo = Insumo.objects.filter(idInsumo=idInsumoActual).values_list('cantidad', flat= True).first()
+                
                
                 cantidadServicio = Servicios_Insumo.objects.filter(Q(idInsumo=idInsumoActual) & Q(idServicio=idServicio)).values_list('cantidadUsada', flat= True).first() #Anidar condiciones: No basta con que la cantidad usada coincida en id de insumo, sino también en idServicios_Insumo.
                 cantidadInsumo=int(cantidadInsumo)
                 cantidadServicio=int(cantidadServicio)
 
                 cantidadFinal= cantidadInsumo-(cantidadServicio*proporcionServicio)
-                
-            
+                tipoUnidad = Insumo.objects.filter(idInsumo=idInsumoActual).values_list('tipoUnidad', flat= True).first()
+                estado = Insumo.objects.filter(idInsumo=idInsumoActual).values_list('estado', flat= True).first()
+                tipoUnidad = str(tipoUnidad)
+                estado= str(estado)
 
-                insumos =  Insumo(idInsumo=idInsumoActual, cantidad=cantidadFinal, nombreInsumo=nombreInsumo)
+                insumos = Insumo(idInsumo=idInsumoActual, cantidad=cantidadFinal, nombreInsumo=nombreInsumo, tipoUnidad= tipoUnidad, estado= estado)
                 insumos.save()
                 contador=contador+1
 
