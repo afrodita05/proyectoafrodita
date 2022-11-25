@@ -70,12 +70,13 @@
                                             <td data-field="correo">{{listar.correo}}</td>
                                             <td data-field="direccion">{{listar.direccion}}</td>
                                             <td data-field="estado"> 
-                                               {% if listar.estado == False %}                                               
-                                                <span class="badge badge-soft-danger" style="font-size: 14px;">Inactivo</span>
-                                               {% else %}
-                                                <span class="badge badge-soft-success" style="font-size: 14px;">Activo</span> 
-                                               {% endif %}
-                                            </td>
+                                                {% if listar.estado == False %}                                               
+                                                <span class="badge badge-soft-success" style="font-size: 14px;">Activo</span>
+                                                {% else %}                                               
+                                                 <span class="badge badge-soft-danger" style="font-size: 14px;">Inactivo</span> 
+                                                {% endif %}
+                                             </td>
+ 
                                             <td>
                                                
                                                 <a href="{% url 'EditarProveedor' listar.idProveedor %}" class="btn btn-outline-primary btn-sm">

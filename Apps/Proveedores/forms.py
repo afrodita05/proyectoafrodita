@@ -44,9 +44,12 @@ class FormularioProveedor(forms.ModelForm):
         model=Proveedor
         fields='__all__'
         Choises=(                    #select de un input
-            ('1', 'Activo'),
-            ('0','Inactivo'),
+            ('0', 'Activo'),
+            ('1','Inactivo'),
+
             ) 
+
+            
         #atributos de la tabla clientes
         
         widgets={      #los widgets son los campos de nuestra formulario donde  podremos asignar los atributos de nuestro formulario html
