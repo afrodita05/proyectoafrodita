@@ -67,7 +67,8 @@
                                 <a href="{% url 'Crear-Corporal' mostrar.idCliente %}" 
                                     type="button"
                                     class="btn btn-primary waves-effect " 
-                                    style="margin-left: 43%;"><i
+                                    style="margin-left: 43%;"
+                                    title="Este botón nos redirecciona a un formulario para crear un historial corporal"><i
                                     class="mdi mdi-human-handsdown"></i> 
                                     Adicionar Corporal
                                 </a>
@@ -90,7 +91,7 @@
                                         <td>{{listar.fechaCreacion}}</td>
                                         <td>{{listar.nombreE}}</td>
                                         <td>
-                                            <a href="{% url 'Clientes.Ver-Detalles.Corporal' listar.idCorporal %}" class="btn btn-outline-primary btn-sm">
+                                            <a href="{% url 'Clientes.Ver-Detalles.Corporal' listar.idCorporal %}" class="btn btn-outline-primary btn-sm" title="Este botón nos permite ver el detalle de un historial corporal como problemas que sufre, peso actual, modo de vida, entre otros">
                                                 <i class="mdi mdi-eye-outline  mdi-24px "></i>
                                             </a>
                                         </td>
@@ -113,7 +114,7 @@
                             <div class="col-lg-6 ms-lg-auto">
                                 <a  href="{% url 'Crear-Facial' mostrar.idCliente %}" 
                                     type="button"
-                                    class="btn btn-primary waves-effect " style="margin-left: 43%;">
+                                    class="btn btn-primary waves-effect " style="margin-left: 43%;" title="Este botón nos redirecciona a un formulario para crear un historial facial">
                                 <i class="mdi mdi-face-woman-outline"> </i> 
                                     Adicionarfacial
                                 </a>
@@ -136,7 +137,7 @@
                                         <td>{{listar.fechaCreacion}}</td>
                                         <td>{{listar.nombreE}}</td>
                                         <td>
-                                            <a href="{% url 'Clientes.Ver-Detalles.Facial' listar.idFacial %}" class="btn btn-outline-primary btn-sm">
+                                            <a href="{% url 'Clientes.Ver-Detalles.Facial' listar.idFacial %}" class="btn btn-outline-primary btn-sm" title="Este botón nos permite ver el detalle de un historial facial como factores agravantes, textura, aspecto del los poro, entre otros">
                                                 <i class="mdi mdi-eye-outline  mdi-24px "></i>
                                             </a>
                                         </td>
