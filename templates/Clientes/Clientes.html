@@ -37,7 +37,7 @@
                             </div>
                             
                             <div class="gap-2" style=" display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
-                                <a type="button" href="{% url 'Clientes.Crear-Cliente'%}" class="btn btn-primary waves-effect waves-light" style="width: 50%;" >Crear un cliente</a>
+                                <a type="button" href="{% url 'Clientes.Crear-Cliente'%}" class="btn btn-primary waves-effect waves-light" style="width: 50%;" title="Esten botón nos redirecciona a un formulario para crear un cliente">Crear un cliente</a>
                                 <div class="d-flex flex-wrap gap-3">
                                 </div>
                             </div>
@@ -69,11 +69,11 @@
                                                     <td data-field="sexo">{{listar.sexo}}</td>
                                                     <td data-field="sexo">{{listar.fechaActualizacion}}</td>
                                                     <td>
-                                                        <a href="{% url 'Clientes.Editar-Cliente' listar.idCliente %}" class="btn btn-outline-primary btn-sm ">
+                                                        <a href="{% url 'Clientes.Editar-Cliente' listar.idCliente %}" class="btn btn-outline-primary btn-sm " title="Este botón nos permite editar los datos del cliente">
                                                             <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
                                                         </a>
                                                         
-                                                        <a href="{% url 'Clientes.Ver-detalle' listar.idCliente %}" class="btn btn-outline-primary btn-sm">
+                                                        <a href="{% url 'Clientes.Ver-detalle' listar.idCliente %}" class="btn btn-outline-primary btn-sm" title="Este botón nos permite ver el detalle del cliente, como datos personales del cliente e historiales">
                                                             <i class="mdi mdi-eye-outline  mdi-24px "></i>
                                                         </a>
                                                     </td>
