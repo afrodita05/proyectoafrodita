@@ -5,7 +5,10 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from allauth.account.views import PasswordSetView, PasswordChangeView
 from django_otp.plugins.otp_totp.models import TOTPDevice
-
+from Apps.Compras.models import Compra
+from Apps.Insumos.models import Insumo
+from Apps.Clientes.models import Clientes
+from Apps.Proveedores.models import Proveedor
 
 
 
@@ -18,8 +21,12 @@ def index(request):
 class DashboardView(View):
     
     def get(self, request):
-        
-        return render(request, "dashboard.html")
+        insumoC=Insumo.objects.filter().count
+        compraC=Compra.objects.filter().count
+        proveedorC=Proveedor.objects.filter().count
+        clienteC=Clientes.objects.filter().count
+        context={"compraC":compraC, "insumoC":insumoC,"proveedorC":proveedorC,"clienteC":clienteC}
+        return render(request, "dashboard.html", context)
 
 
 

@@ -96,21 +96,27 @@
                             </div>
                             <div class="col-lg-2">
                                 <label for="example-number-input" class="form-label">Tipo de medida</label>
-                                <input name="medida" class="form-control" type="text" readonly
+                                <input name="medida" class="form-control" type="text" readonly value="{{insumo.tipoUnidad}}"
                                     id="example-number-input">
                             </div>
-
-                            <div class="row" style="margin-top: 20px;">
-                                <div class="col-md-3">
-                                    <label for="example-number-input" class="form-label">Unidades</label>
-                                    <input name="unidades" class="form-control" id="Cantidad" onkeypress="CalcularT()"
-                                        type="text" value="0" onkeypress="return valideKey(event);"  id="example-number-input">
+                            <div class="row" style="margin-top: 20px;" >
+                                <div class="col-md-3" id="grupo__unidades">
+                                    <label class="form-label">Unidades</label>
+                                    <div class=" formulario__grupo" id="grupo__unidades">
+                                        <input name="unidades" id="Cantidad" class="form-control formulario__input" onkeypress="CalcularT()"
+                                        type="text" value="0" onkeypress="return valideKey(event);" />
+                                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                    </div>
+                                    <p class="formulario__input-error" style="color: red;">La Unidades tiene que ser de 1 a 6 dígitos y solo puede contener números.</p>
                                 </div>
                                 <div class=" col-md-3">
-                                    <div class="form-group mb-3">
+                                    <div class="form-group mb-3" id="grupo__valorunidad">
                                         <label class="form-label">Valor unitario</label>
-                                        <input name="valorunidad" type="text" id="Valor_Unitario"
-                                            onkeypress="CalcularT()" class="form-control" />
+                                        <div class=" formulario__grupo" id="grupo__valorunidad">
+                                            <input name="valorunidad" value="0" type="text" id="Valor_Unitario" onkeypress="CalcularT()" class="form-control formulario__input" />
+                                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                        </div>
+                                        <p class="formulario__input-error" style="color: red;">El valor unitario tiene que ser de 1 a 7 dígitos y solo puede contener números.</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-1">
@@ -234,11 +240,13 @@
     const Valor_Total_Insumo = document.querySelector("#Valor_Total_Insumo")
     const Valor_Total = document.querySelector("#ValorT")
 
-
     const CalcularT = () => {
-        Valor_Total_Insumo.value = "$" + Cantidad.value * Valor_Unitario.value
+        Valor_Total_Insumo.value =(Valor_Unitario.value * Cantidad.value).toLocaleString("en",{
+            style: "currency",
+	        currency: "COP"
+        });
         Valor_Total.value = Valor_Total_Insumo.value
-
+        
     }
      
 </script>

@@ -30,7 +30,7 @@ from Apps.Usuarios.views import *
 from Apps.Servicios.views import *
 from Apps.Configuracion.views import *
 from Apps.Proveedores.views import CrearProveedor,ListarProveedor,EditarProveedor
-from Apps.Compras.views import FormularioAgregarCompra,CrearCompra,ListarCompra,EliminarCompra,DetalleCompras, FormularioAgregarInsumo, CrearInsumo, estadoCompra, esatdocompra
+from Apps.Compras.views import FormularioAgregarCompra,CrearCompra,ListarCompra,EliminarCompra,DetalleCompras, FormularioAgregarInsumo, CrearInsumo, estadoCompra
 from Apps.Insumos.views import insumos
 
 
@@ -217,16 +217,12 @@ urlpatterns = [
     
     
     #COMPRAS
-    path(
-        "ListarCompra/",
-        view= ListarCompra,
-        name= "Compra",
-    ),
+    path( "ListarCompra/", view= ListarCompra,name= "Compra"),
     path('CrearCompra/', CrearCompra, name='CrearCompra'),
     path('CrearInsumo/', CrearInsumo, name='CrearInsumo'),
     path('FormularioAgregarInsumo/', FormularioAgregarInsumo,),
     path('FormularioAgregarCompra/', FormularioAgregarCompra,),
-    path ('estadoCompra/', esatdocompra,  ),
+    
     path('EliminarCompra/<int:id>', EliminarCompra, name='EliminarCompra'),
     path('DetalleCompras/<int:id>', DetalleCompras, name='DetalleCompras'),
     path('EstadoCompra/<int:id>', estadoCompra, name='estadocompra'),

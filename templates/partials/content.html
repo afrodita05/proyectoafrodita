@@ -24,88 +24,112 @@
 
                     <div class="row">
                         <div class="col-xl-3 col-md-6">
-                            <!-- card -->
-                            <div class="card card-h-100">
-                                <!-- card body -->
+                            <div class="card card-h-400">
                                 <div class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-grow-1">
-                                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Total de clientes</span>
-                                            <h4 class="mb-3">
-                                            <p>{{listar.totalClientes}}</p>
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </div><!-- end card body -->
-                            </div><!-- end card -->
-                        </div><!-- end col -->
-    
-                        <div class="col-xl-3 col-md-6">
-                            <!-- card -->
-                            <div class="card card-h-100">
-                                <!-- card body -->
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-grow-1">
-                                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Items</span>
-                                            <h4 class="mb-3">
-                                                <span class="counter-value" data-target="1256">0</span>
-                                            </h4>
-                                            <div class="text-nowrap">
-                                                <span class="badge bg-soft-danger text-danger">-29 Trades</span>
-                                                <span class="ms-1 text-muted font-size-13">Since last week</span>
+                                    <div class="d-flex">
+                                        <div class="row">
+                                            <span class="text-muted mb-3 lh-1 d-block text-truncate" style="text-align: center; font-size: 20px;">Total de compras</span>
+                                            <div class="col-xl-6">
+                                                <div class="flex-grow-1" style="text-align: center;">
+                                                    <img src="{% static 'images/CarritoCompras.png'%}" alt="" height="70">
+                                                    <h4 class="mb-3">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="flex-shrink-0 text-end dash-widget">
-                                            <div id="mini-chart2" data-colors='["#6951ce", "#f04d80"]' class="apex-charts"></div>
-                                        </div>
-                                    </div>
-                                </div><!-- end card body -->
-                            </div><!-- end card -->
-                        </div><!-- end col-->
-    
-                        <div class="col-xl-3 col-md-6">
-                            <!-- card -->
-                            <div class="card card-h-100">
-                                <!-- card body -->
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-grow-1">
-                                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Average Sales</span>
-                                            <h4 class="mb-3">
-                                                $<span class="counter-value" data-target="7.54">0</span>M
-                                            </h4>
-                                            <div class="text-nowrap">
-                                                <span class="badge bg-soft-warning text-warning">+ $2.8k</span>
-                                                <span class="ms-1 text-muted font-size-13">Since last week</span>
+                                            <div class="col-xl-6">
+                                                <div class="flex-grow-1" style="text-align: center; margin-top: 15px;">
+                                                    <h4 class="mb-3" >
+                                                          
+                                                        <span class="counter-value" data-target="{{compraC}}" style="font-size: 40px;"></span>
+                                                    </h4>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="flex-shrink-0 text-end dash-widget">
-                                            <div id="mini-chart3" data-colors='["#6951ce", "#f04d80"]' class="apex-charts"></div>
-                                        </div>
-                                    </div>
-                                </div><!-- end card body -->
-                            </div><!-- end card -->
-                        </div><!-- end col -->
-    
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card card-h-100">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-grow-1">
-                                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Order Delivery</span>
-                                            <h4 class="mb-3">
-                                                <span class="counter-value" data-target="18.34">0</span>%
-                                            </h4>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>  
+                        </div>
+    
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card card-h-400">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="row">
+                                            <span class="text-muted mb-3 lh-1 d-block text-truncate" style="text-align: center; font-size: 20px;">Total de insumos</span>
+                                            <div class="col-xl-6">
+                                                <div class="flex-grow-1" style="text-align: center;">
+                                                    <img src="{% static 'images/Insumos.png'%}" alt="" height="70">
+                                                    <h4 class="mb-3">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="flex-grow-1" style="text-align: center; margin-top: 15px;">
+                                                    <h4 class="mb-3" >
+                                                          
+                                                        <span class="counter-value" data-target="{{insumoC}}" style="font-size: 40px;"></span>
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card card-h-400">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="row">
+                                            <span class="text-muted mb-3 lh-1 d-block text-truncate" style="text-align: center; font-size: 20px;">Total de proveedores</span>
+                                            <div class="col-xl-6">
+                                                <div class="flex-grow-1" style="text-align: center;">
+                                                    <img src="{% static 'images/Camion.png'%}" alt="" height="70">
+                                                    <h4 class="mb-3">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="flex-grow-1" style="text-align: center; margin-top: 10px;">
+                                                    <h4 class="mb-3" >
+                                                          
+                                                        <span class="counter-value" data-target="{{proveedorC}}" style="font-size: 40px;"></span>
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card card-h-400">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="row">
+                                            <span class="text-muted mb-3 lh-1 d-block text-truncate" style="text-align: center; font-size: 20px;">Total de clientes</span>
+                                            <div class="col-xl-6">
+                                                <div class="flex-grow-1" style="text-align: center;">
+                                                    <img src="{% static 'images/Clientes.png'%}" alt="" height="70">
+                                                    <h4 class="mb-3">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="flex-grow-1" style="text-align: center; margin-top: 10px;">
+                                                    <h4 class="mb-3" >
+                                                          
+                                                        <span class="counter-value" data-target="{{clienteC}}" style="font-size: 40px;"></span>
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-xl-6Z">
+                        <div class="col-xl-6">
                             <!-- card -->
                             <div class="card">
                                 <!-- card body -->
@@ -121,12 +145,10 @@
                                     },
 
                                     title: {
-                                        text: 'Born persons, by girls\' name'
+                                        text: 'Top 5 clientes por servcios contratados'
                                     },
 
-                                    subtitle: {
-                                        text: 'Resize the frame or click buttons to change appearance'
-                                    },
+                                    
 
                                     legend: {
                                         align: 'right',
@@ -135,7 +157,7 @@
                                     },
 
                                     xAxis: {
-                                        categories: ['2019', '2020', '2021'],
+                                        categories: ['2019', '2020', '2021', '2022', '2021'],
                                         labels: {
                                             x: -10
                                         }
@@ -144,20 +166,14 @@
                                     yAxis: {
                                         allowDecimals: false,
                                         title: {
-                                            text: 'Amount'
+                                            text: 'Servicios'
                                         }
                                     },
 
                                     series: [{
                                         name: 'Ava',
                                         data: [38, 51, 34]
-                                    }, {
-                                        name: 'Dina',
-                                        data: [31, 26, 27]
-                                    }, {
-                                        name: 'Malin',
-                                        data: [38, 42, 41]
-                                    }],
+                                    },],
 
                                     responsive: {
                                         rules: [{

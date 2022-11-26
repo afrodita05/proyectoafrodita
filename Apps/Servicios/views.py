@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.views.generic import TemplateView
 from Apps.Servicios.models import Servicios, Servicios_Insumo
 from Apps.Insumos.models import Insumo
+from Apps.Servicios.forms import *
 import json
 from multiprocessing import context
 from Apps.Servicios.forms import *
@@ -157,22 +158,4 @@ def actualizarS(request, id):
 def eliminarS(request, id):   
     registro= Servicios.objects.get(idServicio=id)
     registro.delete() 
-    return redirect("Servicio")    
-
-
-# Create your views here.
-# class Servicioview(TemplateView):
-#     pass
-
-# Servicios= Servicioview.as_view(
-#     template_name="Servicios/Servicios.html",
-# )
-# Crear_Servicio= Servicioview.as_view(
-#     template_name="Servicios/Crear-Servicio.html",
-# )
-# Editar_Servicio= Servicioview.as_view(
-#     template_name="Servicios/Editar-Servicio.html",
-# )
-# Detalle_Servicio= Servicioview.as_view(
-#     template_name="Servicios/Ver-Detalle.html",
-# )
+    return redirect("Servicio")   
