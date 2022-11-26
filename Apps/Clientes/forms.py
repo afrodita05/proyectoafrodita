@@ -91,12 +91,6 @@ class FormularioCorporal(forms.ModelForm):
         if validarKilos==None:
             raise ValidationError("Error. Solo se permite ingresar decimales")
         return kilos 
-    def clean_talla(self):
-        talla=self.cleaned_data['talla']
-        validarTalla=re.search(r'^[0-9.]{1,7}$',talla, flags=re.MULTILINE)
-        if validarTalla==None:
-            raise ValidationError("Error. Solo se permite ingresar decimales")
-        return talla
     def clean_altura(self):
         altura=self.cleaned_data['altura']
         validarAltura=re.search(r'^[0-9.]{1,7}$',altura, flags=re.MULTILINE)
@@ -136,6 +130,11 @@ class FormularioCorporal(forms.ModelForm):
             ('Tibia','Tibia'),
             ('Caliente','Caliente'),
             )
+        talla=(
+            ('Small','Small'),
+            ('Medium','Medium'),
+            ('Big','Big'),
+            )
         widgets={
             'nombreE':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese el nombre completo','required':False}),
             #Sufre problemas
@@ -147,7 +146,7 @@ class FormularioCorporal(forms.ModelForm):
             'otrosP':forms.Textarea(attrs={'class':'form-control','required':False,'id':'progresspill-address-input','rows':'2'}),
             #Peso actual
             'kilos':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese kilos','required':False}),
-            'talla':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese talla','required':False}),
+            'talla':forms.Select(choices=talla,attrs={'class':'form-select'}),
             'altura':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese altura','required':False}),
             'masaC':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese masa corporal','required':False}),
             'siluetas':forms.Select(choices=siluetasChoices,attrs={'class':'form-select'}),

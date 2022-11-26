@@ -34,7 +34,7 @@ class EsteticoCorporal(models.Model):
     otrosP=models.TextField(blank=True,null=True)
     #Peso actual
     kilos=models.CharField(max_length=7)
-    talla=models.CharField(max_length=7)
+    talla=models.CharField(max_length=6)
     altura=models.CharField(max_length=7)
     masaC=models.CharField(max_length=7)
     siluetas=models.CharField(max_length=20)
