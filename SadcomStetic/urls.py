@@ -26,12 +26,11 @@ from Apps.Citas.views import *
 from Apps.login.views import Login, recuperar_contrasena
 # from Apps.Usuarios.views import Usuarios, Crear_Usuario, Editar_Usuario
 from Apps.Clientes.views import *
-from Apps.Usuarios.views import usuario, crearUsuario, formularioUsuario, editarU, actualizarU, pruebaCr
-from Apps.Servicios.views import servicio, crearServicio, formularioServicio, editarS, actualizarS, eliminarS
-from Apps.Configuracion.views import crearRol,formularioRol,listarRol
+from Apps.Usuarios.views import *
+from Apps.Servicios.views import *
+from Apps.Configuracion.views import *
 from Apps.Proveedores.views import CrearProveedor,ListarProveedor,EditarProveedor
-from Apps.Configuracion.views import crearRol,formularioRol,listarRol, pruebaRol
-from Apps.Compras.views import FormularioAgregarCompra,CrearCompra,ListarCompra,EliminarCompra,DetalleCompras, FormularioAgregarInsumo, CrearInsumo, estadoCompra, esatdocompra
+from Apps.Compras.views import FormularioAgregarCompra,CrearCompra,ListarCompra,EliminarCompra,DetalleCompras, FormularioAgregarInsumo, CrearInsumo, estadoCompra
 from Apps.Insumos.views import insumos
 
 
@@ -71,10 +70,8 @@ urlpatterns = [
     path('crearUsuario/',crearUsuario),
     path('formularioUsuario/',formularioUsuario),
     path('editarU/<int:id>',editarU, name='editarUsuario'),
-    path('actualizarU/<int:id>',actualizarU, name='actualizarUsuario'),
+    path('actualizarU/<int:id>',actualizarU, name='actualizarU'),
 
-
-    path('pruebaCr/',pruebaCr),
 
 
     #SERVICIOS
@@ -84,7 +81,10 @@ urlpatterns = [
         name= "Servicio",
     ),
     path('crearServicio/',crearServicio),
-    path('formularioServicio/',formularioServicio),
+    path('rutaV/',rutaV),
+    path('verificacionServicio/',verificacionServicio),
+    path('verificacionServicioEditar/<int:id>',verificacionServicioEditar, name='verificacionServicioEditar'),
+    path('formularioServicio/<int:id>',formularioServicio, name='formularioServicio'),
     path('editarS/<int:id>',editarS, name='editarServicio'),
     path('actualizarS/<int:id>',actualizarS, name='actualizarServicio'),
     path('eliminarS/<int:id>',eliminarS, name='eliminarServicio'),
@@ -129,9 +129,21 @@ urlpatterns = [
         ),
     
     path(
-        'pruebaRol/',
-        view=pruebaRol, 
-        name='pruebaRol'
+        'detalleRol/<int:id>',
+        view=detalleRol, 
+        name='detalleRol'
+        ),
+
+    path(
+        'editarRol/<int:id>',
+        view=editarRol, 
+        name='editarRol'
+        ),
+
+    path(
+        'actualizarRol/<int:id>',
+        view=actualizarRol, 
+        name='actualizarRol'
         ),
     # path(
     #     'editarRol/<int:id>',
@@ -205,16 +217,12 @@ urlpatterns = [
     
     
     #COMPRAS
-    path(
-        "ListarCompra/",
-        view= ListarCompra,
-        name= "Compra",
-    ),
+    path( "ListarCompra/", view= ListarCompra,name= "Compra"),
     path('CrearCompra/', CrearCompra, name='CrearCompra'),
     path('CrearInsumo/', CrearInsumo, name='CrearInsumo'),
     path('FormularioAgregarInsumo/', FormularioAgregarInsumo,),
     path('FormularioAgregarCompra/', FormularioAgregarCompra,),
-    path ('estadoCompra/', esatdocompra,  ),
+    
     path('EliminarCompra/<int:id>', EliminarCompra, name='EliminarCompra'),
     path('DetalleCompras/<int:id>', DetalleCompras, name='DetalleCompras'),
     path('EstadoCompra/<int:id>', estadoCompra, name='estadocompra'),

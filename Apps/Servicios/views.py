@@ -4,81 +4,129 @@ from django.urls import reverse
 from django.views.generic import TemplateView
 from Apps.Servicios.models import Servicios, Servicios_Insumo
 from Apps.Insumos.models import Insumo
+from Apps.Servicios.forms import *
 import json
 from multiprocessing import context
+from django.contrib.auth.decorators import permission_required
 
+@permission_required('Servicios.view_servicios') 
 def servicio(request):
     servicio=Servicios.objects.filter()
     context={"servicio":servicio}
     return render(request,"Servicios/Servicios.html",context)
 
-
-def formularioServicio(request):
+@permission_required('Servicios.view_servicios') 
+def formularioServicio(request,id):
     insumo=Insumo.objects.filter()
-    context={"insumo":insumo}   
+    mostrar=Servicios.objects.filter(idServicio=id).first()
+    context={"insumo":insumo,'idServicio':id, "mostrar":mostrar}
     return render(request,'Servicios/Crear-Servicio.html',context)
 
+@permission_required('Servicios.view_servicios') 
+def rutaV(request):
+    servicio=Servicios.objects.filter()
+    context={"servicio":servicio}
+    return render(request,"Servicios/VerificarNombre.html",context)
+    
+@permission_required('Servicios.view_servicios') 
+def verificacionServicio(request):
+    nombreServicio= request.POST['nServicio']
+    tiempoServicio= request.POST['tiempo']
+    existe=Servicios.objects.filter(nServicio=nombreServicio).exists()
+    idServicio = Servicios.objects.filter(nServicio=nombreServicio).values_list('idServicio', flat=True).first()
 
+    if Servicios.objects.filter(idServicio=idServicio).exists():
+            error="El servicio ingresado ya existe. Por favor, ingresa uno diferente."
+            contexto={"error":error}
+            return render(request,'Servicios/VerificarNombre.html',contexto)
+    else:   
+        servicios = Servicios(
+            nServicio=nombreServicio, 
+            tiempo= tiempoServicio,
+        )
+
+        servicios.save()
+        idServicio= servicios.idServicio
+        return redirect('formularioServicio',idServicio)
+
+@permission_required('Servicios.view_servicios') 
+def editarS(request, id):
+    mostrar=Servicios.objects.filter(idServicio=id).first()
+    print(mostrar)
+    context={"mostrar":mostrar}
+    return render(request,"Servicios/VerificarNombreEditar.html",context)
+
+@permission_required('Servicios.view_servicios') 
+def verificacionServicioEditar(request,id):
+
+    nombreServicio= request.GET['nombre']
+    tiempoServicio = request.GET['tiempo']
+    actualizar=Servicios.objects.get(idServicio=id)
+    actualizar.nServicio=nombreServicio
+    servicio= Servicios.objects.filter(idServicio=id)
+
+    nombrePropio = Servicios.objects.filter(idServicio=id).values('nServicio')[0]['nServicio']
+    
+    if Servicios.objects.filter(nServicio=nombrePropio):
+        actualizar.tiempo=tiempoServicio 
+        actualizar.save()
+        idServicio= actualizar.idServicio
+        return redirect('formularioServicio',idServicio)
+    else:   
+        if Servicios.objects.filter(nServicio=actualizar.nServicio).exists():
+            error="El servicio ingresado ya existe. Por favor, ingresa uno diferente."
+            context={"error":error}
+            return render(request, 'Servicios/Editar-Servicio.html',context) #editar
+        else:
+            actualizar.tiempo=tiempoServicio 
+            actualizar.save()
+            idServicio= actualizar.idServicio
+            return redirect('formularioServicio',idServicio)
+    
+
+
+
+@permission_required('Servicios.view_servicios') 
 def crearServicio(request):
+    #PASO 2:
+    #Añadir costo del servicio
     data= json.loads(request.body)
     items = data["items"]
+    
     print(items,type(items))
     servicios=""
-
+    idServicio= request.POST.get('idActual')
     for item in items:
 
         servicios = Servicios(
+            idServicio=item['idActual'],
             nServicio=item['nombre'],
             tiempo=item['tiempo'], 
+            valor=item['valor'],
         )
 
     servicios.save()
 
     idServicio=servicios.idServicio
+    print("ID ES:",idServicio)
 
     for item in items:
         insumoCompra=item['insumo'] 
-        idInsumo = Insumo.objects.filter(nombre=insumoCompra).values('idInsumo')[0]['idInsumo']
+        idInsumo = Insumo.objects.filter(nombreInsumo=insumoCompra).values('idInsumo')[0]['idInsumo']
 
         ServiciosxInsumo= Servicios_Insumo(
             idServicio_id=idServicio,
-            idInsumo_id=idInsumo
+            idInsumo_id=idInsumo,
+            cantidadUsada=item['cantidad'],
 
         )
         ServiciosxInsumo.save()
 
     return redirect("Servicio")
 
-    # DCompra=Detalle_Compra(
-    #     idCompra_id=idCompra,
-    #     idInsumo_id=idInsumo
-    #     )
-    #     DCompra.save()
 
-    # # Crear tabla intermedia y guardar los valores correspondientes utilizando la view
     
-    # errorS= []
-    # if Servicios.objects.filter(nServicio=nombreServicio).exists():
-      
-    #     errorS.append(1)
-    #     context={"errorS":errorS}
-    #     return render(request, 'Servicios/Crear-Servicio.html',context)
-    # else:
-    #     tiempoServicio= request.POST['tiempo']
-    #     servicios=Servicios(nServicio=nombreServicio,tiempo=tiempoServicio) 
-    #     errorS.clear()
-    #     servicios.save()
-    
-
-
-
-
-def editarS(request, id):
-    mostrar=Servicios.objects.filter(idServicio=id).first()
-    context={"mostrar":mostrar}
-    return render(request,"Servicios/Editar-Servicio.html",context)
-    
-
+@permission_required('Servicios.view_servicios') 
 def actualizarS(request, id):
     nombreServicio= request.GET['nombre']
     errorS= []
@@ -105,26 +153,8 @@ def actualizarS(request, id):
         
     
 
-
+@permission_required('Servicios.view_servicios') 
 def eliminarS(request, id):   
     registro= Servicios.objects.get(idServicio=id)
     registro.delete() 
-    return redirect("Servicio")    
-
-
-# Create your views here.
-# class Servicioview(TemplateView):
-#     pass
-
-# Servicios= Servicioview.as_view(
-#     template_name="Servicios/Servicios.html",
-# )
-# Crear_Servicio= Servicioview.as_view(
-#     template_name="Servicios/Crear-Servicio.html",
-# )
-# Editar_Servicio= Servicioview.as_view(
-#     template_name="Servicios/Editar-Servicio.html",
-# )
-# Detalle_Servicio= Servicioview.as_view(
-#     template_name="Servicios/Ver-Detalle.html",
-# )
+    return redirect("Servicio")   
