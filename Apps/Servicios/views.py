@@ -83,9 +83,6 @@ def verificacionServicioEditar(request,id):
             idServicio= actualizar.idServicio
             return redirect('formularioServicio',idServicio)
     
-
-
-
 @permission_required('Servicios.view_servicios') 
 def crearServicio(request):
     #PASO 2:
@@ -124,8 +121,6 @@ def crearServicio(request):
 
     return redirect("Servicio")
 
-
-    
 @permission_required('Servicios.view_servicios') 
 def actualizarS(request, id):
     nombreServicio= request.GET['nombre']
@@ -149,10 +144,7 @@ def actualizarS(request, id):
             errorS.clear()
             actualizar.save()
             return redirect("Servicio")
-     
-        
-    
-
+   
 @permission_required('Servicios.view_servicios') 
 def eliminarS(request, id):   
     registro= Servicios.objects.get(idServicio=id)

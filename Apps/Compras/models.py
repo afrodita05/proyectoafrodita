@@ -8,7 +8,7 @@ class Compra(models.Model):
     idProveedor=models.ForeignKey(Proveedor, related_name='Compra', on_delete=models.PROTECT, null=True)
     numeroFactura=models.CharField(max_length=60)
     fechaRecibo=models.DateTimeField(auto_now_add=True)
-    ValorTotal=models.FloatField(max_length=10)
+    ValorTotal=models.CharField(max_length=14)
     estadoC = models.BooleanField(default= True, verbose_name='Estado')
 
     
@@ -19,5 +19,5 @@ class Detalle_Compra(models.Model):
     cantidad = models.IntegerField(null= True)
     unidad= models.IntegerField(null = True)
     costoUnidad = models.FloatField(null= True)
-    subTotal = models.FloatField(null= True)
-    total = models.FloatField(null = True)
+    subTotal = models.CharField(null= True, max_length=14)
+    total = models.CharField(null = True, max_length=14)

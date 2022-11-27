@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}Editar Insumo{% endblock title %}
 {% block extra_css %}
-    <link href="{% static 'css/validaciones.css'%}" rel="stylesheet" type="text/css" />
+<link href="{% static 'css/validaciones.css'%}" rel="stylesheet" type="text/css" />
 {% endblock extra_css %}
 {% block content %}
 <div class="main-content">
@@ -23,11 +23,18 @@
                 </div>
             </div>
             <div class="card">
+                {% for x in errorIr %}
+                    <div class="alert alert-danger alert-dismissible alert-label-icon label-arrow fade show"
+                        role="alert" style="margin-top: 10px;">
+                        <i class="mdi mdi-block-helper label-icon"></i><strong>Error.</strong> El insumo ingresado ya existe.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                        aria-label="Close"></button>
+                    </div>
+                {% endfor %}
                 <div style="margin: 60px;">
                     <!--  FORMULARIO CON VALIDACIONES -->
-                    <form class="needs-validation" action="/editarInsumo/" novalidate method="POST">
+                    <form class="formulario" action="{% url 'actualizarI' insumo.idInsumo %}" novalidate method="POST">
                         {% csrf_token %}
-                        
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-3">
@@ -43,15 +50,18 @@
                             <div class="col-lg-6 ms-lg-auto">
                                 <div class="mt-4 mt-lg-0">
                                     <div class="col-md-12">
-                                        <label for="example-number-input" class="form-label">Cantidad</label>
-                                        <input class="form-control" type="number"  value="{{insumo.cantidad}}" min="0"
-                                            id="cantidad" name="cantidad" required>
-                                        <div class="invalid-tooltip" style="margin-top: 5px;">
-                                            Campo obligatorio .
-                                         </div>
+                                        <div class="col-lg-12 formulario__grupo" id="grupo__cantidad">
+                                            <label for="cantidad" class="formulario__label">Cantidad</label>
+                                            <div class=" formulario__grupo" id="grupo__cantidad">
+                                                <input class="form-control formulario__input" id="cantidad" name="cantidad" value="{{insumo.cantidad}}" type="text" />
+                                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                            </div>
+                                            <p class="formulario__input-error" style="color: red;">La cantidad tiene que ser de 1 a 6 dígitos y solo puede contener números.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="col-xl-6">
                                 <div class="col-md-12">
                                     <label for="example-datetime-local-input" class="form-label">Tipo de unidad</label>
@@ -79,19 +89,20 @@
                         </div>
                     </form>
                 </div>
-            </div> <!-- end col -->
-        </div> <!-- container-fluid -->
-    </div> <!-- End Page-content -->
+            </div> 
+        </div> 
+    </div> 
     {% block footer %}
         {% include 'partials/footer.html' %}
     {% endblock footer %}
 </div>       
         
-<!-- end main content-->
+
 {% endblock content %}
 
 {% block extra_js %}
 <!-- Buttons examples -->
+
 <script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js'%}"></script>
 <script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js'%}"></script>
 <script src="{% static 'libs/jszip/jszip.min.js'%}"></script>

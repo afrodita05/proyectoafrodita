@@ -13,9 +13,14 @@ const onSubmitForm = (event) => {
     });
     items.push(newData);
     renderItemList(items)
+    c = parseFloat(document.getElementById("Valor_Total_Insumo").value) || 0
+    console.log (c)
+    var z = document.getElementById("ValorT").value
+    var t = document.getElementById("ValorT");
+    t.value= Number(z)+Number(c)
     saveItemsList(items)
+    
 };
-
 
 const clearLocalStorage = () => {
     items = [];
@@ -76,15 +81,5 @@ btnGuardar.addEventListener('click', async (event) => {
     
 });
 
-let numFactura = document.getElementById('numFactura')
 
-numFactura.addEventListener('keypress', (event) =>{
-    event.preventDefault()
-    let codigoKey = event.keyCode
-    let valorKey = String.fromCharCode(codigoKey)
-    let valor = parseInt(valorKey)
-    if (valor){
-        numFactura.value += valor
-    }
-})
 

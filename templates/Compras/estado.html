@@ -25,9 +25,9 @@
             <div class="card">
                 <div style="margin: 60px;">
                     <!--  FORMULARIO CON VALIDACIONES -->
-                    <form class="needs-validation" action="/estadoCompra/" novalidate method="POST">
+                    <form class="needs-validation" action="{% url 'actualizarE' estadoCompra.idCompra%}" novalidate method="POST">
                         {% csrf_token %}
-                        <input type="hidden" name="id" value="{{insumo.idInsumo}}">
+                        <input type="hidden" name="id" value="{{compra.idCompra}}">
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="col-md-12">
@@ -40,7 +40,7 @@
                             </div>
                             <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-top: 40px; margin-bottom: 20px;" >
                                 <button type="submit" class="btn btn-primary" style="width: 20%; margin-right: 20px;">Editar insumo</button>
-                                <a href="{% url 'Insumos' %}" type="button" class="btn btn-danger" style="width: 20%">Cancelar</a>
+                                <a href="{% url 'Compra' %}" type="button" class="btn btn-danger" style="width: 20%">Cancelar</a>
                             </div>
                         </div>
                     </form>
