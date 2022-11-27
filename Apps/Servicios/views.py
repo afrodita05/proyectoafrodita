@@ -61,28 +61,42 @@ def editarS(request, id):
 def verificacionServicioEditar(request,id):
 
     nombreServicio= request.GET['nombre']
+    
+    idServicio = Servicios.objects.filter(idServicio=id)
+
     tiempoServicio = request.GET['tiempo']
     actualizar=Servicios.objects.get(idServicio=id)
-    actualizar.nServicio=nombreServicio
-    servicio= Servicios.objects.filter(idServicio=id)
-
     nombrePropio = Servicios.objects.filter(idServicio=id).values('nServicio')[0]['nServicio']
+    actualizar.nServicio=nombreServicio
     
-    if Servicios.objects.filter(nServicio=nombrePropio):
-        actualizar.tiempo=tiempoServicio 
-        actualizar.save()
-        idServicio= actualizar.idServicio
-        return redirect('formularioServicio',idServicio)
-    else:   
-        if Servicios.objects.filter(nServicio=actualizar.nServicio).exists():
-            error="El servicio ingresado ya existe. Por favor, ingresa uno diferente."
-            context={"error":error}
-            return render(request, 'Servicios/Editar-Servicio.html',context) #editar
-        else:
+    print("El nombre es el siguiente: ",actualizar.nServicio)
+    print("El nombre propio es: ", nombrePropio)
+
+    existe = Servicios.objects.filter(nServicio=nombreServicio).exists()
+    existePropio = Servicios.objects.filter(nServicio=nombrePropio)
+    print("EXISTE: ", existe)
+    print("EXISTE PROPIO: ", existePropio)
+    if existe:  
+        
+        if actualizar.nServicio==nombrePropio: #Confirmar que el nombre ingresado es el nombre propio
+            print("El nombre propio 2 es: ", nombrePropio)
+            print("El nombre que no debería cambiar es: ", actualizar.nServicio)
             actualizar.tiempo=tiempoServicio 
             actualizar.save()
             idServicio= actualizar.idServicio
             return redirect('formularioServicio',idServicio)
+
+        else:
+            error="El servicio ingresado ya existe. Por favor, ingresa uno diferente."
+            mostrar=Servicios.objects.filter(idServicio=id).first()
+            context={"error":error, "mostrar":mostrar}
+            return render(request, 'Servicios/VerificarNombreEditar.html',context) #editar
+     
+    else:  
+        actualizar.tiempo=tiempoServicio 
+        actualizar.save()
+        idServicio= actualizar.idServicio
+        return redirect('formularioServicio',idServicio)
     
 
 
@@ -133,7 +147,8 @@ def actualizarS(request, id):
     errorS= []
     tiempoServicio = request.GET['tiempo']
     actualizar=Servicios.objects.get(idServicio=id)
-    actualizar.nServicio=nombreServicio #Será este?
+    actualizar.nServicio=nombreServicio 
+    
     nombrePropio = Servicios.objects.filter(idServicio=id).values('nServicio')[0]['nServicio']
     if Servicios.objects.filter(nServicio=nombrePropio):
         actualizar.tiempo=tiempoServicio 
