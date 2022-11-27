@@ -42,6 +42,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
+                        <div class="card-header bg-transparent border-primary">
+                            <h5 class="my-0 text-primary"><i class="mdi mdi-cart-check me-3"></i>Compras Activas</h5>
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="datatable" class="table table-nowrap align-middle">
@@ -57,6 +60,7 @@
                                     </thead>
                                     <tbody>
                                         {% for listar in Lcompra %}
+                                        {% if listar.estadoC == True %}
                                         <tr data-id="1">
                                             <td data-field="codigo">{{listar.codigoCompra}}</td>
                                             <td data-field="factura">{{listar.numeroFactura}}</td>
@@ -70,7 +74,8 @@
                                                 <a href="{% url 'estadocompra' listar.idCompra%}" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-cancel mdi-24px"></i></i>
                                                 </a> 
-                                        </tr>
+                                        </tr> 
+                                        {% endif %}
                                         {% endfor %}
                                     </tbody>
                                 </table>
@@ -79,60 +84,49 @@
                     </div>
                 </div> <!-- end col -->
             </div> 
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Detalle de compra</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header bg-transparent border-primary">
+                            <h5 class="my-0 text-primary"><i class="mdi mdi-cancel me-3"></i>Compras canceladas</h5>
                         </div>
-                        <div class="modal-body">
-                            <div >
-                                <div style="margin: 60px;">
-                                    <h2>Detalles de compra:</h2>
-                                    <br>
-                                    <p>Código de compra:</p>
-                                    <li>{{DTCompras.idCompra.codigoCompra}}</li>
-                                    <br>
-                                    <p>Proveedor:</p>
-                                    <li>{{DTCompras.idCompra.idProveedor.proveedor}}</li>
-                                    <br>
-                                    <p>Número de factura:</p>
-                                    <li>{{DTCompras.idCompra.numeroFactura}}</li>
-                                    <br>
-                                    <p>Fecha de recibo:</p>
-                                    <li>{{DTCompras.idCompra.fechaRecibo}}</li>
-                                    <br>
-                                    <p>Valor total:</p>
-                                    <li>{{DTCompras.idCompra.ValorTotal}}</li>
-                                </div>
-                                
-                                <div style="margin: 60px;">
-                                    <table class="table table-nowrap align-middle">
-                                    <thead>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="datatableD" class="table table-nowrap align-middle">
+                                    <thead class="table-light">
                                         <tr>
-                                            <th>Insumo</th>
-                                            <th>Cantidad</th>
+                                            <th>Código</th>
+                                            <th>Número de factura</th>
+                                            <th>Proveedor</th>
+                                            <th>Fecha de recibo</th>
+                                            <th>Valor</th>
+                                            <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    {% for listar in idInsumo %}
-                                    <tr>
-                                    <td>{{listar.idInsumo.nombreInsumo}}</td>               
-                                    <td>{{listar.cantidad}}</td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
+                                        {% for listar in Lcompra %}
+                                        {% if listar.estadoC == False %}
+                                        <tr data-id="1" class="table-light">
+                                            <td data-field="codigo">{{listar.codigoCompra}}</td>
+                                            <td data-field="factura">{{listar.numeroFactura}}</td>
+                                            <td data-field="proveedor">{{listar.idProveedor.proveedor}}</td>
+                                            <td data-field="FechaRecibo">{{listar.fechaRecibo}}</td>
+                                            <td data-field="valor">{{listar.ValorTotal}}</td>
+                                            <td>
+                                                <a  href="{% url 'DetalleCompras' listar.idCompra %}" class="btn btn-outline-primary btn-sm">
+                                                    <i class="mdi mdi-eye-outline mdi-24px "></i>
+                                                </a>
+                                        </tr> 
+                                        {% endif %}
+                                        
+                                        {% endfor %}
+                                    </tbody>
                                 </table>
-                                </div>
-                            </div> 
-                        </div>
-                        <div class="modal-footer">
-                            <a href="{% url 'Compra' %}"type="button" class="btn btn-danger" style="width: 50%; margin-bottom: 20px;">Cerrar</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div> <!-- end col -->
+            </div> 
         </div> <!-- container-fluid -->
         
     </div> <!-- End Page-content -->

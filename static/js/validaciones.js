@@ -4,7 +4,7 @@ const inputs = document.querySelectorAll('#agregar input');
 const expresiones = {
 	numeroFactura: /^\d{2,6}$/, 
     cantidad: /^\d{1,6}$/, 
-    valorunidad: /^\d{1,3}(\.\d{3})*(,\d+)?$/, 
+    valorunidad: /^\d{3,7}$/, 
     unidades: /^\d{1,6}$/,
 }
 
@@ -55,3 +55,40 @@ inputs.forEach((input) => {
 	input.addEventListener('blur', validarFormulario);
 });
 
+let today = new Date();
+let dd = today.getDate();
+let mm = today.getMonth() + 1; 
+let yyyy = today.getFullYear();
+if (dd < 10) {
+  dd = '0' + dd
+}
+if (mm < 10) {
+  mm = '0' + mm
+}
+
+today = yyyy + '-' + mm + '-' + dd;
+
+let minimum = "2018-01-01";
+
+let fechaRecibo = document.getElementById("fechaRecibo");
+
+fechaRecibo.max = today;
+fechaRecibo.min = minimum;
+
+function valida(fecha) {
+  let today = new Date();
+  let dd = today.getDate();
+  let mm = today.getMonth() + 1; 
+  let yyyy = today.getFullYear();
+  if (dd < 10) {
+    dd = '0' + dd
+  }
+  if (mm < 10) {
+    mm = '0' + mm
+  }
+
+  today = yyyy + '-' + mm + '-' + dd;
+  if (fecha > today) {
+    document.getElementById("fechaRecibo").value = today;
+  }
+}

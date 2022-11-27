@@ -7,10 +7,8 @@ from django.views.generic import TemplateView
 from Apps.Compras.models import Compra, Detalle_Compra
 from Apps.Insumos.models import Insumo 
 from Apps.Proveedores.models import Proveedor
-from django.contrib.auth.decorators import permission_required
-# Create your views here.
 
-@permission_required('Compras.view_compra') 
+
 def CrearCompra(request):
     proveedor=Proveedor.objects.filter()
     insumo=Insumo.objects.filter()
@@ -27,6 +25,7 @@ def CrearCompra(request):
     items = data["items"]
     print(items,type(items))
     VCompra=""
+    ValorTotal = ""
     for item in items:
         proveedorCompra=item['proveedor']
         idProveedor = Proveedor.objects.filter(proveedor=proveedorCompra).values('idProveedor')[0]['idProveedor']
@@ -39,6 +38,7 @@ def CrearCompra(request):
         )
         
     VCompra.save()
+    
     idCompra=VCompra.idCompra
     for item in items:
         insumoCompra=item['insumo']
@@ -54,7 +54,7 @@ def CrearCompra(request):
         subTotal=item['subtotal'],
         total=item['ValorTotal'],
         )
-        
+        print ("el valor total es el sig", ValorTotal)
         print( Detalle_Compra.idInsumo_id, 'xx', idInsumo)
         DCompra.save()
         
@@ -73,13 +73,24 @@ def CrearCompra(request):
         
         insumoRecibido.save()
         
+    DTCompras=Detalle_Compra.objects.filter()
+    idDTCompras = Detalle_Compra.objects.filter(idCompra_id=idCompra).values_list('idDetalle_Compra', flat=True)
+    total = 0
+    for DTCompras.idDetalle_Compra in idDTCompras:
+        idDetalleCompra= DTCompras.idDetalle_Compra
+        valorDTCompra= Detalle_Compra.objects.filter(idDetalle_Compra=idDetalleCompra).values_list('subTotal',flat= True).first()
+        valorDTCompra = int(valorDTCompra)
+        total=total+valorDTCompra
+        print (total, "Azul, azul yazul")
+    actualizar=Compra.objects.get(idCompra=idCompra)
+    actualizar.ValorTotal=total
+
+    actualizar.save()
     return redirect("Compra")
 
-@permission_required('Compras.view_compra') 
 def FormularioAgregarInsumo(request):
     return render (request, 'Compras/Crear-Insumo.html')
 
-@permission_required('Compras.view_compra') 
 def CrearInsumo (request):
     nInsumo = request.POST['txtNombre']
     tipoUnidad = request.POST['tipoUnidad']
@@ -112,16 +123,13 @@ def FormularioAgregarCompra(request):
     context={"proveedor":proveedor,"nombreInsumo":nombreInsumo}   
     return render(request,'Compras/Crear-Compra.html', context)
 
-@permission_required('Compras.view_compra') 
 def ListarCompra(request):
     LCompra=Compra.objects.filter()
     print(LCompra)
     context={"Lcompra":LCompra}
     return render(request,'Compras/Compras.html', context)
 
-@permission_required('Compras.view_compra') 
 def DetalleCompras(request, id):
-    
     DTCompras=Detalle_Compra.objects.filter(idCompra_id=id).first
     idDTCompras = Detalle_Compra.objects.filter(idCompra_id=id).values_list('idDetalle_Compra', flat=True)
     Insumos = Detalle_Compra.objects.filter(idCompra_id=id).values_list('idInsumo', flat= True) 
@@ -135,13 +143,14 @@ def DetalleCompras(request, id):
     return render(request,"Compras/Ver-Detalle.html",context) 
 
 def estadoCompra(request, id):
-   estadoCompra = Insumo.objects.get(estado= id)
+   estadoCompra = Compra.objects.get( idCompra = id)
    return render(request,'Compras/estado.html', {'estadoCompra':estadoCompra})
 
-def esatdocompra (request):
+def estadocompra (request, id):
     idCompra = request.POST['id']
     estadoC = request.POST['EstadoC']
-    compra = Insumo.objects.get(idCompra = idCompra)
+    compra = Compra.objects.get(idCompra = id)
+    
     compra.estadoC = estadoC
     compra.save()
     return redirect('Compra')

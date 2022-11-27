@@ -8,7 +8,7 @@ class Compra(models.Model):
     idProveedor=models.ForeignKey(Proveedor, related_name='Compra', on_delete=models.PROTECT, null=True)
     numeroFactura=models.CharField(max_length=60)
     fechaRecibo=models.DateTimeField(auto_now_add=True)
-    ValorTotal=models.CharField(max_length=15)
+    ValorTotal=models.CharField(max_length=14)
     estadoC = models.BooleanField(default= True, verbose_name='Estado')
 
     
@@ -18,6 +18,6 @@ class Detalle_Compra(models.Model):
     idInsumo=models.ForeignKey('Insumos.Insumo', on_delete=models.PROTECT) 
     cantidad = models.IntegerField(null= True)
     unidad= models.IntegerField(null = True)
-    costoUnidad = models.CharField(max_length=15,null= True)
-    subTotal = models.CharField(max_length=15,null= True)
-    total = models.CharField(max_length=15,null = True)
+    costoUnidad = models.FloatField(null= True)
+    subTotal = models.CharField(null= True, max_length=14)
+    total = models.CharField(null = True, max_length=14)

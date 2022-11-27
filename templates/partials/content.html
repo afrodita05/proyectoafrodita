@@ -129,7 +129,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-xl-6">
+                        <div class="col-xl-12">
                             <!-- card -->
                             <div class="card">
                                 <!-- card body -->
@@ -155,9 +155,10 @@
                                         verticalAlign: 'middle',
                                         layout: 'vertical'
                                     },
+                                    
 
                                     xAxis: {
-                                        categories: ['2019', '2020', '2021', '2022', '2021'],
+                                        categories: ['Top1', 'Top2', 'Top3', 'Top4', 'Top5'],
                                         labels: {
                                             x: -10
                                         }
@@ -172,7 +173,9 @@
 
                                     series: [{
                                         name: 'Ava',
-                                        data: [38, 51, 34]
+                                        showInLegend: false,
+                                        colorByPoint: true,
+                                        data: [4, 3, 3,2,1]
                                     },],
 
                                     responsive: {
@@ -222,9 +225,50 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap w-100">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Documento</th>
+                                            <th>Cantidad de servicios contratados</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Tiger Nixon</td>
+                                            <td>System Architect</td>
+                                            <td>61</td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td>Garrett Winters</td>
+                                            <td>Accountant</td>
+                                            <td>63</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ashton Cox</td>
+                                            <td>Junior Technical Author</td>
+                                            <td>66</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cedric Kelly</td>
+                                            <td>Senior Javascript Developer</td>
+                                            <td>22</td>
+                                        </tr>
+                                        </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             {% block footer %}
             {% include 'partials/footer.html'%}
             {% endblock footer %}
         </div>
+        
 {% endblock content %}
