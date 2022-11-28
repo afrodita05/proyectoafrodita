@@ -9,10 +9,12 @@ from Apps.Insumos.models import Insumo
 from Apps.Proveedores.models import Proveedor
 from django.contrib.auth.decorators import permission_required
 
+@permission_required('Compras.view_compras',raise_exception=True) 
 def CrearNumeroFactura (request):
     compra = Compra.objects.filter()
     return render(request,'Compras/Crear-NumF.html', {'compra':compra})
 
+@permission_required('Compras.view_compras',raise_exception=True) 
 def verificacionCompra(request):
     numFactura= request.POST['numeroFactura']
     existe=Compra.objects.filter(numeroFactura=numFactura).exists()
@@ -30,7 +32,7 @@ def verificacionCompra(request):
         idCompra= compras.idCompra
         return redirect('FormularioAgregarCompra',idCompra)
     
-@permission_required('Citas.view_citas',raise_exception=True) 
+@permission_required('Compras.view_compras',raise_exception=True) 
 def CrearCompra(request):
     proveedor=Proveedor.objects.filter()
     insumo=Insumo.objects.filter()
@@ -104,7 +106,7 @@ def CrearCompra(request):
     actualizar.save()
     return redirect("Compra")
 
-@permission_required('Citas.view_citas',raise_exception=True) 
+@permission_required('Compras.view_compras',raise_exception=True) 
 def FormularioAgregarInsumo(request,id):
     mostrar = Compra.objects.get(idCompra=id)
     print("MOSTRAR ES: ",mostrar.idCompra)
@@ -112,7 +114,7 @@ def FormularioAgregarInsumo(request,id):
     context= {"mostrar":mostrar}
     return render (request, 'Compras/Crear-Insumo.html',context)
 
-@permission_required('Citas.view_citas',raise_exception=True) 
+@permission_required('Compras.view_compras',raise_exception=True) 
 def CrearInsumo (request):
     nInsumo = request.POST['txtNombre']
     tipoUnidad = request.POST['tipoUnidad']
@@ -143,7 +145,7 @@ def CrearInsumo (request):
 #    insumo = Insumo.objects.create(nombreInsumo =nombreInsumo)
 #    return redirect('/FormularioAgregarCompra/')
 
-@permission_required('Citas.view_citas',raise_exception=True) 
+@permission_required('Compras.view_compra',raise_exception=True) 
 def FormularioAgregarCompra(request,id):
     mostrar=Compra.objects.filter(idCompra=id).first()
     proveedor=Proveedor.objects.filter()
@@ -151,14 +153,17 @@ def FormularioAgregarCompra(request,id):
     context={"proveedor":proveedor,"nombreInsumo":nombreInsumo,'idCompra':id, "mostrar": mostrar}   
     return render(request,'Compras/Crear-Compra.html', context)
 
-@permission_required('Citas.view_citas',raise_exception=True) 
+@permission_required('Compras.view_compra',raise_exception=True)  
 def ListarCompra(request):
     LCompra=Compra.objects.filter()
+    
     context={"Lcompra":LCompra}
+    
     return render(request,'Compras/Compras.html', context)
 
-@permission_required('Citas.view_citas',raise_exception=True) 
+@permission_required('Compras.view_compra',raise_exception=True)  
 def DetalleCompras(request, id):
+    print(Compra.objects.filter())
     DTCompras=Detalle_Compra.objects.filter(idCompra_id=id).first
     idDTCompras = Detalle_Compra.objects.filter(idCompra_id=id).values_list('idDetalle_Compra', flat=True)
     Insumos = Detalle_Compra.objects.filter(idCompra_id=id).values_list('idInsumo', flat= True) 
@@ -170,12 +175,12 @@ def DetalleCompras(request, id):
     context={"DTCompras":DTCompras, "idInsumo":idInsumos, "cantidad":cantidadI}
     return render(request,"Compras/Ver-Detalle.html",context) 
 
-@permission_required('Citas.view_citas',raise_exception=True)
+@permission_required('Compras.view_compra',raise_exception=True)  
 def estadoCompra(request, id):
    estadoCompra = Compra.objects.get( idCompra = id)
    return render(request,'Compras/estado.html', {'estadoCompra':estadoCompra})
 
-@permission_required('Citas.view_citas',raise_exception=True)
+@permission_required('Compras.view_compra',raise_exception=True)  
 def estadocompra (request, id):
     idCompra = request.POST['id']
     estadoC = request.POST['EstadoC']
@@ -185,7 +190,7 @@ def estadocompra (request, id):
     compra.save()
     return redirect('Compra')
 
-@permission_required('Citas.view_citas',raise_exception=True)
+@permission_required('Compras.view_compra',raise_exception=True)  
 def EliminarCompra(request, id):   
     ECompra=Compra.objects.get(idCompra=id)
     ECompra.delete() 

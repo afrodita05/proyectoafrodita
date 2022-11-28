@@ -115,8 +115,7 @@ def crearRol(request):
         eliminar_citas= Permission.objects.get(name='Can delete citas')
         rol.permissions.add(agregar_citas,ver_citas, cambiar_citas, eliminar_citas)
        
-    rol= Rol(nombre=nombreRol,configuracion=configuracionRol,insumos=insumosRol,clientes=clientesRol,servicios=serviciosRol,compras=comprasRol,proveedores=proveedoresRol,usuarios=usuariosRol,citas=citasRol)
-    rol.save()
+
     
     return redirect("/listarRol/")
 
@@ -135,7 +134,7 @@ def formularioRol(request):
 @permission_required('auth.view_group',raise_exception=True) 
 
 def listarRol(request):   
-    current_user=request.user
+    
     listarRol=Group.objects.filter()       
 
     context={"crRol":listarRol}
