@@ -66,7 +66,7 @@
                                             <td data-field="rol">{{ listar.groups.all.0 }}</td>
                                             <td data-field="correo">{{listar.email}}</td>
                                             <td data-field="estado">
-                                                <span class="badge badge-soft-danger" style="font-size: 14px;">Inactivo</span>
+                                                <span class="badge badge-soft-success" style="font-size: 14px;">Activo</span>
                                             </td>
                                             <td>
                                                 <a href="{% url 'editarUsuario' listar.id %}" class="btn btn-outline-primary btn-sm">
@@ -129,14 +129,12 @@
 <script src="{% static 'js/pages/form-validation.init.js'%}"></script>
 <!-- Modal js -->
 <script src="{% static 'js/pages/modal.init.js'%}"></script>
-
-    <script>
-        var myModal = document.getElementById('myModal')
-        var myInput = document.getElementById('myInput')
-
-        myModal.addEventListener('shown.bs.modal', function () {
-        myInput.focus()
-        })
-    </script>
+<script>
+    $("#datatable").DataTable({
+   language: {
+     url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
+   },
+ });
+</script>
 
 {% endblock extra_js %}

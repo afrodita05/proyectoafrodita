@@ -34,7 +34,7 @@ from Apps.Usuarios.views import *
 from Apps.Servicios.views import *
 from Apps.Configuracion.views import *
 from Apps.Proveedores.views import CrearProveedor,ListarProveedor,EditarProveedor
-from Apps.Compras.views import FormularioAgregarCompra,CrearCompra,ListarCompra,DetalleCompras, FormularioAgregarInsumo, CrearInsumo, estadoCompra, estadocompra 
+from Apps.Compras.views import FormularioAgregarCompra,CrearCompra,ListarCompra,DetalleCompras, FormularioAgregarInsumo, CrearInsumo, estadoCompra, estadocompra, CrearNumeroFactura, verificacionCompra 
 from Apps.Insumos.views import insumos
 
 
@@ -230,10 +230,12 @@ urlpatterns = [
     
     #COMPRAS
     path( "ListarCompra/", view= ListarCompra,name= "Compra"),
+    path('rutaVNum/',CrearNumeroFactura),
+    path('verificacionCompra/',verificacionCompra),
     path('CrearCompra/', CrearCompra, name='CrearCompra'),
     path('CrearInsumo/', CrearInsumo, name='CrearInsumo'),
-    path('FormularioAgregarInsumo/', FormularioAgregarInsumo,),
-    path('FormularioAgregarCompra/', FormularioAgregarCompra,),
+    path('FormularioAgregarInsumo/<int:id>', FormularioAgregarInsumo,),
+    path('FormularioAgregarCompra/<int:id>', FormularioAgregarCompra, name='FormularioAgregarCompra'),
     path('DetalleCompras/<int:id>', DetalleCompras, name='DetalleCompras'),
     path('EstadoCompra/<int:id>', estadoCompra, name='estadocompra'),
     path('actualizarE/<int:id>', estadocompra, name= 'actualizarE'),

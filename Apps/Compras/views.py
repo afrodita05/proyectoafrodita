@@ -9,7 +9,27 @@ from Apps.Insumos.models import Insumo
 from Apps.Proveedores.models import Proveedor
 from django.contrib.auth.decorators import permission_required
 
+def CrearNumeroFactura (request):
+    compra = Compra.objects.filter()
+    return render(request,'Compras/Crear-NumF.html', {'compra':compra})
 
+def verificacionCompra(request):
+    numFactura= request.POST['numeroFactura']
+    existe=Compra.objects.filter(numeroFactura=numFactura).exists()
+    idCompra = Compra.objects.filter(numeroFactura=numFactura).values_list('idCompra', flat=True).first()
+
+    if Compra.objects.filter(idCompra=idCompra).exists():
+            error="El número de factura ingresado ya existe. Por favor, ingresa uno diferente."
+            contexto={"error":error}
+            return render(request,'Compras/Crear-NumF.html',contexto)
+    else:   
+        compras = Compra(
+            numeroFactura=numFactura
+        )
+        compras.save()
+        idCompra= compras.idCompra
+        return redirect('FormularioAgregarCompra',idCompra)
+    
 @permission_required('Citas.view_citas',raise_exception=True) 
 def CrearCompra(request):
     proveedor=Proveedor.objects.filter()
@@ -115,16 +135,16 @@ def CrearInsumo (request):
 #    return redirect('/FormularioAgregarCompra/')
 
 @permission_required('Citas.view_citas',raise_exception=True) 
-def FormularioAgregarCompra(request):
+def FormularioAgregarCompra(request,id):
+    mostrar=Compra.objects.filter(idCompra=id).first()
     proveedor=Proveedor.objects.filter()
     nombreInsumo=Insumo.objects.filter()
-    context={"proveedor":proveedor,"nombreInsumo":nombreInsumo}   
+    context={"proveedor":proveedor,"nombreInsumo":nombreInsumo,'idCompra':id, "mostrar": mostrar}   
     return render(request,'Compras/Crear-Compra.html', context)
 
 @permission_required('Citas.view_citas',raise_exception=True) 
 def ListarCompra(request):
     LCompra=Compra.objects.filter()
-    
     context={"Lcompra":LCompra}
     return render(request,'Compras/Compras.html', context)
 

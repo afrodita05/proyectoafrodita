@@ -1,0 +1,79 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}Editar Insumo{% endblock title %}
+{% block extra_css %}
+    <link href="{% static 'css/validaciones.css'%}" rel="stylesheet" type="text/css" />
+{% endblock extra_css %}
+{% block content %}
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h3 class="mb-sm-0 font-size-40">Validar número de factura</h3>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Compras </a></li>
+                                <li class="breadcrumb-item active"> número de factura </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div style="margin: 60px;">
+                    <!--  FORMULARIO CON VALIDACIONES -->
+                    <form action= "/verificacionCompra/" id="crearS" novalidate method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{compra.idCompra}}">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="col-lg-2 formulario__grupo"  id="grupo__numeroFactura">
+                                    <label for="numeroFactura" class="formulario__label">Número de factura</label>
+                                    <div class=" formulario__grupo" id="grupo__numeroFactura">
+                                        <input id="numeroFactura" name="numeroFactura" type="text" class="form-control formulario__input"/>
+                                        <p style="color: red;">{{error}}</p>
+                                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                    </div>
+                                    <p class="formulario__input-error" style="color: red;">El número de factura tiene que ser de 2 a 6 dígitos y solo puede contener números.</p>
+                                </div>
+                            </div>
+                            <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-top: 40px; margin-bottom: 20px;" >
+                                <button type="submit" for="crearC"  class="btn btn-primary" style="width: 20%; margin-right: 20px;">Verificar</button>
+                                <a href="{% url 'Compra' %}" type="button" class="btn btn-danger" style="width: 20%">Cancelar</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- container-fluid -->
+    </div> <!-- End Page-content -->
+    {% block footer %}
+        {% include 'partials/footer.html' %}
+    {% endblock footer %}
+</div>       
+        
+<!-- end main content-->
+{% endblock content %}
+
+{% block extra_js %}
+<!-- Buttons examples -->
+<script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js'%}"></script>
+<script src="{% static 'libs/jszip/jszip.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/pdfmake.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/vfs_fonts.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js'%}"></script>
+<!-- Responsive examples -->
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js'%}"></script>
+<!-- pristine js -->
+<script src="{% static 'libs/pristinejs/dist/pristine.min.js'%}"></script>
+<!-- form validation -->
+<script src="{% static 'js/pages/form-validation.init.js'%}"></script>
+<script type="text/javascript" src="{% static  'js/validaciones.js' %}"></script>
+{% endblock extra_js %}
