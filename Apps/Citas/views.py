@@ -16,6 +16,12 @@ def listarCita(request):
     return render(request,"Citas/Citas.html",contexto)
 
 @permission_required('Citas.view_citas') 
+def rutaVCita(request):
+    clientes=Clientes.objects.filter()
+    context={"clientes":clientes}
+    return render(request,"Citas/VerificarDocumento.html",context)
+
+@permission_required('Citas.view_citas') 
 def verificarDocumento(request):
     clienteDocumento= request.POST.get('documento')
     existe=Clientes.objects.filter(documento=clienteDocumento).exists()
@@ -25,7 +31,8 @@ def verificarDocumento(request):
         return redirect('crear-Citas',idCliente)
 
     else:
-        error="El documento que ingreso no está registrado en el sistema"
+        print(existe, "PRUEBA111")
+        error="El documento que ingresó no está registrado en el sistema"
         contexto={"error":error}
         return render(request,'Citas/VerificarDocumento.html',contexto)
 

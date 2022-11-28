@@ -167,10 +167,16 @@ urlpatterns = [
         name='Cita'
         ),
 
-     path(
+    path(
         'verficarDocumento/',
         view=verificarDocumento, 
         name='verificar-Documento'
+        ),   
+
+    path(
+        'rutaVCita/',
+        view=rutaVCita, 
+        name='rutaVCita'
         ),   
 
     path(
