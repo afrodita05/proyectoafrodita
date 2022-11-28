@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from django.views.generic import TemplateView
 from Apps.Servicios.models import Servicios, Servicios_Insumo
+from Apps.Citas.models import *
 from Apps.Insumos.models import Insumo
 from Apps.Servicios.forms import *
 import json
@@ -64,36 +65,81 @@ def verificacionServicioEditar(request,id):
     idServicio = Servicios.objects.filter(idServicio=id)
 
     tiempoServicio = request.GET['tiempo']
+    estado = request.GET['estado']
     actualizar=Servicios.objects.get(idServicio=id)
     nombrePropio = Servicios.objects.filter(idServicio=id).values('nServicio')[0]['nServicio']
     actualizar.nServicio=nombreServicio
     
-
+    citas = Citas.objects.filter()
+    idCitas= Citas.objects.filter(idServicio = id).values_list('idCita', flat=True) #Obtengo las citas asociadas a este servicio
     existe = Servicios.objects.filter(nServicio=nombreServicio).exists()
     existePropio = Servicios.objects.filter(nServicio=nombrePropio)
  
     if existe:  
         
         if actualizar.nServicio==nombrePropio: #Confirmar que el nombre ingresado es el nombre propio
+            
+            if estado == "False":
+                for citas.idCita in idCitas:
+                    idCita = citas.idCita
+                    estadoCita = Citas.objects.filter(idCita=idCita).values_list('estado', flat= True).first()
+
+                    if estadoCita != "Finalizado":
+                        error="El servicio está aplicándose en una cita en proceso y no puede desactivarse."
+                        mostrar=Servicios.objects.filter(idServicio=id).first()
+                        return render(request, 'Servicios/VerificarNombreEditar.html',context)
+                    actualizar.tiempo=tiempoServicio 
+                    actualizar.estado=estado
+                    actualizar.save()
+                    idServicio= actualizar.idServicio
+                    return redirect('formularioServicio',idServicio)
+            else:
+                actualizar.tiempo=tiempoServicio 
+                actualizar.estado=estado
+                actualizar.save()
+                idServicio= actualizar.idServicio
+                return redirect('formularioServicio',idServicio)
+
            
-            actualizar.tiempo=tiempoServicio 
-            actualizar.save()
-            idServicio= actualizar.idServicio
-            return redirect('formularioServicio',idServicio)
 
         else:
             error="El servicio ingresado ya existe. Por favor, ingresa uno diferente."
             mostrar=Servicios.objects.filter(idServicio=id).first()
             context={"error":error, "mostrar":mostrar}
-            return render(request, 'Servicios/VerificarNombreEditar.html',context) #editar
-     
+            return render(request, 'Servicios/VerificarNombreEditar.html',context) #editar  
     else:  
-        actualizar.tiempo=tiempoServicio 
-        actualizar.save()
-        idServicio= actualizar.idServicio
-        return redirect('formularioServicio',idServicio)
-    
+        if estado == "False":
+            for citas.idCita in idCitas:
+                idCita = citas.idCita
+                estadoCita = Citas.objects.filter(idCita=idCita).values_list('estado', flat= True).first()
 
+                if estadoCita != "Finalizado":
+                    error="El servicio está aplicándose en una cita en proceso y no puede desactivarse."
+                    mostrar=Servicios.objects.filter(idServicio=id).first()
+                    return render(request, 'Servicios/VerificarNombreEditar.html',context)
+            actualizar.tiempo=tiempoServicio 
+            actualizar.estado=estado
+            actualizar.save()
+            idServicio= actualizar.idServicio
+            return redirect('formularioServicio',idServicio)
+    actualizar.tiempo=tiempoServicio 
+    actualizar.estado=estado
+    actualizar.save()
+    idServicio= actualizar.idServicio
+    return redirect('formularioServicio',idServicio)
+
+    
+@permission_required('Servicios.view_servicios') 
+def editarEstado(request, id):
+    servicioActual= Servicios.objects.get(idServicio=id)
+
+    if servicioActual.estado == 1:
+        servicioActual.estado=0
+        servicioActual.save()
+    else:
+        servicioActual.estado=1
+        servicioActual.save()
+    return redirect("Servicio")
 
 
 @permission_required('Servicios.view_servicios') 

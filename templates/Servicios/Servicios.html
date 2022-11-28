@@ -59,11 +59,18 @@
                                         {% for listar in servicio %}
                                         <tr data-id="1">
                                             <td data-field="name">{{listar.nServicio}}</td>
-                                            <td data-field="tiempo">{{listar.tiempo }} Minutos</td>
+                                            <td data-field="tiempo">{{listar.tiempo}} Minutos</td>
                                             <td data-field="estado">
-                                                <span class="badge badge-soft-success" style="font-size: 14px;">Activo</span>
+                                                
+                                                {% if listar.estado == False %}
+                                                <span class="badge badge-soft-danger">Inactivo</span>
+                                                {% else %}
+                                                <span class="badge badge-soft-success">Activo</span>
+                                                {% endif %}
                                             </td>
                                             <td>
+                                                
+                                
                                                 <a href="{% url 'editarServicio' listar.idServicio %}" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-file-document-edit-outline mdi-24px "></i>
                                                 </a>

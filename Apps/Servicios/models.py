@@ -9,6 +9,7 @@ class Servicios(models.Model):
     nServicio=models.CharField(max_length=50)
     tiempo= models.IntegerField()
     valor=models.IntegerField(default=0)
+    estado = models.BooleanField(default= True)
     
     def __str__(self) -> str:
         return '{}'.format(self.nServicio)

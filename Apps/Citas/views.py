@@ -34,8 +34,17 @@ def crearCita(request,id):
     if request.method=='POST':
         formulario_citas=FormularioCitas(request.POST)
         if formulario_citas.is_valid():
-            formulario_citas.save()
-            return redirect('/Cita/')
+            idServicioo=request.POST.get('idServicio')
+            print("El nombre esssss: ",idServicioo)
+            idServicioo=int(idServicioo)
+            idServicio = Servicios.objects.filter(idServicio=idServicioo).values_list('idServicio', flat= True).first()
+            if Servicios.objects.filter(idServicio=idServicio).values_list('estado', flat= True).first() == 0:
+                desactivado="El servicio escogido está desactivado. Para crear una cita con este servicio, actívalo desde la edición de servicios."
+                contexto={'formulario_citas':formulario_citas,'idCliente':id, 'desactivado':desactivado}
+                return render(request,'Citas/Crear-Cita.html',contexto)
+            else:
+                formulario_citas.save()
+                return redirect('/Cita/')
     else: 
         formulario_citas=FormularioCitas()
         

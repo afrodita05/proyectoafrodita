@@ -91,6 +91,7 @@ urlpatterns = [
     path('verificacionServicioEditar/<int:id>',verificacionServicioEditar, name='verificacionServicioEditar'),
     path('formularioServicio/<int:id>',formularioServicio, name='formularioServicio'),
     path('editarS/<int:id>',editarS, name='editarServicio'),
+    path('editarEstado/<int:id>',editarEstado, name='editarEstado'),
     path('actualizarS/<int:id>',actualizarS, name='actualizarServicio'),
     path('eliminarS/<int:id>',eliminarS, name='eliminarServicio'),
 
