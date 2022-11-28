@@ -27,11 +27,11 @@
             <div class="card">
                 <div style="margin: 60px;" >
                     <div style="align-items: center;">
-                        <form  novalidate method="POST" action="{% url 'actualizarU' mostrar.id %}" id="edit" enctype="multipart/form-data"> {% csrf_token %}
+                        <form  method="POST" action="{% url 'actualizarU' mostrar.id %}" id="edit" enctype="multipart/form-data"> {% csrf_token %}
                             <div class="row">
                                 <div style="text-align: center; margin-bottom: 30PX;">
                                     <div class="mt-4 mt-md-0" style="margin-bottom: 20px;">
-                                        <img class="img-thumbnail rounded-circle avatar-xl" alt="" src="{% static 'images/'%}" data-holder-rendered="true">
+                                        <img class="img-thumbnail rounded-circle avatar-xl" alt="" src="{{mostrar.foto.url}}" data-holder-rendered="true">
                                     </div>
                                     <input name="fotop" type="file"></input>
                                 </div><!-- end col -->
