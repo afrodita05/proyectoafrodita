@@ -53,7 +53,6 @@ def verificacionServicio(request):
 @permission_required('Servicios.view_servicios') 
 def editarS(request, id):
     mostrar=Servicios.objects.filter(idServicio=id).first()
-    print(mostrar)
     context={"mostrar":mostrar}
     return render(request,"Servicios/VerificarNombreEditar.html",context)
 
@@ -69,18 +68,14 @@ def verificacionServicioEditar(request,id):
     nombrePropio = Servicios.objects.filter(idServicio=id).values('nServicio')[0]['nServicio']
     actualizar.nServicio=nombreServicio
     
-    print("El nombre es el siguiente: ",actualizar.nServicio)
-    print("El nombre propio es: ", nombrePropio)
 
     existe = Servicios.objects.filter(nServicio=nombreServicio).exists()
     existePropio = Servicios.objects.filter(nServicio=nombrePropio)
-    print("EXISTE: ", existe)
-    print("EXISTE PROPIO: ", existePropio)
+ 
     if existe:  
         
         if actualizar.nServicio==nombrePropio: #Confirmar que el nombre ingresado es el nombre propio
-            print("El nombre propio 2 es: ", nombrePropio)
-            print("El nombre que no debería cambiar es: ", actualizar.nServicio)
+           
             actualizar.tiempo=tiempoServicio 
             actualizar.save()
             idServicio= actualizar.idServicio
@@ -108,7 +103,6 @@ def crearServicio(request):
     data= json.loads(request.body)
     items = data["items"]
     
-    print(items,type(items))
     servicios=""
     idServicio= request.POST.get('idActual')
     for item in items:
@@ -123,7 +117,7 @@ def crearServicio(request):
     servicios.save()
 
     idServicio=servicios.idServicio
-    print("ID ES:",idServicio)
+   
 
     for item in items:
         insumoCompra=item['insumo'] 

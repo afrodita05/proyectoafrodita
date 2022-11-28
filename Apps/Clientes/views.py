@@ -89,7 +89,7 @@ def crearFacial(request,id):
 def VerDetalleCorporal(request, id):
     mostrar=EsteticoCorporal.objects.filter(idCorporal=id).first()
     documentoCosto=mostrar.idCliente.idCliente
-    print(documentoCosto)
+    
     medidas=ControlMedidas.objects.filter(idCorporal=id)
     contexto={"mostrar":mostrar,"medidas":medidas,"documentoCosto":documentoCosto}
     return render(request,"Clientes/Historial-Corporal.html",contexto)

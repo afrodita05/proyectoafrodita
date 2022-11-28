@@ -14,7 +14,6 @@ from django.contrib.auth.decorators import permission_required
 def usuario(request):
     usuario=User.objects.all()
     # usuario = {group.name: group.user_set.values_list('id', flat=True) for group in Group.objects.all()}
-    print(usuario)
     context={"usuario":usuario}
     return render(request,"Usuarios/Usuarios.html",context)
 
@@ -30,7 +29,6 @@ def crearUsuario(request):
     correo= request.POST['correo']
     nombreUsuario= request.POST['usuario']
     rol = request.POST['rol']
-    print("El id del rol es: ",rol)
     error= []
     errorCorreo= []
     errorUsuario= []

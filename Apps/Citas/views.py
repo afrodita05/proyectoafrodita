@@ -164,7 +164,7 @@ def verDetalleCosto(request, id):
     agendaFecha=AgendaFecha.objects.filter(idAgendaCosto=id)
     cliente=Clientes.objects.filter(idCliente=id).first()
     contexto={"agendaFecha":agendaFecha,"agendaCosto":agendaCosto,"cliente":cliente}
-    print("DETALLE", contexto)
+    
     return render(request,"Citas/VerDetalleCosto.html",contexto)
 
 @permission_required('Citas.view_citas') 
@@ -179,9 +179,7 @@ def crearAgendaFecha(request, id):
         formulario_agenda_fecha=FormularioAgendaFecha()
 
     agendacosto=AgendaCosto.objects.filter(idAgendaCosto=id)
-    print("COSTO", agendacosto)
-    print("IDE",id)
-    print("Valido",formulario_agenda_fecha.is_valid())
+    
     for listar in agendacosto:
 
         clienteCosto=int(listar.costo)

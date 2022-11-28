@@ -23,7 +23,6 @@ def CrearCompra(request):
     
     data= json.loads(request.body)
     items = data["items"]
-    print(items,type(items))
     VCompra=""
     ValorTotal = ""
     for item in items:
@@ -43,7 +42,6 @@ def CrearCompra(request):
     for item in items:
         insumoCompra=item['insumo']
         
-        print (insumoCompra)
         idInsumo = Insumo.objects.filter(nombreInsumo=insumoCompra).values('idInsumo')[0]['idInsumo']
         DCompra=Detalle_Compra(
         idCompra_id=idCompra,
@@ -54,17 +52,13 @@ def CrearCompra(request):
         subTotal=item['subtotal'],
         total=item['ValorTotal'],
         )
-        print ("el valor total es el sig", ValorTotal)
-        print( Detalle_Compra.idInsumo_id, 'xx', idInsumo)
         DCompra.save()
         
         existenciasInsumo=Insumo.objects.filter(idInsumo=idInsumo).values_list('cantidad', flat=True).first()#Recoge el atributo "cantidad" de los insumos cuyo id sea igual al id almacenado en la variable "idInsumo"
         
         existenciasInsumo = int(existenciasInsumo)
-        print (existenciasInsumo, 'exiss')
         cantidadComprada =item['cantidad']
         cantidadComprada = int(cantidadComprada)
-        print (cantidadComprada, 'cantidddddd')
         nuevoInsumo = existenciasInsumo+cantidadComprada 
 
         insumoRecibido= Insumo.objects.get(idInsumo=idInsumo)
@@ -81,7 +75,6 @@ def CrearCompra(request):
         valorDTCompra= Detalle_Compra.objects.filter(idDetalle_Compra=idDetalleCompra).values_list('subTotal',flat= True).first()
         valorDTCompra = int(valorDTCompra)
         total=total+valorDTCompra
-        print (total, "Azul, azul yazul")
     actualizar=Compra.objects.get(idCompra=idCompra)
     actualizar.ValorTotal=total
 
@@ -125,7 +118,7 @@ def FormularioAgregarCompra(request):
 
 def ListarCompra(request):
     LCompra=Compra.objects.filter()
-    print(LCompra)
+    
     context={"Lcompra":LCompra}
     return render(request,'Compras/Compras.html', context)
 
@@ -134,12 +127,11 @@ def DetalleCompras(request, id):
     idDTCompras = Detalle_Compra.objects.filter(idCompra_id=id).values_list('idDetalle_Compra', flat=True)
     Insumos = Detalle_Compra.objects.filter(idCompra_id=id).values_list('idInsumo', flat= True) 
     Cantidad = Detalle_Compra.objects.filter(idCompra_id =id).values_list('cantidad', flat= True)
-    print (Insumos,'zzz')
+    
     idInsumos = Detalle_Compra.objects.filter(idCompra_id=id,idInsumo__in=Insumos)
-    print(idInsumos, 'hola')
+    
     cantidadI = Detalle_Compra.objects.filter(idCompra_id=id,cantidad__in=Insumos)
     context={"DTCompras":DTCompras, "idInsumo":idInsumos, "cantidad":cantidadI}
-    print (idDTCompras)
     return render(request,"Compras/Ver-Detalle.html",context) 
 
 def estadoCompra(request, id):

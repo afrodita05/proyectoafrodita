@@ -22,7 +22,6 @@ def crearRol(request):
 
     if request.method=='POST':
         permisos=request.POST.getlist('permisos')
-        print(permisos)
         
     compConf= permisos.count("Configuracion")
     compInsu= permisos.count("Insumos")
@@ -157,21 +156,18 @@ def crearRol(request):
 
 def editarRol(request, id):
     mostrar=Group.objects.filter(id=id).first()
-    print(mostrar)
     context={"mostrar":mostrar}
     return render(request,"Configuracion/Editar-Rol.html",context)
 
 @permission_required('auth.view_group') 
 
 def formularioRol(request):    
-    print(request.user.id)   
     return render(request,"Configuracion/Crear-Rol.html")
 
 @permission_required('auth.view_group') 
 
 def listarRol(request):   
     current_user=request.user
-    print(current_user.id)
     listarRol=Group.objects.filter()       
 
     context={"crRol":listarRol}
@@ -188,7 +184,6 @@ def actualizarRol(request, id):
     actualizar.permissions.clear()
     if request.method=='GET':
         permisos=request.GET.getlist('permisos')
-        print(permisos, "AAAAAAAAAAA")
         
     compConf= permisos.count("Configuracion")
     compInsu= permisos.count("Insumos")
@@ -320,6 +315,5 @@ def detalleRol(request,id):
     if permisosCitas:
         cita = "Citas"
         listaP.append(cita)
-    print(listaP)
     contexto={"mostrar":mostrar,"rol":rol,"usuario":usuario,"proveedor":proveedor,"compras":compras,"insumos":insumos,"servicio":servicio,"cliente":cliente,"cita":cita, "listaP":listaP}
     return render(request,"Configuracion/Detalle-Rol.html",contexto)
