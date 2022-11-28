@@ -40,6 +40,9 @@
                         {% csrf_token %}
                         <input type="hidden"/>
                         <div class="row">
+                            
+                            <input type="hidden" name="idActual" value="{{mostrar.idCompra}}"/>
+
                             <div class="col-lg-2 formulario__grupo"  >
                                 <label for="numeroFactura" class="formulario__label">Número de factura</label>
                                 <div class=" formulario__grupo" >
@@ -71,7 +74,7 @@
                             <!-- Productos -->
                             <div class="col-lg-2">
                                 <div class="btn-group col-md-12" style="margin-top: 35px;">
-                                    <a href="/FormularioAgregarInsumo/" class="btn btn-primary waves-effect btn-label waves-light"><i class="bx bx-plus label-icon"></i>
+                                    <a href="{% url 'FormularioAgregarInsumo' mostrar.idCompra %}" class="btn btn-primary waves-effect btn-label waves-light"><i class="bx bx-plus label-icon"></i>
                                         Nuevo insumo
                                     </a>
                                 </div>

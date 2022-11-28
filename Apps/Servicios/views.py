@@ -86,6 +86,7 @@ def verificacionServicioEditar(request,id):
                     if estadoCita != "Finalizado":
                         error="El servicio está aplicándose en una cita en proceso y no puede desactivarse."
                         mostrar=Servicios.objects.filter(idServicio=id).first()
+                        context={"error":error,"mostrar":mostrar}
                         return render(request, 'Servicios/VerificarNombreEditar.html',context)
                 actualizar.tiempo=tiempoServicio 
                 actualizar.estado=estado

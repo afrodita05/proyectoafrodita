@@ -51,6 +51,7 @@ def CrearCompra(request):
         proveedorCompra=item['proveedor']
         idProveedor = Proveedor.objects.filter(proveedor=proveedorCompra).values('idProveedor')[0]['idProveedor']
         VCompra = Compra(
+            idCompra=item['idActual'],
             codigoCompra=codigoCompra,
             idProveedor_id=idProveedor,
             numeroFactura=item['numeroFactura'],
@@ -104,8 +105,12 @@ def CrearCompra(request):
     return redirect("Compra")
 
 @permission_required('Citas.view_citas',raise_exception=True) 
-def FormularioAgregarInsumo(request):
-    return render (request, 'Compras/Crear-Insumo.html')
+def FormularioAgregarInsumo(request,id):
+    mostrar = Compra.objects.get(idCompra=id)
+    print("MOSTRAR ES: ",mostrar.idCompra)
+    
+    context= {"mostrar":mostrar}
+    return render (request, 'Compras/Crear-Insumo.html',context)
 
 @permission_required('Citas.view_citas',raise_exception=True) 
 def CrearInsumo (request):
@@ -113,6 +118,9 @@ def CrearInsumo (request):
     tipoUnidad = request.POST['tipoUnidad']
     errorI= []
     errorInsO= []
+    idCompra= request.POST.get('idActual')
+    idCompraActual= Compra.objects.filter(idCompra=idCompra)
+    print("EL ID DEBERÍA SER: ", idCompra)
     if Insumo.objects.filter(nombreInsumo= nInsumo).exists():
         errorI.append(1)
         contex={"errorI": errorI}
@@ -127,7 +135,8 @@ def CrearInsumo (request):
         insumo = Insumo(nombreInsumo = nInsumo, tipoUnidad = tipoUnidad)
         errorI.clear()
         insumo.save()
-    return redirect('/FormularioAgregarCompra/')
+        
+    return redirect('FormularioAgregarCompra',idCompra)
 
 #def CrearInsumo (request):
 #    nombreInsumo = request.POST['txtNombre']

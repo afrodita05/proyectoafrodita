@@ -39,6 +39,9 @@
                             <form class="needs-validation"  action="/CrearInsumo/" novalidate method="POST">
                                 {% csrf_token %}
                                 <div class="row">
+                                    
+                                    <input type="hidden" name="idActual" value="{{mostrar.idCompra}}"/>
+
                                     <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label class="form-label" for="validationTooltip02">Insumo</label>

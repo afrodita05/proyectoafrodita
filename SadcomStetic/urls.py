@@ -234,7 +234,7 @@ urlpatterns = [
     path('verificacionCompra/',verificacionCompra),
     path('CrearCompra/', CrearCompra, name='CrearCompra'),
     path('CrearInsumo/', CrearInsumo, name='CrearInsumo'),
-    path('FormularioAgregarInsumo/<int:id>', FormularioAgregarInsumo,),
+    path('FormularioAgregarInsumo/<int:id>', FormularioAgregarInsumo,name='FormularioAgregarInsumo'),
     path('FormularioAgregarCompra/<int:id>', FormularioAgregarCompra, name='FormularioAgregarCompra'),
     path('DetalleCompras/<int:id>', DetalleCompras, name='DetalleCompras'),
     path('EstadoCompra/<int:id>', estadoCompra, name='estadocompra'),
