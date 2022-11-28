@@ -72,6 +72,7 @@ def verificacionServicioEditar(request,id):
     
     citas = Citas.objects.filter()
     idCitas= Citas.objects.filter(idServicio = id).values_list('idCita', flat=True) #Obtengo las citas asociadas a este servicio
+   
     existe = Servicios.objects.filter(nServicio=nombreServicio).exists()
     existePropio = Servicios.objects.filter(nServicio=nombrePropio)
  
@@ -86,11 +87,11 @@ def verificacionServicioEditar(request,id):
                         error="El servicio está aplicándose en una cita en proceso y no puede desactivarse."
                         mostrar=Servicios.objects.filter(idServicio=id).first()
                         return render(request, 'Servicios/VerificarNombreEditar.html',context)
-                    actualizar.tiempo=tiempoServicio 
-                    actualizar.estado=estado
-                    actualizar.save()
-                    idServicio= actualizar.idServicio
-                    return redirect('formularioServicio',idServicio)
+                actualizar.tiempo=tiempoServicio 
+                actualizar.estado=estado
+                actualizar.save()
+                idServicio= actualizar.idServicio
+                return redirect('formularioServicio',idServicio)
             else:
                 actualizar.tiempo=tiempoServicio 
                 actualizar.estado=estado
