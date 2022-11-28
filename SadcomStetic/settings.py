@@ -172,6 +172,7 @@ LOGIN_URL = 'login' #la que está como el template
 #USUARIOS
 
 LOGIN_REDIRECT_URL = reverse_lazy('dashboard')
+LOGOUT_REDIRECT_URL = "login"
 
 AUTH_USER_MODEL = "Usuarios.User" #Establecer cual será el modelo de usuario
 
