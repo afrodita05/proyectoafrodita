@@ -29,6 +29,7 @@ def crearUsuario(request):
     correo= request.POST['correo']
     nombreUsuario= request.POST['usuario']
     rol = request.POST['rol']
+    fotop = request.FILES['fotop']
     error= []
     errorCorreo= []
     errorUsuario= []
@@ -54,7 +55,7 @@ def crearUsuario(request):
                 
                 nombrePersona= request.POST['nombre']
                 password= request.POST['contrasena']
-                usuarios=User(documento=documentoUsuario,nPersona=nombrePersona,username=nombreUsuario,password=make_password(password),email=correo)
+                usuarios=User(documento=documentoUsuario,nPersona=nombrePersona,username=nombreUsuario,password=make_password(password),email=correo,foto=fotop)
                 error.clear()
                 errorUsuario.clear()
                 errorCorreo.clear()
@@ -81,13 +82,13 @@ def actualizarU(request, id):
     errorCorreo= []
     errorContrasena= []
     
-    nombrePersona= request.GET['nombre']
-    nombreUsuario= request.GET['usuario']
-    correo = request.GET['correo']
-    password = request.GET['contrasena']
-    password2 = request.GET['contrasena2']
-    rol= request.GET['rol']
-
+    nombrePersona= request.POST['nombre']
+    nombreUsuario= request.POST['usuario']
+    correo = request.POST['correo']
+    password = request.POST['contrasena']
+    password2 = request.POST['contrasena2']
+    fotop = request.FILES['fotop']
+    rol= request.POST['rol']
     actualizar=User.objects.get(id=id)
     if (User.objects.filter(username=nombreUsuario).exists()) and (actualizar.username != nombreUsuario):
         
@@ -114,6 +115,7 @@ def actualizarU(request, id):
                 actualizar.username=nombreUsuario 
                 actualizar.email=correo
                 actualizar.password=make_password(password)
+                actualizar.foto=fotop
                 actualizar.save()
 
                 users_in_group = Group.objects.get(id=rol).user_set.all()

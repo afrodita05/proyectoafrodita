@@ -27,13 +27,13 @@
             <div class="card">
                 <div style="margin: 60px;" >
                     <div style="align-items: center;">
-                        <form  novalidate method="GET" action="{% url 'actualizarU' mostrar.id %}" id="edit"> {% csrf_token %}
+                        <form  novalidate method="POST" action="{% url 'actualizarU' mostrar.id %}" id="edit" enctype="multipart/form-data"> {% csrf_token %}
                             <div class="row">
                                 <div style="text-align: center; margin-bottom: 30PX;">
                                     <div class="mt-4 mt-md-0" style="margin-bottom: 20px;">
                                         <img class="img-thumbnail rounded-circle avatar-xl" alt="" src="{% static 'images/'%}" data-holder-rendered="true">
                                     </div>
-                                    <button type="button" class="btn btn-primary waves-effect btn-label waves-light"><i class="bx mdi mdi-upload label-icon"></i> Subir imagen </button>
+                                    <input name="fotop" type="file"></input>
                                 </div><!-- end col -->
                                 <div class="col-lg-6">
                                     <div class="form-group mb-3">

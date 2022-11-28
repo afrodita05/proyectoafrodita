@@ -9,3 +9,4 @@ class User(AbstractUser):
     username = models.CharField(max_length=150, unique=True)
     documento=models.CharField(max_length=10)
     nPersona= models.CharField(max_length=40,null=True)
+    foto= models.ImageField(default="Afroditalogo.png",null=True, blank=True) #python -m pip install Pillow
