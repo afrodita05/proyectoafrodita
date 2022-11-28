@@ -9,19 +9,19 @@ from django.db.models import Q
 from django.contrib.auth.decorators import permission_required
 # Create your views here.
 
-@permission_required('Citas.view_citas') 
+@permission_required('Citas.view_citas',raise_exception=True) 
 def listarCita(request):
     citas=Citas.objects.filter()
     contexto={"citas":citas}
     return render(request,"Citas/Citas.html",contexto)
 
-@permission_required('Citas.view_citas') 
+@permission_required('Citas.view_citas',raise_exception=True) 
 def rutaVCita(request):
     clientes=Clientes.objects.filter()
     context={"clientes":clientes}
     return render(request,"Citas/VerificarDocumento.html",context)
 
-@permission_required('Citas.view_citas') 
+@permission_required('Citas.view_citas',raise_exception=True) 
 def verificarDocumento(request):
     clienteDocumento= request.POST.get('documento')
     existe=Clientes.objects.filter(documento=clienteDocumento).exists()
@@ -31,12 +31,12 @@ def verificarDocumento(request):
         return redirect('crear-Citas',idCliente)
 
     else:
-        print(existe, "PRUEBA111")
+        
         error="El documento que ingresó no está registrado en el sistema"
         contexto={"error":error}
         return render(request,'Citas/VerificarDocumento.html',contexto)
 
-@permission_required('Citas.view_citas')  
+@permission_required('Citas.view_citas',raise_exception=True)  
 def crearCita(request,id):
     if request.method=='POST':
         formulario_citas=FormularioCitas(request.POST)
@@ -58,7 +58,7 @@ def crearCita(request,id):
     contexto={'formulario_citas':formulario_citas,'idCliente':id}
     return render(request,'Citas/Crear-Cita.html',contexto)
 
-@permission_required('Citas.view_citas') 
+@permission_required('Citas.view_citas',raise_exception=True) 
 def editarCita(request,id):
     citas=Citas.objects.get(idCita=id)
     if request.method=='GET':
@@ -71,7 +71,7 @@ def editarCita(request,id):
     contexto={'formulario_citas':formulario_citas}
     return render(request,'Citas/Editar-Cita.html',contexto)
 
-@permission_required('Citas.view_citas') 
+@permission_required('Citas.view_citas',raise_exception=True) 
 def verDetalleCita(request, id):
     
 
@@ -83,7 +83,7 @@ def verDetalleCita(request, id):
     contexto={"agendaCosto":agendaCosto,"cita":cita}
     return render(request,"Citas/VerDetalleCita.html",contexto)
 
-@permission_required('Citas.view_citas') 
+@permission_required('Citas.view_citas',raise_exception=True) 
 def crearAgendaCosto(request, id):
     
     if request.method=='POST':
@@ -161,7 +161,7 @@ def crearAgendaCosto(request, id):
     contexto={'formulario_agenda_costo':formulario_agenda_costo,'idCita':id}
     return render(request,'Citas/CrearCosto.html',contexto)
 
-@permission_required('Citas.view_citas') 
+@permission_required('Citas.view_citas',raise_exception=True) 
 def editarAgendaCosto(request,id):
     agendaCosto=AgendaCosto.objects.get(idAgendaCosto=id)
     if request.method=='GET':
@@ -174,7 +174,7 @@ def editarAgendaCosto(request,id):
     contexto={'formulario_agenda_costo':formulario_agenda_costo}
     return render(request,'Citas/EditarCosto.html',contexto)
 
-@permission_required('Citas.view_citas') 
+@permission_required('Citas.view_citas',raise_exception=True) 
 def verDetalleCosto(request, id):
     agendaCosto=AgendaCosto.objects.filter(idAgendaCosto=id).first()
     agendaFecha=AgendaFecha.objects.filter(idAgendaCosto=id)
@@ -183,7 +183,7 @@ def verDetalleCosto(request, id):
     
     return render(request,"Citas/VerDetalleCosto.html",contexto)
 
-@permission_required('Citas.view_citas') 
+@permission_required('Citas.view_citas',raise_exception=True) 
 def crearAgendaFecha(request, id):
     if request.method=='POST':
         formulario_agenda_fecha=FormularioAgendaFecha(request.POST)
@@ -219,7 +219,7 @@ def crearAgendaFecha(request, id):
     contexto={'formulario_agenda_fecha':formulario_agenda_fecha}
     return render(request,'Citas/CrearFecha.html',contexto)
 
-@permission_required('Citas.view_citas') 
+@permission_required('Citas.view_citas',raise_exception=True) 
 def editarFechaAgenda(request,id):
     fecha=AgendaFecha.objects.get(idAgendaFecha=id)
     

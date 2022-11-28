@@ -11,26 +11,26 @@ from multiprocessing import context
 from Apps.Servicios.forms import *
 from django.contrib.auth.decorators import permission_required
 
-@permission_required('Servicios.view_servicios') 
+@permission_required('Servicios.view_servicios',raise_exception=True) 
 def servicio(request):
     servicio=Servicios.objects.filter()
     context={"servicio":servicio}
     return render(request,"Servicios/Servicios.html",context)
 
-@permission_required('Servicios.view_servicios') 
+@permission_required('Servicios.view_servicios',raise_exception=True) 
 def formularioServicio(request,id):
     insumo=Insumo.objects.filter()
     mostrar=Servicios.objects.filter(idServicio=id).first()
     context={"insumo":insumo,'idServicio':id, "mostrar":mostrar}
     return render(request,'Servicios/Crear-Servicio.html',context)
 
-@permission_required('Servicios.view_servicios') 
+@permission_required('Servicios.view_servicios',raise_exception=True) 
 def rutaV(request):
     servicio=Servicios.objects.filter()
     context={"servicio":servicio}
     return render(request,"Servicios/VerificarNombre.html",context)
     
-@permission_required('Servicios.view_servicios') 
+@permission_required('Servicios.view_servicios',raise_exception=True) 
 def verificacionServicio(request):
     nombreServicio= request.POST['nServicio']
     tiempoServicio= request.POST['tiempo']
@@ -51,13 +51,13 @@ def verificacionServicio(request):
         idServicio= servicios.idServicio
         return redirect('formularioServicio',idServicio)
 
-@permission_required('Servicios.view_servicios') 
+@permission_required('Servicios.view_servicios',raise_exception=True) 
 def editarS(request, id):
     mostrar=Servicios.objects.filter(idServicio=id).first()
     context={"mostrar":mostrar}
     return render(request,"Servicios/VerificarNombreEditar.html",context)
 
-@permission_required('Servicios.view_servicios') 
+@permission_required('Servicios.view_servicios',raise_exception=True) 
 def verificacionServicioEditar(request,id):
 
     nombreServicio= request.GET['nombre']
@@ -129,7 +129,7 @@ def verificacionServicioEditar(request,id):
     return redirect('formularioServicio',idServicio)
 
     
-@permission_required('Servicios.view_servicios') 
+@permission_required('Servicios.view_servicios',raise_exception=True) 
 def editarEstado(request, id):
     servicioActual= Servicios.objects.get(idServicio=id)
 
@@ -142,7 +142,7 @@ def editarEstado(request, id):
     return redirect("Servicio")
 
 
-@permission_required('Servicios.view_servicios') 
+@permission_required('Servicios.view_servicios',raise_exception=True) 
 def crearServicio(request):
     #PASO 2:
     #Añadir costo del servicio
@@ -181,7 +181,7 @@ def crearServicio(request):
 
 
     
-@permission_required('Servicios.view_servicios') 
+@permission_required('Servicios.view_servicios',raise_exception=True) 
 def actualizarS(request, id):
     nombreServicio= request.GET['nombre']
     errorS= []
@@ -209,7 +209,7 @@ def actualizarS(request, id):
         
     
 
-@permission_required('Servicios.view_servicios') 
+@permission_required('Servicios.view_servicios',raise_exception=True) 
 def eliminarS(request, id):   
     registro= Servicios.objects.get(idServicio=id)
     registro.delete() 

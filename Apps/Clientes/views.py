@@ -5,13 +5,13 @@ from django.contrib.auth.decorators import permission_required
 # Create your views here.
 
 #Listar Clientes
-@permission_required('Clientes.view_clientes') 
+@permission_required('Clientes.view_clientes',raise_exception=True) 
 def listarCliente(request):
     listarCliente=Clientes.objects.filter()
     contexto={"cliente":listarCliente}
     return render(request,"Clientes/Clientes.html",contexto)
 
-@permission_required('Clientes.view_clientes') 
+@permission_required('Clientes.view_clientes',raise_exception=True) 
 def crearCliente(request): 
     if request.method=='POST':
         formulario_cliente=FormularioCliente(request.POST)
@@ -30,7 +30,7 @@ def crearCliente(request):
     contexto={'formulario_cliente':formulario_cliente}
     return render(request,'Clientes/Crear-Cliente.html',contexto)
 
-@permission_required('Clientes.view_clientes') 
+@permission_required('Clientes.view_clientes',raise_exception=True) 
 def editarCliente(request, id):
     cliente=Clientes.objects.get(idCliente=id)
     documento=cliente.documento
@@ -53,7 +53,7 @@ def editarCliente(request, id):
     contexto={'formulario_cliente':formulario_cliente,"documento":documento}
     return render(request,'Clientes/Editar-Cliente.html',contexto)
 
-@permission_required('Clientes.view_clientes') 
+@permission_required('Clientes.view_clientes',raise_exception=True) 
 def detalleCliente(request, id):
     mostrar=Clientes.objects.filter(idCliente=id).first()
     corporal=EsteticoCorporal.objects.filter(idCliente=id) 
@@ -61,7 +61,7 @@ def detalleCliente(request, id):
     contexto={"mostrar":mostrar,"corporal":corporal,"facial":facial}
     return render(request,"Clientes/Detalles-Clientes.html",contexto)
 
-@permission_required('Clientes.view_clientes') 
+@permission_required('Clientes.view_clientes',raise_exception=True) 
 def crearCorporal(request,id):
     if request.method=='POST':
         formulario_corporal=FormularioCorporal(request.POST)
@@ -73,7 +73,7 @@ def crearCorporal(request,id):
     contexto={'formulario_corporal':formulario_corporal,"idCliente":id}
     return render(request,'Clientes/Crear-Corporal.html',contexto)
 
-@permission_required('Clientes.view_clientes') 
+@permission_required('Clientes.view_clientes',raise_exception=True) 
 def crearFacial(request,id):
     if request.method=='POST':
         formulario_facial=FormularioFacial(request.POST)
@@ -85,7 +85,7 @@ def crearFacial(request,id):
     contexto={'formulario_facial':formulario_facial,"idCliente":id}
     return render(request,'Clientes/Crear-Facial.html',contexto)
 
-@permission_required('Clientes.view_clientes') 
+@permission_required('Clientes.view_clientes',raise_exception=True) 
 def VerDetalleCorporal(request, id):
     mostrar=EsteticoCorporal.objects.filter(idCorporal=id).first()
     documentoCosto=mostrar.idCliente.idCliente
@@ -94,14 +94,14 @@ def VerDetalleCorporal(request, id):
     contexto={"mostrar":mostrar,"medidas":medidas,"documentoCosto":documentoCosto}
     return render(request,"Clientes/Historial-Corporal.html",contexto)
 
-@permission_required('Clientes.view_clientes') 
+@permission_required('Clientes.view_clientes',raise_exception=True) 
 def VerDetalleFacial(request, id):
     mostrar=EsteticoFacial.objects.filter(idFacial=id).first()
     documentoCosto=mostrar.idCliente.idCliente
     contexto={"mostrar":mostrar,"documentoCosto":documentoCosto}
     return render(request,"Clientes/Historial-Facial.html",contexto)
 
-@permission_required('Clientes.view_clientes') 
+@permission_required('Clientes.view_clientes',raise_exception=True) 
 def crearControlMedidas(request,id):
     if request.method=='POST':
         formulario_medidas=FormularioMedidas(request.POST)

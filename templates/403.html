@@ -1,0 +1,27 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}Crear Cita{% endblock title %}
+{% block extra_css %}
+{% endblock extra_css %}
+{% block content %}
+<div class="main-content">
+    <div class="page-content">
+        <div class="row">
+            <div class="col-12" style="margin: 60px;" >
+                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                    <h3> El usuario no está autorizado para entrar en esta página. 
+
+                       
+                    </h3>  
+                </div>
+                <div>
+                    <h4> Por favor, escoge una página permitida. </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% block footer %}
+{% include 'partials/footer.html' %}
+{% endblock footer %}
+{% endblock content %}

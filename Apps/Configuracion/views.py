@@ -8,7 +8,7 @@ from Apps.Configuracion.models import Rol
 from django.contrib.auth.decorators import permission_required
 
 # Create your views here.
-@permission_required('auth.view_group') 
+@permission_required('auth.view_group',raise_exception=True) 
 def crearRol(request): 
          
     nombreRol=request.POST['nombre']
@@ -69,38 +69,6 @@ def crearRol(request):
         eliminar_cliente= Permission.objects.get(name='Can delete clientes')
 
         rol.permissions.add(agregar_cliente,ver_cliente, cambiar_cliente, eliminar_cliente)
-        
-        #Historial corporal
-
-        agregar_corporal= Permission.objects.get(name='Can add estetico corporal')
-        ver_corporal= Permission.objects.get(name='Can view estetico corporal') 
-        cambiar_corporal= Permission.objects.get(name='Can change estetico corporal')
-        
-        rol.permissions.add(agregar_corporal,ver_corporal, cambiar_corporal)
-
-        #Historial facial
-        
-        agregar_facial= Permission.objects.get(name='Can add estetico facial')
-        ver_facial= Permission.objects.get(name='Can view estetico facial') 
-        cambiar_facial= Permission.objects.get(name='Can change estetico facial')
-        
-        rol.permissions.add(agregar_facial,ver_facial, cambiar_facial)
-
-        #Sesiones
-
-        agregar_sesiones= Permission.objects.get(name='Can add sesiones')     
-        ver_sesiones= Permission.objects.get(name='Can view sesiones') 
-        cambiar_sesiones= Permission.objects.get(name='Can change sesiones')   
-
-        rol.permissions.add(agregar_sesiones,ver_sesiones, cambiar_sesiones)
-
-        #Control Medidas
-        
-        agregar_control= Permission.objects.get(name='Can add control medidas')     
-        ver_control= Permission.objects.get(name='Can view control medidas') 
-        cambiar_control= Permission.objects.get(name='Can change control medidas')   
-
-        rol.permissions.add(agregar_control,ver_control, cambiar_control)
 
 
     if compServ>0:
@@ -152,19 +120,19 @@ def crearRol(request):
     
     return redirect("/listarRol/")
 
-@permission_required('auth.view_group')  
+@permission_required('auth.view_group',raise_exception=True)  
 
 def editarRol(request, id):
     mostrar=Group.objects.filter(id=id).first()
     context={"mostrar":mostrar}
     return render(request,"Configuracion/Editar-Rol.html",context)
 
-@permission_required('auth.view_group') 
+@permission_required('auth.view_group',raise_exception=True) 
 
 def formularioRol(request):    
     return render(request,"Configuracion/Crear-Rol.html")
 
-@permission_required('auth.view_group') 
+@permission_required('auth.view_group',raise_exception=True) 
 
 def listarRol(request):   
     current_user=request.user
@@ -174,7 +142,7 @@ def listarRol(request):
     return render(request,"Configuracion/Configuracion.html",context)
 
 
-@permission_required('auth.view_group') 
+@permission_required('auth.view_group',raise_exception=True) 
 
 def actualizarRol(request, id):      
     nombreRol=request.GET['nombre']
@@ -268,7 +236,7 @@ def actualizarRol(request, id):
 
     return redirect("/listarRol/")
 
-@permission_required('auth.view_group') 
+@permission_required('auth.view_group',raise_exception=True) 
 
 def detalleRol(request,id):
     rol= " "

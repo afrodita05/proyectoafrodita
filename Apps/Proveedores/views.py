@@ -3,7 +3,7 @@ from Apps.Proveedores.models import Proveedor
 from Apps.Proveedores.forms import *
 from django.contrib.auth.decorators import permission_required
 # Create your views here.
-@permission_required('Proveedores.view_proveedor') 
+@permission_required('Proveedores.view_proveedor',raise_exception=True) 
 def CrearProveedor(request):
 
     if request.method=='POST':
@@ -17,7 +17,7 @@ def CrearProveedor(request):
     return render(request,'Proveedores/Crear-Proveedor.html',contexto)
     
     
-@permission_required('Proveedores.view_proveedor')    
+@permission_required('Proveedores.view_proveedor',raise_exception=True)    
 def EditarProveedor(request, id):
     proveedor=Proveedor.objects.get(idProveedor=id)
     if request.method=='GET':
@@ -33,7 +33,7 @@ def EditarProveedor(request, id):
 
 # def FormularioAgregarProveedor(request):
 #     return render(request, 'Proveedores/Crear-Proveedor.html')
-@permission_required('Proveedores.view_proveedor') 
+@permission_required('Proveedores.view_proveedor',raise_exception=True) 
 def ListarProveedor(request):
     LProveedor=Proveedor.objects.filter()
     context={"Lproveedor":LProveedor}
