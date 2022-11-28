@@ -10,7 +10,7 @@ from django.contrib.auth.models import Group, Permission
 from django.contrib.auth.decorators import permission_required
 
 #@login_required
-@permission_required('user.view_user',raise_exception=True) 
+@permission_required('user.view_user',raise_exception=True)
 def usuario(request):
     usuario=User.objects.all()
     # usuario = {group.name: group.user_set.values_list('id', flat=True) for group in Group.objects.all()}
