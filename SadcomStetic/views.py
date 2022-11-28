@@ -27,6 +27,8 @@ class DashboardView(View):
         clienteC=Clientes.objects.filter().count
         context={"compraC":compraC, "insumoC":insumoC,"proveedorC":proveedorC,"clienteC":clienteC}
         return render(request, "dashboard.html", context)
+    
+    
 
 
 

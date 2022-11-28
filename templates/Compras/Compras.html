@@ -68,6 +68,10 @@
                                             <td data-field="FechaRecibo">{{listar.fechaRecibo}}</td>
                                             <td data-field="valor">{{listar.ValorTotal}}</td>
                                             <td>
+                                                <div class="form-check form-switch form-switch-md mb-3" dir="ltr" style="margin-left: 15px;">
+                                                    <input type="checkbox" class="form-check-input" id="customSwitchsizemd">
+                                                    <label class="form-check-label" for="customSwitchsizemd">Estado</label>
+                                                </div>
                                                 <a  href="{% url 'DetalleCompras' listar.idCompra %}" class="btn btn-outline-primary btn-sm">
                                                     <i class="mdi mdi-eye-outline mdi-24px "></i>
                                                 </a>

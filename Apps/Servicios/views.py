@@ -76,9 +76,7 @@ def verificacionServicioEditar(request,id):
     existePropio = Servicios.objects.filter(nServicio=nombrePropio)
  
     if existe:  
-        
         if actualizar.nServicio==nombrePropio: #Confirmar que el nombre ingresado es el nombre propio
-            
             if estado == "False":
                 for citas.idCita in idCitas:
                     idCita = citas.idCita
