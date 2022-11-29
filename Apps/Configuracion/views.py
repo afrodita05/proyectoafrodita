@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from django.views.generic import TemplateView
 from django.contrib.auth.models import Group, Permission
-from Apps.Configuracion.models import Rol
+from Apps.Configuracion.models import *
 from django.contrib.auth.decorators import permission_required
 
 # Create your views here.

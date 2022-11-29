@@ -91,14 +91,13 @@ def crearAgendaCosto(request, id):
         
         if formulario_agenda_costo.is_valid():
             
-            valorPagoServicio=request.POST.get('costo')
-            valorPagoServicio= int(valorPagoServicio)
+            sesiones=request.POST.get('sesiones')
+            sesiones= int(sesiones)
             idServicio= Citas.objects.filter(idCita = id).values_list('idServicio', flat=True).first() #Obtengo el id del servicio basado en el id de la cita
             idServicio=int(idServicio) #Lo convierto a integer
             
             valorServicio = Servicios.objects.filter(idServicio = idServicio).values_list('valor', flat= True).first() #encuentro el valor del servicior
             valorServicio = int(valorServicio) #lo convierto a integer
-            proporcionServicio= valorPagoServicio/valorServicio #obtengo la proporción del servicio: el valor pagado dividido el valor original = cuántas veces estoy pagando el servicio
             insumosServicio = Servicios_Insumo.objects.filter(idServicio_id=idServicio).values_list('idInsumo', flat= True) #obtengo los id de los insumos usados por este servicio
             insumos = Servicios_Insumo.objects.filter() #Obtengo una lista de todos los insumos mencionados anteriormente
             contador = 0
@@ -140,7 +139,7 @@ def crearAgendaCosto(request, id):
                 cantidadInsumo=int(cantidadInsumo)
                 cantidadServicio=int(cantidadServicio)
 
-                cantidadFinal= cantidadInsumo-(cantidadServicio*proporcionServicio)
+                cantidadFinal= cantidadInsumo-(cantidadServicio*sesiones)
                 tipoUnidad = Insumo.objects.filter(idInsumo=idInsumoActual).values_list('tipoUnidad', flat= True).first()
                 estado = Insumo.objects.filter(idInsumo=idInsumoActual).values_list('estado', flat= True).first()
                 tipoUnidad = str(tipoUnidad)
