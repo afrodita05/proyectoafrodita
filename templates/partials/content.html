@@ -145,7 +145,7 @@
                                     },
 
                                     title: {
-                                        text: 'Top 5 clientes por servcios contratados'
+                                        text: 'Top 5 clientes por servicios contratados'
                                     },
 
                                     
@@ -235,11 +235,11 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            {% for listar in citasMostrar%}
+                                            {% for listar in cursor%}
                                             <tr>
-                                                <td>{{listar.idCliente.nombre}}</td>
-                                                <td>{{listar.idCliente.documento}}</td>
-                                                <td>10</td>
+                                                <td>{{listar.0}}</td>
+                                                <td>{{listar.1}}</td>
+                                                <td>{{listar.2}}</td>
                                             </tr>
                                             {% endfor %}
 

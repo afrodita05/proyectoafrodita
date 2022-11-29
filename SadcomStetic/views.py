@@ -10,7 +10,7 @@ from Apps.Insumos.models import *
 from Apps.Clientes.models import *
 from Apps.Proveedores.models import *
 from Apps.Citas.models import *
-
+from django.db import connection
 
 
 # Dashboard
@@ -29,23 +29,41 @@ class DashboardView(View):
 
         clientes = Clientes.objects.filter()
         todasCitas = Citas.objects.filter()
-        clientesConCitas = Citas.objects.values_list('idCliente').distinct()
+        clientesConCitas = Citas.objects.values_list('idCliente').distinct().values('idCliente')
         print("ESTO ES: ", clientesConCitas)
+        print(clientesConCitas,)
+        serviciosCliente=[]
+        
         for clientes.idCliente in clientesConCitas:
             print("EL ID ES SEÑOR JESUCRISTO TE LO RUEGO:", clientesConCitas)
             idClientesEnCitas = clientes.idCliente
-        
-            citaActual = Citas.objects.filter(idCliente=idClientesEnCitas)
-            
 
-            citasMostrar = list(citaActual)
-            print(citaActual)
-            print("La lista es: ", citasMostrar)
-            
-            
+            citaActual = Citas.objects.filter(idCliente__in=clientesConCitas).distinct()
+            print("Clientesconcitas es: ",clientesConCitas)
+            print("Los clientes tipo son: ",type(clientes))
+            print("El tipo de cita actual es: ", type(citaActual))
+            print("Los valores de cita actual son: ", citaActual)
 
-        # insumosServicio = Citas.objects.filter(idServicio_id=idServicio).values_list('idInsumo', flat= True)
-        context={"compraC":compraC, "insumoC":insumoC,"proveedorC":proveedorC,"clienteC":clienteC,"citasMostrar":citasMostrar}
+
+            totalServicios= Citas.objects.filter(idCliente__in=clientesConCitas).values_list('idServicio', flat= True)
+            print(totalServicios, "ESSSS")
+            #reversar valores de citactual para buscar servicios asociados a ellos, agregar servicios a lista, sacar longitud de lista, imprimir en el context
+            cantidadServicios= 120
+
+        with connection.cursor() as cursor:
+            cursor.execute('''SELECT nombre, documento, COUNT(idServicio_id) AS totalServicios 
+            FROM afrodita.citas_citas AS A
+            INNER JOIN clientes_clientes AS B
+            ON A.idCliente_id = B.idCliente 
+            GROUP BY idCliente_id''')
+            rows = cursor.fetchall()
+            rows = list(rows)
+            print("El row es: ",rows)
+            for cliente in citaActual:
+                print(cliente.idCliente.idCliente)
+
+            
+        context={"compraC":compraC, "insumoC":insumoC,"proveedorC":proveedorC,"clienteC":clienteC,"citaActual":citaActual, "cantidadServicios":cantidadServicios, "cursor":rows}
         return render(request, "dashboard.html", context)
     
     
