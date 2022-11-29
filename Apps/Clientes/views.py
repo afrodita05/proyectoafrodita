@@ -40,12 +40,11 @@ def editarCliente(request, id):
         formulario_cliente=FormularioCliente(request.POST,instance=cliente)
         if formulario_cliente.is_valid():
             inputDocumento=formulario_cliente.cleaned_data.get('documento')
-            existe=Clientes.objects.filter(documento=documento).exists()
-            if documento==inputDocumento or documento!=inputDocumento:
-                if existe== False or existe==True:
-                    formulario_cliente.save()
-                    return redirect('/Clientes/')
-            elif existe:
+            existe=Clientes.objects.filter(documento=inputDocumento).exclude(idCliente=id).count()
+            if existe==0:
+                formulario_cliente.save()
+                return redirect('/Clientes/')
+            else:
                 mensaje_error="El documento ya existe"
                 contexto={'formulario_cliente':formulario_cliente,"mensaje_error":mensaje_error}
                 return render(request,'Clientes/Editar-Cliente.html',contexto)
