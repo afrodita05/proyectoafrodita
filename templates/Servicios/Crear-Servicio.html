@@ -30,10 +30,9 @@
                         <form action="" onsubmit="onSubmitForm" id="agregar" novalidate method=" ">  <!-- basado en compras -->
                             
                             {% csrf_token %}
-                            <input type="hidden" />
                             <div class="row">
 
-                                <input name="idActual" value="{{mostrar.idServicio}}"/>
+                                <input type="hidden" name="idActual" value="{{mostrar.idServicio}}"/>
 
                                 <div class="col-lg-6">
                                     <div class="form-group mb-3">
@@ -52,18 +51,9 @@
                                         <input name="tiempo" type="text" data-pristine-required-message="Por favor ingrese el tiempo" value="{{mostrar.tiempo}}" placeholder="{{mostrar.tiempo}}" required class="form-control" readonly />
                                     </div>
                                 </div>
-
-
-                                <div class="form-check form-switch form-switch-md mb-3" dir="ltr" style="margin-left: 15px;">
-                                    <input type="checkbox" class="form-check-input" id="customSwitchsizemd">
-                                    <label class="form-check-label" for="customSwitchsizemd">Estado</label>
-                                </div>
                             </div>
-                            <!-- end row -->
-                            
 
                             <!-- insumos usados -->
-
 
                             <div class="col-md-12">
                                 <div class="form-group mb-3">
@@ -80,14 +70,13 @@
                                 <label for="example-datetime-local-input" class="form-label">Cantidad del insumo utilizado</label>
                                 <input name="cantidad" type="number" value="0" data-pristine-required-message="Por favor ingrese la cantidad utilizada" required class="form-control" />
                             </div>
-
+                            <br>
                             <div class="col-md-12">
                                 <label for="example-datetime-local-input" class="form-label">Costo total del servicio</label>
-                                <input name="valor" type="number" value="1" maxlength="6"  pattern="[^\s][A-z-À-ž\s]+" oninvalid="this.setCustomValidity('Debes ingresar un costo. Este debe ser de mínimo 1000.')" required class="form-control" />
+                                <input name="valor" type="number" value="" placeholder="$0" maxlength="6"  pattern="[^\s][A-z-À-ž\s]+" oninvalid="this.setCustomValidity('Debes ingresar un costo. Este debe ser de mínimo 1000.')" required class="form-control" />
                             </div>
-                            
                             <div class="form-group" style=" margin-top: 40px; margin-bottom: 50px; text-align: center;" >
-                            <button type="submit"  for="agregar" class="btn btn-primary" style="width: 50%">Agregar</button>
+                            <button type="submit"  for="agregar" class="btn btn-primary" style="width: 20%;margin-right: 40px;">Agregar</button>
                             <button type="button" id="borrar" class="btn btn-danger" style="width: 20%; margin-right: 20px;">Limpiar lista</button>
 
                             </div>

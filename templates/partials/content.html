@@ -3,6 +3,7 @@
         <div class="main-content"> 
             <div class="page-content">
                 <script src="https://code.highcharts.com/highcharts.js"></script>
+                
                 <div class="container-fluid">
                     <!-- start page title -->
                     <div class="row">
@@ -129,7 +130,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-xl-6">
+                        <div class="col-xl-12">
                             <!-- card -->
                             <div class="card">
                                 <!-- card body -->
@@ -170,13 +171,13 @@
                                             text: 'Servicios'
                                         }
                                     },
-
+                                    
                                     series: [{
                                         name: 'Cantidad de servicios',
                                         showInLegend: false,
                                         colorByPoint: true,
-                                        data: [4, 3, 3,2,1]
-                                    },],
+                                        data: '[rows]'
+                                    }],
 
                                     responsive: {
                                         rules: [{
@@ -223,35 +224,39 @@
                                     });
                             </script>
                         </div>
-                        <div class="col-xl-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap w-100">
-                                        <thead>
-                                            <tr>
-                                                <th>Nombre</th>
-                                                <th>Documento</th>
-                                                <th>Cantidad de servicios contratados</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            {% for listar in cursor%}
-                                            <tr>
-                                                <td>{{listar.0}}</td>
-                                                <td>{{listar.1}}</td>
-                                                <td>{{listar.2}}</td>
-                                            </tr>
-                                            {% endfor %}
-
-                                            </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="row">
-                    
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header bg-transparent border-primary">
+                                <h5 class="my-0 text-primary"><i class="mdi mdi-cancel me-3"></i>Top clientes por servicios contratados</h5>
+                            </div>
+                            <div class="card-body">
+                                
+                                <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap w-100">
+                                    <thead >
+                                        <tr style="margin-top: 100px;">
+                                            <th>Nombre</th>
+                                            <th>Documento</th>
+                                            <th>Cantidad de servicios contratados</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for listar in cursor%}
+                                        <tr>
+                                            <td>{{listar.0}}</td>
+                                            <td>{{listar.1}}</td>
+                                            <td>{{listar.2}}</td>
+                                        </tr>
+                                        {% endfor %}
+
+                                        </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             {% block footer %}

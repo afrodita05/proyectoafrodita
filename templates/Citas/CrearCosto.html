@@ -31,8 +31,7 @@
                             <input type="text" name="idCita" hidden value="{{idCita}}" >
                             <input type="hidden" />
                             <div class="row">
-                                
-                                <div class="col-lg-4">
+                                <div class="col-lg-12">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Número de sesiones</label>
                                         {{formulario_agenda_costo.sesiones}}
@@ -41,19 +40,16 @@
                                         {% endfor %}
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-12">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Pagos</label>
                                         {{formulario_agenda_costo.costo}}
                                         {% for error in formulario_agenda_costo.costo.errors %}
                                         <p style="color:red"> {{error}}</p>
                                         {% endfor %}
-
-                                        
                                         <p style="color:red"> {{errorCantidad}}</p>
-                                        
                                     </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-12">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Abono</label>
                                         {{formulario_agenda_costo.abono}}

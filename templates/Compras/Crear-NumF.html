@@ -28,9 +28,10 @@
                     <form action= "/verificacionCompra/" id="crearS" novalidate method="POST">
                         {% csrf_token %}
                         <input type="hidden" name="id" value="{{compra.idCompra}}">
+                        
                         <div class="row">
                             <div class="col-xl-12">
-                                <div class="col-lg-2 formulario__grupo"  id="grupo__numeroFactura">
+                                <div class="col-lg-12 formulario__grupo"  id="grupo__numeroFactura">
                                     <label for="numeroFactura" class="formulario__label">Número de factura</label>
                                     <div class=" formulario__grupo" id="grupo__numeroFactura">
                                         <input id="numeroFactura" name="numeroFactura" type="text" class="form-control formulario__input"/>
@@ -41,8 +42,8 @@
                                 </div>
                             </div>
                             <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-top: 40px; margin-bottom: 20px;" >
-                                <button type="submit" for="crearC"  class="btn btn-primary" style="width: 20%; margin-right: 20px;">Verificar</button>
-                                <a href="{% url 'Compra' %}" type="button" class="btn btn-danger" style="width: 20%">Cancelar</a>
+                                <button type="submit" for="crearC"  class="btn btn-primary" style="width: 20%; margin-right: 20px;" title="Verificar número de factura">Verificar</button>
+                                <a href="{% url 'Compra' %}" type="button" class="btn btn-danger" style="width: 20%" title="Cancelar proceso">Cancelar</a>
                             </div>
                         </div>
                     </form>

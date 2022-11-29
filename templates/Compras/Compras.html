@@ -69,10 +69,10 @@
                                             <td data-field="valor">{{listar.ValorTotal}}</td>
                                             <td>
                                                 <a  href="{% url 'DetalleCompras' listar.idCompra %}" class="btn btn-outline-primary btn-sm">
-                                                    <i class="mdi mdi-eye-outline mdi-24px "></i>
+                                                    <i class="mdi mdi-eye-outline mdi-24px " title="Ver detalle de la compra"></i>
                                                 </a>
                                                 <a href="{% url 'estadocompra' listar.idCompra%}" class="btn btn-outline-primary btn-sm">
-                                                    <i class="mdi mdi-cancel mdi-24px"></i></i>
+                                                    <i class="mdi mdi-cancel mdi-24px" title="Cancelar compra"></i>
                                                 </a> 
                                         </tr> 
                                         {% endif %}
@@ -114,7 +114,7 @@
                                             <td data-field="valor">{{listar.ValorTotal}}</td>
                                             <td>
                                                 <a  href="{% url 'DetalleCompras' listar.idCompra %}" class="btn btn-outline-primary btn-sm">
-                                                    <i class="mdi mdi-eye-outline mdi-24px "></i>
+                                                    <i class="mdi mdi-eye-outline mdi-24px " title="Ver detalle de la compra"></i>
                                                 </a>
                                         </tr> 
                                         {% endif %}

@@ -36,6 +36,14 @@
                             aria-label="Close"></button>
                         </div>
                     {% endfor %}
+                    <div style="margin-bottom: 50px;">
+                        <div class="alert alert-primary alert-top-border alert-dismissible fade show mb-0"
+                            role="alert" style="font-size: 20px">
+                            <i class="mdi mdi-alert-circle-outline text-primary align-middle me-3"></i><strong>Info</strong> Para completar la compra es importante tener previamente registrado
+                            el proveedor y registar un nuevo insumo si es necesario
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"aria-label="Close"></button>
+                        </div>
+                    </div>
                     <form action="" class="formulario" onsubmit="onSubmitForm" id="agregar">
                         {% csrf_token %}
                         <input type="hidden"/>
@@ -72,14 +80,14 @@
                         </div>
                         <div class="row">
                             <!-- Productos -->
-                            <div class="col-lg-2">
+                            <div class="col-lg-3">
                                 <div class="btn-group col-md-12" style="margin-top: 35px;">
-                                    <a href="{% url 'FormularioAgregarInsumo' mostrar.idCompra %}" class="btn btn-primary waves-effect btn-label waves-light"><i class="bx bx-plus label-icon"></i>
+                                    <a href="{% url 'FormularioAgregarInsumo' mostrar.idCompra %}" title="Registar nuevo insumo" class="btn btn-primary waves-effect btn-label waves-light"><i class="bx bx-plus label-icon" ></i>
                                         Nuevo insumo
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-5">
                                 <div class="col-md-12">
                                     <label for="example-datetime-local-input" class="form-label">Productos</label>
                                     <select name="insumo" class="form-select">
@@ -139,8 +147,8 @@
                                 </div>
                                 
                                 <div class="form-group" style=" margin-top: 40px; margin-bottom: 20px; text-align: center;" >
-                                    <button type="submit" id="crearcompra"  for="agregar" class="btn btn-primary" style="width: 20%">Agregar</button>
-                                    <button type="button" id="borrar" class="btn btn-danger" style="width: 20%; margin-right: 20px;">Limpiar lista</button>
+                                    <button type="submit" id="crearcompra"  for="agregar" class="btn btn-primary" style="width: 20%" title="Añadir insumo a la lista de compra">Agregar</button>
+                                    <button type="button" id="borrar" class="btn btn-danger" style="width: 20%; margin-right: 20px;" title="Elimina los insumos de la lista de compra">Limpiar lista</button>
                                 </div>
                             </div>
                         </div>
@@ -183,8 +191,8 @@
                     <hr>
                 </div>
                 <div class="form-group" style=" display: flex; justify-content: center; align-items: center; margin-top: 20px; margin-bottom: 30px;" >
-                    <button type="button" id= "guardar" class="btn btn-primary" style="width: 20%; margin-right: 90px;">Guardar</button>
-                    <a href="{% url 'Compra' %}" type="submit" class="btn btn-danger" style="width: 20%">Cancelar</a>
+                    <button type="button" id= "guardar" class="btn btn-primary" style="width: 20%; margin-right: 90px;" title="Guardar compra">Guardar</button>
+                    <a href="{% url 'Compra' %}" type="submit" class="btn btn-danger" style="width: 20%" title="Cancelar registro">Cancelar</a>
                 </div>
             </div> <!-- end col -->
         </div> <!-- container-fluid -->

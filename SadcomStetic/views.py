@@ -26,13 +26,14 @@ class DashboardView(View):
         compraC=Compra.objects.filter().count
         proveedorC=Proveedor.objects.filter().count
         clienteC=Clientes.objects.filter().count
-
+        citasMostrar= " "
         clientes = Clientes.objects.filter()
         todasCitas = Citas.objects.filter()
         clientesConCitas = Citas.objects.values_list('idCliente').distinct().values('idCliente')
         print("ESTO ES: ", clientesConCitas)
         print(clientesConCitas,)
         serviciosCliente=[]
+        cursor= []
         
         for clientes.idCliente in clientesConCitas:
             print("EL ID ES SEÑOR JESUCRISTO TE LO RUEGO:", clientesConCitas)

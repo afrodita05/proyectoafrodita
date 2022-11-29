@@ -72,7 +72,6 @@ def editarInsumo (request,id ):
             for servicios.idServicio in idServicios:
                 idServicio = servicios.idServicio
                 estadoCita = Citas.objects.filter(idServicio=idServicio).values_list('estado', flat= True).first()
-
                 if estadoCita != "Finalizado":
                     error="El Insumo está aplicándose en una cita en proceso y no puede desactivarse."
                     mostrar=Insumo.objects.filter(idInsumo = id).first()
